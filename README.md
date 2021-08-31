@@ -15,4 +15,5 @@
 * Play again button<br>
 * Mines counter<br>
 * Time counter<br>
-* Moves counter
+* Moves counter<br>
+* Sane mine allocation system
