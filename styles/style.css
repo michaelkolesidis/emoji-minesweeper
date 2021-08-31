@@ -4,7 +4,10 @@ html {
     height: 100vh;
     background-color: rgb(254, 254, 254);
     font-family: Helvetica, sans-serif;
+}
 
+canvas {
+    /* p5.js canvas style goes here */
 }
 
 h1 {
