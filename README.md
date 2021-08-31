@@ -17,3 +17,12 @@
 * Time counter<br>
 * Moves counter<br>
 * Sane mine allocation system
+  
+### More Screenshots:
+
+* Win
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/minesweeper-emoji-screenshot-won.png" />
+
+* Loss
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/minesweeper-emoji-screenshot-lost.png" />
+
