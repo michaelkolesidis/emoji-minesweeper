@@ -12,6 +12,7 @@
 * Right-click to flag
 
 ### To-do list:
+* Play again button<br>
 * Mines counter<br>
 * Time counter<br>
 * Moves counter
