@@ -6,10 +6,6 @@ html {
     font-family: Helvetica, sans-serif;
 }
 
-canvas {
-    /* p5.js canvas style goes here */
-}
-
 h1 {
     text-align: center;
     font-size: 2.5em;
@@ -24,3 +20,9 @@ h1 {
     background-color: #e6e6e6;
     text-align: center;
   }
+
+/*
+canvas {
+    p5.js canvas style goes here 
+}
+*/
