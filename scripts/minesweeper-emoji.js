@@ -25,8 +25,10 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 function setup() {
 	background(249, 249, 249);
-	createCanvas(cellW * rows, (cellH * cols)+100);
+	createCanvas(cellW * rows, (cellH * cols)+10);
 	textSize(cellH - 1);
+	// let button = createButton("Restart");
+	// button.mousePressed(restartGame);
 
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < cols; j++) {
@@ -130,3 +132,7 @@ function mousePressed() {
 		}
 	}
 }
+
+// function restartGame() {
+		
+// }
