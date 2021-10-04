@@ -17,7 +17,7 @@
 * Mines counter<br>
 * Time counter<br>
 * Moves counter<br>
-* Sane mine allocation system
+* Sane(r) mine allocation system
 * Allocate mines on first click to avoid clicking on a mine
   
 ### More Screenshots:
