@@ -3,7 +3,7 @@
 // ==============================================
 // Created and maintained by Michael Kolesidis
 // ==============================================
-// v0.1-alpha
+// v0.2-alpha
 // ==============================================
 
 // Board dimensions and number of mines
@@ -13,6 +13,7 @@ let cellW = 40;
 let cellH = 40;
 let cells = [];
 let mineToCellRatio = 0.15;
+let sizeError = 7; //  On Windows and Linux if not added to size the left and bottom borders are not totally visible. On Mac it works fine.
 
 // Emojis
 const EMPTY = '🔲';
@@ -20,12 +21,12 @@ const MINE = '💣';
 const FLAG = '🚩';
 const DIGITS = ['⬜️', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣'];
 
-// Prevent right mouse click from opening browser context menu
+// Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 function setup() {
 	background(249, 249, 249);
-	createCanvas(cellW * rows, (cellH * cols)+100);
+	createCanvas((cellW * rows) + sizeError, (cellH * cols) + sizeError);
 	textSize(cellH - 1);
 
 	for (let i = 0; i < rows; i++) {
@@ -129,4 +130,12 @@ function mousePressed() {
 			}
 		}
 	}
+}
+
+// Reload button functionality
+function reload() {
+	const reload = document.querySelector('.reload');
+	reload.addEventListener('click', () => {
+		window.location.reload();
+	});
 }
