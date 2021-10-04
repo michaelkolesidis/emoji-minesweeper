@@ -10,13 +10,15 @@
 ### Controls:
 * Left-click to reveal cell<br>
 * Right-click to flag
+* New Game button restarts the game
 
 ### To-do list:
-* Play again button<br>
+* ~~New Game button~~<br>
 * Mines counter<br>
 * Time counter<br>
 * Moves counter<br>
 * Sane mine allocation system
+* Allocate mines on first click to avoid clicking on a mine
   
 ### More Screenshots:
 
