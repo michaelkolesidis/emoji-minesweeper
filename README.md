@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/minesweeper-emoji-screenshot.png" /><br>
+  <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac.png" /><br>
   
 </div>
 
@@ -20,9 +20,23 @@
   
 ### More Screenshots:
 
+macOS
+<br>
 * Win
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/minesweeper-emoji-screenshot-won.png" />
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-won.png" />
 
 * Loss
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/minesweeper-emoji-screenshot-lost.png" />
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-lost.png" />
 
+* Playing
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-playing.png" />
+<br>
+<br>
+  
+Linux / Windows
+  <br>
+* Game
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-lin.png" />
+  
+* Win
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweepr-emoji-lin-won.png" />
