@@ -20,6 +20,7 @@
 * Sane(r) mine allocation system
 * Allocate mines on first click to avoid clicking on a mine
 * Twemoji version
+* Visual consistency accross different platforms (probably supplying emoji fonts)
   
 ### More Screenshots:
 
