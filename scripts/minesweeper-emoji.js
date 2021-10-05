@@ -26,11 +26,11 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 function setup() {
 	background(249, 249, 249);
-	createCanvas((cellW * rows) + sizeError, (cellH * cols) + sizeError);
+	createCanvas((cellW * cols) + sizeError, (cellH * rows) + sizeError);
 	textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
 
-	for (let i = 0; i < rows; i++) {
-		for (let j = 0; j < cols; j++) {
+	for (let i = 0; i < cols; i++) {
+		for (let j = 0; j < rows; j++) {
 			let newCell = new Cell(i, j);
 			// Decide whether it is a mine or not
 			newCell.mine = Math.random(0, 1) < mineToCellRatio;
@@ -62,6 +62,7 @@ function getNeighbors(cell) {
 	});
 }
 
+// What happens every time player clicks on a cell
 function revealCell(cell) {
 	cell.revealed = true;
 	if (cell.mine) { // End game
@@ -114,7 +115,7 @@ function mousePressed() {
 		});
 		if (cell) {
 			if (cell.flagged) {
-				return; // Do not allow revealing
+				return; // Do not allow revealing when flagged
 			}
 			revealCell(cell);
 			if (cell.mine) {
