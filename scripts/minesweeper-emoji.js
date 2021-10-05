@@ -89,7 +89,7 @@ function gameWon() {
 }
 
 function gameLost() {
-	DIGITS[0] = '😱';
+	DIGITS[0] = '😵';
 	cells.forEach(function (c) {
 		c.revealed = true;
 	});
