@@ -12,7 +12,7 @@ let cols = 10;
 let cellW = 40;
 let cellH = 40;
 let cells = [];
-let mineToCellRatio = 0.15;
+let mineToCellRatio = 0.15; // Each cell has a 15% chance to be a mine
 let sizeError = 7; //  On Windows and Linux if not added to size the left and bottom borders are not totally visible. On Mac it works fine.
 
 // Emojis
@@ -27,7 +27,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 function setup() {
 	background(249, 249, 249);
 	createCanvas((cellW * rows) + sizeError, (cellH * cols) + sizeError);
-	textSize(cellH - 1);
+	textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
 
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < cols; j++) {
