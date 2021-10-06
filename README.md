@@ -3,7 +3,7 @@
   
 </div>
 
-<h1 align="center">Minesweeper made with 😃 😵 💣 🚩 and ❤️ <br><a href="https://minesweeper-emoji.netlify.app/">Try me on Netify!</a><h1>
+<h1 align="center">Minesweeper made with 😃 😵 💣 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me on Netify!</a><h1>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
