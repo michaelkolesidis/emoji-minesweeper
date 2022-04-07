@@ -37,7 +37,7 @@ macOS
 <br>
 <br>
   
-Linux / Windows
+Linux (Ubuntu)
   <br>
 * Game
 <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-lin.png" />
