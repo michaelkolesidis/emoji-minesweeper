@@ -48,17 +48,15 @@ Linux (Ubuntu)
 <br>
   <strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts. If that's the case, I would appreciate it if you could share a screenshot with me. I am always interested in the various ways the game is displayed, so that I can create a consinstent experience on all plartforms.
 
-<br>
-
+[//]: # (Free Software)
 <div align="center">
-  <h3>Made using GNU/Linux</h3>
-  <img src="https://gnulinuxgreece.github.io/gnu_linux.svg" style="width: 280px;">
+  <br>
+  <br>
+  <h4>Made using GNU/Linux</h4>
+  <a href="https://www.gnu.org/philosophy/free-sw.html"><img src="https://gnulinuxgreece.github.io/gnu_linux.svg" style="width: 180px;"></a>
 </div>
-
-<br>
-<br>
-                                                                   
+<br>                                                                
 <div align="center">
-  <a href="https://endsoftwarepatents.org/innovating-without-patents"><img style="height: 120px;" src="https://static.fsf.org/nosvn/esp/logos/innovating-without-patents.svg"></a>
+  <a href="https://endsoftwarepatents.org/innovating-without-patents"><img style="height: 90px;" src="https://static.fsf.org/nosvn/esp/logos/innovating-without-patents.svg"></a>
 </div>
   
