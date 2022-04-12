@@ -1,0 +1,58 @@
+[
+ {
+  "language": "JavaScript",
+  "files": 2,
+  "lines": 179,
+  "blanks": 17,
+  "comments": 27,
+  "linesOfCode": 135
+ },
+ {
+  "language": "CSS",
+  "files": 1,
+  "lines": 113,
+  "blanks": 12,
+  "comments": 2,
+  "linesOfCode": 99
+ },
+ {
+  "language": "HTML",
+  "files": 1,
+  "lines": 25,
+  "blanks": 3,
+  "comments": 0,
+  "linesOfCode": 22
+ },
+ {
+  "language": "License",
+  "files": 1,
+  "lines": 674,
+  "blanks": 121,
+  "comments": 0,
+  "linesOfCode": 553
+ },
+ {
+  "language": "Markdown",
+  "files": 1,
+  "lines": 62,
+  "blanks": 13,
+  "comments": 0,
+  "linesOfCode": 49
+ },
+ {
+  "language": "gitignore",
+  "files": 1,
+  "lines": 59,
+  "blanks": 13,
+  "comments": 15,
+  "linesOfCode": 31
+ },
+ {
+  "language": "Total",
+  "files": 7,
+  "lines": 1112,
+  "blanks": 179,
+  "comments": 44,
+  "linesOfCode": 889
+ }
+]
