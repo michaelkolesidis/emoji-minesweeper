@@ -24,6 +24,14 @@
   "linesOfCode": 22
  },
  {
+  "language": "JSON",
+  "files": 1,
+  "lines": 58,
+  "blanks": 0,
+  "comments": 0,
+  "linesOfCode": 58
+ },
+ {
   "language": "License",
   "files": 1,
   "lines": 674,
@@ -49,10 +57,10 @@
  },
  {
   "language": "Total",
-  "files": 7,
-  "lines": 1112,
+  "files": 8,
+  "lines": 1170,
   "blanks": 179,
   "comments": 44,
-  "linesOfCode": 889
+  "linesOfCode": 947
  }
 ]
