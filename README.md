@@ -49,12 +49,14 @@ Linux (Ubuntu)
   <strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts. If that's the case, I would appreciate it if you could share a screenshot with me. I am always interested in the various ways the game is displayed, so that I can create a consinstent experience on all plartforms.
 
 
+  
+  
 [//]: # (Free Software)
 <div align="center">
   <br>
   <br>
 
-  <a href="https://en.wikipedia.org/wiki/Linux"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Made_with_Linux.png/240px-Made_with_Linux.png"></a>
+  <a href="https://github.com/michaelkolesidis/made-with-linux" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Made_with_Linux.png/240px-Made_with_Linux.png"></a>
 </div>
 <br>                                                      
 <div align="center">
