@@ -7,12 +7,12 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
-### Controls:
+## Controls:
 * Left-click to reveal cell<br>
 * Right-click to flag
 * New Game button restarts the game
 
-### To-do list:
+## To-do list:
 * ~~New Game button~~<br>
 * Mines counter<br>
 * Time counter<br>
@@ -22,7 +22,7 @@
 * Twemoji version
 * Visual consistency accross different platforms (probably supplying emoji fonts)
   
-### More Screenshots:
+## More Screenshots:
 
 macOS
 <br>
