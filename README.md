@@ -7,11 +7,15 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
+  
+  
 ## Controls:
 * Left-click to reveal cell<br>
 * Right-click to flag
 * New Game button restarts the game
 
+  
+  
 ## To-do list:
 * ~~New Game button~~<br>
 * Mines counter<br>
@@ -21,6 +25,15 @@
 * Allocate mines on first click to avoid clicking on a mine
 * Twemoji version
 * Visual consistency accross different platforms (probably supplying emoji fonts)
+
+  
+  
+## License
+
+Copyright (c) 2021-2022 Michael Kolesidis<br>
+Licensed under the [GNU General Public License v3.0](https://github.com/michaelkolesidis/webproject-script/blob/main/LICENSE).
+  
+  
   
 ## More Screenshots:
 
