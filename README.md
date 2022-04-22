@@ -3,20 +3,39 @@
   
 </div>
 
-<h1 align="center">Minesweeper made with 😃 😵 💣 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me on Netify!</a><h1>
+<h3 align="center">Minesweeper made with 😃 😵 💣 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
   
   
-## Controls:
+## Technologies Used
+<a href="https://p5js.org/"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/p5js/p5js.svg" height="50px"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/javascript/javascript-original.svg" height="50px" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  
+  
+## Description
+  
+  
+  
+  
+## Controls
+  
 * Left-click to reveal cell<br>
 * Right-click to flag
 * New Game button restarts the game
 
   
   
-## To-do list:
+## To-do list
+  
 * ~~New Game button~~<br>
 * Mines counter<br>
 * Time counter<br>
