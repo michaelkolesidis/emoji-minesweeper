@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac.png" /><br>
+  
   
 </div>
 
@@ -54,31 +54,36 @@ Licensed under the [GNU General Public License v3.0](https://github.com/michaelk
   
   
   
-## More Screenshots:
+## Screenshots:
 
-macOS
-<br>
-* Win
+### macOS
+ 
+#### Start
+
+<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac.png" /><br>
+  
+#### Win
 <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-won.png" />
 
-* Loss
+#### Loss
 <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-lost.png" />
 
-* Playing
+#### Playing
 <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-playing.png" />
 <br>
 <br>
   
-Linux (Ubuntu)
-  <br>
-* Game
+### Linux (Ubuntu)
+
+#### Start
 <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-lin.png" />
   
-* Win
+#### Win
 <img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweepr-emoji-lin-won.png" />
 <br>
 <br>
-  <strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts. If that's the case, I would appreciate it if you could share a screenshot with me. I am always interested in the various ways the game is displayed, so that I can create a consinstent experience on all plartforms.
+  
+<strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts. If that's the case, I would appreciate it if you could share a screenshot with me. I am always interested in the various ways the game is displayed, so that I can create a consinstent experience on all plartforms.
 
 
   
