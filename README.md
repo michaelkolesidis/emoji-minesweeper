@@ -22,7 +22,7 @@
   
   
 ## Description
-  
+The classic Minesweeper game reimagined and implemented with emojis.
   
   
   
