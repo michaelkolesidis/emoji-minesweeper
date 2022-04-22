@@ -1,5 +1,6 @@
 <div align="center">
   
+  <img src="./screenshots/minesweeper-emoji.gif" /><br>
   
 </div>
 
@@ -47,46 +48,45 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 
   
   
-## License
-
-Copyright (c) 2021-2022 Michael Kolesidis<br>
-Licensed under the [GNU General Public License v3.0](https://github.com/michaelkolesidis/webproject-script/blob/main/LICENSE).
-  
-  
-  
 ## Screenshots:
 
 ### macOS
  
 #### Start
 
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac.png" /><br>
+<img src="./screenshots/minesweeper-emoji-mac.png" /><br>
   
 #### Win
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-won.png" />
+<img src="./screenshots/minesweeper-emoji-mac-won.png" />
 
 #### Loss
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-lost.png" />
+<img src="./screenshots/minesweeper-emoji-mac-lost.png" />
 
 #### Playing
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-mac-playing.png" />
+<img src="./screenshots/minesweeper-emoji-mac-playing.png" />
 <br>
 <br>
   
 ### Linux (Ubuntu)
 
 #### Start
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweeper-emoji-lin.png" />
+<img src="./screenshots/minesweeper-emoji-lin.png" />
   
 #### Win
-<img src="https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/screenshots/minesweepr-emoji-lin-won.png" />
+<img src="./screenshots/minesweepr-emoji-lin-won.png" />
 <br>
 <br>
   
 <strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts. If that's the case, I would appreciate it if you could share a screenshot with me. I am always interested in the various ways the game is displayed, so that I can create a consinstent experience on all plartforms.
 
 
+
+## License
+
+Copyright (c) 2021-2022 Michael Kolesidis<br>
+Licensed under the [GNU General Public License v3.0](https://github.com/michaelkolesidis/webproject-script/blob/main/LICENSE).
   
+
   
 [//]: # (Free Software)
 <div align="center">
