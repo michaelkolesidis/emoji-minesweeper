@@ -22,7 +22,7 @@
   
   
 ## Description
-The classic Minesweeper game reimagined and implemented with emojis.
+The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-based JavaScript, each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
   
   
   
