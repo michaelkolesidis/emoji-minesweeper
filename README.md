@@ -35,19 +35,6 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 
   
   
-## To-do list
-  
-* ~~New Game button~~<br>
-* Mines counter<br>
-* Time counter<br>
-* Moves counter<br>
-* Sane(r) mine allocation system
-* Allocate mines on first click to avoid clicking on a mine
-* Twemoji version
-* Visual consistency accross different platforms (probably supplying emoji fonts)
-
-  
-  
 ## Screenshots:
 
 ### macOS
@@ -76,11 +63,24 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 <img src="./screenshots/minesweepr-emoji-lin-won.png" />
 <br>
 <br>
+
+<strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts.
   
-<strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts. If that's the case, I would appreciate it if you could share a screenshot with me. I am always interested in the various ways the game is displayed, so that I can create a consinstent experience on all plartforms.
 
-
-
+  
+## To-do list
+  
+* ~~New Game button~~<br>
+* Mines counter<br>
+* Time counter<br>
+* Moves counter<br>
+* Sane(r) mine allocation system
+* Allocate mines on first click to avoid clicking on a mine
+* Twemoji version
+* Visual consistency accross different platforms (probably supplying emoji fonts)
+  
+  
+  
 ## License
 
 Copyright (c) 2021-2022 Michael Kolesidis<br>
