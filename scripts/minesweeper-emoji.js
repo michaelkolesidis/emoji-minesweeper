@@ -26,7 +26,8 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 function setup() {
 	background(249, 249, 249);
-	createCanvas((cellW * cols) + sizeError, (cellH * rows) + sizeError);
+	let cnv = createCanvas((cellW * cols) + sizeError, (cellH * rows) + sizeError);
+	cnv.parent('board');
 	textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
 
 	for (let i = 0; i < cols; i++) {

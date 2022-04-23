@@ -27,7 +27,6 @@ canvas {
   color: rgb(65, 65, 65);
   font-size: 1.2rem;
   font-weight: 600;
-  order: 1; /* In order to display button after canvas */
   margin: 2rem;
   padding: 0.8rem;
   border: 0;
