@@ -19,10 +19,6 @@ body {
   margin-bottom: 0.6rem;
 }
 
-canvas {
-  width: 100%;
-}
-
 .reload {
   color: rgb(65, 65, 65);
   font-size: 1.2rem;
