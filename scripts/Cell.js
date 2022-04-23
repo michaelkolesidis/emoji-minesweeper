@@ -1,10 +1,10 @@
-// ==============================================
-// Minesweeper Emoji :D  
-// ==============================================
-// Created and maintained by Michael Kolesidis
-// ==============================================
-// v0.2-alpha
-// ==============================================
+/*
+ *  Minesweeper Emoji
+ *  Copyright (c) 2022 Michael Kolesidis
+ *  GNU General Public License v3.0
+ *
+ */ 
+
 class Cell {
 	constructor(i, j) {
 		this.i = i;

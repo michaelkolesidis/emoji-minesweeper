@@ -1,10 +1,9 @@
-// ==============================================
-// Minesweeper Emoji :D  
-// ==============================================
-// Created and maintained by Michael Kolesidis
-// ==============================================
-// v0.2-alpha
-// ==============================================
+/*
+ *  Minesweeper Emoji
+ *  Copyright (c) 2022 Michael Kolesidis
+ *  GNU General Public License v3.0
+ *
+ */ 
 
 // Board dimensions and number of mines
 let rows = 10;
