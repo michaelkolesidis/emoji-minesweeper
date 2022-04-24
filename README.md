@@ -80,6 +80,11 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 
   
   
+## Related Projects
+
+[Tic-Tac-Toe](https://github.com/michaelkolesidis/tic-tac-toe)  
+  
+  
   
 ## License
 
