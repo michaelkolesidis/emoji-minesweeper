@@ -37,11 +37,19 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
   
 ## Screenshots:
 
+### Windows
+  
+#### Win
+<img src="./screenshots/minesweeper-emoji-win.png" />
+  
+#### Loss  
+<img src="./screenshots/minesweeper-emoji-loss.png" />
+  
 ### macOS
  
 #### Start
 
-<img src="./screenshots/minesweeper-emoji-mac.png" /><br>
+<img src="./screenshots/minesweeper-emoji-mac.png" />
   
 #### Win
 <img src="./screenshots/minesweeper-emoji-mac-won.png" />
@@ -51,8 +59,6 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 
 #### Playing
 <img src="./screenshots/minesweeper-emoji-mac-playing.png" />
-<br>
-<br>
   
 ### Linux (Ubuntu)
 
@@ -78,6 +84,11 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 * Allocate mines on first click to avoid clicking on a mine
 * Twemoji version
 
+  
+  
+## Related Projects
+
+[Tic-Tac-Toe](https://github.com/michaelkolesidis/tic-tac-toe)  
   
   
   
