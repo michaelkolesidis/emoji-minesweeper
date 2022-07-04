@@ -36,8 +36,6 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
   
   
 ## Screenshots:
-
-### Windows 11
   
 #### Win
 <img src="./screenshots/win.png" />
