@@ -7,7 +7,7 @@ body {
 }
 
 body {
-  color: rgb(65, 65, 65);
+  color: rgb(15, 15, 15);
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
@@ -22,20 +22,26 @@ body {
 }
 
 .reload {
-  color: rgb(65, 65, 65);
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 900;
   margin: 2rem;
   padding: 0.8rem;
-  border: 0;
   border-radius: 40px;
-  width: 8rem;
+  width: 10rem;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  background-color: rgb(15, 15, 15);
+  border: 4px solid rgb(15, 15, 15);
 }
 
 .reload:hover {
-  color: rgb(255, 255, 255);
-  background-color: rgb(185, 185, 185);
-  box-shadow: 0 5px 15px rgba(167, 167, 167, 0.4);
+  background-color: rgb(255, 255, 255);
+  color: rgb(15, 15, 15);
+  border: 4px dotted rgb(15, 15, 15);
+}
+
+.reload:active {
+  transform: scale(0.98);
 }
 
 footer {
