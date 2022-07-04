@@ -6,6 +6,11 @@ body {
   padding: 0;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   color: rgb(15, 15, 15);
   font-family: sans-serif;
@@ -22,10 +27,10 @@ body {
 }
 
 .reload {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 1.4rem;
-  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.3rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 40px;
   white-space: nowrap;
   cursor: pointer;
@@ -46,14 +51,14 @@ body {
 
 footer {
   position: absolute;
-  bottom: 0;
+  bottom: 1rem;
   right: 0;
   writing-mode: tb-rl;
   transform: rotate(-0deg);
 }
 
 footer > p {
-  margin: 1rem 0.6rem;
+  margin: 0.3rem 0;
   font-weight: 700;
 }
 
