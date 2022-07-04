@@ -40,37 +40,15 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 ### Windows 11
   
 #### Win
-<img src="./screenshots/minesweeper-emoji-win.png" />
+<img src="./screenshots/win.png" />
   
 #### Loss  
-<img src="./screenshots/minesweeper-emoji-loss.png" />
-  
-### macOS
- 
-#### Start
+<img src="./screenshots/loss.png" />
 
-<img src="./screenshots/minesweeper-emoji-mac.png" />
-  
-#### Win
-<img src="./screenshots/minesweeper-emoji-mac-won.png" />
+#### Idle  
+<img src="./screenshots/idle.png" />
 
-#### Loss
-<img src="./screenshots/minesweeper-emoji-mac-lost.png" />
-
-#### Playing
-<img src="./screenshots/minesweeper-emoji-mac-playing.png" />
-  
-### Linux (Ubuntu)
-
-#### Start
-<img src="./screenshots/minesweeper-emoji-lin.png" />
-  
-#### Win
-<img src="./screenshots/minesweepr-emoji-lin-won.png" />
-<br>
-<br>
-
-<strong>Note:</strong> You might have noticed that the game looks differently on each platform. This is because of the fact that macOS and Linux/Windows use different default system fonts, thus emojis are rendered differently on each platform. It is possible that in your machine the game doesn't look like the screenshots because of your system fonts.
+(Check screenshots folder for more screenshots)
   
 
   
@@ -98,6 +76,7 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 
 Copyright (c) 2022 Michael Kolesidis<br>
 Licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
+
 
 
 
