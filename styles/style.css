@@ -15,19 +15,19 @@ body {
 }
 
 .header {
-  font-size: 2.5em;
+  font-size: 2.4em;
   margin-top: 0.8rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
   font-family: "Fredoka One", cursive;
 }
 
 .reload {
-  font-size: 1.4rem;
-  font-weight: 900;
-  margin: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 1.4rem;
   padding: 0.8rem;
   border-radius: 40px;
-  width: 10rem;
+  white-space: nowrap;
   cursor: pointer;
   color: rgb(255, 255, 255);
   background-color: rgb(15, 15, 15);
@@ -55,7 +55,7 @@ footer {
 footer > p {
   margin: 1.2rem 1.2rem;
   font-size: 1.2rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 a,
