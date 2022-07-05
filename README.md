@@ -46,9 +46,7 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 #### Idle  
 <img src="./screenshots/idle.png" />
 
-(Check screenshots folder for more screenshots)
   
-
   
 ## To-do list
   
