@@ -8,10 +8,10 @@
 // Board dimensions and number of mines
 let rows = 10;
 let cols = 10;
+let numOfCells = rows * cols;
 let cellW = 40;
 let cellH = 40;
 let cells = [];
-let mineToCellRatio = 0.15; // Each cell has a 15% chance to be a mine
 let sizeError = 7; //  On Windows and Linux if not added to size the left and bottom borders are not totally visible. On Mac it works fine.
 
 // Emojis
@@ -23,6 +23,19 @@ const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣",
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
+let numberOfMines = 10;
+let cellCounter = 0; // The unique identifier of each cell
+let minedCells = []; // Am array containing the unique identifiers of all the cells that will contain mines
+
+// Mine allocation
+while (numberOfMines > 0) {
+  let targetCell = Math.floor(Math.random() * (numOfCells -1)) + 1;
+  if (!minedCells.includes(targetCell)) {
+    minedCells.push(targetCell)
+    numberOfMines -= 1;
+  }
+}
+
 function setup() {
   background(249, 249, 249);
   let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError);
@@ -32,8 +45,14 @@ function setup() {
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let newCell = new Cell(i, j);
-      // Decide whether it is a mine or not
-      newCell.mine = Math.random(0, 1) < mineToCellRatio;
+      newCell.num = cellCounter;
+      cellCounter += 1;
+
+      // Check whether cell includes mine
+      if (minedCells.includes(newCell.num)) {
+        newCell.mine = true;
+      }
+      
       cells.push(newCell);
     }
   }
