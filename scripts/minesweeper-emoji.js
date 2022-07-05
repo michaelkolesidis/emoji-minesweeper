@@ -28,20 +28,17 @@ let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // Am array containing the unique identifiers of all the cells that will contain mines
 
 // Mine allocation
-while (numberOfMines > 0) {
-  let targetCell = Math.floor(Math.random() * (numOfCells -1)) + 1;
-  if (!minedCells.includes(targetCell)) {
-    minedCells.push(targetCell)
-    numberOfMines -= 1;
+function allocateMines() {
+  while (numberOfMines > 0) {
+    let targetCell = Math.floor(Math.random() * (numOfCells - 1)) + 1;
+    if (!minedCells.includes(targetCell)) {
+      minedCells.push(targetCell);
+      numberOfMines -= 1;
+    }
   }
 }
 
-function setup() {
-  background(249, 249, 249);
-  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError);
-  cnv.parent("board");
-  textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
-
+function generateCells() {
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let newCell = new Cell(i, j);
@@ -56,6 +53,16 @@ function setup() {
       cells.push(newCell);
     }
   }
+}
+
+function setup() {
+  background(249, 249, 249);
+  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError);
+  cnv.parent("board");
+  textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
+
+  allocateMines();
+  generateCells();
 
   // Set mines around each cell
   cells.forEach((c) => {
