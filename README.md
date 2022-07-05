@@ -24,6 +24,8 @@
   
 ## Description
 The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-based JavaScript, each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
+
+The mine allocation used to be based on probability (ex. each cell had a 15% chance to be a mine) which made the total number of mines variable. It has since been redesigned, and now the total number of mines can be set. 
   
   
   
