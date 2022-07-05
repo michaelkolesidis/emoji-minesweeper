@@ -53,10 +53,10 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 ## To-do list
   
 * ~~New Game button~~<br>
+* ~~Sane(r) mine allocation system~~
 * Mines counter<br>
 * Time counter<br>
 * Moves counter<br>
-* Sane(r) mine allocation system
 * Allocate mines on first click to avoid clicking on a mine
 * Twemoji version
 
