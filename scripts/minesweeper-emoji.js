@@ -23,7 +23,7 @@ const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣",
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-let numberOfMines = 10;
+let numberOfMines = 15;
 let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // Am array containing the unique identifiers of all the cells that will contain mines
 
@@ -52,7 +52,7 @@ function setup() {
       if (minedCells.includes(newCell.num)) {
         newCell.mine = true;
       }
-      
+
       cells.push(newCell);
     }
   }
