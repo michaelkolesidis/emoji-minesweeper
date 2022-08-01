@@ -4,7 +4,7 @@
   
 </div>
 
-<h3 align="center">Minesweeper made with 😃 😵 💣 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
+<h3 align="center">Minesweeper made with 😄 😵 💣 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
@@ -40,7 +40,7 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 ## Screenshots:
   
 #### Win
-<img src="./screenshots/win.png" />
+<img src="./screenshots/win.png?v=2" />
   
 #### Loss  
 <img src="./screenshots/loss.png" />
