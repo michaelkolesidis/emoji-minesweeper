@@ -93,7 +93,7 @@ function getNeighbors(cell) {
   });
 }
 
-// What happens every time player clicks on a cell
+// What happens every time the player clicks on a cell
 function revealCell(cell) {
   cell.revealed = true;
   if (cell.mine) {
@@ -116,7 +116,7 @@ function revealCell(cell) {
 }
 
 function gameWon() {
-  DIGITS[0] = "😃";
+  DIGITS[0] = "😄";
   cells.forEach(function (c) {
     c.revealed = true;
   });
