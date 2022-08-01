@@ -40,7 +40,7 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 ## Screenshots:
   
 #### Win
-<img src="./screenshots/win.png?v=2" />
+<img src="./screenshots/win-happy-eyes.png" />
   
 #### Loss  
 <img src="./screenshots/loss.png" />
