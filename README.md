@@ -55,6 +55,9 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * ~~New Game button~~<br>
 * ~~Sane(r) mine allocation system~~
 * ~~Ensure first click is not on a mine~~
+* ~~Different emoji for detonated mine~~
+* Ability to choose number of mines
+* Ability to choose board size
 * Mines counter<br>
 * Time counter<br>
 * Moves counter<br>
@@ -73,7 +76,6 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 
 Copyright (c) 2022 Michael Kolesidis<br>
 Licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
-
 
 
 
