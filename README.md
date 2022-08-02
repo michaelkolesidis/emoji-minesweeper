@@ -23,12 +23,22 @@
   
   
 ## Description
-The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-based JavaScript, each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
+The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-oriented JavaScript: each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
 
-The mine allocation used to be based on probability (ex. each cell had a 15% chance to be a mine) which made the total number of mines variable. It has since been redesigned, and now the total number of mines can be set. 
+The mine allocation used to be based on probability (ex. each cell had a 15% chance to be a mine) which made the total number of mines variable. It has since been redesigned, and now the total number of mines can be set in the code.
   
   
-  
+
+## Features
+* Random mine allocation on load
+* Ensure that the first click is never on a mine
+* Fixed (15) total number of mines (ability to change number of mines in code)
+* Ability to flag (🚩) possible location of mines
+* Empty cells become a grinning face with smiling eyes (😄) if the game is won or a dizzy face (😵) if the game is lost
+* Different emoji for detonated mine (💥) and revealed mines (💣)
+
+
+
 ## Controls
   
 * Left-click to reveal cell<br>
@@ -55,6 +65,9 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * ~~New Game button~~<br>
 * ~~Sane(r) mine allocation system~~
 * ~~Ensure first click is not on a mine~~
+* ~~Different emoji for detonated mine~~
+* Ability to choose number of mines
+* Ability to choose board size
 * Mines counter<br>
 * Time counter<br>
 * Moves counter<br>
@@ -73,7 +86,6 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 
 Copyright (c) 2022 Michael Kolesidis<br>
 Licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
-
 
 
 
