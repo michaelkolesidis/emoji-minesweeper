@@ -1,18 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
 * {
   margin: 0;
   padding: 0;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
-  user-select: none; /* Non-prefixed version, currently
-                        supported by Chrome, Edge, Opera and Firefox */
+  user-select: none;
 }
 
 body {
@@ -25,15 +18,15 @@ body {
 
 .header {
   font-size: 2.4em;
-  margin-top: 0.8rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.4rem;
   font-family: "Fredoka One", cursive;
 }
 
 .reload {
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 0.3rem;
+  margin: 0.2rem;
   padding: 0.6rem 0.8rem;
   border-radius: 40px;
   white-space: nowrap;
