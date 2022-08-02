@@ -94,12 +94,20 @@ function draw() {
   });
 
   // Show mines and flagged cells indicators
+  fill(15, 15, 15); 
   textSize(24);
   textStyle(BOLD);
   textFont("Arial");
   text("💣", 5, 397);
   text(nf(initialMines, 2), 40, 398);
   text("🚩", 349, 397);
+
+  if (flaggedCells > initialMines) {
+    fill(248, 49, 47);
+  } else {
+    fill(15, 15, 15);
+  }
+
   text(nf(flaggedCells, 2), 384, 398);
   textSize(cellH - 2);
 }
