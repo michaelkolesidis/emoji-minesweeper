@@ -5,7 +5,7 @@
  *
  */
 
-disableFriendlyErrors = true; 
+disableFriendlyErrors = true;
 
 // Board dimensions and number of mines
 let rows = 10;
@@ -73,7 +73,10 @@ function calculateMines() {
 
 function setup() {
   background(249, 249, 249);
-  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError + 30);
+  let cnv = createCanvas(
+    cellW * cols + sizeError,
+    cellH * rows + sizeError + 30
+  );
   cnv.parent("board");
   textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
 
@@ -93,9 +96,11 @@ function draw() {
   // Show mines and flagged cells indicators
   textSize(24);
   textStyle(BOLD);
-  textFont('Arial');
-  text("💣" + initialMines, 5, 397)
-  text("🚩" + flaggedCells, 350, 397)
+  textFont("Arial");
+  text("💣", 5, 397);
+  text(nf(initialMines, 2), 40, 398);
+  text("🚩", 349, 397);
+  text(nf(flaggedCells, 2), 384, 398);
   textSize(cellH - 2);
 }
 
@@ -115,7 +120,6 @@ let mineReallocated = false;
 
 // What happens every time the player clicks on a cell
 function revealCell(cell) {
-
   // Make sure first click is not on a mine
   if (isFirstClick) {
     if (cell.mine) {
@@ -141,7 +145,6 @@ function revealCell(cell) {
   cell.revealed = true;
   cell.clicked = true;
   if (cell.mine) {
-
     // End game
     cells.forEach((c) => {
       c.revealed = true;
@@ -193,7 +196,6 @@ function mousePressed() {
         flaggedCells -= 1;
       }
       cell.flagged = !cell.flagged;
-      
     }
   }
 
