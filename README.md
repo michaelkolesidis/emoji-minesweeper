@@ -30,14 +30,14 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
   
 
 ## Features
-* Random mine allocation on load
-* Ensure that the first click is never on a mine
-* Fixed (15) total number of mines (ability to change number of mines in code)
-* Ability to flag (🚩) possible location of mines
-* Empty cells become a grinning face with smiling eyes (😄) if the game is won or a dizzy face (😵) if the game is lost
-* Different emoji for detonated mine (💥) and revealed mines (💣)
-* Mines and flagged cells indicators
-* Number of flagged cells becomes red if there are more flagged cells than the number of mines
+* Random mine 💣 allocation on load
+* Ensure that the first click is never on a mine 💣
+* Fixed (15) total number of mines 💣 (ability to change number of mines in code)
+* Ability to flag 🚩 possible location of mines
+* Empty cells become a grinning face with smiling eyes 😄 if the game is won or a dizzy face 😵 if the game is lost
+* Different emoji for detonated mine 💥 and revealed mines 💣
+* Number of mines 💣 and of flagged cells 🚩 indicators
+* Number of flagged cells 🚩 becomes red if there are more flagged cells than the number of mines 💣
 
 
 
@@ -68,11 +68,12 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * ~~Sane(r) mine allocation system~~
 * ~~Ensure first click is not on a mine~~
 * ~~Different emoji for detonated mine~~
+* ~~Number of mines indicator~~
+* ~~Number of flagged cells indicator~~
 * Ability to choose number of mines
 * Ability to choose board size
-* Mines counter<br>
-* Time counter<br>
-* Moves counter<br>
+* Time counter
+* Moves counter
 
   
   
