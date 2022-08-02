@@ -5,6 +5,8 @@
  *
  */
 
+disableFriendlyErrors = true; 
+
 // Board dimensions and number of mines
 let rows = 10;
 let cols = 10;
