@@ -1,66 +1,66 @@
 [
- {
-  "language": "JavaScript",
-  "files": 2,
-  "lines": 179,
-  "blanks": 17,
-  "comments": 27,
-  "linesOfCode": 135
- },
- {
-  "language": "CSS",
-  "files": 1,
-  "lines": 113,
-  "blanks": 12,
-  "comments": 2,
-  "linesOfCode": 99
- },
- {
-  "language": "HTML",
-  "files": 1,
-  "lines": 25,
-  "blanks": 3,
-  "comments": 0,
-  "linesOfCode": 22
- },
- {
-  "language": "JSON",
-  "files": 1,
-  "lines": 58,
-  "blanks": 0,
-  "comments": 0,
-  "linesOfCode": 58
- },
- {
-  "language": "License",
-  "files": 1,
-  "lines": 674,
-  "blanks": 121,
-  "comments": 0,
-  "linesOfCode": 553
- },
- {
-  "language": "Markdown",
-  "files": 1,
-  "lines": 62,
-  "blanks": 13,
-  "comments": 0,
-  "linesOfCode": 49
- },
- {
-  "language": "gitignore",
-  "files": 1,
-  "lines": 59,
-  "blanks": 13,
-  "comments": 15,
-  "linesOfCode": 31
- },
- {
-  "language": "Total",
-  "files": 8,
-  "lines": 1170,
-  "blanks": 179,
-  "comments": 44,
-  "linesOfCode": 947
- }
+  {
+    "language": "Markdown",
+    "files": 5,
+    "lines": 328,
+    "blanks": 106,
+    "comments": 0,
+    "linesOfCode": 222
+  },
+  {
+    "language": "JavaScript",
+    "files": 2,
+    "lines": 259,
+    "blanks": 29,
+    "comments": 30,
+    "linesOfCode": 200
+  },
+  {
+    "language": "CSS",
+    "files": 1,
+    "lines": 76,
+    "blanks": 11,
+    "comments": 1,
+    "linesOfCode": 64
+  },
+  {
+    "language": "HTML",
+    "files": 1,
+    "lines": 27,
+    "blanks": 0,
+    "comments": 0,
+    "linesOfCode": 27
+  },
+  {
+    "language": "JSON",
+    "files": 1,
+    "lines": 66,
+    "blanks": 0,
+    "comments": 0,
+    "linesOfCode": 66
+  },
+  {
+    "language": "License",
+    "files": 1,
+    "lines": 674,
+    "blanks": 121,
+    "comments": 0,
+    "linesOfCode": 553
+  },
+  {
+    "language": "gitignore",
+    "files": 1,
+    "lines": 64,
+    "blanks": 15,
+    "comments": 15,
+    "linesOfCode": 34
+  },
+  {
+    "language": "Total",
+    "files": 12,
+    "lines": 1494,
+    "blanks": 282,
+    "comments": 46,
+    "linesOfCode": 1166
+  }
 ]
