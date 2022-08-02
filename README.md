@@ -54,11 +54,10 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
   
 * ~~New Game button~~<br>
 * ~~Sane(r) mine allocation system~~
+* ~~Ensure first click is not on a mine~~
 * Mines counter<br>
 * Time counter<br>
 * Moves counter<br>
-* Allocate mines on first click to avoid clicking on a mine
-* Twemoji version
 
   
   
