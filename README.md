@@ -36,6 +36,8 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * Ability to flag (🚩) possible location of mines
 * Empty cells become a grinning face with smiling eyes (😄) if the game is won or a dizzy face (😵) if the game is lost
 * Different emoji for detonated mine (💥) and revealed mines (💣)
+* Mines and flagged cells indicators
+* Number of flagged cells becomes red if there are more flagged cells than the number of mines
 
 
 
