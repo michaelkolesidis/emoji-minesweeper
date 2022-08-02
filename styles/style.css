@@ -24,6 +24,8 @@ body {
 }
 
 .reload {
+  position: absolute;
+  top: 473px;
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0.2rem;

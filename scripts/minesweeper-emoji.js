@@ -73,7 +73,7 @@ function calculateMines() {
 
 function setup() {
   background(249, 249, 249);
-  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError + 45);
+  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError + 30);
   cnv.parent("board");
   textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
 
@@ -90,11 +90,12 @@ function draw() {
     c.draw();
   });
 
+  // Show mines and flagged cells indicators
   textSize(24);
   textStyle(BOLD);
   textFont('Arial');
-  text("💣" + initialMines, 135, 400)
-  text("🚩" + flaggedCells, 226, 400)
+  text("💣" + initialMines, 5, 397)
+  text("🚩" + flaggedCells, 350, 397)
   textSize(cellH - 2);
 }
 
