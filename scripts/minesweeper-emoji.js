@@ -25,7 +25,7 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 let numberOfMines = 15;
 let cellCounter = 0; // The unique identifier of each cell
-let minedCells = []; // Am array containing the unique identifiers of all the cells that will contain mines
+let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
 
 // Mine allocation
 function allocateMines() {
@@ -55,16 +55,8 @@ function generateCells() {
   }
 }
 
-function setup() {
-  background(249, 249, 249);
-  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError);
-  cnv.parent("board");
-  textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
-
-  allocateMines();
-  generateCells();
-
-  // Set mines around each cell
+// Calculate mines around each cell
+function calculateMines() {
   cells.forEach((c) => {
     // Find neighboring cells
     let neighbors = getNeighbors(c);
@@ -73,10 +65,21 @@ function setup() {
   });
 }
 
+function setup() {
+  background(249, 249, 249);
+  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError);
+  cnv.parent("board");
+  textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
+
+  allocateMines();
+  generateCells();
+  calculateMines();
+}
+
 function draw() {
   background(255);
 
-  translate(1, cellH - 3);
+  translate(-3, cellH - 3);
   cells.forEach(function (c) {
     c.draw();
   });
@@ -93,8 +96,34 @@ function getNeighbors(cell) {
   });
 }
 
+let isFirstClick = true;
+let mineReallocated = false;
+
 // What happens every time the player clicks on a cell
 function revealCell(cell) {
+
+  // Make sure first click is not on a mine
+  if (isFirstClick) {
+    if (cell.mine) {
+      cell.mine = false;
+
+      while (!mineReallocated) {
+        let num = Math.floor(Math.random() * (numOfCells - 1)) + 1;
+        if (!cells[num].mine) {
+          cells[0].mine = true;
+          mineReallocated = true;
+        }
+      }
+    }
+    isFirstClick = false;
+
+    calculateMines();
+    cells.forEach(function (c) {
+      c.draw();
+    });
+  }
+
+  // Reveal cell
   cell.revealed = true;
   if (cell.mine) {
     // End game
