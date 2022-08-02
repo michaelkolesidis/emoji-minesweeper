@@ -26,9 +26,12 @@ const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣",
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-let numberOfMines = 15;
+let initialMines = 15;
+let numberOfMines = initialMines;
 let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
+
+let flaggedCells = 0;
 
 // Mine allocation
 function allocateMines() {
@@ -70,7 +73,7 @@ function calculateMines() {
 
 function setup() {
   background(249, 249, 249);
-  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError);
+  let cnv = createCanvas(cellW * cols + sizeError, cellH * rows + sizeError + 45);
   cnv.parent("board");
   textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
 
@@ -86,6 +89,13 @@ function draw() {
   cells.forEach(function (c) {
     c.draw();
   });
+
+  textSize(24);
+  textStyle(BOLD);
+  textFont('Arial');
+  text("💣" + initialMines, 135, 400)
+  text("🚩" + flaggedCells, 226, 400)
+  textSize(cellH - 2);
 }
 
 function getNeighbors(cell) {
@@ -176,7 +186,13 @@ function mousePressed() {
       );
     });
     if (cell) {
+      if (!cell.flagged) {
+        flaggedCells += 1;
+      } else {
+        flaggedCells -= 1;
+      }
       cell.flagged = !cell.flagged;
+      
     }
   }
 
