@@ -5,6 +5,8 @@
  *
  */
 
+disableFriendlyErrors = true; 
+
 class Cell {
   constructor(i, j) {
     this.i = i;
