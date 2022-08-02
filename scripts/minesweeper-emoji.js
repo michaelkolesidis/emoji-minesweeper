@@ -17,6 +17,7 @@ let sizeError = 7; //  On Windows and Linux if not added to size the left and bo
 // Emojis
 const EMPTY = "🔲";
 const MINE = "💣";
+const DETONATION = "💥";
 const FLAG = "🚩";
 const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 
@@ -125,7 +126,9 @@ function revealCell(cell) {
 
   // Reveal cell
   cell.revealed = true;
+  cell.clicked = true;
   if (cell.mine) {
+
     // End game
     cells.forEach((c) => {
       c.revealed = true;

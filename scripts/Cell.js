@@ -14,10 +14,15 @@ class Cell {
     this.mine = false;
     this.minesAround = 0;
     this.revealed = false;
+    this.clicked = false; // In order to show detonation only on clicked mine
     this.won = false;
   }
 
   draw() {
+    if (this.revealed && this.clicked && this.mine) {
+      text(DETONATION, this.x, this.y);
+      return;
+    }
     if (this.revealed && this.mine) {
       text(MINE, this.x, this.y);
       return;
