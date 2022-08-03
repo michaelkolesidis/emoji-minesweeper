@@ -5,16 +5,20 @@
  *
  */
 
+// Disable the Friendly Error System
+// (not used in the minified version of p5js)
 disableFriendlyErrors = true;
 
 // Board dimensions and number of mines
 let rows = 10;
 let cols = 10;
 let numOfCells = rows * cols;
-let cellW = 40;
-let cellH = 40;
-let cells = [];
-let sizeError = 7; //  On Windows and Linux if not added to size the left and bottom borders are not totally visible. On Mac it works fine.
+let cellW = 40;    // The width (in pixels) of each individual cell 
+let cellH = 40;    // The height (in pixels) of each individual cell 
+let cells = [];    // Array to hold all the cell objects
+let sizeError = 7; // On Windows and on Linux if error is not added to size, 
+                   // the left and bottom borders are not totally visible. 
+                   // On Mac it works fine even without the error
 
 // Emojis
 const EMPTY = "🔲";
@@ -26,12 +30,13 @@ const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣",
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-let initialMines = 15;
-let numberOfMines = initialMines;
-let cellCounter = 0; // The unique identifier of each cell
-let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
+let initialMines = 15;            // Used by the mine indicator
+let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
+let cellCounter = 0;              // The unique identifier of each cell
+let minedCells = [];              // A array containing the unique identifiers of all the cells that will contain mines
 
 let flaggedCells = 0;
+
 
 // Mine allocation
 function allocateMines() {
@@ -75,7 +80,7 @@ function setup() {
   background(249, 249, 249);
   let cnv = createCanvas(
     cellW * cols + sizeError,
-    cellH * rows + sizeError + 30
+    cellH * rows + sizeError + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
   );
   cnv.parent("board");
   textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
@@ -100,7 +105,7 @@ function draw() {
   textFont("Arial");
   text("💣", 5, 397);
   text(nf(initialMines, 2), 40, 398);
-  text("🚩", 349, 397);
+  text("🚩", 344, 397);
 
   if (flaggedCells > initialMines) {
     fill(248, 49, 47);
@@ -108,7 +113,7 @@ function draw() {
     fill(15, 15, 15);
   }
 
-  text(nf(flaggedCells, 2), 384, 398);
+  text(nf(flaggedCells, 2), 379, 398);
   textSize(cellH - 2);
 }
 
