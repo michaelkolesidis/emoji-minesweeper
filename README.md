@@ -26,8 +26,15 @@
 The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-oriented JavaScript: each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
 
 The mine allocation used to be based on probability (ex. each cell had a 15% chance to be a mine) which made the total number of mines variable. It has since been redesigned, and now the total number of mines can be set in the code.
-  
-  
+
+
+
+## Future
+Starting from v.2.0.0, Minesweeper Emoji will be re-implemented using vanilla JavaScript, and at some point in the future, it will be re-implemented using React, Redux, TailwindCSS and styled components. The initial aim it the new version(s) to be pixel-perfect identical to the existing version and to offer all the current functionality before new features are added.
+
+Thus, development has stopped for the p5.js version, with v1.7.0 being the final p5.js version. 
+
+
 
 ## Features
 * Random mine 💣 allocation on load
