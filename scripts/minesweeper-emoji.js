@@ -10,8 +10,8 @@
 disableFriendlyErrors = true;
 
 // Board dimensions and number of mines
-let rows = 10;
 let cols = 10;
+let rows = 10;
 let numOfCells = rows * cols;
 let cellW = 40;    // The width (in pixels) of each individual cell 
 let cellH = 40;    // The height (in pixels) of each individual cell 
@@ -249,7 +249,7 @@ function mousePressed() {
 
 // Reload button functionality
 function reload() {
-  const reload = document.querySelector(".reload");
+  const reload = document.querySelector("#reload");
   reload.addEventListener("click", () => {
     window.location.reload();
   });
