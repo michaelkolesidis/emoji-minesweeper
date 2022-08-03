@@ -80,6 +80,7 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * Ability to choose board size
 * Time counter
 * Moves counter
+* Mobile-friendly design
 
   
   
