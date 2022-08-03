@@ -1,6 +1,6 @@
 <div align="center">
   
-  <img src="./screenshots/minesweeper-emoji-03.gif" /><br>
+  <img src="./screenshots/minesweeper-emoji-04.gif" /><br>
   
 </div>
 
