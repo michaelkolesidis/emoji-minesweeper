@@ -38,7 +38,7 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * Different emoji for detonated mine 💥 and revealed mines 💣
 * Number of mines 💣 and of flagged cells 🚩 indicators
 * Number of flagged cells 🚩 becomes red if there are more flagged cells than the number of mines 💣
-
+* Revealed cells cannot be flagged 🚩, and whenever a cell is revealed it stops being flagged
 
 
 ## Controls
