@@ -60,7 +60,8 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 #### Idle  
 <img src="./screenshots/idle-04.png" />
 
-  
+#### More flags than mines
+<img src="./screenshots/flags-04.png" />
   
 ## To-do list
   
