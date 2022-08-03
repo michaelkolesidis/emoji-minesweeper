@@ -1,6 +1,6 @@
 <div align="center">
   
-  <img src="./screenshots/minesweeper-emoji-04.gif" /><br>
+  <img src="./screenshots/win-04.png" /><br>
   
 </div>
 
@@ -47,7 +47,12 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 * Right-click to flag
 * New Game button restarts the game
 
+
+
+## Demo :
+<img src="./screenshots/minesweeper-emoji-04.gif" /><br>
   
+
   
 ## Screenshots:
   
