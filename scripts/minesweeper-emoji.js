@@ -103,9 +103,9 @@ function draw() {
   textSize(24);
   textStyle(BOLD);
   textFont("Arial");
-  text("💣", 5, 397);
-  text(nf(initialMines, 2), 40, 398);
-  text("🚩", 344, 397);
+  text("💣", 5, height - 40);
+  text(nf(initialMines, 2), 40, height - 39);
+  text("🚩", width - 63, height - 40);
 
   if (flaggedCells > initialMines) {
     fill(248, 49, 47);
@@ -113,7 +113,7 @@ function draw() {
     fill(15, 15, 15);
   }
 
-  text(nf(flaggedCells, 2), 379, 398);
+  text(nf(flaggedCells, 2), width - 28, height - 39);
   textSize(cellH - 2);
 }
 
