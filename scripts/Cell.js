@@ -5,6 +5,8 @@
  *
  */
 
+// Disable the Friendly Error System
+// (not used in the minified version of p5js)
 disableFriendlyErrors = true;
 
 class Cell {
