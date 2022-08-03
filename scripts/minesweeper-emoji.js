@@ -9,6 +9,8 @@
 // (not used in the minified version of p5js)
 disableFriendlyErrors = true;
 
+let cnv; // The canvas element that will contain the game
+
 // Board dimensions and number of mines
 let cols = 10;
 let rows = 10;
@@ -78,7 +80,7 @@ function calculateMines() {
 
 function setup() {
   background(249, 249, 249);
-  let cnv = createCanvas(
+  cnv = createCanvas(
     cellW * cols + sizeError,
     cellH * rows + sizeError + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
   );
