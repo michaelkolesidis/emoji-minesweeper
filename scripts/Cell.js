@@ -5,7 +5,7 @@
  *
  */
 
-disableFriendlyErrors = true; 
+disableFriendlyErrors = true;
 
 class Cell {
   constructor(i, j) {
