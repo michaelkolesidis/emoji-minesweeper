@@ -94,7 +94,7 @@ function draw() {
   });
 
   // Show mines and flagged cells indicators
-  fill(15, 15, 15); 
+  fill(15, 15, 15);
   textSize(24);
   textStyle(BOLD);
   textFont("Arial");
