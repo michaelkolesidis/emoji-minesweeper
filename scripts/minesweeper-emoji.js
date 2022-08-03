@@ -163,9 +163,13 @@ function revealCell(cell) {
   if (cell.minesAround == 0) {
     // Recursively reveal neighbors
     let neighbors = getNeighbors(cell);
-    neighbors.forEach((n) => {
-      if (!n.revealed) {
-        revealCell(n);
+    neighbors.forEach((c) => {
+      if (!c.revealed) {
+        revealCell(c);
+        if (c.flagged) {
+          c.flagged = false;
+          flaggedCells -= 1;
+        }
       }
     });
   }
@@ -198,9 +202,10 @@ function mousePressed() {
       );
     });
     if (cell) {
-      if (!cell.flagged) {
+      // Prevent revealed cells from being flagged
+      if (!cell.flagged && !cell.revealed) {
         flaggedCells += 1;
-      } else {
+      } else if (!cell.revealed) {
         flaggedCells -= 1;
       }
       cell.flagged = !cell.flagged;

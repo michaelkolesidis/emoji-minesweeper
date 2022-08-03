@@ -17,6 +17,7 @@ class Cell {
     this.minesAround = 0;
     this.revealed = false;
     this.clicked = false; // In order to show detonation only on clicked mine
+    this.flagged = false;
     this.won = false;
   }
 
