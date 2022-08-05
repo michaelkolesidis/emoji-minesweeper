@@ -23,6 +23,8 @@ let sizeError = 7; // On Windows and on Linux if error is not added to size,
                    // On Mac it works fine even without the error
 
 // Emojis
+const WON = "😄";
+const LOST = "😵";
 const EMPTY = "🔲";
 const MINE = "💣";
 const DETONATION = "💥";
@@ -105,9 +107,9 @@ function draw() {
   textSize(24);
   textStyle(BOLD);
   textFont("Arial");
-  text("💣", 5, height - 40);
+  text(MINE, 5, height - 40);
   text(nf(initialMines, 2), 40, height - 39);
-  text("🚩", width - 63, height - 40);
+  text(FLAG, width - 63, height - 40);
 
   if (flaggedCells > initialMines) {
     fill(248, 49, 47);
@@ -183,14 +185,14 @@ function revealCell(cell) {
 }
 
 function gameWon() {
-  DIGITS[0] = "😄";
+  DIGITS[0] = WON;
   cells.forEach(function (c) {
     c.revealed = true;
   });
 }
 
 function gameLost() {
-  DIGITS[0] = "😵";
+  DIGITS[0] = LOST;
   cells.forEach(function (c) {
     c.revealed = true;
   });
