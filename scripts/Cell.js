@@ -11,6 +11,7 @@ disableFriendlyErrors = true;
 
 class Cell {
   constructor(i, j) {
+    this.num;
     this.i = i;
     this.j = j;
     this.x = i * cellW;
@@ -20,7 +21,6 @@ class Cell {
     this.revealed = false;
     this.clicked = false; // In order to show detonation only on clicked mine
     this.flagged = false;
-    this.won = false;
   }
 
   draw() {
