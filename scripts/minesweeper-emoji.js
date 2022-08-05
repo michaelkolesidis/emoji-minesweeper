@@ -143,7 +143,7 @@ function revealCell(cell) {
       while (!mineReallocated) {
         let num = Math.floor(Math.random() * (numOfCells - 1)) + 1;
         if (!cells[num].mine) {
-          cells[0].mine = true;
+          cells[num].mine = true;
           mineReallocated = true;
         }
       }
