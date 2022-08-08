@@ -30,7 +30,7 @@ The mine allocation used to be based on probability (ex. each cell had a 15% cha
 
 
 ## Future
-Starting from v.2.0.0, Minesweeper Emoji will be re-implemented using vanilla JavaScript, and at some point in the future, it will be re-implemented using React, Redux, TailwindCSS and styled components. The initial aim it the new version(s) to be pixel-perfect identical to the existing version and to offer all the current functionality before new features are added.
+Starting from v.2.0.0, Minesweeper Emoji will be re-implemented using vanilla JavaScript, and at some point in the future, it will be re-implemented using React, TypeScript, Redux, TailwindCSS and styled components. The initial aim it the new version(s) to be pixel-perfect identical to the existing version and to offer all the current functionality before new features are added.
 
 Thus, development has stopped for the p5.js version, with v1.7.0 being the final p5.js version. 
 
