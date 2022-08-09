@@ -75,6 +75,8 @@ Thus, development has stopped for the p5.js version, with v1.7.0 being the final
 #### More flags than mines
 <img src="./screenshots/flags-04.png" />
   
+
+  
 ## To-do list
   
 * ~~New Game button~~<br>
