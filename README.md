@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="300px" src="./logo.png" /><br>
+  <img height="100px" src="./logo.png" /><br>
   <img src="./screenshots/win-04.png" /><br>
   
 </div>
