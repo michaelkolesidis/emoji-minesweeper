@@ -53,7 +53,7 @@ document.body.appendChild(stats);
 
 // Footer
 const footer = document.createElement("footer");
-footer.innerHTML = `<p>Made with <span id="heart">♥</span> by <a href="https://github.com/michaelkolesidis/minesweeper-emoji" target="_blank" rel="noopener">Michael Kolesidis</a></p>`;
+footer.innerHTML = `<a href="https://github.com/michaelkolesidis/minesweeper-emoji" target="_blank" rel="noopener"><img src="../assets/m.svg"/></a>`;
 document.body.appendChild(footer);
 
 /**

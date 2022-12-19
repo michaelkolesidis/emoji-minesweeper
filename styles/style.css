@@ -76,22 +76,26 @@ button:active {
 
 footer {
   position: absolute;
-  bottom: 1rem;
-  right: 0;
-  writing-mode: tb-rl;
-  transform: rotate(-0deg);
+  bottom: 0.6rem;
+  right: 0.6rem;
+  transform: scale(0.8);
 }
 
-footer > p {
-  margin: 0.3rem 0;
-  font-weight: 700;
+footer:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
 }
 
-a,
-a:visited {
-  color: black;
-}
-
-#heart {
-  font-size: 1.6rem;
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-4deg); }
+  20% { transform: translate(-3px, 0px) rotate(4deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(4deg); }
+  50% { transform: translate(-1px, 2px) rotate(-4deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-4deg); }
+  80% { transform: translate(-1px, -1px) rotate(4deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-4deg); }
 }
