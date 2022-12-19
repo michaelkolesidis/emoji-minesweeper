@@ -129,17 +129,17 @@ function draw() {
   } else {
     fill(15, 15, 15);
   }
-  text(MINE, 5, height - 40);
-  text(nf(Math.max(initialMines - flaggedCells, 0), 3), 40, height - 39);
+  text(MINE, 5, height - 41);
+  text(nf(Math.max(initialMines - flaggedCells, 0), 3), 40, height - 40);
 
   // Time indicator
-  text(TIMER, width - 79, height - 40);
+  text(TIMER, width - 79, height - 41);
   if (flaggedCells > initialMines) {
     fill(248, 49, 47);
   } else {
     fill(15, 15, 15);
   }
-  text(nf(timePassed, 3), width - 44, height - 39);
+  text(nf(timePassed, 3), width - 44, height - 40);
   textSize(cellH - 2);
 }
 
