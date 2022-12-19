@@ -94,7 +94,7 @@ The following emojis are used in the game:
 <img src="./screenshots/loss-ss.png" />
 
 ### New Best Time
-<img src="./new-best-time-ss.png" />
+<img src="./screenshots/new-best-time-ss.png" />
 
 #### Idle  
 <img src="./screenshots/idle-ss.png" />
