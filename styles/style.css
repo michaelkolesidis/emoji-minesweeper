@@ -57,7 +57,7 @@ button {
   color: rgb(255, 255, 255);
   background-color: rgb(15, 15, 15);
   border: 4px solid rgb(15, 15, 15);
-  width: 8rem;
+  width: 7.3em;
 }
 
 button:hover {
@@ -70,8 +70,24 @@ button:active {
   transform: scale(0.98);
 }
 
-#stats {
+#stats-button {
   margin-top: 0.75rem;
+}
+
+#stats-panel {
+  margin-top: 1em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 40px;
+  padding: 1.5rem;
+  border: 4px dotted rgb(15, 15, 15);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.value {
+  font-weight: 400;
 }
 
 footer {

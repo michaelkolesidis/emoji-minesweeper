@@ -5,7 +5,28 @@
  *
  */
 
+/**
+ * Basics
+ */
 document.title = `Minesweeper Emoji`;
+
+/**
+ * Data Storage
+ */
+let played = window.localStorage.getItem("played");
+if (played === null) {
+  window.localStorage.setItem("played", "0");
+}
+
+let won = window.localStorage.getItem("won");
+if (won === null) {
+  window.localStorage.setItem("won", "0");
+}
+
+let bestTime = window.localStorage.getItem("bestTime");
+if (bestTime === null) {
+  window.localStorage.setItem("bestTime", "");
+}
 
 /**
  * Elements
@@ -46,10 +67,26 @@ newGame.innerHTML = `New Game`;
 document.body.appendChild(newGame);
 
 // Stats Button
-const stats = document.createElement("button");
-stats.setAttribute("id", "stats");
-stats.innerHTML = `Statistics`;
-document.body.appendChild(stats);
+const statsButton = document.createElement("button");
+statsButton.setAttribute("id", "stats-button");
+statsButton.innerHTML = `Stats`;
+document.body.appendChild(statsButton);
+
+// Stats Panel
+const statsPanel = document.createElement("div");
+statsPanel.setAttribute("id", "stats-panel");
+statsPanel.innerHTML += `<p>Played</p>`;
+statsPanel.innerHTML += `<p class="value">${played}</p>`;
+statsPanel.innerHTML += `<p>Won</p>`;
+statsPanel.innerHTML += `<p class="value">${won}</p>`;
+statsPanel.innerHTML += `<p>Best Time</p>`;
+
+if (bestTime) {
+  statsPanel.innerHTML += `<p class="value">${bestTime}</p>`;
+} else {
+  statsPanel.innerHTML += `<p class="value">N/A</p>`;
+}
+document.body.appendChild(statsPanel);
 
 // Footer
 const footer = document.createElement("footer");
@@ -69,24 +106,13 @@ function reload() {
 reload();
 
 // Stats Button Functionality
-
-/**
- * Data Storage
- */
-let played = window.localStorage.getItem('played')
-if (played === null)
-{
-    window.localStorage.setItem("played", "0")
-}
-
-let won = window.localStorage.getItem('won')
-if (won === null)
-{
-    window.localStorage.setItem("won", "0")
-}
-
-let bestTime = window.localStorage.getItem('bestTime')
-if (bestTime === null)
-{
-    window.localStorage.setItem("bestTime", "")
-}
+let statsPanelOpen = false;
+statsButton.addEventListener("click", () => {
+  if (statsPanelOpen) {
+    statsPanel.style.opacity = 0;
+    statsPanelOpen = false;
+  } else if (!statsPanelOpen) {
+    statsPanel.style.opacity = 1;
+    statsPanelOpen = true;
+  }
+});
