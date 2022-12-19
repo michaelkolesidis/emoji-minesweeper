@@ -7,6 +7,7 @@
 <h3 align="center">Minesweeper made with 😄 😵 💣 💥 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
 
 
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
   
@@ -22,10 +23,16 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-  
+[p5.js](https://p5js.org/)
+[JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+[CSS](https://en.wikipedia.org/wiki/CSS)
+[HTML](https://en.wikipedia.org/wiki/HTML)
+
+
   
 ## Description
 The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-oriented JavaScript: each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
+
 
 
 ## Features
@@ -48,7 +55,7 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 * Number of reamining mines 💣 becomes red if there are more flagged cells than the number of mines 🚩
 * Timer indicator ⌛ activated on first click and stopping on game end
 
-## Stats
+### Stats
 * Games played, games won and best time are saved on local storage
 * Stats panel containing the aformentioned values
 * Stats panel smooth animation
@@ -64,6 +71,7 @@ The following emojis are used in the game:
 😄 😵 🔲 💣 💥 🚩 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
 
 
+
 ## Controls
   
 * Left-click to reveal cell<br>
@@ -72,6 +80,7 @@ The following emojis are used in the game:
 * Stats button toggles the stats panel 
 
   
+
 ## Screenshots:
   
 #### Win
@@ -89,6 +98,7 @@ The following emojis are used in the game:
 #### Stats panel
 <img src="./screenshots/stats-ss.png" />
   
+
 
 ## License
 
