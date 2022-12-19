@@ -76,11 +76,18 @@ document.body.appendChild(statsButton);
 const statsPanel = document.createElement("div");
 statsPanel.setAttribute("id", "stats-panel");
 statsPanel.innerHTML += `<p>Played</p>`;
-statsPanel.innerHTML += `<p class="value">${played}</p>`;
+if (played) {
+  statsPanel.innerHTML += `<p class="value">${played}</p>`;
+} else {
+  statsPanel.innerHTML += `<p class="value">0</p>`;
+}
 statsPanel.innerHTML += `<p>Won</p>`;
-statsPanel.innerHTML += `<p class="value">${won}</p>`;
+if (won) {
+  statsPanel.innerHTML += `<p class="value">${won}</p>`;
+} else {
+  statsPanel.innerHTML += `<p class="value">0</p>`;
+}
 statsPanel.innerHTML += `<p>Best Time</p>`;
-
 if (bestTime) {
   statsPanel.innerHTML += `<p class="value">${bestTime}</p>`;
 } else {

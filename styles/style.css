@@ -21,6 +21,7 @@ body {
   margin-top: 0.6rem;
   margin-bottom: 0.4rem;
   font-family: "Fredoka One", cursive;
+  white-space: nowrap;
 }
 
 .header span {
