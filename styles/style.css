@@ -23,6 +23,28 @@ body {
   font-family: "Fredoka One", cursive;
 }
 
+.header span {
+  position: relative;
+  display: inline-block;
+  margin: -0.307rem;
+}
+
+.header:hover > span {
+  animation: wavy 1s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes wavy {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-10px);
+  }
+}
+
 button {
   font-size: 1.1rem;
   font-weight: 600;
