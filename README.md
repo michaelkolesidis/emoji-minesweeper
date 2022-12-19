@@ -23,11 +23,11 @@
 
 
 [p5.js](https://p5js.org/)
-
+•
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-
+•
 [CSS](https://en.wikipedia.org/wiki/CSS)
-
+•
 [HTML](https://en.wikipedia.org/wiki/HTML)
 
 
