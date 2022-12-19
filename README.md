@@ -1,11 +1,11 @@
 <div align="center">
   <img height="100px" src="./assets/logo.png" /><br>
   <br><br>
-  <img src="./screenshots/win-04.png" /><br>
-  
+  <img src="./screenshots/win-ss.png" /><br>
 </div>
 
 <h3 align="center">Minesweeper made with 😄 😵 💣 💥 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
+
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b318a02a-0a7e-483e-a046-547a1a3ac6ae/deploy-status)](https://app.netlify.com/sites/minesweeper-emoji/deploys)
 
@@ -18,7 +18,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" />
+<a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   
@@ -26,27 +27,41 @@
 ## Description
 The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-oriented JavaScript: each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
 
-The mine allocation used to be based on probability (ex. each cell had a 15% chance to be a mine) which made the total number of mines variable. It has since been redesigned, and now the total number of mines can be set in the code.
-
-
-
-## Future
-Starting from v.2.0.0, Minesweeper Emoji will be re-implemented using vanilla JavaScript, and at some point in the future, it will be re-implemented using React, TypeScript, Redux, TailwindCSS and styled components. The initial aim it the new version(s) to be pixel-perfect identical to the existing version and to offer all the current functionality before new features are added.
-
-Thus, development has stopped for the p5.js version, with v1.7.0 being the final p5.js version. 
-
-
 
 ## Features
+### Mines
 * Random mine 💣 allocation on load
 * Ensure that the first click is never on a mine 💣
-* Fixed (15) total number of mines 💣 (ability to change number of mines in code)
+* Fixed (15) total number of mines 💣
+
+### Flagging
 * Ability to flag 🚩 possible location of mines
+* Revealed cells cannot be flagged 🚩
+* Whenever a cell is revealed it stops being flagged ⬜
+
+### Endgame
 * Empty cells become a grinning face with smiling eyes 😄 if the game is won or a dizzy face 😵 if the game is lost
-* Different emoji for detonated mine 💥 and revealed mines 💣
-* Number of mines 💣 and of flagged cells 🚩 indicators
-* Number of flagged cells 🚩 becomes red if there are more flagged cells than the number of mines 💣
-* Revealed cells cannot be flagged 🚩, and whenever a cell is revealed it stops being flagged
+* Different emoji for detonated mine 💥 (the mine the user clicked) and revealed mines 💣 (the rest of the mines)
+
+### Indicators
+* Number of initial and remaining mines 💣 indicator
+* Number of reamining mines 💣 becomes red if there are more flagged cells than the number of mines 🚩
+* Timer indicator ⌛ activated on first click and stopping on game end
+
+## Stats
+* Games played, games won and best time are saved on local storage
+* Stats panel containing the aformentioned values
+* Stats panel smooth animation
+* Checks for null values
+
+### Other
+* Animated header on hover
+* Animated footer logo on hover
+
+### Emojis
+The following emojis are used in the game:
+
+😄 😵 🔲 💣 💥 🚩 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
 
 
 ## Controls
@@ -54,74 +69,30 @@ Thus, development has stopped for the p5.js version, with v1.7.0 being the final
 * Left-click to reveal cell<br>
 * Right-click to flag
 * New Game button restarts the game
-
-
-
-## Demo :
-<img src="./screenshots/minesweeper-emoji-04.gif" /><br>
-  
+* Stats button toggles the stats panel 
 
   
 ## Screenshots:
   
 #### Win
-<img src="./screenshots/win-04.png" />
+<img src="./screenshots/win-ss.png" />
   
 #### Loss  
-<img src="./screenshots/loss-04.png" />
+<img src="./screenshots/loss-ss.png" />
 
 #### Idle  
-<img src="./screenshots/idle-04.png" />
+<img src="./screenshots/idle-ss.png" />
 
 #### More flags than mines
-<img src="./screenshots/flags-04.png" />
+<img src="./screenshots/flags-ss.png" />
+  
+#### Stats panel
+<img src="./screenshots/stats-ss.png" />
   
 
-  
-## To-do list
-  
-* ~~New Game button~~<br>
-* ~~Sane(r) mine allocation system~~
-* ~~Ensure first click is not on a mine~~
-* ~~Different emoji for detonated mine~~
-* ~~Number of mines indicator~~
-* ~~Number of flagged cells indicator~~
-* Ability to choose number of mines
-* Ability to choose board size
-* Time counter
-* Moves counter
-* Mobile-friendly design
-
-  
-  
-## Related Projects
-
-[Tic-Tac-Toe](https://github.com/michaelkolesidis/tic-tac-toe)  
-  
-  
-  
 ## License
 
 <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/GPLv3_Logo.svg" height="100px" /></a>
 
 Copyright (c) 2022 Michael Kolesidis<br>
 Licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
-
-
-
-<br>
-<br>
-
-
-
-[//]: # (Free Software)
-<div align="center">
-  <br>
-  <br>
-
-  <a href="https://github.com/michaelkolesidis/made-with-linux" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Made_with_Linux.png/240px-Made_with_Linux.png"></a>
-</div>
-<br>                                                      
-<div align="center">
-  <a href="https://endsoftwarepatents.org/innovating-without-patents"><img style="height: 90px;" src="https://static.fsf.org/nosvn/esp/logos/innovating-without-patents.svg"></a>
-</div>

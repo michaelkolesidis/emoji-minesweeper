@@ -35,7 +35,7 @@ const TIMER = "⌛";
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-let initialMines = 2; // Used by the mine indicator
+let initialMines = 15; // Used by the mine indicator
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
 let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
@@ -123,7 +123,7 @@ function draw() {
   textFont("Arial");
 
   // Mine indicator
-  if (initialMines - flaggedCells < 0) {
+  if (flaggedCells > initialMines) {
     fill(248, 49, 47);
   } else {
     fill(15, 15, 15);
@@ -132,12 +132,8 @@ function draw() {
   text(nf(Math.max(initialMines - flaggedCells, 0), 3), 40, height - 40);
 
   // Time indicator
+  fill(15, 15, 15);
   text(TIMER, width - 79, height - 41);
-  if (flaggedCells > initialMines) {
-    fill(248, 49, 47);
-  } else {
-    fill(15, 15, 15);
-  }
   text(nf(timePassed, 3), width - 44, height - 40);
   textSize(cellH - 2);
 }
