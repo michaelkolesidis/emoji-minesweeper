@@ -21,11 +21,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 [p5.js](https://p5js.org/)
+
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
 [CSS](https://en.wikipedia.org/wiki/CSS)
+
 [HTML](https://en.wikipedia.org/wiki/HTML)
 
 
