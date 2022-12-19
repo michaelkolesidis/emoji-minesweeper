@@ -35,7 +35,7 @@ const TIMER = "⌛";
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-let initialMines = 15; // Used by the mine indicator
+let initialMines = 2; // Used by the mine indicator
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
 let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
@@ -87,12 +87,11 @@ let stopTimer = false;
 
 const startTimer = () => {
   setInterval(() => {
+    if (stopTimer) {
+      return;
+    }
     timePassed += 1;
   }, 1000);
-
-  if (stopTimer) {
-    return;
-  }
 };
 
 function setup() {
@@ -227,7 +226,6 @@ function gameWon() {
   const endTime = new Date();
   let time = endTime - startTime; //in ms
   time = time / 1000;
-  console.log(time);
 
   let bestTime = Number(localStorage.getItem("bestTime"));
   if (bestTime === 0) {
@@ -237,6 +235,8 @@ function gameWon() {
       localStorage.setItem("bestTime", time);
     }
   }
+
+  stopTimer = true;
 }
 
 function gameLost() {
@@ -248,7 +248,7 @@ function gameLost() {
   const endTime = new Date();
   let time = endTime - startTime; //in ms
   time = time / 1000;
-  console.log(time);
+  stopTimer = true;
 }
 
 function mousePressed() {
