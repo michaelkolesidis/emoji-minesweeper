@@ -93,6 +93,9 @@ The following emojis are used in the game:
 #### Loss  
 <img src="./screenshots/loss-ss.png" />
 
+### New Best Time
+<img src="new-best-time-ss.png" />
+
 #### Idle  
 <img src="./screenshots/idle-ss.png" />
 
