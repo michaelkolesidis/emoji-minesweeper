@@ -41,8 +41,9 @@ let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
 
 let flaggedCells = 0;
-let startTime = null;
+let startTime = null; // used to calculate time
 let gameFinished = false;
+let newBestTime = false; // used when the user has made a new best time
 
 // Mine allocation
 function allocateMines() {
@@ -135,6 +136,9 @@ function draw() {
   // Time indicator
   fill(15, 15, 15);
   text(TIMER, width - 79, height - 41);
+  if (newBestTime) {
+    fill(255, 176, 46);
+  }
   text(nf(timePassed, 3), width - 44, height - 40);
   textSize(cellH - 2);
 }
@@ -229,10 +233,12 @@ function gameWon() {
     localStorage.setItem("bestTime", time);
   } else {
     if (time < bestTime) {
+      DIGITS[0] = "🥳";
+      newBestTime = true;
       localStorage.setItem("bestTime", time);
+      localStorage.setItem("newBestTime", "true");
     }
   }
-
   stopTimer = true;
 }
 
@@ -273,33 +279,35 @@ function mousePressed() {
 
   // Find the cell pressed on
   if (mouseButton === LEFT) {
-    let cell = cells.find((c) => {
-      return (
-        c.x < mouseX &&
-        c.x + cellW > mouseX &&
-        c.y < mouseY &&
-        c.y + cellH > mouseY
-      );
-    });
-    if (cell) {
-      if (cell.flagged) {
-        return; // Do not allow revealing when flagged
-      }
-      revealCell(cell);
-      if (cell.mine) {
-        if (!gameFinished) {
-          gameLost();
-          gameFinished = true;
+    if (!gameFinished) {
+      let cell = cells.find((c) => {
+        return (
+          c.x < mouseX &&
+          c.x + cellW > mouseX &&
+          c.y < mouseY &&
+          c.y + cellH > mouseY
+        );
+      });
+      if (cell) {
+        if (cell.flagged) {
+          return; // Do not allow revealing when flagged
         }
-      } else {
-        // Check if game is won
-        let cellsLeft = cells.filter((c) => {
-          return !c.mine && !c.revealed;
-        }).length;
-        if (cellsLeft == 0) {
+        revealCell(cell);
+        if (cell.mine) {
           if (!gameFinished) {
-            gameWon();
+            gameLost();
             gameFinished = true;
+          }
+        } else {
+          // Check if game is won
+          let cellsLeft = cells.filter((c) => {
+            return !c.mine && !c.revealed;
+          }).length;
+          if (cellsLeft == 0) {
+            if (!gameFinished) {
+              gameWon();
+              gameFinished = true;
+            }
           }
         }
       }

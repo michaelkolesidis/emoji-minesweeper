@@ -60,17 +60,22 @@ const board = document.createElement("div");
 board.setAttribute("id", "board");
 document.body.appendChild(board);
 
+// Buttons and Messages Container
+const container = document.createElement("div");
+container.setAttribute("id", "container");
+document.body.appendChild(container);
+
 // New Game Button
 const newGame = document.createElement("button");
 newGame.setAttribute("id", "reload");
 newGame.innerHTML = `New Game`;
-document.body.appendChild(newGame);
+container.appendChild(newGame);
 
 // Stats Button
 const statsButton = document.createElement("button");
 statsButton.setAttribute("id", "stats-button");
 statsButton.innerHTML = `Stats`;
-document.body.appendChild(statsButton);
+container.appendChild(statsButton);
 
 // Stats Panel
 const statsPanel = document.createElement("div");
@@ -93,7 +98,7 @@ if (bestTime) {
 } else {
   statsPanel.innerHTML += `<p class="value">N/A</p>`;
 }
-document.body.appendChild(statsPanel);
+container.appendChild(statsPanel);
 
 // Footer
 const footer = document.createElement("footer");
@@ -123,3 +128,26 @@ statsButton.addEventListener("click", () => {
     statsPanelOpen = true;
   }
 });
+
+/**
+ * New Best Time Message
+ */
+let newBestTimeValue = false;
+
+const showMessage = () => {
+  newBestTimeValue = localStorage.getItem("newBestTime");
+
+  if (newBestTimeValue === "true") {
+    const message = document.createElement("div");
+    message.setAttribute("id", "message");
+    message.innerHTML += `New<br>Best!`;
+    container.appendChild(message);
+    newBestTimeValue = false;
+    console.log("i'm here");
+    localStorage.setItem("newBestTime", "false");
+  }
+
+  requestAnimationFrame(showMessage);
+};
+
+showMessage();

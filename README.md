@@ -70,7 +70,7 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 ### Emojis
 The following emojis are used in the game:
 
-😄 😵 🔲 💣 💥 🚩 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
+😄 😵 🥳 🔲 💣 💥 🚩 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
 
 
 
