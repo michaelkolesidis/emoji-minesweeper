@@ -15,12 +15,12 @@ let cnv; // The canvas element that will contain the game
 let cols = 10;
 let rows = 10;
 let numOfCells = rows * cols;
-let cellW = 40;    // The width (in pixels) of each individual cell 
-let cellH = 40;    // The height (in pixels) of each individual cell 
-let cells = [];    // Array to hold all the cell objects
-let sizeError = 7; // On Windows and on Linux if error is not added to size, 
-                   // the left and bottom borders are not totally visible. 
-                   // On Mac it works fine even without the error
+let cellW = 40; // The width (in pixels) of each individual cell
+let cellH = 40; // The height (in pixels) of each individual cell
+let cells = []; // Array to hold all the cell objects
+let sizeError = 7; // On Windows and on Linux if error is not added to size,
+// the left and bottom borders are not totally visible.
+// On Mac it works fine even without the error
 
 // Emojis
 const WON = "😄";
@@ -30,14 +30,15 @@ const MINE = "💣";
 const DETONATION = "💥";
 const FLAG = "🚩";
 const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
+const TIMER = "⌛";
 
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-let initialMines = 15;            // Used by the mine indicator
+let initialMines = 15; // Used by the mine indicator
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
-let cellCounter = 0;              // The unique identifier of each cell
-let minedCells = [];              // A array containing the unique identifiers of all the cells that will contain mines
+let cellCounter = 0; // The unique identifier of each cell
+let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
 
 let flaggedCells = 0;
 let startTime = null;
@@ -80,6 +81,20 @@ function calculateMines() {
   });
 }
 
+// Time indicator
+let timePassed = 0;
+let stopTimer = false;
+
+const startTimer = () => {
+  setInterval(() => {
+    timePassed += 1;
+  }, 1000);
+
+  if (stopTimer) {
+    return;
+  }
+};
+
 function setup() {
   background(249, 249, 249);
   cnv = createCanvas(
@@ -103,21 +118,27 @@ function draw() {
   });
 
   // Show mines and flagged cells indicators
-  fill(15, 15, 15);
+  // fill(15, 15, 15);
   textSize(24);
   textStyle(BOLD);
   textFont("Arial");
-  text(MINE, 5, height - 40);
-  text(nf(initialMines, 2), 40, height - 39);
-  text(FLAG, width - 63, height - 40);
 
+  // Mine indicator
+  if (initialMines - flaggedCells < 0) {
+    fill(248, 49, 47);
+  } else {
+    fill(15, 15, 15);
+  }
+  text(MINE, 5, height - 40);
+  text(nf(Math.max(initialMines - flaggedCells, 0), 2), 40, height - 39);
+
+  text(TIMER, width - 63, height - 40);
   if (flaggedCells > initialMines) {
     fill(248, 49, 47);
   } else {
     fill(15, 15, 15);
   }
-
-  text(nf(flaggedCells, 2), width - 28, height - 39);
+  text(nf(timePassed, 2), width - 28, height - 39);
   textSize(cellH - 2);
 }
 
@@ -139,11 +160,12 @@ let mineReallocated = false;
 function revealCell(cell) {
   // Make sure first click is not on a mine
   if (isFirstClick) {
+    startTimer();
+    startTime = new Date();
+
     // Update local storage
     let played = parseInt(localStorage.getItem("played"));
     localStorage.setItem("played", ++played);
-
-    startTime = new Date();
 
     if (cell.mine) {
       cell.mine = false;
@@ -199,7 +221,6 @@ function gameWon() {
   // Update local storage
   let won = parseInt(localStorage.getItem("won"));
   localStorage.setItem("won", ++won);
-  console.log("won: " + won)
 
   const endTime = new Date();
   let time = endTime - startTime; //in ms
@@ -280,4 +301,3 @@ function mousePressed() {
     }
   }
 }
-
