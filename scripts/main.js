@@ -32,7 +32,6 @@ header.innerHTML = `
 <span style="--i:16">j</span>
 <span style="--i:17">i</span>
 `;
-
 document.body.appendChild(header);
 
 // Board
@@ -46,13 +45,19 @@ newGame.setAttribute("id", "reload");
 newGame.innerHTML = `New Game`;
 document.body.appendChild(newGame);
 
+// Stats Button
+const stats = document.createElement("button");
+stats.setAttribute("id", "stats");
+stats.innerHTML = `Statistics`;
+document.body.appendChild(stats);
+
 // Footer
 const footer = document.createElement("footer");
 footer.innerHTML = `<p>Made with <span id="heart">♥</span> by <a href="https://github.com/michaelkolesidis/minesweeper-emoji" target="_blank" rel="noopener">Michael Kolesidis</a></p>`;
 document.body.appendChild(footer);
 
 /**
- * Functionality
+ * Button Functionality
  */
 // Reload button functionality
 function reload() {
@@ -62,3 +67,26 @@ function reload() {
   });
 }
 reload();
+
+// Stats Button Functionality
+
+/**
+ * Data Storage
+ */
+let played = window.localStorage.getItem('played')
+if (played === null)
+{
+    window.localStorage.setItem("played", "0")
+}
+
+let won = window.localStorage.getItem('won')
+if (won === null)
+{
+    window.localStorage.setItem("won", "0")
+}
+
+let bestTime = window.localStorage.getItem('bestTime')
+if (bestTime === null)
+{
+    window.localStorage.setItem("bestTime", "")
+}

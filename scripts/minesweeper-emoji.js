@@ -40,7 +40,7 @@ let cellCounter = 0;              // The unique identifier of each cell
 let minedCells = [];              // A array containing the unique identifiers of all the cells that will contain mines
 
 let flaggedCells = 0;
-
+let startTime = null;
 
 // Mine allocation
 function allocateMines() {
@@ -139,6 +139,12 @@ let mineReallocated = false;
 function revealCell(cell) {
   // Make sure first click is not on a mine
   if (isFirstClick) {
+    // Update local storage
+    let played = parseInt(localStorage.getItem("played"));
+    localStorage.setItem("played", ++played);
+
+    startTime = new Date();
+
     if (cell.mine) {
       cell.mine = false;
 
@@ -189,6 +195,25 @@ function gameWon() {
   cells.forEach(function (c) {
     c.revealed = true;
   });
+
+  // Update local storage
+  let won = parseInt(localStorage.getItem("won"));
+  localStorage.setItem("won", ++won);
+  console.log("won: " + won)
+
+  const endTime = new Date();
+  let time = endTime - startTime; //in ms
+  time = time / 1000;
+  console.log(time);
+
+  let bestTime = Number(localStorage.getItem("bestTime"));
+  if (bestTime === 0) {
+    localStorage.setItem("bestTime", time);
+  } else {
+    if (time < bestTime) {
+      localStorage.setItem("bestTime", time);
+    }
+  }
 }
 
 function gameLost() {
@@ -196,6 +221,11 @@ function gameLost() {
   cells.forEach(function (c) {
     c.revealed = true;
   });
+
+  const endTime = new Date();
+  let time = endTime - startTime; //in ms
+  time = time / 1000;
+  console.log(time);
 }
 
 function mousePressed() {
