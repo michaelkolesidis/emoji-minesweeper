@@ -50,7 +50,9 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 
 ### Endgame
 * Empty cells become a grinning face with smiling eyes 😄 if the game is won or a dizzy face 😵 if the game is lost
-* Different emoji for detonated mine 💥 (the mine the user clicked) and revealed mines 💣 (the rest of the mines)
+* Different emoji for detonated mine 💥 (the mine the player clicked) and revealed mines 💣 (the rest of the mines)
+* Empty cells become 🥳 and timer turns gold when the player has made a new best time
+* Message informing that the player has made a new best time
 
 ### Indicators
 * Number of initial and remaining mines 💣 indicator

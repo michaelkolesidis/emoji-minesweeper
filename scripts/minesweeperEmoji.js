@@ -43,7 +43,7 @@ let minedCells = []; // A array containing the unique identifiers of all the cel
 let flaggedCells = 0;
 let startTime = null; // used to calculate time
 let gameFinished = false;
-let newBestTime = false; // used when the user has made a new best time
+let newBestTime = false; // used when the player has made a new best time
 
 // Mine allocation
 function allocateMines() {
