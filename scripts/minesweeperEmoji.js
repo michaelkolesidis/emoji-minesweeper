@@ -42,6 +42,7 @@ let minedCells = []; // A array containing the unique identifiers of all the cel
 
 let flaggedCells = 0;
 let startTime = null;
+let gameFinished = false;
 
 // Mine allocation
 function allocateMines() {
@@ -286,14 +287,20 @@ function mousePressed() {
       }
       revealCell(cell);
       if (cell.mine) {
-        gameLost();
+        if (!gameFinished) {
+          gameLost();
+          gameFinished = true;
+        }
       } else {
         // Check if game is won
         let cellsLeft = cells.filter((c) => {
           return !c.mine && !c.revealed;
         }).length;
         if (cellsLeft == 0) {
-          gameWon();
+          if (!gameFinished) {
+            gameWon();
+            gameFinished = true;
+          }
         }
       }
     }
