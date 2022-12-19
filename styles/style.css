@@ -8,6 +8,10 @@
   user-select: none;
 }
 
+html, body {
+  background-color: #ffffff;
+}
+
 body {
   color: rgb(24, 24, 24);
   font-family: sans-serif;
