@@ -23,6 +23,11 @@ if (won === null) {
   window.localStorage.setItem("won", "0");
 }
 
+let winPercentage = window.localStorage.getItem("winPercentage");
+if (winPercentage === null) {
+  window.localStorage.setItem("winPercentage", "");
+}
+
 let bestTime = window.localStorage.getItem("bestTime");
 if (bestTime === null) {
   window.localStorage.setItem("bestTime", "");
@@ -80,24 +85,38 @@ container.appendChild(statsButton);
 // Stats Panel
 const statsPanel = document.createElement("div");
 statsPanel.setAttribute("id", "stats-panel");
-statsPanel.innerHTML += `<p>Played</p>`;
+statsPanel.innerHTML += `<p class="label">Played</p>`;
 if (played) {
   statsPanel.innerHTML += `<p class="value">${played}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">0</p>`;
 }
-statsPanel.innerHTML += `<p>Won</p>`;
+statsPanel.innerHTML += `<p class="label">Won</p>`;
 if (won) {
   statsPanel.innerHTML += `<p class="value">${won}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">0</p>`;
 }
-statsPanel.innerHTML += `<p>Best Time</p>`;
+
+statsPanel.innerHTML += `<p class="label">Win %</p>`;
+if (winPercentage) {
+  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(2)}</p>`;
+} else {
+  statsPanel.innerHTML += `<p class="value">N/A</p>`;
+}
+
+statsPanel.innerHTML += `<p class="label">Best Time</p>`;
 if (bestTime) {
   statsPanel.innerHTML += `<p class="value">${bestTime}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">N/A</p>`;
 }
+
+// Clear Data Button
+const clearDataButton = document.createElement("button");
+clearDataButton.innerHTML = `Clear Data`;
+statsPanel.appendChild(clearDataButton);
+
 container.appendChild(statsPanel);
 
 // Footer
@@ -128,6 +147,12 @@ statsButton.addEventListener("click", () => {
     statsPanelOpen = true;
   }
 });
+
+// Clear Data Button Functionality
+clearDataButton.addEventListener("click", () => {
+  window.localStorage.clear();
+  window.location.reload();
+})
 
 /**
  * New Best Time Message

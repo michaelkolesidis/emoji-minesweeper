@@ -128,13 +128,13 @@ function draw() {
   if (flaggedCells > initialMines) {
     fill(248, 49, 47);
   } else {
-    fill(15, 15, 15);
+    fill(35, 35, 35);
   }
   text(MINE, 5, height - 41);
   text(nf(Math.max(initialMines - flaggedCells, 0), 3), 40, height - 40);
 
   // Time indicator
-  fill(15, 15, 15);
+  fill(35, 35, 35);
   text(TIMER, width - 79, height - 41);
   if (newBestTime) {
     fill(255, 176, 46);
@@ -297,6 +297,7 @@ function mousePressed() {
           if (!gameFinished) {
             gameLost();
             gameFinished = true;
+            calculateWinPercentage();
           }
         } else {
           // Check if game is won
@@ -307,10 +308,25 @@ function mousePressed() {
             if (!gameFinished) {
               gameWon();
               gameFinished = true;
+              calculateWinPercentage();
             }
           }
         }
       }
     }
+  }
+}
+
+function calculateWinPercentage() {
+  let played = parseInt(window.localStorage.getItem("played"));
+  let won = parseInt(window.localStorage.getItem("won"));
+  let winPercentage = null;
+
+  if (played !== 0) {
+    winPercentage = won / played;
+  }
+
+  if (winPercentage !== null) {
+    window.localStorage.setItem("winPercentage", winPercentage)
   }
 }

@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
+:root {
+  --main-color: rgb(25, 25, 25);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +18,7 @@ body {
 }
 
 body {
-  color: rgb(24, 24, 24);
+  color: var(--main-color);
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
@@ -27,6 +31,19 @@ body {
   margin-bottom: 0.4rem;
   font-family: "Fredoka One", cursive;
   white-space: nowrap;
+}
+
+canvas {
+  animation: appear 0.5s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .header span {
@@ -51,6 +68,10 @@ body {
   }
 }
 
+#board {
+  height: 441px;
+}
+
 #container {
   padding: 0;
   margin-top: -1.7rem;
@@ -69,16 +90,16 @@ button {
   white-space: nowrap;
   cursor: pointer;
   color: rgb(255, 255, 255);
-  background-color: rgb(24, 24, 24);
-  border: 4px solid rgb(24, 24, 24);
+  background-color: var(--main-color);
+  border: 4px solid var(--main-color);
   width: 7.3em;
   position: relative;
 }
 
 button:hover {
   background-color: rgb(255, 255, 255);
-  color: rgb(15, 15, 15);
-  border: 4px dotted rgb(15, 15, 15);
+  color: var(--main-color);
+  border: 4px dotted var(--main-color);
 }
 
 button:active {
@@ -90,19 +111,39 @@ button:active {
 }
 
 #stats-panel {
-  margin-top: 1em;
-  font-size: 1.1rem;
+  margin-top: 0.7rem;
+  font-size: 1rem;
   font-weight: 600;
   text-align: center;
   border-radius: 40px;
-  padding: 1.5rem;
-  border: 4px dotted rgb(15, 15, 15);
+  padding: 1.1rem;
+  border: 4px dotted var(--main-color);
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: fit-content;
+}
+
+#stats-panel > button {
+  margin-top: 0.5rem;
+  margin-bottom: -0.3rem;
+  margin-left: 0;
+  margin-right: 0;
+  grid-column: span 2;
+  width: 100%;
+  transform: scale(0.7);
+}
+
+.label {
+  text-align: end;
+  margin-right: 0.5rem;
 }
 
 .value {
   font-weight: 400;
+  text-align: left;
+  margin-left: 0.5rem;
 }
 
 #message {
