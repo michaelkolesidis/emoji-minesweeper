@@ -100,7 +100,9 @@ if (won) {
 
 statsPanel.innerHTML += `<p class="label">Win %</p>`;
 if (winPercentage) {
-  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(2)}</p>`;
+  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
+    2
+  )}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">N/A</p>`;
 }
@@ -152,7 +154,7 @@ statsButton.addEventListener("click", () => {
 clearDataButton.addEventListener("click", () => {
   window.localStorage.clear();
   window.location.reload();
-})
+});
 
 /**
  * New Best Time Message

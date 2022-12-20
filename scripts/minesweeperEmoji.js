@@ -12,12 +12,12 @@ disableFriendlyErrors = true;
 let cnv; // The canvas element that will contain the game
 
 // Board dimensions and number of mines
-let cols = 10;
-let rows = 10;
-let numOfCells = rows * cols;
-let cellW = 40; // The width (in pixels) of each individual cell
-let cellH = 40; // The height (in pixels) of each individual cell
 let cells = []; // Array to hold all the cell objects
+let cellWidth = 40; // The width (in pixels) of each individual cell
+let cellHeight = 40; // The height (in pixels) of each individual cell
+let columns = 10;
+let rows = 10;
+let numberOfCells = rows * columns;
 let sizeError = 7; // On Windows and on Linux if error is not added to size,
 // the left and bottom borders are not totally visible.
 // On Mac it works fine even without the error
@@ -48,7 +48,7 @@ let newBestTime = false; // used when the player has made a new best time
 // Mine allocation
 function allocateMines() {
   while (numberOfMines > 0) {
-    let targetCell = Math.floor(Math.random() * (numOfCells - 1)) + 1;
+    let targetCell = Math.floor(Math.random() * (numberOfCells - 1)) + 1;
     if (!minedCells.includes(targetCell)) {
       minedCells.push(targetCell);
       numberOfMines -= 1;
@@ -57,7 +57,7 @@ function allocateMines() {
 }
 
 function generateCells() {
-  for (let i = 0; i < cols; i++) {
+  for (let i = 0; i < columns; i++) {
     for (let j = 0; j < rows; j++) {
       let newCell = new Cell(i, j);
       newCell.num = cellCounter;
@@ -99,11 +99,11 @@ const startTimer = () => {
 function setup() {
   background(249, 249, 249);
   cnv = createCanvas(
-    cellW * cols + sizeError,
-    cellH * rows + sizeError + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
+    cellWidth * columns + sizeError,
+    cellHeight * rows + sizeError + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
   );
   cnv.parent("board");
-  textSize(cellH - 2); // On Mac "cellH - 1" works better, on Windows "cellH - 6"
+  textSize(cellHeight - 2); // On Mac "cellHeight - 1" works better, on Windows "cellHeight - 6"
 
   allocateMines();
   generateCells();
@@ -113,13 +113,12 @@ function setup() {
 function draw() {
   background(255);
 
-  translate(-3, cellH - 3);
+  translate(-3, cellHeight - 3);
   cells.forEach(function (c) {
     c.draw();
   });
 
   // Show mines and flagged cells indicators
-  // fill(15, 15, 15);
   textSize(24);
   textStyle(BOLD);
   textFont("Arial");
@@ -140,7 +139,7 @@ function draw() {
     fill(255, 176, 46);
   }
   text(nf(timePassed, 3), width - 44, height - 40);
-  textSize(cellH - 2);
+  textSize(cellHeight - 2);
 }
 
 // Get neighbors
@@ -173,7 +172,7 @@ function revealCell(cell) {
       cell.mine = false;
 
       while (!mineReallocated) {
-        let num = Math.floor(Math.random() * (numOfCells - 1)) + 1;
+        let num = Math.floor(Math.random() * (numberOfCells - 1)) + 1;
         if (!cells[num].mine) {
           cells[num].mine = true;
           mineReallocated = true;
@@ -261,9 +260,9 @@ function mousePressed() {
     let cell = cells.find((c) => {
       return (
         c.x < mouseX &&
-        c.x + cellW > mouseX &&
+        c.x + cellWidth > mouseX &&
         c.y < mouseY &&
-        c.y + cellH > mouseY
+        c.y + cellHeight > mouseY
       );
     });
     if (cell) {
@@ -283,9 +282,9 @@ function mousePressed() {
       let cell = cells.find((c) => {
         return (
           c.x < mouseX &&
-          c.x + cellW > mouseX &&
+          c.x + cellWidth > mouseX &&
           c.y < mouseY &&
-          c.y + cellH > mouseY
+          c.y + cellHeight > mouseY
         );
       });
       if (cell) {
@@ -327,6 +326,6 @@ function calculateWinPercentage() {
   }
 
   if (winPercentage !== null) {
-    window.localStorage.setItem("winPercentage", winPercentage)
+    window.localStorage.setItem("winPercentage", winPercentage);
   }
 }

@@ -14,8 +14,8 @@ class Cell {
     this.num;
     this.i = i;
     this.j = j;
-    this.x = i * cellW;
-    this.y = j * cellH;
+    this.x = i * cellWidth;
+    this.y = j * cellHeight;
     this.mine = false;
     this.minesAround = 0;
     this.revealed = false;
