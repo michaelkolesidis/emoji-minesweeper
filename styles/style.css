@@ -26,15 +26,15 @@ body {
 }
 
 .header {
-  font-size: 2.4em;
-  margin-top: 0.6rem;
-  margin-bottom: 0.4rem;
+  font-size: 2.6em;
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
   font-family: "Fredoka One", cursive;
   white-space: nowrap;
 }
 
 canvas {
-  animation: appear 0.5s;
+  animation: appear 0.8s;
 }
 
 @keyframes appear {
@@ -64,7 +64,7 @@ canvas {
     transform: translateY(0);
   }
   20% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
@@ -128,8 +128,6 @@ button:active {
 #stats-panel > button {
   margin-top: 0.5rem;
   margin-bottom: -0.3rem;
-  margin-left: 0;
-  margin-right: 0;
   grid-column: span 2;
   width: 100%;
   transform: scale(0.7);
@@ -152,7 +150,7 @@ button:active {
   font-size: 1.4rem;
   text-align: center;
   position: absolute;
-  right: -120px;
+  right: -90px;
   top: 32px;
   line-height: 20px;
 }
@@ -162,6 +160,7 @@ footer {
   bottom: 0.6rem;
   right: 0.6rem;
   transform: scale(0.8);
+  animation: appear 0.8s;
 }
 
 footer:hover {
