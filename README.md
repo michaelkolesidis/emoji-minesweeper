@@ -41,25 +41,25 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 
 ## Features
 ### Mines
-* Random mine 💣 allocation on load
-* Ensure that the first click is never on a mine 💣
-* Fixed (15) total number of mines 💣
+* Random mine allocation on load
+* Ensure that the first click is never on a mine
+* Fixed (15) total number of mines
 
 ### Flagging
-* Ability to flag 🚩 possible location of mines
-* Revealed cells cannot be flagged 🚩
-* Whenever a cell is revealed it stops being flagged ⬜
+* Ability to flag possible location of mines
+* Revealed cells cannot be flagged
+* Whenever a cell is revealed it stops being flagged
 
 ### Endgame
-* Empty cells become a grinning face with smiling eyes 😄 if the game is won or a dizzy face 😵 if the game is lost
-* Different emoji for detonated mine 💥 (the mine the player clicked) and revealed mines 💣 (the rest of the mines)
-* Empty cells become 🥳 and timer turns gold when the player has made a new best time
+* Empty cells become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost
+* Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)
+* Empty cells become and timer turns gold when the player has made a new best time
 * Message informing that the player has made a new best time
 
-### Indicators
-* Number of initial and remaining mines 💣 indicator
-* Number of reamining mines 💣 becomes red if there are more flagged cells than the number of mines 🚩
-* Timer indicator ⌛ activated on first click and stopping on game end
+### Indicators 
+* Number of initial and remaining mines indicator
+* Number of reamining mines becomes red if there are more flagged cells than the number of mines
+* Timer indicator activated on first click and stopping on game end
 
 ### Stats
 * Games played, games won, winning percentage, and best time are saved on local storage
@@ -94,7 +94,7 @@ The following emojis are used throughout the game:
 #### Win
 <img src="./screenshots/screenshot_win.png" />
   
-### New Best Time
+#### New Best Time
 <img src="./screenshots/screenshot_new_best_time.png" />
 
 #### Loss  
