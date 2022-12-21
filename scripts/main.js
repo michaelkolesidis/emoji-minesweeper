@@ -3,6 +3,10 @@
  *  Copyright (c) 2022 Michael Kolesidis
  *  GNU General Public License v3.0
  *
+ * main.js contains the rest of the UI of the game,
+ * anything that happens outside of the board. It
+ * also handles the storage and the display of
+ * the saved stats.
  */
 
 /**
@@ -85,12 +89,16 @@ container.appendChild(statsButton);
 // Stats Panel
 const statsPanel = document.createElement("div");
 statsPanel.setAttribute("id", "stats-panel");
+
+// Stats: Played
 statsPanel.innerHTML += `<p class="label">Played</p>`;
 if (played) {
   statsPanel.innerHTML += `<p class="value">${played}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">0</p>`;
 }
+
+// Stats: Won
 statsPanel.innerHTML += `<p class="label">Won</p>`;
 if (won) {
   statsPanel.innerHTML += `<p class="value">${won}</p>`;
@@ -98,15 +106,15 @@ if (won) {
   statsPanel.innerHTML += `<p class="value">0</p>`;
 }
 
+// Stats: Win percentage
 statsPanel.innerHTML += `<p class="label">Win %</p>`;
 if (winPercentage) {
-  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
-    2
-  )}</p>`;
+  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(2)}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">N/A</p>`;
 }
 
+// Stats: Best Time
 statsPanel.innerHTML += `<p class="label">Best Time</p>`;
 if (bestTime) {
   statsPanel.innerHTML += `<p class="value">${bestTime}</p>`;
@@ -114,7 +122,7 @@ if (bestTime) {
   statsPanel.innerHTML += `<p class="value">N/A</p>`;
 }
 
-// Clear Data Button
+// Stats: Clear Data Button
 const clearDataButton = document.createElement("button");
 clearDataButton.innerHTML = `Clear Data`;
 statsPanel.appendChild(clearDataButton);
@@ -157,7 +165,7 @@ clearDataButton.addEventListener("click", () => {
 });
 
 /**
- * New Best Time Message
+ * New Best Time Message Functionality
  */
 let newBestTimeValue = false;
 

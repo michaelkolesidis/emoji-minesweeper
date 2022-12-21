@@ -3,6 +3,9 @@
  *  Copyright (c) 2022 Michael Kolesidis
  *  GNU General Public License v3.0
  *
+ * minesweeperEmoji.js contains the game functionality,
+ * everything that happens inside the game's board. It
+ * also handles the update of the stats accordingly.
  */
 
 // Disable the Friendly Error System
@@ -12,24 +15,24 @@ disableFriendlyErrors = true;
 let cnv; // The canvas element that will contain the game
 
 // Board dimensions and number of mines
-let cells = []; // Array to hold all the cell objects
-let cellWidth = 40; // The width (in pixels) of each individual cell
+let cells = [];      // Array to hold all the cell objects
+let cellWidth = 40;  // The width (in pixels) of each individual cell
 let cellHeight = 40; // The height (in pixels) of each individual cell
-let columns = 10;
-let rows = 10;
+let columns = 10;    // The number of columns in the board
+let rows = 10;       // The number of rows in the board
 let numberOfCells = rows * columns;
-let sizeError = 7; // On Windows and on Linux if error is not added to size,
-// the left and bottom borders are not totally visible.
-// On Mac it works fine even without the error
+let sizeError = 7;   // On Windows and on Linux if error is not added to size,
+                     // the left and bottom borders are not totally visible -
+                     // on Mac it works fine even without the error
 
 // Emojis
+const EMPTY = "🔲";
+const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
+const FLAG = "🚩";
+const DETONATION = "💥";
+const MINE = "💣";
 const WON = "😄";
 const LOST = "😵";
-const EMPTY = "🔲";
-const MINE = "💣";
-const DETONATION = "💥";
-const FLAG = "🚩";
-const DIGITS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 const TIMER = "⌛";
 
 // Prevent right mouse click from opening browser context menu in order to be able to flag
@@ -96,6 +99,9 @@ const startTimer = () => {
   }, 1000);
 };
 
+/**
+ * Setup
+ */
 function setup() {
   background(249, 249, 249);
   cnv = createCanvas(
@@ -110,6 +116,9 @@ function setup() {
   calculateMines();
 }
 
+/**
+ * Draw
+ */
 function draw() {
   background(255);
 
@@ -154,6 +163,9 @@ function getNeighbors(cell) {
   });
 }
 
+/**
+ * Mouse Actions Handling
+ */
 let isFirstClick = true;
 let mineReallocated = false;
 
@@ -211,46 +223,6 @@ function revealCell(cell) {
       }
     });
   }
-}
-
-function gameWon() {
-  DIGITS[0] = WON;
-  cells.forEach(function (c) {
-    c.revealed = true;
-  });
-
-  // Update local storage
-  let won = parseInt(localStorage.getItem("won"));
-  localStorage.setItem("won", ++won);
-
-  const endTime = new Date();
-  let time = endTime - startTime; //in ms
-  time = time / 1000;
-
-  let bestTime = Number(localStorage.getItem("bestTime"));
-  if (bestTime === 0) {
-    localStorage.setItem("bestTime", time);
-  } else {
-    if (time < bestTime) {
-      DIGITS[0] = "🥳";
-      newBestTime = true;
-      localStorage.setItem("bestTime", time);
-      localStorage.setItem("newBestTime", "true");
-    }
-  }
-  stopTimer = true;
-}
-
-function gameLost() {
-  DIGITS[0] = LOST;
-  cells.forEach(function (c) {
-    c.revealed = true;
-  });
-
-  const endTime = new Date();
-  let time = endTime - startTime; //in ms
-  time = time / 1000;
-  stopTimer = true;
 }
 
 function mousePressed() {
@@ -316,6 +288,52 @@ function mousePressed() {
   }
 }
 
+/**
+ * Endgame
+ */
+// Handle win
+function gameWon() {
+  NUMBERS[0] = WON;
+  cells.forEach(function (c) {
+    c.revealed = true;
+  });
+
+  // Update local storage
+  let won = parseInt(localStorage.getItem("won"));
+  localStorage.setItem("won", ++won);
+
+  const endTime = new Date();
+  let time = endTime - startTime; //in ms
+  time = time / 1000;
+
+  let bestTime = Number(localStorage.getItem("bestTime"));
+  if (bestTime === 0) {
+    localStorage.setItem("bestTime", time);
+  } else {
+    if (time < bestTime) {
+      NUMBERS[0] = "🥳";
+      newBestTime = true;
+      localStorage.setItem("bestTime", time);
+      localStorage.setItem("newBestTime", "true");
+    }
+  }
+  stopTimer = true;
+}
+
+// handle loss
+function gameLost() {
+  NUMBERS[0] = LOST;
+  cells.forEach(function (c) {
+    c.revealed = true;
+  });
+
+  const endTime = new Date();
+  let time = endTime - startTime; //in ms
+  time = time / 1000;
+  stopTimer = true;
+}
+
+// Calculate percentage of wins / total games played
 function calculateWinPercentage() {
   let played = parseInt(window.localStorage.getItem("played"));
   let won = parseInt(window.localStorage.getItem("won"));
@@ -326,6 +344,7 @@ function calculateWinPercentage() {
   }
 
   if (winPercentage !== null) {
+    // Update local storage
     window.localStorage.setItem("winPercentage", winPercentage);
   }
 }
