@@ -1,7 +1,7 @@
 <div align="center">
-  <img height="100px" src="./assets/logo.png" /><br>
+  <img height="90px" src="./assets/logo.png" /><br>
   <br><br>
-  <img src="./screenshots/win-ss.png" /><br>
+  <img src="./screenshots/screenshot_win.png" /><br>
 </div>
 
 <h3 align="center">Minesweeper made with 😄 😵 💣 💥 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
@@ -23,17 +23,19 @@
 
 
 [p5.js](https://p5js.org/)
-•
+ • 
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-•
+ • 
 [CSS](https://en.wikipedia.org/wiki/CSS)
-•
+ • 
 [HTML](https://en.wikipedia.org/wiki/HTML)
 
 
   
 ## Description
-The classic Minesweeper game reimagined and implemented with emojis. It is an example of object-oriented JavaScript: each Cell is an instance of the class Cell. Mines are allocated randomly on page load. 
+**The classic Minesweeper game reimagined and implemented with emojis.**
+
+The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element, with the help of the p5.js library. The object-oriented JavaScript paradigm is used, as each Cell is an instance of the class Cell. The rest of the UI is handled using vanilla JavaScript.
 
 
 
@@ -66,11 +68,13 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 * Checks for null values
 
 ### Other
+* Board fade-in effect
 * Animated header on hover
 * Animated footer logo on hover
+* Extensive commenting to make the project's code accessible for beginners
 
 ### Emojis
-The following emojis are used in the game:
+The following emojis are used throughout the game:
 
 😄 😵 🥳 🔲 💣 💥 🚩 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
 
@@ -88,23 +92,26 @@ The following emojis are used in the game:
 ## Screenshots:
   
 #### Win
-<img src="./screenshots/win-ss.png" />
+<img src="./screenshots/screenshot_win.png" />
   
-#### Loss  
-<img src="./screenshots/loss-ss.png" />
-
 ### New Best Time
-<img src="./screenshots/new-best-time-ss.png" />
+<img src="./screenshots/screenshot_new_best_time.png" />
+
+#### Loss  
+<img src="./screenshots/screenshot_loss.png" />
 
 #### Idle  
-<img src="./screenshots/idle-ss.png" />
+<img src="./screenshots/screenshot_idle.png" />
 
 #### More flags than mines
-<img src="./screenshots/flags-ss.png" />
+<img src="./screenshots/screenshot_flags.png" />
   
 #### Stats panel
-<img src="./screenshots/stats-ss.png" />
-  
+<img src="./screenshots/screenshot_stats_idle.png" />
+<img src="./screenshots/screenshot_win.png" />
+
+#### Full page
+<img src="./screenshots/screenshot_full.png" />
 
 
 ## License
