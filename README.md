@@ -60,7 +60,7 @@ The classic Minesweeper game reimagined and implemented with emojis. It is an ex
 * Timer indicator ⌛ activated on first click and stopping on game end
 
 ### Stats
-* Games played, games won and best time are saved on local storage
+* Games played, games won, winning percentage, and best time are saved on local storage
 * Stats panel containing the aformentioned values
 * Stats panel smooth animation
 * Checks for null values
