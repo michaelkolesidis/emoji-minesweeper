@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
+/* Global */
 :root {
   --main-color: rgb(25, 25, 25);
 }
@@ -25,25 +26,13 @@ body {
   place-items: center;
 }
 
+/* Header */
 .header {
   font-size: 2.6em;
   margin-top: 0.4rem;
   margin-bottom: 0.2rem;
   font-family: "Fredoka One", cursive;
   white-space: nowrap;
-}
-
-canvas {
-  animation: appear 0.8s;
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .header span {
@@ -68,10 +57,25 @@ canvas {
   }
 }
 
+/* Board */
+canvas {
+  animation: appear 0.8s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 #board {
   height: 441px;
 }
 
+/* Elements Container */
 #container {
   padding: 0;
   margin-top: -1.7rem;
@@ -106,10 +110,7 @@ button:active {
   transform: scale(0.98);
 }
 
-#stats-button {
-  margin-top: 0.75rem;
-}
-
+/* Stats Panel */
 #stats-panel {
   margin-top: 0.7rem;
   font-size: 1rem;
@@ -123,6 +124,10 @@ button:active {
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: fit-content;
+}
+
+#stats-button {
+  margin-top: 0.75rem;
 }
 
 #stats-panel > button {
@@ -144,6 +149,7 @@ button:active {
   margin-left: 0.5rem;
 }
 
+/* Message */
 #message {
   color: rgb(255, 176, 46);
   font-weight: 600;
@@ -155,6 +161,7 @@ button:active {
   line-height: 20px;
 }
 
+/* Footer */
 footer {
   position: absolute;
   bottom: 0.6rem;
