@@ -240,12 +240,15 @@ function mousePressed() {
     });
     if (cell) {
       // Prevent revealed cells from being flagged
-      if (!cell.flagged && !cell.revealed) {
-        flaggedCells += 1;
-      } else if (!cell.revealed) {
-        flaggedCells -= 1;
+      if (!cell.revealed) {
+        if (!cell.flagged) {
+          flaggedCells += 1;
+        } else {
+          flaggedCells -= 1;
+        }
+        cell.flagged = !cell.flagged;
       }
-      cell.flagged = !cell.flagged;
+      
     }
   }
 
