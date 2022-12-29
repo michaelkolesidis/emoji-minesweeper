@@ -57,6 +57,7 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 * Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)
 * Empty cells become and timer turns gold when the player has made a new best time
 * Message informing that the player has made a new best time
+* Wrongly flagged cells are marked with an X
 
 ### Indicators 
 * Number of initial and remaining mines indicator
@@ -78,7 +79,7 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 ### Emojis
 The following emojis are used throughout the game:
 
-😄 😵 🥳 🔲 💣 💥 🚩 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
+😄 😵 🥳 🔲 💣 💥 🚩 ❌ ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛
 
 
 
@@ -101,6 +102,9 @@ The following emojis are used throughout the game:
 
 #### Loss  
 <img src="./screenshots/screenshot_loss.png" />
+
+#### Mistakes  
+<img src="./screenshots/screenshot_mistakes.png" />
 
 #### Idle  
 <img src="./screenshots/screenshot_idle.png" />
