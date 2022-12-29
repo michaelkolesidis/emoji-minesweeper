@@ -15,25 +15,27 @@ disableFriendlyErrors = true;
 let cnv; // The canvas element that will contain the game
 
 // Board dimensions and number of mines
-let cells = [];      // Array to hold all the cell objects
-let cellWidth = 40;  // The width (in pixels) of each individual cell
+let cells = []; // Array to hold all the cell objects
+let cellWidth = 40; // The width (in pixels) of each individual cell
 let cellHeight = 40; // The height (in pixels) of each individual cell
-let columns = 10;    // The number of columns in the board
-let rows = 10;       // The number of rows in the board
+let columns = 10; // The number of columns in the board
+let rows = 10; // The number of rows in the board
 let numberOfCells = rows * columns;
-let sizeError = 7;   // On Windows and on Linux if error is not added to size,
-                     // the left and bottom borders are not totally visible -
-                     // on Mac it works fine even without the error
+let sizeError = 7; // On Windows and on Linux if error is not added to size,
+// the left and bottom borders are not totally visible -
+// on Mac it works fine even without the error
+
+let flowerMode = JSON.parse(localStorage.getItem("flower"));
 
 // Emojis
 const EMPTY = "🔲";
 const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 const FLAG = "🚩";
-const DETONATION = "💥";
-const MINE = "💣";
+const DETONATION = flowerMode ? "🐛" : "💥";
+const MINE = flowerMode ? "🌺" : "💣";
 const WRONG = "❌";
-const WON = "😄";
-const LOST = "😵";
+const WON = flowerMode ? "😊" : "😄";
+const LOST = flowerMode ? "😔" : "😵";
 const TIMER = "⌛";
 
 // Prevent right mouse click from opening browser context menu in order to be able to flag
@@ -248,7 +250,6 @@ function mousePressed() {
         }
         cell.flagged = !cell.flagged;
       }
-      
     }
   }
 
@@ -350,5 +351,15 @@ function calculateWinPercentage() {
   if (winPercentage !== null) {
     // Update local storage
     window.localStorage.setItem("winPercentage", winPercentage);
+  }
+}
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    localStorage.setItem("flower", "true");
+    window.location.reload();
+  } else if (keyCode === RIGHT_ARROW) {
+    localStorage.setItem("flower", "false");
+    window.location.reload();
   }
 }

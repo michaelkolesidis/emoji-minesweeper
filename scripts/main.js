@@ -10,11 +10,6 @@
  */
 
 /**
- * Basics
- */
-document.title = `Minesweeper Emoji`;
-
-/**
  * Data Storage
  */
 let played = window.localStorage.getItem("played");
@@ -37,14 +32,69 @@ if (bestTime === null) {
   window.localStorage.setItem("bestTime", "");
 }
 
+let isFlower = window.localStorage.getItem("flower");
+if (isFlower === null) {
+  window.localStorage.setItem("flower", "false");
+}
+
+let flower = JSON.parse(isFlower);
+
+/**
+ * Basics
+ */
+// Title
+if (flower) {
+  document.title = `Flower Field Emoji`;
+} else {
+  document.title = `Minesweeper Emoji`;
+}
+
+// Favicon
+if (flower) {
+  const favicon =
+    document.querySelector("link[rel*='icon']") ||
+    document.createElement("link");
+  favicon.rel = "icon";
+  favicon.href =
+    "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌺</text></svg>";
+  document.getElementsByTagName("head")[0].appendChild(favicon);
+} else {
+  const favicon =
+    document.querySelector("link[rel*='icon']") ||
+    document.createElement("link");
+  favicon.rel = "icon";
+  favicon.href = "../assets/favicon.ico";
+  document.getElementsByTagName("head")[0].appendChild(favicon);
+}
+
 /**
  * Elements
  */
 // Header
 const header = document.createElement("div");
 header.className = `header`;
-header.innerHTML = `
-<span style="--i:1">M</span>
+header.innerHTML =
+  flower === true
+    ? `<span style="--i:1">F</span>
+<span style="--i:2">l</span>
+<span style="--i:3">o</span>
+<span style="--i:4">w</span>
+<span style="--i:5">e</span>
+<span style="--i:6">r</span>
+<span style="--i:12">&nbsp;</span>
+<span style="--i:7">F</span>
+<span style="--i:8">i</span>
+<span style="--i:9">e</span>
+<span style="--i:9">l</span>
+<span style="--i:9">d</span>
+<span style="--i:12">&nbsp;</span>
+<span style="--i:13">E</span>
+<span style="--i:14">m</span>
+<span style="--i:15">o</span>
+<span style="--i:16">j</span>
+<span style="--i:17">i</span>
+`
+    : `<span style="--i:1">M</span>
 <span style="--i:2">i</span>
 <span style="--i:3">n</span>
 <span style="--i:4">e</span>
@@ -60,8 +110,8 @@ header.innerHTML = `
 <span style="--i:14">m</span>
 <span style="--i:15">o</span>
 <span style="--i:16">j</span>
-<span style="--i:17">i</span>
-`;
+<span style="--i:17">i</span>`;
+
 document.body.appendChild(header);
 
 // Board
@@ -109,7 +159,9 @@ if (won) {
 // Stats: Win percentage
 statsPanel.innerHTML += `<p class="label">Win %</p>`;
 if (winPercentage) {
-  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(2)}</p>`;
+  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
+    2
+  )}</p>`;
 } else {
   statsPanel.innerHTML += `<p class="value">N/A</p>`;
 }
