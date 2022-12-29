@@ -49,8 +49,7 @@ let settings = {
     mines: 10,
   },
   size: {
-    cellWidth: 32,
-    cellHeight: 32,
+    cellSize: 40,
   },
 };
 
@@ -94,18 +93,17 @@ switch (level) {
  * Board dimensions and number of mines
  */
 let cells = []; // Array to hold all the cell objects
-let cellWidth = settings.size.cellWidth; // The width (in pixels) of each individual cell
-let cellHeight = settings.size.cellHeight; // The height (in pixels) of each individual cell
+let cellSize = settings.size.cellSize; // The size (in pixe;s of each cell)
 let columns = settings.level.columns; // The number of columns in the board
 let rows = settings.level.rows; // The number of rows in the board
 let numberOfCells = rows * columns;
-let sizeError = 7; // On Windows and on Linux if error is not added to size,
+let sizeError = cellSize * 0.175; // On Windows and on Linux if error is not added to size,
 // the left and bottom borders are not totally visible -
 // on Mac it works fine even without the error
 
 let boardSize = {
-  width: cellWidth * columns + sizeError,
-  height: cellHeight * rows + sizeError,
+  width: cellSize * columns + sizeError,
+  height: cellSize * rows + sizeError,
 };
 
 let initialMines = settings.level.mines; // Used by the mine indicator
@@ -175,13 +173,13 @@ const startTimer = () => {
  * Setup
  */
 function setup() {
-  background(249, 249, 249);
+  background(255);
   cnv = createCanvas(
     boardSize.width,
-    boardSize.height + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
+    boardSize.height + cellSize * 0.75 // Added 30 pixels to create space for the mines and flagged cells indicators
   );
   cnv.parent("board");
-  textSize(cellHeight - 2); // On Mac "cellHeight - 1" works better, on Windows "cellHeight - 6"
+  textSize(cellSize - cellSize * 0.05); // On Mac "cellSize - 1" works better, on Windows "cellSize - 6"
 
   allocateMines();
   generateCells();
@@ -194,13 +192,13 @@ function setup() {
 function draw() {
   background(255);
 
-  translate(-3, cellHeight - 3);
+  translate(-cellSize * 0.075, cellSize - cellSize * 0.075);
   cells.forEach(function (c) {
     c.draw();
   });
 
   // Show mines and flagged cells indicators
-  textSize(24);
+  textSize(cellSize * 0.6);
   textStyle(BOLD);
   textFont("Arial");
 
@@ -210,21 +208,25 @@ function draw() {
   } else {
     fill(35, 35, 35);
   }
-  text(MINE, 5, boardSize.height - 11);
+  text(MINE, cellSize * 0.125, boardSize.height - cellSize * 0.275);
   text(
     nf(Math.max(initialMines - flaggedCells, 0), 3),
-    40,
-    boardSize.height - 10
+    cellSize,
+    boardSize.height - cellSize * 0.25
   );
 
   // Time indicator
   fill(35, 35, 35);
-  text(TIMER, width - 79, boardSize.height - 11);
+  text(TIMER, width - cellSize * 1.975, boardSize.height - cellSize * 0.275);
   if (newBestTime) {
     fill(255, 176, 46);
   }
-  text(nf(timePassed, 3), width - 44, boardSize.height - 10);
-  textSize(cellHeight - 2);
+  text(
+    nf(timePassed, 3),
+    width - cellSize * 1.1,
+    boardSize.height - cellSize * 0.25
+  );
+  textSize(cellSize - cellSize * 0.05);
 }
 
 // Get neighbors
@@ -308,9 +310,9 @@ function mousePressed() {
     let cell = cells.find((c) => {
       return (
         c.x < mouseX &&
-        c.x + cellWidth > mouseX &&
+        c.x + cellSize > mouseX &&
         c.y < mouseY &&
-        c.y + cellHeight > mouseY
+        c.y + cellSize > mouseY
       );
     });
     if (cell) {
@@ -332,9 +334,9 @@ function mousePressed() {
       let cell = cells.find((c) => {
         return (
           c.x < mouseX &&
-          c.x + cellWidth > mouseX &&
+          c.x + cellSize > mouseX &&
           c.y < mouseY &&
-          c.y + cellHeight > mouseY
+          c.y + cellSize > mouseY
         );
       });
       if (cell) {

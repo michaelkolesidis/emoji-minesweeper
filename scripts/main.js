@@ -12,6 +12,35 @@
 /**
  * Data Storage
  */
+let gameSettings = {
+  level: "beginner",
+  flowerMode: false,
+};
+
+let gameData = {
+  beginner: {
+    played: 0,
+    won: 0,
+    winPercentage: 0,
+    bestTime: null,
+    bestMoves: null,
+  },
+  intermediate: {
+    played: 0,
+    won: 0,
+    winPercentage: 0,
+    bestTime: null,
+    bestMoves: null,
+  },
+  expert: {
+    played: 0,
+    won: 0,
+    winPercentage: 0,
+    bestTime: null,
+    bestMoves: null,
+  },
+};
+
 // Level: beginner || intermediate || expert
 let gameLevel = window.localStorage.getItem("level");
 if (gameLevel === null) {
@@ -121,7 +150,7 @@ header.innerHTML =
 <span style="--i:15">o</span>
 <span style="--i:16">j</span>
 <span style="--i:17">i</span>`;
-
+header.style.fontSize = "40px";
 document.body.appendChild(header);
 
 // Board
