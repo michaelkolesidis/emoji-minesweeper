@@ -114,7 +114,6 @@ The following emojis are used throughout the game:
   
 #### Stats panel
 <img src="./screenshots/screenshot_stats_idle.png" />
-<img src="./screenshots/screenshot_win.png" />
 
 #### Full page
 <img src="./screenshots/screenshot_full.png" />
