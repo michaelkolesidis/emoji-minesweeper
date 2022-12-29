@@ -35,6 +35,10 @@ class Cell {
       text(MINE, this.x, this.y);
       return;
     }
+    if (this.revealed && this.flagged) {
+      text(WRONG, this.x, this.y);
+      return;
+    }
     if (this.revealed) {
       // Calculate the number of mines around and draw that
       text(NUMBERS[this.minesAround], this.x, this.y);
