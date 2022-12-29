@@ -12,31 +12,41 @@
 /**
  * Data Storage
  */
+// Level: beginner || intermediate || expert
+let gameLevel = window.localStorage.getItem("level");
+if (gameLevel === null) {
+  window.localStorage.setItem("level", "beginner");
+}
+
+// Games Played
 let played = window.localStorage.getItem("played");
 if (played === null) {
   window.localStorage.setItem("played", "0");
 }
 
+// Games Won
 let won = window.localStorage.getItem("won");
 if (won === null) {
   window.localStorage.setItem("won", "0");
 }
 
+// Win Percentage
 let winPercentage = window.localStorage.getItem("winPercentage");
 if (winPercentage === null) {
   window.localStorage.setItem("winPercentage", "");
 }
 
+// Best Time
 let bestTime = window.localStorage.getItem("bestTime");
 if (bestTime === null) {
   window.localStorage.setItem("bestTime", "");
 }
 
+// Flower Mode
 let isFlower = window.localStorage.getItem("flower");
 if (isFlower === null) {
   window.localStorage.setItem("flower", "false");
 }
-
 let flower = JSON.parse(isFlower);
 
 /**

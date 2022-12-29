@@ -8,23 +8,23 @@
  * also handles the update of the stats accordingly.
  */
 
+/**
+ * Bacis
+ */
 // Disable the Friendly Error System
 // (not used in the minified version of p5js)
 disableFriendlyErrors = true;
 
+// Prevent right mouse click from opening browser context menu in order to be able to flag
+document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+// Canvas
 let cnv; // The canvas element that will contain the game
 
-// Board dimensions and number of mines
-let cells = []; // Array to hold all the cell objects
-let cellWidth = 40; // The width (in pixels) of each individual cell
-let cellHeight = 40; // The height (in pixels) of each individual cell
-let columns = 10; // The number of columns in the board
-let rows = 10; // The number of rows in the board
-let numberOfCells = rows * columns;
-let sizeError = 7; // On Windows and on Linux if error is not added to size,
-// the left and bottom borders are not totally visible -
-// on Mac it works fine even without the error
-
+/**
+ * Emojis
+ */
+// Flower Mode
 let flowerMode = JSON.parse(localStorage.getItem("flower"));
 
 // Emojis
@@ -38,10 +38,77 @@ const WON = flowerMode ? "😊" : "😄";
 const LOST = flowerMode ? "😔" : "😵";
 const TIMER = "⌛";
 
-// Prevent right mouse click from opening browser context menu in order to be able to flag
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+/**
+ * Settings
+ */
+let settings = {
+  level: {
+    // to be overriden by localStorage
+    columns: 9,
+    rows: 9,
+    mines: 10,
+  },
+  size: {
+    cellWidth: 32,
+    cellHeight: 32,
+  },
+};
 
-let initialMines = 15; // Used by the mine indicator
+/**
+ * Level
+ */
+let level = localStorage.getItem("level");
+
+switch (level) {
+  case "beginner":
+    settings.level = {
+      columns: 9,
+      rows: 9,
+      mines: 10,
+    };
+    break;
+  case "intermediate":
+    settings.level = {
+      columns: 16,
+      rows: 16,
+      mines: 40,
+    };
+    break;
+  case "expert":
+    settings.level = {
+      columns: 30,
+      rows: 16,
+      mines: 99,
+    };
+    break;
+  case "custom":
+    settings.level = {
+      columns: null,
+      rows: null,
+      mines: null,
+    };
+    break;
+}
+
+/**
+ * Board dimensions and number of mines
+ */
+let cells = []; // Array to hold all the cell objects
+let cellWidth = settings.size.cellWidth; // The width (in pixels) of each individual cell
+let cellHeight = settings.size.cellHeight; // The height (in pixels) of each individual cell
+let columns = settings.level.columns; // The number of columns in the board
+let rows = settings.level.rows; // The number of rows in the board
+let numberOfCells = rows * columns;
+let sizeError = 7; // On Windows and on Linux if error is not added to size,
+// the left and bottom borders are not totally visible -
+// on Mac it works fine even without the error
+
+let boardSize = {
+  width: cellWidth * columns + sizeError,
+  height: cellHeight * rows + sizeError,
+};
+
+let initialMines = settings.level.mines; // Used by the mine indicator
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
 let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
@@ -51,7 +118,9 @@ let startTime = null; // used to calculate time
 let gameFinished = false;
 let newBestTime = false; // used when the player has made a new best time
 
-// Mine allocation
+/**
+ * Mine allocation
+ */
 function allocateMines() {
   while (numberOfMines > 0) {
     let targetCell = Math.floor(Math.random() * (numberOfCells - 1)) + 1;
@@ -108,8 +177,8 @@ const startTimer = () => {
 function setup() {
   background(249, 249, 249);
   cnv = createCanvas(
-    cellWidth * columns + sizeError,
-    cellHeight * rows + sizeError + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
+    boardSize.width,
+    boardSize.height + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
   );
   cnv.parent("board");
   textSize(cellHeight - 2); // On Mac "cellHeight - 1" works better, on Windows "cellHeight - 6"
@@ -141,16 +210,20 @@ function draw() {
   } else {
     fill(35, 35, 35);
   }
-  text(MINE, 5, height - 41);
-  text(nf(Math.max(initialMines - flaggedCells, 0), 3), 40, height - 40);
+  text(MINE, 5, boardSize.height - 11);
+  text(
+    nf(Math.max(initialMines - flaggedCells, 0), 3),
+    40,
+    boardSize.height - 10
+  );
 
   // Time indicator
   fill(35, 35, 35);
-  text(TIMER, width - 79, height - 41);
+  text(TIMER, width - 79, boardSize.height - 11);
   if (newBestTime) {
     fill(255, 176, 46);
   }
-  text(nf(timePassed, 3), width - 44, height - 40);
+  text(nf(timePassed, 3), width - 44, boardSize.height - 10);
   textSize(cellHeight - 2);
 }
 
@@ -167,7 +240,7 @@ function getNeighbors(cell) {
 }
 
 /**
- * Mouse Actions Handling
+ * Mouse Action Handling
  */
 let isFirstClick = true;
 let mineReallocated = false;
@@ -354,12 +427,40 @@ function calculateWinPercentage() {
   }
 }
 
+/**
+ * Keyboard Action Handling
+ */
 function keyPressed() {
+  // Set Mode
   if (keyCode === LEFT_ARROW) {
-    localStorage.setItem("flower", "true");
-    window.location.reload();
+    if (flowerMode !== true) {
+      localStorage.setItem("flower", "true");
+      window.location.reload();
+    }
   } else if (keyCode === RIGHT_ARROW) {
-    localStorage.setItem("flower", "false");
-    window.location.reload();
+    if (flowerMode !== false) {
+      localStorage.setItem("flower", "false");
+      window.location.reload();
+    }
+  }
+
+  // Set Level
+  if (keyCode === 49) {
+    if (level !== "beginner") {
+      localStorage.setItem("level", "beginner");
+      window.location.reload();
+    }
+  }
+  if (keyCode === 50) {
+    if (level !== "intermediate") {
+      localStorage.setItem("level", "intermediate");
+      window.location.reload();
+    }
+  }
+  if (keyCode === 51) {
+    if (level !== "expert") {
+      localStorage.setItem("level", "expert");
+      window.location.reload();
+    }
   }
 }
