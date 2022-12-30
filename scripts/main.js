@@ -15,6 +15,7 @@
 // Level: beginner || intermediate || expert
 let gameLevel = window.localStorage.getItem("level");
 if (gameLevel === null) {
+  gameLevel = "beginner"
   window.localStorage.setItem("level", "beginner");
 }
 

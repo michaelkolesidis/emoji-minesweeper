@@ -155,7 +155,7 @@ button:active {
 }
 
 /* Message */
-#message {
+/* #message {
   color: rgb(255, 176, 46);
   font-weight: 600;
   font-size: 1.4rem;
@@ -164,7 +164,7 @@ button:active {
   right: -90px;
   top: 2px;
   line-height: 20px;
-}
+} */
 
 /* Footer */
 footer {
