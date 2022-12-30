@@ -255,8 +255,24 @@ function revealCell(cell) {
     startTime = new Date();
 
     // Update local storage
-    let played = parseInt(localStorage.getItem("played"));
-    localStorage.setItem("played", ++played);
+    let played;
+    switch (level) {
+      case "beginner":
+        played = parseInt(localStorage.getItem("beginnerPlayed"));
+        played += 1;
+        localStorage.setItem("beginnerPlayed", played);
+        break;
+      case "intermediate":
+        played = parseInt(localStorage.getItem("intermediatePlayed"));
+        played += 1;
+        localStorage.setItem("intermediatePlayed", played);
+        break;
+      case "expert":
+        played = parseInt(localStorage.getItem("expertPlayed"));
+        played += 1;
+        localStorage.setItem("expertPlayed", played);
+        break;
+    }
 
     if (cell.mine) {
       cell.mine = false;
@@ -379,21 +395,69 @@ function gameWon() {
   });
 
   // Update local storage
-  let won = parseInt(localStorage.getItem("won"));
-  localStorage.setItem("won", ++won);
+  let won;
+  switch (level) {
+    case "beginner":
+      won = parseInt(localStorage.getItem("beginnerWon"));
+      won += 1;
+      localStorage.setItem("beginnerWon", won);
+      break;
+    case "intermediate":
+      won = parseInt(localStorage.getItem("intermediateWon"));
+      won += 1;
+      localStorage.setItem("intermediateWon", won);
+      break;
+    case "expert":
+      won = parseInt(localStorage.getItem("expertWon"));
+      won += 1;
+      localStorage.setItem("expertWon", won);
+      break;
+  }
 
   const endTime = new Date();
   let time = endTime - startTime; //in ms
   time = time / 1000;
 
-  let bestTime = Number(localStorage.getItem("bestTime"));
+  let bestTime;
+  switch (level) {
+    case "beginner":
+      bestTime = Number(localStorage.getItem("beginnerBestTime"));
+      break;
+    case "intermediate":
+      bestTime = Number(localStorage.getItem("intermediateBestTime"));
+      break;
+    case "expert":
+      bestTime = Number(localStorage.getItem("expertBestTime"));
+      break;
+  }
+
   if (bestTime === 0) {
-    localStorage.setItem("bestTime", time);
+    switch (level) {
+      case "beginner":
+        localStorage.setItem("beginnerBestTime", time);
+        break;
+      case "intermediate":
+        localStorage.setItem("intermediateBestTime", time);
+        break;
+      case "expert":
+        localStorage.setItem("expertBestTime", time);
+        break;
+    }
   } else {
     if (time < bestTime) {
       NUMBERS[0] = "🥳";
       newBestTime = true;
-      localStorage.setItem("bestTime", time);
+      switch (level) {
+        case "beginner":
+          localStorage.setItem("beginnerBestTime", time);
+          break;
+        case "intermediate":
+          localStorage.setItem("intermediateBestTime", time);
+          break;
+        case "expert":
+          localStorage.setItem("expertBestTime", time);
+          break;
+      }
       localStorage.setItem("newBestTime", "true");
     }
   }
@@ -415,8 +479,21 @@ function gameLost() {
 
 // Calculate percentage of wins / total games played
 function calculateWinPercentage() {
-  let played = parseInt(window.localStorage.getItem("played"));
-  let won = parseInt(window.localStorage.getItem("won"));
+  let played, won;
+  switch (level) {
+    case "beginner":
+      played = parseInt(localStorage.getItem("beginnerPlayed"));
+      won = parseInt(localStorage.getItem("beginnerWon"));
+      break;
+    case "intermediate":
+      played = parseInt(localStorage.getItem("intermediatePlayed"));
+      won = parseInt(localStorage.getItem("intermediateWon"));
+      break;
+    case "expert":
+      played = parseInt(localStorage.getItem("expertPlayed"));
+      won = parseInt(localStorage.getItem("expertWon"));
+      break;
+  }
   let winPercentage = null;
 
   if (played !== 0) {
@@ -425,7 +502,17 @@ function calculateWinPercentage() {
 
   if (winPercentage !== null) {
     // Update local storage
-    window.localStorage.setItem("winPercentage", winPercentage);
+    switch (level) {
+      case "beginner":
+        window.localStorage.setItem("beginnerWinPercentage", winPercentage);
+        break;
+      case "intermediate":
+        window.localStorage.setItem("intermediateWinPercentage", winPercentage);
+        break;
+      case "expert":
+        window.localStorage.setItem("expertWinPercentage", winPercentage);
+        break;
+    }
   }
 }
 
