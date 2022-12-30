@@ -174,6 +174,7 @@ const startTimer = () => {
  */
 function setup() {
   background(255);
+  console.log(boardSize.height)
   cnv = createCanvas(
     boardSize.width,
     boardSize.height + cellSize * 0.75 // Added 30 pixels to create space for the mines and flagged cells indicators

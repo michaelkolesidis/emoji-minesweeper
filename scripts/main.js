@@ -15,7 +15,7 @@
 // Level: beginner || intermediate || expert
 let gameLevel = window.localStorage.getItem("level");
 if (gameLevel === null) {
-  gameLevel = "beginner"
+  gameLevel = "beginner";
   window.localStorage.setItem("level", "beginner");
 }
 
@@ -216,6 +216,18 @@ document.body.appendChild(header);
 // Board
 const board = document.createElement("div");
 board.setAttribute("id", "board");
+switch (level) {
+  case "beginner":
+    board.style.height = "401px"; // canvas size + 4px
+    break;
+  case "intermediate":
+    board.style.height = "681px";
+    break;
+  case "expert":
+    board.style.height = "681px";
+    break;
+}
+
 document.body.appendChild(board);
 
 // Buttons and Messages Container
