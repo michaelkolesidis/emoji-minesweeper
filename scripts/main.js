@@ -210,7 +210,8 @@ header.innerHTML =
 <span style="--i:15">o</span>
 <span style="--i:16">j</span>
 <span style="--i:17">i</span>`;
-header.style.fontSize = "40px";
+header.style.fontSize = "31px";
+header.style.letterSpacing = "1px";
 document.body.appendChild(header);
 
 // Board
@@ -218,13 +219,13 @@ const board = document.createElement("div");
 board.setAttribute("id", "board");
 switch (level) {
   case "beginner":
-    board.style.height = "401px"; // canvas size + 4px
+    board.style.height = "317px"; // canvas size - 0.6px
     break;
   case "intermediate":
-    board.style.height = "681px";
+    board.style.height = "541px";
     break;
   case "expert":
-    board.style.height = "681px";
+    board.style.height = "541px";
     break;
 }
 
