@@ -8,23 +8,23 @@
  * also handles the update of the stats accordingly.
  */
 
+/**
+ * Bacis
+ */
 // Disable the Friendly Error System
 // (not used in the minified version of p5js)
 disableFriendlyErrors = true;
 
+// Prevent right mouse click from opening browser context menu in order to be able to flag
+document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+// Canvas
 let cnv; // The canvas element that will contain the game
 
-// Board dimensions and number of mines
-let cells = []; // Array to hold all the cell objects
-let cellWidth = 40; // The width (in pixels) of each individual cell
-let cellHeight = 40; // The height (in pixels) of each individual cell
-let columns = 10; // The number of columns in the board
-let rows = 10; // The number of rows in the board
-let numberOfCells = rows * columns;
-let sizeError = 7; // On Windows and on Linux if error is not added to size,
-// the left and bottom borders are not totally visible -
-// on Mac it works fine even without the error
-
+/**
+ * Emojis
+ */
+// Flower Mode
 let flowerMode = JSON.parse(localStorage.getItem("flower"));
 
 // Emojis
@@ -38,10 +38,75 @@ const WON = flowerMode ? "😊" : "😄";
 const LOST = flowerMode ? "😔" : "😵";
 const TIMER = "⌛";
 
-// Prevent right mouse click from opening browser context menu in order to be able to flag
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+/**
+ * Settings
+ */
+let settings = {
+  level: {
+    // to be overriden by localStorage
+    columns: 9,
+    rows: 9,
+    mines: 10,
+  },
+  size: {
+    cellSize: 40,
+  },
+};
 
-let initialMines = 15; // Used by the mine indicator
+/**
+ * Level
+ */
+let level = localStorage.getItem("level");
+
+switch (level) {
+  case "beginner":
+    settings.level = {
+      columns: 9,
+      rows: 9,
+      mines: 10,
+    };
+    break;
+  case "intermediate":
+    settings.level = {
+      columns: 16,
+      rows: 16,
+      mines: 40,
+    };
+    break;
+  case "expert":
+    settings.level = {
+      columns: 30,
+      rows: 16,
+      mines: 99,
+    };
+    break;
+  case "custom":
+    settings.level = {
+      columns: null,
+      rows: null,
+      mines: null,
+    };
+    break;
+}
+
+/**
+ * Board dimensions and number of mines
+ */
+let cells = []; // Array to hold all the cell objects
+let cellSize = settings.size.cellSize; // The size (in pixe;s of each cell)
+let columns = settings.level.columns; // The number of columns in the board
+let rows = settings.level.rows; // The number of rows in the board
+let numberOfCells = rows * columns;
+let sizeError = cellSize * 0.175; // On Windows and on Linux if error is not added to size,
+// the left and bottom borders are not totally visible -
+// on Mac it works fine even without the error
+
+let boardSize = {
+  width: cellSize * columns + sizeError,
+  height: cellSize * rows + sizeError,
+};
+
+let initialMines = settings.level.mines; // Used by the mine indicator
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
 let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
@@ -51,7 +116,9 @@ let startTime = null; // used to calculate time
 let gameFinished = false;
 let newBestTime = false; // used when the player has made a new best time
 
-// Mine allocation
+/**
+ * Mine allocation
+ */
 function allocateMines() {
   while (numberOfMines > 0) {
     let targetCell = Math.floor(Math.random() * (numberOfCells - 1)) + 1;
@@ -106,13 +173,13 @@ const startTimer = () => {
  * Setup
  */
 function setup() {
-  background(249, 249, 249);
+  background(255);
   cnv = createCanvas(
-    cellWidth * columns + sizeError,
-    cellHeight * rows + sizeError + 30 // Added 30 pixels to create space for the mines and flagged cells indicators
+    boardSize.width,
+    boardSize.height + cellSize * 0.75 // Added 30 pixels to create space for the mines and flagged cells indicators
   );
   cnv.parent("board");
-  textSize(cellHeight - 2); // On Mac "cellHeight - 1" works better, on Windows "cellHeight - 6"
+  textSize(cellSize - cellSize * 0.05); // On Mac "cellSize - 1" works better, on Windows "cellSize - 6"
 
   allocateMines();
   generateCells();
@@ -125,13 +192,13 @@ function setup() {
 function draw() {
   background(255);
 
-  translate(-3, cellHeight - 3);
+  translate(-cellSize * 0.075, cellSize - cellSize * 0.075);
   cells.forEach(function (c) {
     c.draw();
   });
 
   // Show mines and flagged cells indicators
-  textSize(24);
+  textSize(cellSize * 0.6);
   textStyle(BOLD);
   textFont("Arial");
 
@@ -141,17 +208,25 @@ function draw() {
   } else {
     fill(35, 35, 35);
   }
-  text(MINE, 5, height - 41);
-  text(nf(Math.max(initialMines - flaggedCells, 0), 3), 40, height - 40);
+  text(MINE, cellSize * 0.125, boardSize.height - cellSize * 0.275);
+  text(
+    nf(Math.max(initialMines - flaggedCells, 0), 3),
+    cellSize,
+    boardSize.height - cellSize * 0.25
+  );
 
   // Time indicator
   fill(35, 35, 35);
-  text(TIMER, width - 79, height - 41);
+  text(TIMER, width - cellSize * 1.975, boardSize.height - cellSize * 0.275);
   if (newBestTime) {
     fill(255, 176, 46);
   }
-  text(nf(timePassed, 3), width - 44, height - 40);
-  textSize(cellHeight - 2);
+  text(
+    nf(timePassed, 3),
+    width - cellSize * 1.1,
+    boardSize.height - cellSize * 0.25
+  );
+  textSize(cellSize - cellSize * 0.05);
 }
 
 // Get neighbors
@@ -167,7 +242,7 @@ function getNeighbors(cell) {
 }
 
 /**
- * Mouse Actions Handling
+ * Mouse Action Handling
  */
 let isFirstClick = true;
 let mineReallocated = false;
@@ -180,8 +255,24 @@ function revealCell(cell) {
     startTime = new Date();
 
     // Update local storage
-    let played = parseInt(localStorage.getItem("played"));
-    localStorage.setItem("played", ++played);
+    let played;
+    switch (level) {
+      case "beginner":
+        played = parseInt(localStorage.getItem("beginnerPlayed"));
+        played += 1;
+        localStorage.setItem("beginnerPlayed", played);
+        break;
+      case "intermediate":
+        played = parseInt(localStorage.getItem("intermediatePlayed"));
+        played += 1;
+        localStorage.setItem("intermediatePlayed", played);
+        break;
+      case "expert":
+        played = parseInt(localStorage.getItem("expertPlayed"));
+        played += 1;
+        localStorage.setItem("expertPlayed", played);
+        break;
+    }
 
     if (cell.mine) {
       cell.mine = false;
@@ -235,9 +326,9 @@ function mousePressed() {
     let cell = cells.find((c) => {
       return (
         c.x < mouseX &&
-        c.x + cellWidth > mouseX &&
+        c.x + cellSize > mouseX &&
         c.y < mouseY &&
-        c.y + cellHeight > mouseY
+        c.y + cellSize > mouseY
       );
     });
     if (cell) {
@@ -259,9 +350,9 @@ function mousePressed() {
       let cell = cells.find((c) => {
         return (
           c.x < mouseX &&
-          c.x + cellWidth > mouseX &&
+          c.x + cellSize > mouseX &&
           c.y < mouseY &&
-          c.y + cellHeight > mouseY
+          c.y + cellSize > mouseY
         );
       });
       if (cell) {
@@ -304,21 +395,69 @@ function gameWon() {
   });
 
   // Update local storage
-  let won = parseInt(localStorage.getItem("won"));
-  localStorage.setItem("won", ++won);
+  let won;
+  switch (level) {
+    case "beginner":
+      won = parseInt(localStorage.getItem("beginnerWon"));
+      won += 1;
+      localStorage.setItem("beginnerWon", won);
+      break;
+    case "intermediate":
+      won = parseInt(localStorage.getItem("intermediateWon"));
+      won += 1;
+      localStorage.setItem("intermediateWon", won);
+      break;
+    case "expert":
+      won = parseInt(localStorage.getItem("expertWon"));
+      won += 1;
+      localStorage.setItem("expertWon", won);
+      break;
+  }
 
   const endTime = new Date();
   let time = endTime - startTime; //in ms
   time = time / 1000;
 
-  let bestTime = Number(localStorage.getItem("bestTime"));
+  let bestTime;
+  switch (level) {
+    case "beginner":
+      bestTime = Number(localStorage.getItem("beginnerBestTime"));
+      break;
+    case "intermediate":
+      bestTime = Number(localStorage.getItem("intermediateBestTime"));
+      break;
+    case "expert":
+      bestTime = Number(localStorage.getItem("expertBestTime"));
+      break;
+  }
+
   if (bestTime === 0) {
-    localStorage.setItem("bestTime", time);
+    switch (level) {
+      case "beginner":
+        localStorage.setItem("beginnerBestTime", time);
+        break;
+      case "intermediate":
+        localStorage.setItem("intermediateBestTime", time);
+        break;
+      case "expert":
+        localStorage.setItem("expertBestTime", time);
+        break;
+    }
   } else {
     if (time < bestTime) {
       NUMBERS[0] = "🥳";
       newBestTime = true;
-      localStorage.setItem("bestTime", time);
+      switch (level) {
+        case "beginner":
+          localStorage.setItem("beginnerBestTime", time);
+          break;
+        case "intermediate":
+          localStorage.setItem("intermediateBestTime", time);
+          break;
+        case "expert":
+          localStorage.setItem("expertBestTime", time);
+          break;
+      }
       localStorage.setItem("newBestTime", "true");
     }
   }
@@ -340,8 +479,21 @@ function gameLost() {
 
 // Calculate percentage of wins / total games played
 function calculateWinPercentage() {
-  let played = parseInt(window.localStorage.getItem("played"));
-  let won = parseInt(window.localStorage.getItem("won"));
+  let played, won;
+  switch (level) {
+    case "beginner":
+      played = parseInt(localStorage.getItem("beginnerPlayed"));
+      won = parseInt(localStorage.getItem("beginnerWon"));
+      break;
+    case "intermediate":
+      played = parseInt(localStorage.getItem("intermediatePlayed"));
+      won = parseInt(localStorage.getItem("intermediateWon"));
+      break;
+    case "expert":
+      played = parseInt(localStorage.getItem("expertPlayed"));
+      won = parseInt(localStorage.getItem("expertWon"));
+      break;
+  }
   let winPercentage = null;
 
   if (played !== 0) {
@@ -350,16 +502,54 @@ function calculateWinPercentage() {
 
   if (winPercentage !== null) {
     // Update local storage
-    window.localStorage.setItem("winPercentage", winPercentage);
+    switch (level) {
+      case "beginner":
+        window.localStorage.setItem("beginnerWinPercentage", winPercentage);
+        break;
+      case "intermediate":
+        window.localStorage.setItem("intermediateWinPercentage", winPercentage);
+        break;
+      case "expert":
+        window.localStorage.setItem("expertWinPercentage", winPercentage);
+        break;
+    }
   }
 }
 
+/**
+ * Keyboard Action Handling
+ */
 function keyPressed() {
+  // Set Mode
   if (keyCode === LEFT_ARROW) {
-    localStorage.setItem("flower", "true");
-    window.location.reload();
+    if (flowerMode !== true) {
+      localStorage.setItem("flower", "true");
+      window.location.reload();
+    }
   } else if (keyCode === RIGHT_ARROW) {
-    localStorage.setItem("flower", "false");
-    window.location.reload();
+    if (flowerMode !== false) {
+      localStorage.setItem("flower", "false");
+      window.location.reload();
+    }
+  }
+
+  // Set Level
+  if (keyCode === 49) {
+    if (level !== "beginner") {
+      localStorage.setItem("level", "beginner");
+      window.location.reload();
+    }
+  }
+  if (keyCode === 50) {
+    if (level !== "intermediate") {
+      localStorage.setItem("level", "intermediate");
+      window.location.reload();
+    }
+  }
+  if (keyCode === 51) {
+    if (level !== "expert") {
+      localStorage.setItem("level", "expert");
+      window.location.reload();
+    }
   }
 }
