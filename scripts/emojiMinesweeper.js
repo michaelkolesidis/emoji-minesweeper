@@ -176,7 +176,7 @@ function setup() {
   background(255);
   cnv = createCanvas(
     boardSize.width,
-    boardSize.height + cellSize * 0.75 // Added 30 pixels to create space for the mines and flagged cells indicators
+    boardSize.height + cellSize * 0.75 // Added extra space for the mines and flagged cells indicators
   );
   cnv.parent("board");
   textSize(cellSize - cellSize * 0.05); // On Mac "cellSize - 1" works better, on Windows "cellSize - 6"

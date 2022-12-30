@@ -24,6 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   place-items: center;
+  overflow: hidden;
 }
 
 /* Header */
@@ -59,6 +60,7 @@ body {
 /* Board */
 canvas {
   animation: appear 0.8s;
+  pointer-events: none;
 }
 
 @keyframes appear {
@@ -85,21 +87,22 @@ button {
   font-weight: 600;
   text-align: center;
   padding: 0.4rem;
-  border-radius: 50px;
+  border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;
   color: rgb(255, 255, 255);
   background-color: var(--main-color);
-  border: 4px solid var(--main-color);
-  width: 7.3em;
+  border: 2px solid var(--main-color);
+  width: 8em;
   position: relative;
-  margin-bottom: -0.4em;
+  margin-bottom: -0.3em;
+  animation: appear 0.8s;
+  padding: 0.6rem;
+  transition: box-shadow 0.15s ease-in-out;
 }
 
 button:hover {
-  background-color: rgb(255, 255, 255);
-  color: var(--main-color);
-  border: 4px dotted var(--main-color);
+  box-shadow: 0 0 4px rgb(26, 26, 26);
 }
 
 button:active {
@@ -114,12 +117,19 @@ button:active {
   text-align: center;
   border-radius: 40px;
   padding: 1.1rem;
-  border: 4px dotted var(--main-color);
   opacity: 0;
+  background-color: #ffffff;
   transition: opacity 0.4s ease-in-out;
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 10rem;
+  position: absolute;
+  top: -303px;
+  height: 125px;
+  z-index: -1;
+  width: 100%;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 #stats-button {
@@ -130,7 +140,7 @@ button:active {
   margin-top: 0.5rem;
   margin-bottom: -0.3rem;
   grid-column: span 2;
-  width: 100%;
+  text-align: center;
   transform: scale(0.8);
 }
 
@@ -168,7 +178,6 @@ footer {
   bottom: 0.6rem;
   right: 0.6rem;
   transform: scale(0.8);
-  animation: appear 0.8s;
 }
 
 footer:hover {

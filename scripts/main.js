@@ -319,11 +319,17 @@ reload();
 let statsPanelOpen = false;
 statsButton.addEventListener("click", () => {
   if (statsPanelOpen) {
+    setTimeout(() => {
+      statsPanel.style.zIndex = -1;
+    }, 500);
     statsPanel.style.opacity = 0;
     statsPanelOpen = false;
+    board.style.pointerEvents = "none";
   } else if (!statsPanelOpen) {
+    statsPanel.style.zIndex = 2;
     statsPanel.style.opacity = 1;
     statsPanelOpen = true;
+    board.style.pointerEvents = "auto";
   }
 });
 
