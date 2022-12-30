@@ -17,8 +17,8 @@ class Cell {
     this.num;
     this.i = i;
     this.j = j;
-    this.x = i * cellWidth; // the exact position of the cell inside the canvas, in the horizontal axis (in pixels)
-    this.y = j * cellHeight; // the exact position of the cell inside the canvas, in the vertical axis (in pixels)
+    this.x = i * cellSize; // the exact position of the cell inside the canvas, in the horizontal axis (in pixels)
+    this.y = j * cellSize; // the exact position of the cell inside the canvas, in the vertical axis (in pixels)
     this.mine = false;
     this.minesAround = 0;
     this.revealed = false;

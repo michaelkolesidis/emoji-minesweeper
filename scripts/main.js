@@ -12,32 +12,130 @@
 /**
  * Data Storage
  */
-let played = window.localStorage.getItem("played");
-if (played === null) {
-  window.localStorage.setItem("played", "0");
+// Level: beginner || intermediate || expert
+let gameLevel = window.localStorage.getItem("level");
+if (gameLevel === null) {
+  window.localStorage.setItem("level", "beginner");
 }
 
-let won = window.localStorage.getItem("won");
-if (won === null) {
-  window.localStorage.setItem("won", "0");
-}
-
-let winPercentage = window.localStorage.getItem("winPercentage");
-if (winPercentage === null) {
-  window.localStorage.setItem("winPercentage", "");
-}
-
-let bestTime = window.localStorage.getItem("bestTime");
-if (bestTime === null) {
-  window.localStorage.setItem("bestTime", "");
-}
-
+// Flower Mode
 let isFlower = window.localStorage.getItem("flower");
 if (isFlower === null) {
   window.localStorage.setItem("flower", "false");
 }
-
 let flower = JSON.parse(isFlower);
+
+// Games Played
+let beginnerPlayed = window.localStorage.getItem("beginnerPlayed");
+if (beginnerPlayed === null) {
+  window.localStorage.setItem("beginnerPlayed", "0");
+}
+
+let intermediatePlayed = window.localStorage.getItem("intermediatePlayed");
+if (intermediatePlayed === null) {
+  window.localStorage.setItem("intermediatePlayed", "0");
+}
+
+let expertPlayed = window.localStorage.getItem("expertPlayed");
+if (expertPlayed === null) {
+  window.localStorage.setItem("expertPlayed", "0");
+}
+
+// Games Won
+let beginnerWon = window.localStorage.getItem("beginnerWon");
+if (beginnerWon === null) {
+  window.localStorage.setItem("beginnerWon", "0");
+}
+
+let intermediateWon = window.localStorage.getItem("intermediateWon");
+if (intermediateWon === null) {
+  window.localStorage.setItem("intermediateWon", "0");
+}
+
+let expertWon = window.localStorage.getItem("expertWon");
+if (expertWon === null) {
+  window.localStorage.setItem("expertWon", "0");
+}
+
+// Win Percentage
+let beginnerWinPercentage = window.localStorage.getItem(
+  "beginnerWinPercentage"
+);
+if (beginnerWinPercentage === null) {
+  window.localStorage.setItem("beginnerWinPercentage", "");
+}
+
+let intermediateWinPercentage = window.localStorage.getItem(
+  "intermediateWinPercentage"
+);
+if (intermediateWinPercentage === null) {
+  window.localStorage.setItem("intermediateWinPercentage", "");
+}
+
+let expertWinPercentage = window.localStorage.getItem("expertWinPercentage");
+if (expertWinPercentage === null) {
+  window.localStorage.setItem("expertWinPercentage", "");
+}
+
+// Best Time
+let beginnerBestTime = window.localStorage.getItem("beginnerBestTime");
+if (beginnerBestTime === null) {
+  window.localStorage.setItem("beginnerBestTime", "");
+}
+
+let intermediateBestTime = window.localStorage.getItem("intermediateBestTime");
+if (intermediateBestTime === null) {
+  window.localStorage.setItem("intermediateBestTime", "");
+}
+
+let expertBestTime = window.localStorage.getItem("expertBestTime");
+if (expertBestTime === null) {
+  window.localStorage.setItem("expertBestTime", "");
+}
+
+// Best Moves
+let beginnerBestMoves = window.localStorage.getItem("beginnerBestMoves");
+if (beginnerBestMoves === null) {
+  window.localStorage.setItem("beginnerBestMoves", "");
+}
+
+let intermediateBestMoves = window.localStorage.getItem(
+  "intermediateBestMoves"
+);
+if (intermediateBestMoves === null) {
+  window.localStorage.setItem("intermediateBestMoves", "");
+}
+
+let expertBestMoves = window.localStorage.getItem("expertBestMoves");
+if (expertBestMoves === null) {
+  window.localStorage.setItem("expertBestMoves", "");
+}
+
+let won, played, winPercentage, bestTime, bestMoves;
+
+switch (gameLevel) {
+  case "beginner":
+    played = beginnerPlayed;
+    won = beginnerWon;
+    winPercentage = beginnerWinPercentage;
+    bestTime = beginnerBestTime;
+    bestMoves = beginnerBestMoves;
+    break;
+  case "intermediate":
+    played = intermediatePlayed;
+    won = intermediateWon;
+    winPercentage = intermediateWinPercentage;
+    bestTime = intermediateBestTime;
+    bestMoves = intermediateBestMoves;
+    break;
+  case "expert":
+    played = expertPlayed;
+    won = expertWon;
+    winPercentage = expertWinPercentage;
+    bestTime = expertBestTime;
+    bestMoves = expertBestMoves;
+    break;
+}
 
 /**
  * Basics
@@ -111,7 +209,7 @@ header.innerHTML =
 <span style="--i:15">o</span>
 <span style="--i:16">j</span>
 <span style="--i:17">i</span>`;
-
+header.style.fontSize = "40px";
 document.body.appendChild(header);
 
 // Board
@@ -139,6 +237,11 @@ container.appendChild(statsButton);
 // Stats Panel
 const statsPanel = document.createElement("div");
 statsPanel.setAttribute("id", "stats-panel");
+
+// Stats: Level
+statsPanel.innerHTML += `<p class="level">${
+  gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
+}</p>`;
 
 // Stats: Played
 statsPanel.innerHTML += `<p class="label">Played</p>`;
@@ -219,22 +322,53 @@ clearDataButton.addEventListener("click", () => {
 /**
  * New Best Time Message Functionality
  */
-let newBestTimeValue = false;
+// let newBestTimeValue = false;
 
-const showMessage = () => {
-  newBestTimeValue = localStorage.getItem("newBestTime");
+// const showMessage = () => {
+//   newBestTimeValue = localStorage.getItem("newBestTime");
 
-  if (newBestTimeValue === "true") {
-    const message = document.createElement("div");
-    message.setAttribute("id", "message");
-    message.innerHTML += `New<br>Best!`;
-    container.appendChild(message);
-    newBestTimeValue = false;
-    console.log("i'm here");
-    localStorage.setItem("newBestTime", "false");
-  }
+//   if (newBestTimeValue === "true") {
+//     const message = document.createElement("div");
+//     message.setAttribute("id", "message");
+//     message.innerHTML += `New<br>Best!`;
+//     container.appendChild(message);
+//     newBestTimeValue = false;
+//     console.log("i'm here");
+//     localStorage.setItem("newBestTime", "false");
+//   }
 
-  requestAnimationFrame(showMessage);
-};
+//   requestAnimationFrame(showMessage);
+// };
 
-showMessage();
+// showMessage();
+
+// ========================
+
+// let gameSettings = {
+//   level: "beginner",
+//   flowerMode: false,
+// };
+
+// let gameData = {
+//   beginner: {
+//     played: 0,
+//     won: 0,
+//     winPercentage: 0,
+//     bestTime: null,
+//     bestMoves: null,
+//   },
+//   intermediate: {
+//     played: 0,
+//     won: 0,
+//     winPercentage: 0,
+//     bestTime: null,
+//     bestMoves: null,
+//   },
+//   expert: {
+//     played: 0,
+//     won: 0,
+//     winPercentage: 0,
+//     bestTime: null,
+//     bestMoves: null,
+//   },
+// };
