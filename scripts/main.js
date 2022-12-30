@@ -1,5 +1,5 @@
 /*
- *  Minesweeper Emoji
+ *  Emoji Minesweeper
  *  Copyright (c) 2022 Michael Kolesidis
  *  GNU General Public License v3.0
  *
@@ -143,9 +143,9 @@ switch (gameLevel) {
  */
 // Title
 if (flower) {
-  document.title = `Flower Field Emoji`;
+  document.title = `Emoji Flower Field`;
 } else {
-  document.title = `Minesweeper Emoji`;
+  document.title = `Emoji Minesweeper`;
 }
 
 // Favicon
@@ -174,7 +174,13 @@ const header = document.createElement("div");
 header.className = `header`;
 header.innerHTML =
   flower === true
-    ? `<span style="--i:1">F</span>
+    ? `<span style="--i:13">E</span>
+<span style="--i:14">m</span>
+<span style="--i:15">o</span>
+<span style="--i:16">j</span>
+<span style="--i:17">i</span>
+<span style="--i:12">&nbsp;</span>
+<span style="--i:1">F</span>
 <span style="--i:2">l</span>
 <span style="--i:3">o</span>
 <span style="--i:4">w</span>
@@ -186,14 +192,14 @@ header.innerHTML =
 <span style="--i:9">e</span>
 <span style="--i:9">l</span>
 <span style="--i:9">d</span>
-<span style="--i:12">&nbsp;</span>
-<span style="--i:13">E</span>
+`
+    : `<span style="--i:13">E</span>
 <span style="--i:14">m</span>
 <span style="--i:15">o</span>
 <span style="--i:16">j</span>
 <span style="--i:17">i</span>
-`
-    : `<span style="--i:1">M</span>
+<span style="--i:12">&nbsp;</span>
+<span style="--i:1">M</span>
 <span style="--i:2">i</span>
 <span style="--i:3">n</span>
 <span style="--i:4">e</span>
@@ -203,13 +209,7 @@ header.innerHTML =
 <span style="--i:8">e</span>
 <span style="--i:9">p</span>
 <span style="--i:10">e</span>
-<span style="--i:11">r</span>
-<span style="--i:12">&nbsp;</span>
-<span style="--i:13">E</span>
-<span style="--i:14">m</span>
-<span style="--i:15">o</span>
-<span style="--i:16">j</span>
-<span style="--i:17">i</span>`;
+<span style="--i:11">r</span>`;
 header.style.fontSize = "31px";
 header.style.letterSpacing = "1px";
 document.body.appendChild(header);

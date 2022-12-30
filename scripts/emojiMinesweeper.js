@@ -1,5 +1,5 @@
 /*
- *  Minesweeper Emoji
+ *  Emoji Minesweeper
  *  Copyright (c) 2022 Michael Kolesidis
  *  GNU General Public License v3.0
  *
@@ -534,22 +534,27 @@ function keyPressed() {
   }
 
   // Set Level
-  if (keyCode === 49) {
+  if (keyCode === 49 || keyCode === 97) {
     if (level !== "beginner") {
       localStorage.setItem("level", "beginner");
       window.location.reload();
     }
   }
-  if (keyCode === 50) {
+  if (keyCode === 50 || keyCode === 98) {
     if (level !== "intermediate") {
       localStorage.setItem("level", "intermediate");
       window.location.reload();
     }
   }
-  if (keyCode === 51) {
+  if (keyCode === 51 || keyCode === 99) {
     if (level !== "expert") {
       localStorage.setItem("level", "expert");
       window.location.reload();
     }
+  }
+
+  // New Game
+  if (keyCode === 78) {
+    window.location.reload();
   }
 }
