@@ -98,11 +98,12 @@ button {
   margin-bottom: -0.3em;
   animation: appear 0.8s;
   padding: 0.6rem;
+  box-shadow: 1px 1px 5px rgb(106, 106, 106);
   transition: box-shadow 0.15s ease-in-out;
 }
 
 button:hover {
-  box-shadow: 0 0 4px rgb(26, 26, 26);
+  box-shadow: 1px 1px 8px rgb(106, 106, 106);
 }
 
 button:active {
@@ -133,7 +134,10 @@ button:active {
 }
 
 #stats-button {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
+  color: black;
+  background: white;
+  border: 0;
 }
 
 #stats-panel > button {
@@ -142,6 +146,10 @@ button:active {
   grid-column: span 2;
   text-align: center;
   transform: scale(0.8);
+  margin-top: 0.75rem;
+  color: black;
+  background: white;
+  border: 0;
 }
 
 .level {
