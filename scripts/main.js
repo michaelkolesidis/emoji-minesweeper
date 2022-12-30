@@ -346,7 +346,6 @@ clearDataButton.addEventListener("click", () => {
 //     message.innerHTML += `New<br>Best!`;
 //     container.appendChild(message);
 //     newBestTimeValue = false;
-//     console.log("i'm here");
 //     localStorage.setItem("newBestTime", "false");
 //   }
 
