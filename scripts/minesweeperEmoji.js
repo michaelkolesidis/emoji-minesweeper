@@ -49,7 +49,7 @@ let settings = {
     mines: 10,
   },
   size: {
-    cellSize: 35,
+    cellSize: 32,
   },
 };
 
