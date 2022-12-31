@@ -1,4 +1,4 @@
-# Contributing
+# Contributing to Emoji Minesweeper
 
 First off, **thank you** for considering to contribute! We aim to build an
 inclusive community around the project. You should know that there
@@ -11,7 +11,7 @@ All contributors will be added in the designated section in the project's readme
 
 
 ### Semantic Commit Messages
-Starting from version 1.4.0, the project is using semantic commit messages. Please refer to the following links:
+Starting from version 4.0.1, the project is using semantic commit messages. Please refer to the following links:
 
 [Semantic Commit Messages](https://sparkbox.com/foundry/semantic_commit_messages)
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
@@ -32,4 +32,4 @@ Please contact us for any inquiries :)
 
 
 
-[Our Contributor Covenant Code of Conduct](https://github.com/michaelkolesidis/minesweeper-emoji/blob/main/CODE_OF_CONDUCT.md)
+[Our Contributor Covenant Code of Conduct](https://github.com/michaelkolesidis/emoji-minesweeper/blob/main/CODE_OF_CONDUCT.md)

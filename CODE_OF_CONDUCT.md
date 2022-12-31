@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+# Emoji Minesweeper Contributor Covenant Code of Conduct
 
 ## Our Pledge
 

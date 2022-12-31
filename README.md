@@ -128,6 +128,12 @@ The following emojis are used in flower mode only:
 
 
 
+## Contributors
+* [Michael Kolesidis](https://github.com/michaelkolesidis/)
+* [Margarita Marmaridou](https://github.com/mamarmar/)
+
+
+
 ## License
 
 <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/GPLv3_Logo.svg" height="100px" /></a>
