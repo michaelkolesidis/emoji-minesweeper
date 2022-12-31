@@ -4,7 +4,7 @@
   <img src="./screenshots/screenshot_win.png" /><br>
 </div>
 
-<h3 align="center">Minesweeper made with 😄 😵 💣 💥 🚩 and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Try me!</a><h3>
+<h3 align="center">Minesweeper made with emojis and ❤️ <br><a target="_blank" href="https://minesweeper-emoji.netlify.app/">Play!</a><h3>
 
 
 
@@ -42,10 +42,13 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 
 
 ## Features
+* Three levels: beginner, intermediate, expert
+* Flower mode
+* Stats for each level
+
 ### Mines
 * Random mine allocation on load
 * Ensure that the first click is never on a mine
-* Fixed (15) total number of mines
 
 ### Flagging
 * Ability to flag possible location of mines
@@ -66,6 +69,7 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 
 ### Stats
 * Games played, games won, winning percentage, and best time are saved on local storage
+* Seperate stats for the three levels (beginner, intermediate, expert)
 * Stats panel containing the aformentioned values
 * Stats panel smooth animation
 * Checks for null values
@@ -88,13 +92,21 @@ The following emojis are used in flower mode only:
 
 
 ## Controls
-  
 * Left-click to reveal cell<br>
 * Right-click to flag
 * New Game button restarts the game
 * Stats button toggles the stats panel 
 
+### Keyboard
+| Key           | Action                       |
+| ------------- |:----------------------------:|
+| Left Arrow    | Switch to Flower Mode        |
+| Right Arrow   | Switch to Mine Mode          |
+| 1             | Switch to Beginner Level     |
+| 2             | Switch to Intermediate Level |
+| 3             | Switch to Expert Level       |
   
+
 
 ## Screenshots:
   
