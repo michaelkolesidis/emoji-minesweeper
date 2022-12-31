@@ -63,6 +63,10 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 * Flower mode
 * Stats for each level
 
+### UI/UX
+* Levels can be changed using the buttons or keyboard shortcuts
+* Flower and mine modes can be toggles using a button or keyboard shortcuts
+
 ### Mines
 * Random mine allocation on load
 * Ensure that the first click is never on a mine
