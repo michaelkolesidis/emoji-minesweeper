@@ -30,7 +30,7 @@ body {
 /* Header */
 .header {
   margin-top: 0.4rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
   font-family: "Fredoka One", cursive;
   white-space: nowrap;
 }
@@ -75,9 +75,10 @@ canvas {
 /* Elements Container */
 #container {
   padding: 0;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   position: relative;
 }
@@ -90,16 +91,16 @@ button {
   border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;
-  color: #ffffff;
-  background-color: var(--main-color);
+  color: var(--main-color);
+  background: #ffffff;
   border: 2px solid var(--main-color);
   width: 8em;
   position: relative;
-  margin-bottom: -0.3em;
+  margin: 0 0.3rem;
   animation: appear 0.8s;
   padding: 0.6rem;
   border: 3px solid var(--main-color);
-  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 button:hover {
@@ -123,23 +124,25 @@ button:active {
   transition: opacity 0.4s ease-in-out;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 10rem;
+  width: 8rem;
   position: absolute;
-  top: -303px;
+  top: -277px;
+  left: 29px;
   height: 140px;
   z-index: -1;
-  width: 100%;
+
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: 0 0 12px var(--main-color);
 }
 
-#stats-button {
-  margin-top: 1rem;
-  color: var(--main-color);
-  background: #ffffff;
+#new-game-button {
+  color: #ffffff;
+  background-color: var(--main-color);
 }
 
 #stats-panel > button {
+  color: #ffffff;
+  background-color: var(--main-color);
   margin-top: 0.5rem;
   margin-bottom: -0.3rem;
   grid-column: span 2;
@@ -164,6 +167,21 @@ button:active {
   font-weight: 400;
   text-align: left;
   margin-left: 0.5rem;
+}
+
+#level-mode-container {
+  display: flex;
+  align-items: center;
+}
+
+.emoji-button {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.emoji-button:hover {
+  opacity: 0.7;
 }
 
 /* Footer */

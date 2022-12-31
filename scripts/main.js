@@ -26,6 +26,9 @@ if (isFlower === null) {
 }
 let flower = JSON.parse(isFlower);
 
+// Stats Panel
+window.localStorage.setItem("statsPanelOpen", "false");
+
 // Games Played
 let beginnerPlayed = window.localStorage.getItem("beginnerPlayed");
 if (beginnerPlayed === null) {
@@ -237,10 +240,10 @@ container.setAttribute("id", "container");
 document.body.appendChild(container);
 
 // New Game Button
-const newGame = document.createElement("button");
-newGame.setAttribute("id", "reload");
-newGame.innerHTML = `New Game`;
-container.appendChild(newGame);
+const newGameButton = document.createElement("button");
+newGameButton.setAttribute("id", "new-game-button");
+newGameButton.innerHTML = `New Game`;
+container.appendChild(newGameButton);
 
 // Stats Button
 const statsButton = document.createElement("button");
@@ -298,6 +301,45 @@ statsPanel.appendChild(clearDataButton);
 
 container.appendChild(statsPanel);
 
+// Level and Mode Buttons
+const levelModeContainer = document.createElement("div");
+levelModeContainer.setAttribute("id", "level-mode-container");
+document.body.appendChild(levelModeContainer);
+
+const beginnerButton = document.createElement("div");
+beginnerButton.className = `emoji-button`;
+beginnerButton.innerHTML = `1️⃣`;
+if (level === "beginner") {
+  beginnerButton.style.opacity = "0.7";
+}
+levelModeContainer.appendChild(beginnerButton);
+
+const intermediateButton = document.createElement("div");
+intermediateButton.className = `emoji-button`;
+intermediateButton.innerHTML = `2️⃣`;
+if (level === "intermediate") {
+  intermediateButton.style.opacity = "0.7";
+}
+levelModeContainer.appendChild(intermediateButton);
+
+const expertButton = document.createElement("div");
+expertButton.className = `emoji-button`;
+expertButton.innerHTML = `3️⃣`;
+if (level === "expert") {
+  expertButton.style.opacity = "0.7";
+}
+levelModeContainer.appendChild(expertButton);
+
+const modeButton = document.createElement("div");
+modeButton.className = `emoji-button`;
+modeButton.innerHTML = flower ? `🌺` : `💣`;
+levelModeContainer.appendChild(modeButton);
+
+// const helpButton = document.createElement("div");
+// helpButton.className = `emoji-button`;
+// helpButton.innerHTML = `❔`;
+// levelModeContainer.appendChild(helpButton);
+
 // Footer
 const footer = document.createElement("footer");
 footer.innerHTML = `<a href="https://github.com/michaelkolesidis/minesweeper-emoji" target="_blank" rel="noopener"><img src="../assets/m.svg"/></a>`;
@@ -306,14 +348,10 @@ document.body.appendChild(footer);
 /**
  * Button Functionality
  */
-// Reload button functionality
-function reload() {
-  const reload = document.querySelector("#reload");
-  reload.addEventListener("click", () => {
-    window.location.reload();
-  });
-}
-reload();
+// New Game Button functionality
+newGameButton.addEventListener("click", () => {
+  window.location.reload();
+});
 
 // Stats Button Functionality
 let statsPanelOpen = false;
@@ -324,12 +362,13 @@ statsButton.addEventListener("click", () => {
     }, 500);
     statsPanel.style.opacity = 0;
     statsPanelOpen = false;
-    board.style.pointerEvents = "none";
+    window.localStorage.setItem("statsPanelOpen", "false");
   } else if (!statsPanelOpen) {
     statsPanel.style.zIndex = 2;
     statsPanel.style.opacity = 1;
     statsPanelOpen = true;
     board.style.pointerEvents = "auto";
+    window.localStorage.setItem("statsPanelOpen", "true");
   }
 });
 
@@ -339,55 +378,32 @@ clearDataButton.addEventListener("click", () => {
   window.location.reload();
 });
 
-/**
- * New Best Time Message Functionality
- */
-// let newBestTimeValue = false;
+// Level Buttons Functionality
+beginnerButton.addEventListener("click", () => {
+  if (level !== "beginner") {
+    localStorage.setItem("level", "beginner");
+    window.location.reload();
+  }
+});
 
-// const showMessage = () => {
-//   newBestTimeValue = localStorage.getItem("newBestTime");
+intermediateButton.addEventListener("click", () => {
+  if (level !== "intermediate") {
+    localStorage.setItem("level", "intermediate");
+    window.location.reload();
+  }
+});
 
-//   if (newBestTimeValue === "true") {
-//     const message = document.createElement("div");
-//     message.setAttribute("id", "message");
-//     message.innerHTML += `New<br>Best!`;
-//     container.appendChild(message);
-//     newBestTimeValue = false;
-//     localStorage.setItem("newBestTime", "false");
-//   }
+expertButton.addEventListener("click", () => {
+  if (level !== "expert") {
+    localStorage.setItem("level", "expert");
+    window.location.reload();
+  }
+});
 
-//   requestAnimationFrame(showMessage);
-// };
-
-// showMessage();
-
-// ========================
-
-// let gameSettings = {
-//   level: "beginner",
-//   flowerMode: false,
-// };
-
-// let gameData = {
-//   beginner: {
-//     played: 0,
-//     won: 0,
-//     winPercentage: 0,
-//     bestTime: null,
-//     bestMoves: null,
-//   },
-//   intermediate: {
-//     played: 0,
-//     won: 0,
-//     winPercentage: 0,
-//     bestTime: null,
-//     bestMoves: null,
-//   },
-//   expert: {
-//     played: 0,
-//     won: 0,
-//     winPercentage: 0,
-//     bestTime: null,
-//     bestMoves: null,
-//   },
-// };
+// Mode Buttons Functionality
+modeButton.addEventListener("click", () => {
+  flower
+    ? localStorage.setItem("flower", "false")
+    : localStorage.setItem("flower", "true");
+  window.location.reload();
+});

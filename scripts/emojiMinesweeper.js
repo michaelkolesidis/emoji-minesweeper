@@ -320,6 +320,10 @@ function revealCell(cell) {
 }
 
 function mousePressed() {
+  // Disable click if stats panel is open
+  if (JSON.parse(localStorage.getItem("statsPanelOpen")) === true) {
+    return;
+  }
   // Flags
   if (mouseButton === RIGHT) {
     // Find the cell pressed on
