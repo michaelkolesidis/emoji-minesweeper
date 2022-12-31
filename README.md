@@ -1,7 +1,7 @@
 <div align="center">
   <img height="90px" src="./assets/logo.png" /><br>
   <br><br>
-  <img src="./screenshots/screenshot_win.png" /><br>
+  <img src="./screenshots/beginner_mines_win.png" /><img src="./screenshots/beginner_flowers_win.png" /><br>
 </div>
 
 <h3 align="center">Minesweeper made with emojis and ❤️ <br><a target="_blank" href="https://emojiminesweeper.netlify.app/">Play!</a><h3>
@@ -33,12 +33,29 @@
 
   
 ## Description
-**The classic Minesweeper game reimagined and implemented with emojis.**
+**The classic Minesweeper game reimagined and implemented with emojis. Three levels (beginner, intermediate, and expert) and two modes (flower mode and mine mode) to choose from.**
 
 The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element, with the help of the p5.js library. The object-oriented JavaScript paradigm is used, as each Cell is an instance of the class Cell. The rest of the UI is handled using vanilla JavaScript.
 
 ***Coming Soon:*** We are currently building our server, which will give players the ability to create an account, save stats and get ranked among other players worldwide! The repository of the server can be found [here](https://github.com/mamarmar/minesweeper-emoji-server).
 
+
+
+## Controls
+* Left-click to reveal cell<br>
+* Right-click to flag
+* New Game button restarts the game
+* Stats button toggles the stats panel 
+
+### Keyboard
+| Key           | Action                       |
+| ------------- |:----------------------------:|
+| Left Arrow    | Switch to Flower Mode        |
+| Right Arrow   | Switch to Mine Mode          |
+| 1             | Switch to Beginner Level     |
+| 2             | Switch to Intermediate Level |
+| 3             | Switch to Expert Level       |
+  
 
 
 ## Features
@@ -54,12 +71,12 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 * Ability to flag possible location of mines
 * Revealed cells cannot be flagged
 * Whenever a cell is revealed it stops being flagged
+* Number of reamining mines becomes red if there are more flagged cells than the number of mines
 
 ### Endgame
 * Empty cells become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost
 * Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)
 * Empty cells become and timer turns gold when the player has made a new best time
-* Message informing that the player has made a new best time
 * Wrongly flagged cells are marked with an X
 
 ### Indicators 
@@ -91,48 +108,20 @@ The following emojis are used in flower mode only:
 
 
 
-## Controls
-* Left-click to reveal cell<br>
-* Right-click to flag
-* New Game button restarts the game
-* Stats button toggles the stats panel 
-
-### Keyboard
-| Key           | Action                       |
-| ------------- |:----------------------------:|
-| Left Arrow    | Switch to Flower Mode        |
-| Right Arrow   | Switch to Mine Mode          |
-| 1             | Switch to Beginner Level     |
-| 2             | Switch to Intermediate Level |
-| 3             | Switch to Expert Level       |
-  
-
-
 ## Screenshots:
   
-#### Win
-<img src="./screenshots/screenshot_win.png" />
+#### Loss
+<img src="./screenshots/beginner_mines_loss.png" />
+<img src="./screenshots/beginner_flowers_loss.png" />
+<img src="./screenshots/intermediate_mines_loss.png" />
+<img src="./screenshots/expert_mines_loss.png" />
   
-#### New Best Time
-<img src="./screenshots/screenshot_new_best_time.png" />
-
-#### Loss  
-<img src="./screenshots/screenshot_loss.png" />
-
-#### Mistakes  
-<img src="./screenshots/screenshot_mistakes.png" />
-
 #### Idle  
-<img src="./screenshots/screenshot_idle.png" />
+<img src="./screenshots/beginner_mines_idle.png" />
 
-#### More flags than mines
-<img src="./screenshots/screenshot_flags.png" />
-  
 #### Stats panel
-<img src="./screenshots/screenshot_stats_idle.png" />
+<img src="./screenshots/beginner_flowers_win_stats.png" />
 
-#### Full page
-<img src="./screenshots/screenshot_full.png" />
 
 
 ## License
