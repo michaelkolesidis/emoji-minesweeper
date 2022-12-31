@@ -1,0 +1,12 @@
+# Emoji Minesweeper Security Policy
+
+## Supported Versions
+
+| Version   | Supported          |
+| --------- | ------------------ |
+| 4.0.x     | :white_check_mark: |
+| < 4.0.0   | :x:                |
+
+## Reporting a Vulnerability
+
+In case of finding a vulnerabiity, please open an issue. If the vulnerability is related to p5.js or any other library used, please contact the respective authors.
