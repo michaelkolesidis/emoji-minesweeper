@@ -331,7 +331,7 @@ const beginnerButton = document.createElement("div");
 beginnerButton.className = `emoji-button`;
 beginnerButton.innerHTML = `1️⃣`;
 if (level === "beginner") {
-  beginnerButton.style.opacity = "0.7";
+  beginnerButton.classList.add("emoji-button-clicked");
 }
 levelModeContainer.appendChild(beginnerButton);
 
@@ -339,7 +339,7 @@ const intermediateButton = document.createElement("div");
 intermediateButton.className = `emoji-button`;
 intermediateButton.innerHTML = `2️⃣`;
 if (level === "intermediate") {
-  intermediateButton.style.opacity = "0.7";
+  intermediateButton.classList.add("emoji-button-clicked");
 }
 levelModeContainer.appendChild(intermediateButton);
 
@@ -347,7 +347,7 @@ const expertButton = document.createElement("div");
 expertButton.className = `emoji-button`;
 expertButton.innerHTML = `3️⃣`;
 if (level === "expert") {
-  expertButton.style.opacity = "0.7";
+  expertButton.classList.add("emoji-button-clicked");
 }
 levelModeContainer.appendChild(expertButton);
 
@@ -448,11 +448,11 @@ let flagMode = false;
 flagButton.addEventListener("click", () => {
   if (flagMode) {
     localStorage.setItem("flagMode", "false");
-    flagButton.style.opacity = "1";
+    flagButton.classList.remove("emoji-button-clicked");
     flagMode = false;
   } else {
     localStorage.setItem("flagMode", "true");
-    flagButton.style.opacity = "0.7";
+    flagButton.classList.add("emoji-button-clicked");
     flagMode = true;
   }
 });
@@ -468,7 +468,7 @@ helpButton.addEventListener("click", () => {
     helpModal.style.opacity = 0;
     helpModalOpen = false;
     window.localStorage.setItem("modalOpen", "false");
-    helpButton.style.opacity = "1";
+    helpButton.classList.remove("emoji-button-clicked");
   } else if (!helpModalOpen) {
     // Close stats modal
     if (statsModalOpen) {
@@ -485,6 +485,6 @@ helpButton.addEventListener("click", () => {
     helpModal.style.opacity = 1;
     helpModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
-    helpButton.style.opacity = "0.7";
+    helpButton.classList.add("emoji-button-clicked");
   }
 });
