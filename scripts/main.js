@@ -316,7 +316,7 @@ helpModal.innerHTML += `<div>
 <hr>
 ❔ Toggle <span style="font-weight:600;">help</span>
 <hr>
-🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with both mouse buttons (for touchscreens)
+🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch/right-click (for touchscreens)
 </div>
 `;
 
