@@ -263,39 +263,52 @@ statsModal.innerHTML += `<p class="level">${
   gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
 }</p>`;
 
+const statsTable = document.createElement("div");
+statsTable.setAttribute("id", "stats-table");
+
 // Stats: Played
-statsModal.innerHTML += `<p class="label">Played</p>`;
+statsTable.innerHTML += `<p class="label">Played</p>`;
 if (played) {
-  statsModal.innerHTML += `<p class="value">${played}</p>`;
+  statsTable.innerHTML += `<p class="value">${played}</p>`;
 } else {
-  statsModal.innerHTML += `<p class="value">0</p>`;
+  statsTable.innerHTML += `<p class="value">0</p>`;
 }
 
 // Stats: Won
-statsModal.innerHTML += `<p class="label">Won</p>`;
+statsTable.innerHTML += `<p class="label">Won</p>`;
 if (won) {
-  statsModal.innerHTML += `<p class="value">${won}</p>`;
+  statsTable.innerHTML += `<p class="value">${won}</p>`;
 } else {
-  statsModal.innerHTML += `<p class="value">0</p>`;
+  statsTable.innerHTML += `<p class="value">0</p>`;
 }
 
 // Stats: Win percentage
-statsModal.innerHTML += `<p class="label">Win %</p>`;
+statsTable.innerHTML += `<p class="label">Win %</p>`;
 if (winPercentage) {
-  statsModal.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
+  statsTable.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
     2
   )}</p>`;
 } else {
-  statsModal.innerHTML += `<p class="value">N/A</p>`;
+  statsTable.innerHTML += `<p class="value">N/A</p>`;
 }
 
 // Stats: Best Time
-statsModal.innerHTML += `<p class="label">Best Time</p>`;
+statsTable.innerHTML += `<p class="label">Best Time</p>`;
 if (bestTime) {
-  statsModal.innerHTML += `<p class="value">${bestTime}</p>`;
+  statsTable.innerHTML += `<p class="value">${bestTime}</p>`;
 } else {
-  statsModal.innerHTML += `<p class="value">N/A</p>`;
+  statsTable.innerHTML += `<p class="value">N/A</p>`;
 }
+
+// Stats: Best Moves
+statsTable.innerHTML += `<p class="label">Best Moves</p>`;
+if (bestMoves) {
+  statsTable.innerHTML += `<p class="value">${bestMoves}</p>`;
+} else {
+  statsTable.innerHTML += `<p class="value">N/A</p>`;
+}
+
+statsModal.appendChild(statsTable);
 
 // Stats: Clear Data Button
 const clearDataButton = document.createElement("button");

@@ -123,7 +123,6 @@ button:active {
 #help-modal {
   margin-top: 0.7rem;
   border-radius: 40px;
-  padding: 1.1rem;
   opacity: 0;
   background-color: #ffffff;
   transition: opacity 0.4s ease-in-out;
@@ -145,7 +144,7 @@ button:active {
   left: 13.3px;
 }
 
-hr {
+#help-modal > hr {
   margin: 0.2rem 0;
 }
 
@@ -155,11 +154,18 @@ hr {
   left: 50px;
   width: 8rem;
   height: 140px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
   text-align: center;
   font-size: 0.9rem;
+}
+
+#stats-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 #stats-modal > button {
@@ -183,6 +189,7 @@ hr {
 .label {
   text-align: end;
   margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 .value {
