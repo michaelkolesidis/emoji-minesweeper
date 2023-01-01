@@ -116,6 +116,7 @@ let flaggedCells = 0;
 let moves = 0; // total number of moves (left and right clicks on active cells)
 let startTime = null; // used to calculate time
 let gameFinished = false;
+let newBestMoves = false; // used when the player has made a new best moves record
 let newBestTime = false; // used when the player has made a new best time
 
 /**
@@ -224,6 +225,9 @@ function draw() {
     width / 2 - cellSize * 1.975 + cellSize * 0.99,
     boardSize.height - cellSize * 0.275
   );
+  if (newBestMoves) {
+    fill(255, 176, 46);
+  }
   text(
     nf(moves, 3),
     width / 2 - cellSize * 1.975 + 2 * cellSize * 0.99,
@@ -386,7 +390,6 @@ function mousePressed() {
           if (!gameFinished) {
             gameLost();
             gameFinished = true;
-            moves += 1;
             calculateWinPercentage();
           }
         } else {
@@ -398,7 +401,6 @@ function mousePressed() {
             if (!gameFinished) {
               gameWon();
               gameFinished = true;
-              moves += 1;
               calculateWinPercentage();
             }
           }
@@ -419,6 +421,7 @@ function gameWon() {
   });
 
   // Update local storage
+  // Won Data
   let won;
   switch (level) {
     case "beginner":
@@ -438,6 +441,52 @@ function gameWon() {
       break;
   }
 
+  // Moves Data
+  let bestMoves;
+  switch (level) {
+    case "beginner":
+      bestMoves = Number(localStorage.getItem("beginnerBestMoves"));
+      break;
+    case "intermediate":
+      bestMoves = Number(localStorage.getItem("intermediateBestMoves"));
+      break;
+    case "expert":
+      bestMoves = Number(localStorage.getItem("expertBestMoves"));
+      break;
+  }
+
+  if (bestMoves === 0) {
+    switch (level) {
+      case "beginner":
+        localStorage.setItem("beginnerBestMoves", moves);
+        break;
+      case "intermediate":
+        localStorage.setItem("intermediateBestMoves", moves);
+        break;
+      case "expert":
+        localStorage.setItem("expertBestMoves", moves);
+        break;
+    }
+  } else {
+    if (moves < bestMoves) {
+      NUMBERS[0] = "🥳";
+      newBestMoves = true;
+      switch (level) {
+        case "beginner":
+          localStorage.setItem("beginnerBestMoves", moves);
+          break;
+        case "intermediate":
+          localStorage.setItem("intermediateBestMoves", moves);
+          break;
+        case "expert":
+          localStorage.setItem("expertBestMoves", moves);
+          break;
+      }
+      localStorage.setItem("newBestMoves", "true");
+    }
+  }
+
+  // Time Data
   const endTime = new Date();
   let time = endTime - startTime; //in ms
   time = time / 1000;
