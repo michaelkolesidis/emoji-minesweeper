@@ -2,7 +2,9 @@
 
 /* Global */
 :root {
-  --main-color: rgb(25, 25, 25);
+  --main-color: #191919;
+  --secondary-color: #ffffff;
+  --shadow: #d4d4d4;
 }
 
 * {
@@ -18,7 +20,7 @@
 
 html,
 body {
-  background-color: #ffffff;
+  background-color: var(--secondary-color);
 }
 
 body {
@@ -94,7 +96,7 @@ button {
   white-space: nowrap;
   cursor: pointer;
   color: var(--main-color);
-  background: #ffffff;
+  background: var(--secondary-color);
   border: 2px solid var(--main-color);
   width: 9.5em;
   position: relative;
@@ -106,7 +108,7 @@ button {
 }
 
 button:hover {
-  box-shadow: 2px 2px 0px 2px rgb(212, 212, 212);
+  box-shadow: 2px 2px 0px 2px var(--shadow);
 }
 
 button:active {
@@ -114,7 +116,7 @@ button:active {
 }
 
 #new-game-button {
-  color: #ffffff;
+  color: var(--secondary-color);
   background-color: var(--main-color);
 }
 
@@ -124,7 +126,7 @@ button:active {
   margin-top: 0.7rem;
   border-radius: 40px;
   opacity: 0;
-  background-color: #ffffff;
+  background-color: var(--secondary-color);
   transition: opacity 0.4s ease-in-out;
   position: absolute;
   z-index: -1;
@@ -144,7 +146,7 @@ button:active {
   left: 13.3px;
 }
 
-#help-modal > hr {
+hr {
   margin: 0.2rem 0;
 }
 
@@ -169,7 +171,7 @@ button:active {
 }
 
 #stats-modal > button {
-  color: #ffffff;
+  color: var(--secondary-color);
   background-color: var(--main-color);
   margin-top: 0.5rem;
   margin-bottom: -0.3rem;
