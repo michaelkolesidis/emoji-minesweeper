@@ -26,8 +26,8 @@ if (isFlower === null) {
 }
 let flower = JSON.parse(isFlower);
 
-// Modal
-window.localStorage.setItem("modalOpen", "false");
+// statsModal
+window.localStorage.setItem("statsModalOpen", "false");
 
 // Flag mode
 window.localStorage.setItem("flagMode", "false");
@@ -237,7 +237,7 @@ switch (level) {
 
 document.body.appendChild(board);
 
-// Buttons and Messages Container
+// Buttons and Modals Container
 const container = document.createElement("div");
 container.setAttribute("id", "container");
 document.body.appendChild(container);
@@ -254,55 +254,73 @@ statsButton.setAttribute("id", "stats-button");
 statsButton.innerHTML = `Stats`;
 container.appendChild(statsButton);
 
-// Modal
-const modal = document.createElement("div");
-modal.setAttribute("id", "modal");
+// statsModal
+const statsModal = document.createElement("div");
+statsModal.setAttribute("id", "stats-modal");
 
 // Stats: Level
-modal.innerHTML += `<p class="level">${
+statsModal.innerHTML += `<p class="level">${
   gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
 }</p>`;
 
 // Stats: Played
-modal.innerHTML += `<p class="label">Played</p>`;
+statsModal.innerHTML += `<p class="label">Played</p>`;
 if (played) {
-  modal.innerHTML += `<p class="value">${played}</p>`;
+  statsModal.innerHTML += `<p class="value">${played}</p>`;
 } else {
-  modal.innerHTML += `<p class="value">0</p>`;
+  statsModal.innerHTML += `<p class="value">0</p>`;
 }
 
 // Stats: Won
-modal.innerHTML += `<p class="label">Won</p>`;
+statsModal.innerHTML += `<p class="label">Won</p>`;
 if (won) {
-  modal.innerHTML += `<p class="value">${won}</p>`;
+  statsModal.innerHTML += `<p class="value">${won}</p>`;
 } else {
-  modal.innerHTML += `<p class="value">0</p>`;
+  statsModal.innerHTML += `<p class="value">0</p>`;
 }
 
 // Stats: Win percentage
-modal.innerHTML += `<p class="label">Win %</p>`;
+statsModal.innerHTML += `<p class="label">Win %</p>`;
 if (winPercentage) {
-  modal.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
+  statsModal.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
     2
   )}</p>`;
 } else {
-  modal.innerHTML += `<p class="value">N/A</p>`;
+  statsModal.innerHTML += `<p class="value">N/A</p>`;
 }
 
 // Stats: Best Time
-modal.innerHTML += `<p class="label">Best Time</p>`;
+statsModal.innerHTML += `<p class="label">Best Time</p>`;
 if (bestTime) {
-  modal.innerHTML += `<p class="value">${bestTime}</p>`;
+  statsModal.innerHTML += `<p class="value">${bestTime}</p>`;
 } else {
-  modal.innerHTML += `<p class="value">N/A</p>`;
+  statsModal.innerHTML += `<p class="value">N/A</p>`;
 }
 
 // Stats: Clear Data Button
 const clearDataButton = document.createElement("button");
 clearDataButton.innerHTML = `Clear Data`;
-modal.appendChild(clearDataButton);
+statsModal.appendChild(clearDataButton);
 
-container.appendChild(modal);
+container.appendChild(statsModal);
+
+// Help Modal
+const helpModal = document.createElement("div");
+helpModal.setAttribute("id", "help-modal");
+helpModal.innerHTML += `<div>
+🖱️ Left-click to reveal a cell, right-click to flag a cell
+<hr>
+1️⃣2️⃣3️⃣ Switch between levels, beginner, intermediate, expert, or use ⌨️ keys 1,2, 3
+<hr>
+💣/🌺 Switch between flower and mine modes or use ⌨️ left/right arrows
+<hr>
+❔ Help
+<hr>
+🚩 Toggle flag mode: flag with both mouse buttons (for touchscreens)
+</div>
+`;
+
+container.appendChild(helpModal);
 
 // Level and Mode Buttons
 const levelModeContainer = document.createElement("div");
@@ -345,7 +363,6 @@ levelModeContainer.appendChild(helpButton);
 
 const flagButton = document.createElement("div");
 flagButton.className = `emoji-button`;
-// flagButton.style.marginLeft = "1.85rem";
 flagButton.innerHTML = `🚩`;
 if (!/Android|iPhone/i.test(navigator.userAgent)) {
   levelModeContainer.appendChild(flagButton);
@@ -365,20 +382,27 @@ newGameButton.addEventListener("click", () => {
 });
 
 // Stats Button Functionality
-let modalOpen = false;
+let statsModalOpen = false;
 statsButton.addEventListener("click", () => {
-  if (modalOpen) {
+  if (statsModalOpen) {
+    // Close stats modal
     setTimeout(() => {
-      modal.style.zIndex = -1;
+      statsModal.style.zIndex = -1;
     }, 500);
-    modal.style.opacity = 0;
-    modalOpen = false;
+    statsModal.style.opacity = 0;
+    statsModalOpen = false;
     window.localStorage.setItem("modalOpen", "false");
-  } else if (!modalOpen) {
-    modal.style.zIndex = 2;
-    modal.style.opacity = 1;
-    modalOpen = true;
-    board.style.pointerEvents = "auto";
+  } else if (!statsModalOpen) {
+    // Close help modal
+    helpModal.style.opacity = 0;
+    helpModalOpen = false;
+    window.localStorage.setItem("modalOpen", "false");
+    helpButton.style.opacity = "1";
+
+    // Open stats modal
+    statsModal.style.zIndex = 2;
+    statsModal.style.opacity = 1;
+    statsModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
   }
 });
@@ -434,6 +458,33 @@ flagButton.addEventListener("click", () => {
 });
 
 // Help Button Functionality
+let helpModalOpen = false;
 helpButton.addEventListener("click", () => {
-  console.log("help")
-})
+  if (helpModalOpen) {
+    // Close help modal
+    setTimeout(() => {
+      helpModal.style.zIndex = -1;
+    }, 500);
+    helpModal.style.opacity = 0;
+    helpModalOpen = false;
+    window.localStorage.setItem("modalOpen", "false");
+    helpButton.style.opacity = "1";
+  } else if (!helpModalOpen) {
+    // Close stats modal
+    if (statsModalOpen) {
+      setTimeout(() => {
+        statsModal.style.zIndex = -1;
+      }, 500);
+      statsModal.style.opacity = 0;
+      statsModalOpen = false;
+      window.localStorage.setItem("modalOpen", "false");
+    }
+
+    // Open help modal
+    helpModal.style.zIndex = 2;
+    helpModal.style.opacity = 1;
+    helpModalOpen = true;
+    window.localStorage.setItem("modalOpen", "true");
+    helpButton.style.opacity = "0.7";
+  }
+});

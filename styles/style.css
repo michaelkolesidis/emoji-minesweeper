@@ -113,36 +113,56 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Modal */
-#modal {
-  margin-top: 0.7rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 40px;
-  padding: 1.1rem;
-  opacity: 0;
-  background-color: #ffffff;
-  transition: opacity 0.4s ease-in-out;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 8rem;
-  position: absolute;
-  top: -277px;
-  left: 29px;
-  height: 140px;
-  z-index: -1;
-
-  padding: 1rem 2rem 2rem 2rem;
-  box-shadow: 0 0 12px var(--main-color);
-}
-
 #new-game-button {
   color: #ffffff;
   background-color: var(--main-color);
 }
 
-#modal > button {
+/* Modals */
+#stats-modal,
+#help-modal {
+  margin-top: 0.7rem;
+  border-radius: 40px;
+  padding: 1.1rem;
+  opacity: 0;
+  background-color: #ffffff;
+  transition: opacity 0.4s ease-in-out;
+  position: absolute;
+  z-index: -1;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: 0 0 12px var(--main-color);
+}
+
+/* Help Modal */
+#help-modal {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  padding: 1.3rem;
+  width: 14rem;
+  height: 185px;
+  top: -315.5px;
+  left: -8px;
+}
+
+hr {
+  margin: 0.2rem 0;
+}
+
+/* Stats Modal */
+#stats-modal {
+  top: -277px;
+  left: 29px;
+  width: 8rem;
+  height: 140px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+#stats-modal > button {
   color: #ffffff;
   background-color: var(--main-color);
   margin-top: 0.5rem;
@@ -171,6 +191,7 @@ button:active {
   margin-left: 0.5rem;
 }
 
+/* Emoji Buttons */
 #level-mode-container {
   display: flex;
   align-items: center;
