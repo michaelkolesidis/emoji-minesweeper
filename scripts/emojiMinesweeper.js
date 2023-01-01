@@ -37,6 +37,7 @@ const WRONG = "❌";
 const WON = flowerMode ? "😊" : "😄";
 const LOST = flowerMode ? "😔" : "😵";
 const TIMER = "⌛";
+const MOVES = "🧮";
 
 /**
  * Settings
@@ -112,6 +113,7 @@ let cellCounter = 0; // The unique identifier of each cell
 let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
 
 let flaggedCells = 0;
+let moves = 0; // total number of moves (left and right clicks on active cells)
 let startTime = null; // used to calculate time
 let gameFinished = false;
 let newBestTime = false; // used when the player has made a new best time
@@ -213,6 +215,19 @@ function draw() {
     nf(Math.max(initialMines - flaggedCells, 0), 3),
     cellSize,
     boardSize.height - cellSize * 0.25
+  );
+
+  // Moves indicator
+  fill(35, 35, 35);
+  text(
+    MOVES,
+    width / 2 - cellSize * 1.975 + cellSize * 0.99,
+    boardSize.height - cellSize * 0.275
+  );
+  text(
+    nf(moves, 3),
+    width / 2 - cellSize * 1.975 + 2 * cellSize * 0.99,
+    boardSize.height - cellSize * 0.275
   );
 
   // Time indicator
@@ -340,8 +355,10 @@ function mousePressed() {
       if (!cell.revealed) {
         if (!cell.flagged) {
           flaggedCells += 1;
+          moves += 1;
         } else {
           flaggedCells -= 1;
+          moves += 1;
         }
         cell.flagged = !cell.flagged;
       }
@@ -360,14 +377,16 @@ function mousePressed() {
         );
       });
       if (cell) {
-        if (cell.flagged) {
+        if (cell.flagged || cell.revealed) {
           return; // Do not allow revealing when flagged
         }
         revealCell(cell);
+        moves += 1;
         if (cell.mine) {
           if (!gameFinished) {
             gameLost();
             gameFinished = true;
+            moves += 1;
             calculateWinPercentage();
           }
         } else {
@@ -379,6 +398,7 @@ function mousePressed() {
             if (!gameFinished) {
               gameWon();
               gameFinished = true;
+              moves += 1;
               calculateWinPercentage();
             }
           }
