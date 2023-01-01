@@ -365,7 +365,7 @@ const flagButton = document.createElement("div");
 flagButton.className = `emoji-button`;
 flagButton.innerHTML = `🚩`;
 // if (/Android|iPhone/i.test(navigator.userAgent)) {
-  levelModeContainer.appendChild(flagButton);
+levelModeContainer.appendChild(flagButton);
 // }
 
 // Footer

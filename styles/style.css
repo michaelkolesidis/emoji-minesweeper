@@ -98,7 +98,7 @@ button {
   border: 2px solid var(--main-color);
   width: 9.5em;
   position: relative;
-  margin: 0.3rem 0.3rem;
+  margin: 0.1rem 0.3rem;
   animation: appear 0.8s;
   padding: 0.6rem;
   border: 3px solid var(--main-color);
