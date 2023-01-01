@@ -26,8 +26,11 @@ if (isFlower === null) {
 }
 let flower = JSON.parse(isFlower);
 
-// Stats Panel
-window.localStorage.setItem("statsPanelOpen", "false");
+// Modal
+window.localStorage.setItem("modalOpen", "false");
+
+// Flag mode
+window.localStorage.setItem("flagMode", "false");
 
 // Games Played
 let beginnerPlayed = window.localStorage.getItem("beginnerPlayed");
@@ -251,55 +254,55 @@ statsButton.setAttribute("id", "stats-button");
 statsButton.innerHTML = `Stats`;
 container.appendChild(statsButton);
 
-// Stats Panel
-const statsPanel = document.createElement("div");
-statsPanel.setAttribute("id", "stats-panel");
+// Modal
+const modal = document.createElement("div");
+modal.setAttribute("id", "modal");
 
 // Stats: Level
-statsPanel.innerHTML += `<p class="level">${
+modal.innerHTML += `<p class="level">${
   gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
 }</p>`;
 
 // Stats: Played
-statsPanel.innerHTML += `<p class="label">Played</p>`;
+modal.innerHTML += `<p class="label">Played</p>`;
 if (played) {
-  statsPanel.innerHTML += `<p class="value">${played}</p>`;
+  modal.innerHTML += `<p class="value">${played}</p>`;
 } else {
-  statsPanel.innerHTML += `<p class="value">0</p>`;
+  modal.innerHTML += `<p class="value">0</p>`;
 }
 
 // Stats: Won
-statsPanel.innerHTML += `<p class="label">Won</p>`;
+modal.innerHTML += `<p class="label">Won</p>`;
 if (won) {
-  statsPanel.innerHTML += `<p class="value">${won}</p>`;
+  modal.innerHTML += `<p class="value">${won}</p>`;
 } else {
-  statsPanel.innerHTML += `<p class="value">0</p>`;
+  modal.innerHTML += `<p class="value">0</p>`;
 }
 
 // Stats: Win percentage
-statsPanel.innerHTML += `<p class="label">Win %</p>`;
+modal.innerHTML += `<p class="label">Win %</p>`;
 if (winPercentage) {
-  statsPanel.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
+  modal.innerHTML += `<p class="value">${(winPercentage * 100).toFixed(
     2
   )}</p>`;
 } else {
-  statsPanel.innerHTML += `<p class="value">N/A</p>`;
+  modal.innerHTML += `<p class="value">N/A</p>`;
 }
 
 // Stats: Best Time
-statsPanel.innerHTML += `<p class="label">Best Time</p>`;
+modal.innerHTML += `<p class="label">Best Time</p>`;
 if (bestTime) {
-  statsPanel.innerHTML += `<p class="value">${bestTime}</p>`;
+  modal.innerHTML += `<p class="value">${bestTime}</p>`;
 } else {
-  statsPanel.innerHTML += `<p class="value">N/A</p>`;
+  modal.innerHTML += `<p class="value">N/A</p>`;
 }
 
 // Stats: Clear Data Button
 const clearDataButton = document.createElement("button");
 clearDataButton.innerHTML = `Clear Data`;
-statsPanel.appendChild(clearDataButton);
+modal.appendChild(clearDataButton);
 
-container.appendChild(statsPanel);
+container.appendChild(modal);
 
 // Level and Mode Buttons
 const levelModeContainer = document.createElement("div");
@@ -335,10 +338,18 @@ modeButton.className = `emoji-button`;
 modeButton.innerHTML = flower ? `🌺` : `💣`;
 levelModeContainer.appendChild(modeButton);
 
-// const helpButton = document.createElement("div");
-// helpButton.className = `emoji-button`;
-// helpButton.innerHTML = `❔`;
-// levelModeContainer.appendChild(helpButton);
+const helpButton = document.createElement("div");
+helpButton.className = `emoji-button`;
+helpButton.innerHTML = `❔`;
+levelModeContainer.appendChild(helpButton);
+
+const flagButton = document.createElement("div");
+flagButton.className = `emoji-button`;
+// flagButton.style.marginLeft = "1.85rem";
+flagButton.innerHTML = `🚩`;
+if (!/Android|iPhone/i.test(navigator.userAgent)) {
+  levelModeContainer.appendChild(flagButton);
+}
 
 // Footer
 const footer = document.createElement("footer");
@@ -354,21 +365,21 @@ newGameButton.addEventListener("click", () => {
 });
 
 // Stats Button Functionality
-let statsPanelOpen = false;
+let modalOpen = false;
 statsButton.addEventListener("click", () => {
-  if (statsPanelOpen) {
+  if (modalOpen) {
     setTimeout(() => {
-      statsPanel.style.zIndex = -1;
+      modal.style.zIndex = -1;
     }, 500);
-    statsPanel.style.opacity = 0;
-    statsPanelOpen = false;
-    window.localStorage.setItem("statsPanelOpen", "false");
-  } else if (!statsPanelOpen) {
-    statsPanel.style.zIndex = 2;
-    statsPanel.style.opacity = 1;
-    statsPanelOpen = true;
+    modal.style.opacity = 0;
+    modalOpen = false;
+    window.localStorage.setItem("modalOpen", "false");
+  } else if (!modalOpen) {
+    modal.style.zIndex = 2;
+    modal.style.opacity = 1;
+    modalOpen = true;
     board.style.pointerEvents = "auto";
-    window.localStorage.setItem("statsPanelOpen", "true");
+    window.localStorage.setItem("modalOpen", "true");
   }
 });
 
@@ -407,3 +418,22 @@ modeButton.addEventListener("click", () => {
     : localStorage.setItem("flower", "true");
   window.location.reload();
 });
+
+// Flag Mode Button Functionality
+let flagMode = false;
+flagButton.addEventListener("click", () => {
+  if (flagMode) {
+    localStorage.setItem("flagMode", "false");
+    flagButton.style.opacity = "1";
+    flagMode = false;
+  } else {
+    localStorage.setItem("flagMode", "true");
+    flagButton.style.opacity = "0.7";
+    flagMode = true;
+  }
+});
+
+// Help Button Functionality
+helpButton.addEventListener("click", () => {
+  console.log("help")
+})

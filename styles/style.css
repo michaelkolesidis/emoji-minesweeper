@@ -113,8 +113,8 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Stats Panel */
-#stats-panel {
+/* Modal */
+#modal {
   margin-top: 0.7rem;
   font-size: 0.9rem;
   font-weight: 600;
@@ -142,7 +142,7 @@ button:active {
   background-color: var(--main-color);
 }
 
-#stats-panel > button {
+#modal > button {
   color: #ffffff;
   background-color: var(--main-color);
   margin-top: 0.5rem;

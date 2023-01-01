@@ -321,11 +321,11 @@ function revealCell(cell) {
 
 function mousePressed() {
   // Disable click if stats panel is open
-  if (JSON.parse(localStorage.getItem("statsPanelOpen")) === true) {
+  if (JSON.parse(localStorage.getItem("modalOpen")) === true) {
     return;
   }
   // Flags
-  if (mouseButton === RIGHT) {
+  if (mouseButton === RIGHT || JSON.parse(localStorage.getItem("flagMode"))) {
     // Find the cell pressed on
     let cell = cells.find((c) => {
       return (
@@ -349,7 +349,7 @@ function mousePressed() {
   }
 
   // Find the cell pressed on
-  if (mouseButton === LEFT) {
+  if (mouseButton === LEFT && !JSON.parse(localStorage.getItem("flagMode"))) {
     if (!gameFinished) {
       let cell = cells.find((c) => {
         return (
