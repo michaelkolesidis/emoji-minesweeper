@@ -96,9 +96,9 @@ button {
   color: var(--main-color);
   background: #ffffff;
   border: 2px solid var(--main-color);
-  width: 8em;
+  width: 9.5em;
   position: relative;
-  margin: 0 0.3rem;
+  margin: 0.3rem 0.3rem;
   animation: appear 0.8s;
   padding: 0.6rem;
   border: 3px solid var(--main-color);
@@ -142,7 +142,7 @@ button:active {
   width: 14rem;
   height: 185px;
   top: -315.5px;
-  left: -8px;
+  left: 13.3px;
 }
 
 hr {
@@ -152,7 +152,7 @@ hr {
 /* Stats Modal */
 #stats-modal {
   top: -277px;
-  left: 29px;
+  left: 50px;
   width: 8rem;
   height: 140px;
   display: grid;
@@ -201,6 +201,7 @@ hr {
   font-size: 2rem;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
+  margin: 0 0.15rem;
 }
 
 .emoji-button:hover {

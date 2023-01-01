@@ -308,15 +308,15 @@ container.appendChild(statsModal);
 const helpModal = document.createElement("div");
 helpModal.setAttribute("id", "help-modal");
 helpModal.innerHTML += `<div>
-🖱️ Left-click to reveal a cell, right-click to flag a cell
+🖱️ Left-click to <span style="font-weight:600;">reveal</span> a cell, right-click to <span style="font-weight:600;">flag</span> a cell
 <hr>
-1️⃣2️⃣3️⃣ Switch between levels, beginner, intermediate, expert, or use ⌨️ keys 1,2, 3
+1️⃣2️⃣3️⃣ Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert, or use ⌨️ keys 1,2, 3
 <hr>
-💣/🌺 Switch between flower and mine modes or use ⌨️ left/right arrows
+💣/🌺 Switch between <span style="font-weight:600;">flower and mine</span> modes or use ⌨️ left/right arrows
 <hr>
-❔ Help
+❔ Toggle <span style="font-weight:600;">help</span>
 <hr>
-🚩 Toggle flag mode: flag with both mouse buttons (for touchscreens)
+🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with both mouse buttons (for touchscreens)
 </div>
 `;
 
@@ -364,9 +364,9 @@ levelModeContainer.appendChild(helpButton);
 const flagButton = document.createElement("div");
 flagButton.className = `emoji-button`;
 flagButton.innerHTML = `🚩`;
-if (!/Android|iPhone/i.test(navigator.userAgent)) {
+// if (/Android|iPhone/i.test(navigator.userAgent)) {
   levelModeContainer.appendChild(flagButton);
-}
+// }
 
 // Footer
 const footer = document.createElement("footer");
