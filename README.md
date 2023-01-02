@@ -4,7 +4,7 @@
   <img src="./screenshots/beginner_mines_win.png" /><img src="./screenshots/beginner_flowers_win.png" /><br>
 </div>
 
-<h3 align="center">Minesweeper made with emojis and ❤️ <br><a target="_blank" href="https://emojiminesweeper.netlify.app/">Play!</a><h3>
+<h3 align="center">Minesweeper made with emojis and ❤️ <br><a target="_blank" href="https://www.emojiminesweeper.com/">Play!</a><h3>
 
 
 
