@@ -383,7 +383,17 @@ levelModeContainer.appendChild(flagButton);
 
 // Footer
 const footer = document.createElement("footer");
-footer.innerHTML = `<a href="https://github.com/michaelkolesidis/minesweeper-emoji" target="_blank" rel="noopener"><img src="../assets/m.svg"/></a>`;
+footer.innerHTML = `<a 
+                      href="https://github.com/michaelkolesidis/emoji-minesweeper" 
+                      aria-label="Emoji Minesweeper's GitHub repository" 
+                      target="_blank" 
+                      rel="noopener"
+                    >
+                      <img 
+                        alt="m logo" 
+                        src="../assets/m.svg"
+                      />
+                    </a>`;
 document.body.appendChild(footer);
 
 /**
