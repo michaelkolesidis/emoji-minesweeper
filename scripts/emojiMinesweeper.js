@@ -50,7 +50,7 @@ let settings = {
     mines: 10,
   },
   size: {
-    cellSize: 32,
+    squareSize: 32,
   },
 };
 
@@ -93,27 +93,27 @@ switch (level) {
 /**
  * Board dimensions and number of mines
  */
-let cells = []; // Array to hold all the cell objects
-let cellSize = settings.size.cellSize; // The size (in pixe;s of each cell)
+let squares = []; // Array to hold all the square objects
+let squareSize = settings.size.squareSize; // The size (in pixe;s of each square)
 let columns = settings.level.columns; // The number of columns in the board
 let rows = settings.level.rows; // The number of rows in the board
-let numberOfCells = rows * columns;
-let sizeError = cellSize * 0.175; // On Windows and on Linux if error is not added to size,
+let numberOfSquares = rows * columns;
+let sizeError = squareSize * 0.175; // On Windows and on Linux if error is not added to size,
 // the left and bottom borders are not totally visible -
 // on Mac it works fine even without the error
 
 let boardSize = {
-  width: cellSize * columns + sizeError,
-  height: cellSize * rows + sizeError,
+  width: squareSize * columns + sizeError,
+  height: squareSize * rows + sizeError,
 };
 
 let initialMines = settings.level.mines; // Used by the mine indicator
-let numberOfMines = initialMines; // Used to calculate mines to be allocated to cells
-let cellCounter = 0; // The unique identifier of each cell
-let minedCells = []; // A array containing the unique identifiers of all the cells that will contain mines
+let numberOfMines = initialMines; // Used to calculate mines to be allocated to squares
+let squareCounter = 0; // The unique identifier of each square
+let minedSquares = []; // A array containing the unique identifiers of all the squares that will contain mines
 
-let flaggedCells = 0;
-let moves = 0; // total number of moves (left and right clicks on active cells)
+let flaggedSquares = 0;
+let moves = 0; // total number of moves (left and right clicks on active squares)
 let startTime = null; // used to calculate time
 let gameFinished = false;
 let newBestMoves = false; // used when the player has made a new best moves record
@@ -124,35 +124,35 @@ let newBestTime = false; // used when the player has made a new best time
  */
 function allocateMines() {
   while (numberOfMines > 0) {
-    let targetCell = Math.floor(Math.random() * (numberOfCells - 1)) + 1;
-    if (!minedCells.includes(targetCell)) {
-      minedCells.push(targetCell);
+    let targetSquare = Math.floor(Math.random() * (numberOfSquares - 1)) + 1;
+    if (!minedSquares.includes(targetSquare)) {
+      minedSquares.push(targetSquare);
       numberOfMines -= 1;
     }
   }
 }
 
-function generateCells() {
+function generateSquares() {
   for (let i = 0; i < columns; i++) {
     for (let j = 0; j < rows; j++) {
-      let newCell = new Cell(i, j);
-      newCell.num = cellCounter;
-      cellCounter += 1;
+      let newSquare = new Square(i, j);
+      newSquare.num = squareCounter;
+      squareCounter += 1;
 
-      // Check whether cell includes mine
-      if (minedCells.includes(newCell.num)) {
-        newCell.mine = true;
+      // Check whether square includes mine
+      if (minedSquares.includes(newSquare.num)) {
+        newSquare.mine = true;
       }
 
-      cells.push(newCell);
+      squares.push(newSquare);
     }
   }
 }
 
-// Calculate mines around each cell
+// Calculate mines around each square
 function calculateMines() {
-  cells.forEach((c) => {
-    // Find neighboring cells
+  squares.forEach((c) => {
+    // Find neighboring squares
     let neighbors = getNeighbors(c);
     let reducer = (accumulator, currentValue) => accumulator + currentValue;
     c.minesAround = neighbors.map((n) => n.mine).reduce(reducer); // Add all mine values to find total
@@ -179,13 +179,13 @@ function setup() {
   background(255);
   cnv = createCanvas(
     boardSize.width,
-    boardSize.height + cellSize * 0.75 // Added extra space for the mines and flagged cells indicators
+    boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
   );
   cnv.parent("board");
-  textSize(cellSize - cellSize * 0.05); // On Mac "cellSize - 1" works better, on Windows "cellSize - 6"
+  textSize(squareSize - squareSize * 0.05); // On Mac "squareSize - 1" works better, on Windows "squareSize - 6"
 
   allocateMines();
-  generateCells();
+  generateSquares();
   calculateMines();
 }
 
@@ -195,67 +195,67 @@ function setup() {
 function draw() {
   background(255);
 
-  translate(-cellSize * 0.075, cellSize - cellSize * 0.075);
-  cells.forEach(function (c) {
+  translate(-squareSize * 0.075, squareSize - squareSize * 0.075);
+  squares.forEach(function (c) {
     c.draw();
   });
 
-  // Show mines and flagged cells indicators
-  textSize(cellSize * 0.6);
+  // Show mines and flagged squares indicators
+  textSize(squareSize * 0.6);
   textStyle(BOLD);
   textFont("Arial");
 
   // Mine indicator
-  if (flaggedCells > initialMines) {
+  if (flaggedSquares > initialMines) {
     fill(248, 49, 47);
   } else {
     fill(35, 35, 35);
   }
-  text(MINE, cellSize * 0.125, boardSize.height - cellSize * 0.275);
+  text(MINE, squareSize * 0.125, boardSize.height - squareSize * 0.275);
   text(
-    nf(Math.max(initialMines - flaggedCells, 0), 3),
-    cellSize,
-    boardSize.height - cellSize * 0.25
+    nf(Math.max(initialMines - flaggedSquares, 0), 3),
+    squareSize,
+    boardSize.height - squareSize * 0.25
   );
 
   // Moves indicator
   fill(35, 35, 35);
   text(
     MOVES,
-    width / 2 - cellSize * 1.975 + cellSize * 0.99,
-    boardSize.height - cellSize * 0.275
+    width / 2 - squareSize * 1.975 + squareSize * 0.99,
+    boardSize.height - squareSize * 0.275
   );
   if (newBestMoves) {
     fill(255, 176, 46);
   }
   text(
     nf(moves, 3),
-    width / 2 - cellSize * 1.975 + 2 * cellSize * 0.99,
-    boardSize.height - cellSize * 0.275
+    width / 2 - squareSize * 1.975 + 2 * squareSize * 0.99,
+    boardSize.height - squareSize * 0.275
   );
 
   // Time indicator
   fill(35, 35, 35);
-  text(TIMER, width - cellSize * 1.975, boardSize.height - cellSize * 0.275);
+  text(TIMER, width - squareSize * 1.975, boardSize.height - squareSize * 0.275);
   if (newBestTime) {
     fill(255, 176, 46);
   }
   text(
     nf(timePassed, 3),
-    width - cellSize * 1.1,
-    boardSize.height - cellSize * 0.25
+    width - squareSize * 1.1,
+    boardSize.height - squareSize * 0.25
   );
-  textSize(cellSize - cellSize * 0.05);
+  textSize(squareSize - squareSize * 0.05);
 }
 
 // Get neighbors
-function getNeighbors(cell) {
-  return cells.filter((n) => {
+function getNeighbors(square) {
+  return squares.filter((n) => {
     return (
-      n.i >= cell.i - 1 &&
-      n.i <= cell.i + 1 &&
-      n.j >= cell.j - 1 &&
-      n.j <= cell.j + 1
+      n.i >= square.i - 1 &&
+      n.i <= square.i + 1 &&
+      n.j >= square.j - 1 &&
+      n.j <= square.j + 1
     );
   });
 }
@@ -266,8 +266,8 @@ function getNeighbors(cell) {
 let isFirstClick = true;
 let mineReallocated = false;
 
-// What happens every time the player clicks on a cell
-function revealCell(cell) {
+// What happens every time the player clicks on a square
+function openSquare(square) {
   // Make sure first click is not on a mine
   if (isFirstClick) {
     startTimer();
@@ -293,13 +293,13 @@ function revealCell(cell) {
         break;
     }
 
-    if (cell.mine) {
-      cell.mine = false;
+    if (square.mine) {
+      square.mine = false;
 
       while (!mineReallocated) {
-        let num = Math.floor(Math.random() * (numberOfCells - 1)) + 1;
-        if (!cells[num].mine) {
-          cells[num].mine = true;
+        let num = Math.floor(Math.random() * (numberOfSquares - 1)) + 1;
+        if (!squares[num].mine) {
+          squares[num].mine = true;
           mineReallocated = true;
         }
       }
@@ -307,31 +307,31 @@ function revealCell(cell) {
     isFirstClick = false;
 
     calculateMines();
-    cells.forEach(function (c) {
+    squares.forEach(function (c) {
       c.draw();
     });
   }
 
-  // Reveal cell
-  cell.revealed = true;
-  cell.clicked = true;
-  if (cell.mine) {
+  // Reveal square
+  square.opened = true;
+  square.clicked = true;
+  if (square.mine) {
     // End game
-    cells.forEach((c) => {
-      c.revealed = true;
+    squares.forEach((c) => {
+      c.opened = true;
     });
     noLoop();
     return;
   }
-  if (cell.minesAround == 0) {
-    // Recursively reveal neighbors
-    let neighbors = getNeighbors(cell);
+  if (square.minesAround == 0) {
+    // Recursively open neighbors
+    let neighbors = getNeighbors(square);
     neighbors.forEach((c) => {
-      if (!c.revealed) {
-        revealCell(c);
+      if (!c.opened) {
+        openSquare(c);
         if (c.flagged) {
           c.flagged = false;
-          flaggedCells -= 1;
+          flaggedSquares -= 1;
         }
       }
     });
@@ -345,48 +345,48 @@ function mousePressed() {
   }
   // Flags
   if (mouseButton === RIGHT || JSON.parse(localStorage.getItem("flagMode"))) {
-    // Find the cell pressed on
-    let cell = cells.find((c) => {
+    // Find the square pressed on
+    let square = squares.find((c) => {
       return (
         c.x < mouseX &&
-        c.x + cellSize > mouseX &&
+        c.x + squareSize > mouseX &&
         c.y < mouseY &&
-        c.y + cellSize > mouseY
+        c.y + squareSize > mouseY
       );
     });
-    if (cell) {
-      // Prevent revealed cells from being flagged
-      if (!cell.revealed) {
-        if (!cell.flagged) {
-          flaggedCells += 1;
+    if (square) {
+      // Prevent opened squares from being flagged
+      if (!square.opened) {
+        if (!square.flagged) {
+          flaggedSquares += 1;
           moves += 1;
         } else {
-          flaggedCells -= 1;
+          flaggedSquares -= 1;
           moves += 1;
         }
-        cell.flagged = !cell.flagged;
+        square.flagged = !square.flagged;
       }
     }
   }
 
-  // Find the cell pressed on
+  // Find the square pressed on
   if (mouseButton === LEFT && !JSON.parse(localStorage.getItem("flagMode"))) {
     if (!gameFinished) {
-      let cell = cells.find((c) => {
+      let square = squares.find((c) => {
         return (
           c.x < mouseX &&
-          c.x + cellSize > mouseX &&
+          c.x + squareSize > mouseX &&
           c.y < mouseY &&
-          c.y + cellSize > mouseY
+          c.y + squareSize > mouseY
         );
       });
-      if (cell) {
-        if (cell.flagged || cell.revealed) {
-          return; // Do not allow revealing when flagged
+      if (square) {
+        if (square.flagged || square.opened) {
+          return; // Do not allow opening when flagged
         }
-        revealCell(cell);
+        openSquare(square);
         moves += 1;
-        if (cell.mine) {
+        if (square.mine) {
           if (!gameFinished) {
             gameLost();
             gameFinished = true;
@@ -394,10 +394,10 @@ function mousePressed() {
           }
         } else {
           // Check if game is won
-          let cellsLeft = cells.filter((c) => {
-            return !c.mine && !c.revealed;
+          let squaresLeft = squares.filter((c) => {
+            return !c.mine && !c.opened;
           }).length;
-          if (cellsLeft == 0) {
+          if (squaresLeft == 0) {
             if (!gameFinished) {
               gameWon();
               gameFinished = true;
@@ -416,8 +416,8 @@ function mousePressed() {
 // Handle win
 function gameWon() {
   NUMBERS[0] = WON;
-  cells.forEach(function (c) {
-    c.revealed = true;
+  squares.forEach(function (c) {
+    c.opened = true;
   });
 
   // Update local storage
@@ -540,8 +540,8 @@ function gameWon() {
 // handle loss
 function gameLost() {
   NUMBERS[0] = LOST;
-  cells.forEach(function (c) {
-    c.revealed = true;
+  squares.forEach(function (c) {
+    c.opened = true;
   });
 
   const endTime = new Date();

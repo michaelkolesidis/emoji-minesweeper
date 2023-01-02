@@ -321,7 +321,7 @@ container.appendChild(statsModal);
 const helpModal = document.createElement("div");
 helpModal.setAttribute("id", "help-modal");
 helpModal.innerHTML += `<div>
-🖱️ Left-click to <span style="font-weight:600;">reveal</span> a cell, right-click to <span style="font-weight:600;">flag</span> a cell
+🖱️ Left-click to <span style="font-weight:600;">open</span> a square, right-click to <span style="font-weight:600;">flag</span> a square
 <hr>
 1️⃣2️⃣3️⃣ Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert, or use ⌨️ keys 1,2, 3
 <hr>
