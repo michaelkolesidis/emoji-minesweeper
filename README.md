@@ -1,7 +1,7 @@
 ![Emoji Minesweeper woodmark](./assets/woodmark_light.svg#gh-dark-mode-only)
 ![Emoji Minesweeper woodmark](./assets/woodmark.svg#gh-light-mode-only)
 
-### Minesweeper made with emojis. The most fun way play minesweeper!
+### Minesweeper made with emojis. The most fun way to play minesweeper!
 
 ![Win mines](./screenshots/win_mines.png)
 ![Win flowers](./screenshots/win_flowers.png)
