@@ -48,13 +48,14 @@ The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/We
 * Stats button toggles the stats panel 
 
 ### Keyboard
-| Key           | Action                       |
-| ------------- |:----------------------------:|
-| Left Arrow    | Switch to Flower Mode        |
-| Right Arrow   | Switch to Mine Mode          |
-| 1             | Switch to Beginner Level     |
-| 2             | Switch to Intermediate Level |
-| 3             | Switch to Expert Level       |
+| Key           | Action                             |
+| ------------- |:----------------------------------:|
+| Ν             | New Game in current level and mode |
+| Left Arrow    | Switch to Flower Mode              |
+| Right Arrow   | Switch to Mine Mode                |
+| 1             | Switch to Beginner Level           |
+| 2             | Switch to Intermediate Level       |
+| 3             | Switch to Expert Level             |
   
 
 
