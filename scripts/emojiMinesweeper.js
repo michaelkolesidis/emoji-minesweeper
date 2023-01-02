@@ -339,7 +339,7 @@ function revealCell(cell) {
 }
 
 function mousePressed() {
-  // Disable click if stats panel is open
+  // Disable click if modal is open
   if (JSON.parse(localStorage.getItem("modalOpen")) === true) {
     return;
   }

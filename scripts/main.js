@@ -26,8 +26,8 @@ if (isFlower === null) {
 }
 let flower = JSON.parse(isFlower);
 
-// statsModal
-window.localStorage.setItem("statsModalOpen", "false");
+// Modal
+window.localStorage.setItem("modalOpen", "false");
 
 // Flag mode
 window.localStorage.setItem("flagMode", "false");
