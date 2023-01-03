@@ -44,7 +44,7 @@ const MOVES = "🧮";
  */
 let settings = {
   level: {
-    // to be overriden by localStorage
+    // to be overridden by localStorage
     columns: 9,
     rows: 9,
     mines: 10,
@@ -94,7 +94,7 @@ switch (level) {
  * Board dimensions and number of mines
  */
 let squares = []; // Array to hold all the square objects
-let squareSize = settings.size.squareSize; // The size (in pixe;s of each square)
+let squareSize = settings.size.squareSize; // The size (in pixels of each square)
 let columns = settings.level.columns; // The number of columns in the board
 let rows = settings.level.rows; // The number of rows in the board
 let numberOfSquares = rows * columns;
@@ -151,11 +151,11 @@ function generateSquares() {
 
 // Calculate mines around each square
 function calculateMines() {
-  squares.forEach((c) => {
-    // Find neighboring squares
-    let neighbors = getNeighbors(c);
+  squares.forEach((s) => {
+    // Find squares touching each square
+    let neighbors = getNeighbors(s);
     let reducer = (accumulator, currentValue) => accumulator + currentValue;
-    c.minesAround = neighbors.map((n) => n.mine).reduce(reducer); // Add all mine values to find total
+    s.minesAround = neighbors.map((n) => n.mine).reduce(reducer); // Add all mine values to find total
   });
 }
 
@@ -196,8 +196,8 @@ function draw() {
   background(255);
 
   translate(-squareSize * 0.075, squareSize - squareSize * 0.075);
-  squares.forEach(function (c) {
-    c.draw();
+  squares.forEach(function (s) {
+    s.draw();
   });
 
   // Show mines and flagged squares indicators
@@ -311,18 +311,18 @@ function openSquare(square) {
     isFirstClick = false;
 
     calculateMines();
-    squares.forEach(function (c) {
-      c.draw();
+    squares.forEach(function (s) {
+      s.draw();
     });
   }
 
-  // Reveal square
+  // Open square
   square.opened = true;
   square.clicked = true;
   if (square.mine) {
     // End game
-    squares.forEach((c) => {
-      c.opened = true;
+    squares.forEach((s) => {
+      s.opened = true;
     });
     noLoop();
     return;
@@ -330,11 +330,11 @@ function openSquare(square) {
   if (square.minesAround == 0) {
     // Recursively open neighbors
     let neighbors = getNeighbors(square);
-    neighbors.forEach((c) => {
-      if (!c.opened) {
-        openSquare(c);
-        if (c.flagged) {
-          c.flagged = false;
+    neighbors.forEach((s) => {
+      if (!s.opened) {
+        openSquare(s);
+        if (s.flagged) {
+          s.flagged = false;
           flaggedSquares -= 1;
         }
       }
@@ -349,13 +349,13 @@ function mousePressed() {
   }
   // Flags
   if (mouseButton === RIGHT || JSON.parse(localStorage.getItem("flagMode"))) {
-    // Find the square pressed on
-    let square = squares.find((c) => {
+    // Find the square the player clicked on
+    let square = squares.find((s) => {
       return (
-        c.x < mouseX &&
-        c.x + squareSize > mouseX &&
-        c.y < mouseY &&
-        c.y + squareSize > mouseY
+        s.x < mouseX &&
+        s.x + squareSize > mouseX &&
+        s.y < mouseY &&
+        s.y + squareSize > mouseY
       );
     });
     if (square) {
@@ -376,12 +376,12 @@ function mousePressed() {
   // Find the square pressed on
   if (mouseButton === LEFT && !JSON.parse(localStorage.getItem("flagMode"))) {
     if (!gameFinished) {
-      let square = squares.find((c) => {
+      let square = squares.find((s) => {
         return (
-          c.x < mouseX &&
-          c.x + squareSize > mouseX &&
-          c.y < mouseY &&
-          c.y + squareSize > mouseY
+          s.x < mouseX &&
+          s.x + squareSize > mouseX &&
+          s.y < mouseY &&
+          s.y + squareSize > mouseY
         );
       });
       if (square) {
@@ -397,9 +397,9 @@ function mousePressed() {
             calculateWinPercentage();
           }
         } else {
-          // Check if game is won
-          let squaresLeft = squares.filter((c) => {
-            return !c.mine && !c.opened;
+          // Check if the game has been won
+          let squaresLeft = squares.filter((s) => {
+            return !s.mine && !s.opened;
           }).length;
           if (squaresLeft == 0) {
             if (!gameFinished) {
@@ -420,8 +420,8 @@ function mousePressed() {
 // Handle win
 function gameWon() {
   NUMBERS[0] = WON;
-  squares.forEach(function (c) {
-    c.opened = true;
+  squares.forEach(function (s) {
+    s.opened = true;
   });
 
   // Update local storage
@@ -544,8 +544,8 @@ function gameWon() {
 // handle loss
 function gameLost() {
   NUMBERS[0] = LOST;
-  squares.forEach(function (c) {
-    c.opened = true;
+  squares.forEach(function (s) {
+    s.opened = true;
   });
 
   const endTime = new Date();

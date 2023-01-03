@@ -28,27 +28,31 @@ class Square {
 
   draw() {
     if (this.opened && this.clicked && this.mine) {
-      text(DETONATION, this.x, this.y);
+      // The mine the player opened
+      text(DETONATION, this.x, this.y); // 💥 or 🐛
       return;
     }
     if (this.opened && this.mine) {
-      text(MINE, this.x, this.y);
+      // The mines the played didn't open
+      text(MINE, this.x, this.y); // 💣 or 🌺
       return;
     }
     if (this.opened && this.flagged) {
-      text(WRONG, this.x, this.y);
+      // Flagged square was not a mine
+      text(WRONG, this.x, this.y); // ❌
       return;
     }
     if (this.opened) {
-      // Calculate the number of mines around and draw that
-      text(NUMBERS[this.minesAround], this.x, this.y);
+      // Calculate the number of mines touching the square
+      text(NUMBERS[this.minesAround], this.x, this.y); // 1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣
       return;
     }
     if (this.flagged) {
-      text(FLAG, this.x, this.y);
+      // Flagged squares
+      text(FLAG, this.x, this.y); // 🚩
       return;
     }
-
-    text(EMPTY, this.x, this.y);
+    // Empty squares
+    text(EMPTY, this.x, this.y); // ⬜️
   }
 }

@@ -42,9 +42,11 @@ There are **three levels** (beginner, intermediate, and expert) and **two modes*
 [HTML](https://en.wikipedia.org/wiki/HTML) is the standard markup language for documents designed to be displayed in a web browser. It is used in every website and web app.
 
 ### Architecture
+
 The game logic and anything that happens inside the board is written in p5.js. The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element, with the help of the p5.js library. The object-oriented JavaScript paradigm is used, as each square is an instance of the class Square. The rest of the UI is written in vanilla JavaScript. Everything was written from scratch, with the whole project having only one dependency (p5.js). 
 
 ### Server 
+
 ***Coming Soon:*** We are currently building our server, which will give players the ability to create an account, save stats and get ranked among other players worldwide! The repository of the server can be found [here](https://github.com/mamarmar/emoji-minesweeper-server).
 
 
@@ -114,6 +116,7 @@ Your level and mode preferences are saved in your computer, so your next game al
 If you forget the basic controls you can click the help button ❔to toggle the help modal. Clicking on the flag button 🚩 will toggle flag mode. This will enable you to flag squares by touching them, or by left-clicking on them. You might want to use this if you are on a phone or tablet.
 
 ### Summary
+
 * **Left-click** to open a square square
 * **Right-click** to flag a square (that you think it) contains a mine
 * 💣 Mines counter
@@ -127,6 +130,7 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * 🚩 button toggles **flag mode** (for touchscreens)
 
 ### Keyboard Controls
+
 | Key           | Action                             |
 | :-----------: |:---------------------------------- |
 | Ν             | New game (current level and mode)  |
@@ -140,11 +144,14 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 
 
 ## Feature List
+
 ### Levels / Modes
+
 * Three levels: beginner, intermediate, expert
 * Two modes: flower mode, mine mode
 
 ### UI/UX
+
 * Levels can be changed using the buttons or keyboard shortcuts
 * Flower and mine modes can be toggled using a button or keyboard shortcuts
 * New game with button or keyboard shortcut
@@ -152,22 +159,26 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * Level and mode preferences are saved
 
 ### Mines
+
 * Random mine allocation on load
 * Ensure that the first click is never on a mine
 
 ### Flagging
+
 * Ability to flag possible location of mines
 * Revealed squares cannot be flagged
 * Whenever a square is revealed it stops being flagged
 * Number of remaining mines becomes red if there are more flagged squares than the number of mines
 
 ### Counters 
+
 * Mine counter showing the number of mines without flags
 * Mine counter becomes red if there are more flagged squares than the number of mines
 * Timer counter shows your time since opening the first square in seconds, gets activated on first click and stops when the game finishes
 * Moves counter
 
 ### Endgame
+
 * Empty squares become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost
 * Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)
 * Empty squares become a partying face emoji and time counter turns gold when the player has made a new best time
@@ -175,6 +186,7 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * Wrongly flagged squares are marked with an X when the played loses
 
 ### Stats
+
 * Games played, games won, winning percentage, and best time are saved on local storage
 * Separate stats for the three levels (beginner, intermediate, expert)
 * Stats modal containing the aforementioned values
@@ -182,6 +194,7 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * Checks for null values
 
 ### Other
+
 * Easy to adjust canvas for different square sizes (no hard-coded values)
 * Help modal
 * Board fade-in effect
@@ -194,16 +207,20 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 
 
 ## More Screenshots
+
 ### Intermediate Level
+
 ![Intermediate Level](./screenshots/intermediate.png)
 
 ### Expert Level
+
 ![Expert Level](./screenshots/expert.png)
 
 
 
 
 ## Emojis
+
 The following emojis are used throughout the game:
 
 😄 😵 🥳 🔲 💣 💥 🚩 ❌ ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛ 🧮 ❔
@@ -218,6 +235,7 @@ The suggested emoji font for the game is the **Segoe UI Emoji font** that can be
 
 
 ## Contributors
+
 * [Michael Kolesidis](https://github.com/michaelkolesidis/)
 * [Margarita Marmaridou](https://github.com/mamarmar/)
 * You can be on this list, too! 
@@ -235,13 +253,14 @@ PS. If someone asks you for any sort of financial backing/donations/payments, yo
 
 
 ## International Campaign to Ban Landmines
+
+![ICBL Logo](./assets/icbl_logo.png)
+
 Antipersonnel landmines are explosive devices designed to be detonated by the presence, proximity, or contact of a person. Placed under or on the ground, they can lie dormant for years and even decades until a person or animal triggers their detonating mechanism.
 
 Incapable of distinguishing between the footfall of a soldier and that of a child, antipersonnel mines cannot be aimed. They indiscriminately kill or injure civilians, aid workers, peacekeepers, and soldiers alike. They pose a threat to the safety of civilians during conflicts and long afterwards.
 
-![ICBL Logo](./assets/icbl_logo.png)
-
-The **[International Campaign to Ban Landmines (ICBL)](http://www.icbl.org/)** is a coalition of non-governmental organizations whose stated objective is a world free of anti-personnel mines and cluster munitions, where mine and cluster munitions survivors see their rights respected and can lead fulfilling lives. **We urge you to visit their website, get informed, and support their work in any way possible.**
+The [International Campaign to Ban Landmines (ICBL)](http://www.icbl.org/) is a coalition of non-governmental organizations whose stated objective is a world free of anti-personnel mines and cluster munitions, where mine and cluster munitions survivors see their rights respected and can lead fulfilling lives. **We urge you to visit their website, get informed, and support their work in any way possible.**
 
 The ICBL, in close partnership with a small number of states, the ICRC, and the UN, put in motion what was later known as the “Ottawa Process” that led to the adoption of the [Mine Ban Treaty](http://www.icbl.org/en-gb/the-treaty/treaty-status.aspx) in September 1997. The Mine Ban Treaty, which includes a comprehensive ban on all antipersonnel mines as well as several measures to redress the harm from past use, was adopted in Oslo (Norway) in September 1997, and opened for signature on 3 December 1997 in Ottawa (Canada.)
 
