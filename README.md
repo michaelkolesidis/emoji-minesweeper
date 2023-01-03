@@ -123,7 +123,7 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * 🧮 Moves counter
 * ⌛ Time counter
 * *New Game* button restarts the game
-* *Stats* button toggles the **stats modal **
+* *Stats* button toggles the **stats modal**
 * 1️⃣2️⃣3️⃣ buttons switch between **levels** (beginner, intermediate, and expert)
 * 💣/🌺 button switches between **modes** (mine and flower)
 * ❔button toggles the **help modal**
