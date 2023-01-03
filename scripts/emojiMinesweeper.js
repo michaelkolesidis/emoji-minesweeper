@@ -1,7 +1,7 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2022 Michael Kolesidis
- *  GNU General Public License v3.0
+ *  Copyright (c) 2023 Michael Kolesidis
+ *  GNU Affero General Public License v3.0
  *
  * minesweeperEmoji.js contains the game functionality,
  * everything that happens inside the game's board. It
@@ -9,7 +9,7 @@
  */
 
 /**
- * Bacis
+ * Basics
  */
 // Disable the Friendly Error System
 // (not used in the minified version of p5js)
@@ -236,7 +236,11 @@ function draw() {
 
   // Time indicator
   fill(35, 35, 35);
-  text(TIMER, width - squareSize * 1.975, boardSize.height - squareSize * 0.275);
+  text(
+    TIMER,
+    width - squareSize * 1.975,
+    boardSize.height - squareSize * 0.275
+  );
   if (newBestTime) {
     fill(255, 176, 46);
   }

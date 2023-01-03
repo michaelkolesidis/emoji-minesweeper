@@ -1,7 +1,7 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2022 Michael Kolesidis
- *  GNU General Public License v3.0
+ *  Copyright (c) 2023 Michael Kolesidis
+ *  GNU Affero General Public License v3.0
  *
  * main.js contains the rest of the UI of the game,
  * anything that happens outside of the board. It
@@ -175,6 +175,11 @@ if (flower) {
 /**
  * Elements
  */
+// Game container (used for footer at the bottom functionality)
+const gameContainer = document.createElement("div");
+gameContainer.setAttribute("id", "game-container");
+document.body.appendChild(gameContainer);
+
 // Header
 const header = document.createElement("div");
 header.className = `header`;
@@ -218,7 +223,7 @@ header.innerHTML =
 <span style="--i:16">r</span>`;
 header.style.fontSize = "31px";
 header.style.letterSpacing = "1px";
-document.body.appendChild(header);
+gameContainer.appendChild(header);
 
 // Board
 const board = document.createElement("div");
@@ -235,12 +240,12 @@ switch (level) {
     break;
 }
 
-document.body.appendChild(board);
+gameContainer.appendChild(board);
 
 // Buttons and Modals Container
 const container = document.createElement("div");
 container.setAttribute("id", "container");
-document.body.appendChild(container);
+gameContainer.appendChild(container);
 
 // New Game Button
 const newGameButton = document.createElement("button");
@@ -320,16 +325,17 @@ container.appendChild(statsModal);
 // Help Modal
 const helpModal = document.createElement("div");
 helpModal.setAttribute("id", "help-modal");
-helpModal.innerHTML += `<div>
-🖱️ Left-click to <span style="font-weight:600;">open</span> a square, right-click to <span style="font-weight:600;">flag</span> a square
-<hr>
-1️⃣2️⃣3️⃣ Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert, or use ⌨️ keys 1,2, 3
-<hr>
-💣/🌺 Switch between <span style="font-weight:600;">flower and mine</span> modes or use ⌨️ left/right arrows
-<hr>
-❔ Toggle <span style="font-weight:600;">help</span>
-<hr>
-🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch/right-click (for touchscreens)
+helpModal.innerHTML += `
+<div>
+  🖱️ Left-click to <span style="font-weight:600;">open</span> a square, right-click to <span style="font-weight:600;">flag</span> a square
+  <hr>
+  1️⃣2️⃣3️⃣ Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert (or use ⌨️ keys 1, 2, 3)
+  <hr>
+  💣/🌺 Switch between <span style="font-weight:600;">flower / mine</span> modes (or use ⌨️ left/right arrows)
+  <hr>
+  ❔ Toggle <span style="font-weight:600;">help</span>
+  <hr>
+  🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch/right-click (for touchscreens)
 </div>
 `;
 
@@ -338,7 +344,7 @@ container.appendChild(helpModal);
 // Level and Mode Buttons
 const levelModeContainer = document.createElement("div");
 levelModeContainer.setAttribute("id", "level-mode-container");
-document.body.appendChild(levelModeContainer);
+gameContainer.appendChild(levelModeContainer);
 
 const beginnerButton = document.createElement("div");
 beginnerButton.className = `emoji-button`;
@@ -381,20 +387,28 @@ flagButton.innerHTML = `🚩`;
 levelModeContainer.appendChild(flagButton);
 // }
 
+// Content Wrap (used for footer at the bottom functionality)
+const contentWrap = document.createElement("div");
+contentWrap.setAttribute("id", "content-wrap");
+gameContainer.appendChild(contentWrap);
+
 // Footer
 const footer = document.createElement("footer");
-footer.innerHTML = `<a 
-                      href="https://github.com/michaelkolesidis/emoji-minesweeper" 
-                      aria-label="Emoji Minesweeper's GitHub repository" 
-                      target="_blank" 
-                      rel="noopener"
-                    >
-                      <img 
-                        alt="m logo" 
-                        src="../assets/m.svg"
-                      />
-                    </a>`;
-document.body.appendChild(footer);
+footer.innerHTML += `
+<p>© 2023 Licensed under the 
+  <a 
+    href="https://www.gnu.org/licenses/agpl-3.0.html" 
+    target="_blank">
+      GNU AGPL
+  </a>
+   | 
+  <a 
+    href="https://github.com/michaelkolesidis/emoji-minesweeper" 
+    target="_blank">
+      GitHub
+  </a>
+</p>`;
+contentWrap.appendChild(footer);
 
 /**
  * Button Functionality

@@ -1,7 +1,7 @@
 ![Emoji Minesweeper woodmark](./assets/woodmark_light.svg#gh-dark-mode-only)
 ![Emoji Minesweeper woodmark](./assets/woodmark.svg#gh-light-mode-only)
 
-### Minesweeper made with emojis. The most fun way play minesweeper!
+### Minesweeper made with emojis. The most fun way to play minesweeper!
 
 ![Win mines](./screenshots/win_mines.png)
 ![Win flowers](./screenshots/win_flowers.png)
@@ -107,6 +107,8 @@ You can use the level buttons 1️⃣2️⃣3️⃣ to switch between levels. Yo
 
 The game features the classic mine mode 💣 and the more peaceful and relaxing flower mode 🌺. You can use the mode button 💣/🌺 to switch between modes, or use the *left and right arrows* on your keyboard. 
 
+Your level and mode preferences are saved in your computer, so your next game always starts with the lastly used configuration.
+
 ![New Record](./screenshots/help.png)
 
 If you forget the basic controls you can click the help button ❔to toggle the help modal. Clicking on the flag button 🚩 will toggle flag mode. This will enable you to flag squares by touching them, or by left-clicking on them. You might want to use this if you are on a phone or tablet.
@@ -147,6 +149,7 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * Flower and mine modes can be toggled using a button or keyboard shortcuts
 * New game with button or keyboard shortcut
 * Flag mode for touchscreens
+* Level and mode preferences are saved
 
 ### Mines
 * Random mine allocation on load
@@ -231,9 +234,23 @@ PS. If someone asks you for any sort of financial backing/donations/payments, yo
 
 
 
+## International Campaign to Ban Landmines
+Antipersonnel landmines are explosive devices designed to be detonated by the presence, proximity, or contact of a person. Placed under or on the ground, they can lie dormant for years and even decades until a person or animal triggers their detonating mechanism.
+
+Incapable of distinguishing between the footfall of a soldier and that of a child, antipersonnel mines cannot be aimed. They indiscriminately kill or injure civilians, aid workers, peacekeepers, and soldiers alike. They pose a threat to the safety of civilians during conflicts and long afterwards.
+
+![ICBL Logo](./assets/icbl_logo.png)
+
+The **[International Campaign to Ban Landmines (ICBL)](http://www.icbl.org/)** is a coalition of non-governmental organizations whose stated objective is a world free of anti-personnel mines and cluster munitions, where mine and cluster munitions survivors see their rights respected and can lead fulfilling lives. **We urge you to visit their website, get informed, and support their work in any way possible.**
+
+The ICBL, in close partnership with a small number of states, the ICRC, and the UN, put in motion what was later known as the “Ottawa Process” that led to the adoption of the [Mine Ban Treaty](http://www.icbl.org/en-gb/the-treaty/treaty-status.aspx) in September 1997. The Mine Ban Treaty, which includes a comprehensive ban on all antipersonnel mines as well as several measures to redress the harm from past use, was adopted in Oslo (Norway) in September 1997, and opened for signature on 3 December 1997 in Ottawa (Canada.)
+
+
+
+
 ## License
 
-<a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/GPLv3_Logo.svg" height="100px" /></a>
+<a href="https://www.gnu.org/licenses/agpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AGPLv3_Logo.svg" height="100px" /></a>
 
-Copyright (c) 2022 Michael Kolesidis<br>
-Licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
+Copyright (c) 2023 Michael Kolesidis<br>
+Licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).
