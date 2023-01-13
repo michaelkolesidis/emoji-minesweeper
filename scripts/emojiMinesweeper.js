@@ -21,21 +21,68 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 // Canvas
 let cnv; // The canvas element that will contain the game
 
+const themes = {
+  mine: {
+    name: "mine",
+    title: "Emoji Minesweeper",
+    mine: "💣",
+    detonation: "💥",
+    won: "😄",
+    lost: "😵",
+  },
+  flower: {
+    name: "flower",
+    title: "Emoji Flower Field",
+    mine: "🌺",
+    detonation: "🐛",
+    won: "😊",
+    lost: "😔",
+  },
+  mushroom: {
+    name: "mushroom",
+    title: "Emoji Shroom Picker",
+    mine: "🍄",
+    detonation: "🦄",
+    won: "😎",
+    lost: "😵‍💫",
+  },
+  bear: {
+    name: "bear",
+    title: "Emoji Bearspotting",
+    mine: "🐻",
+    detonation: "🐾",
+    won: "🌲",
+    lost: "🪵",
+  },
+  octopus: {
+    name: "octopus",
+    title: "Emoji Seasweeper",
+    mine: "🐙",
+    detonation: "🌊",
+    won: "⛵️",
+    lost: "🦈",
+  },
+};
+
 /**
  * Emojis
  */
-// Flower Mode
-let flowerMode = JSON.parse(localStorage.getItem("flower"));
+let theme = window.localStorage.getItem("theme") ?? "mine";
+
+let mineEmoji = themes[theme]["mine"];
+let detonationEmoji = themes[theme]["detonation"];
+let wonEmoji = themes[theme]["won"];
+let lostEmoji = themes[theme]["lost"];
 
 // Emojis
 const EMPTY = "🔲";
 const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 const FLAG = "🚩";
-const DETONATION = flowerMode ? "🐛" : "💥";
-const MINE = flowerMode ? "🌺" : "💣";
+const DETONATION = detonationEmoji;
+const MINE = mineEmoji;
 const WRONG = "❌";
-const WON = flowerMode ? "😊" : "😄";
-const LOST = flowerMode ? "😔" : "😵";
+const WON = wonEmoji;
+const LOST = lostEmoji;
 const TIMER = "⌛";
 const MOVES = "🧮";
 
@@ -605,19 +652,6 @@ function calculateWinPercentage() {
  * Keyboard Action Handling
  */
 function keyPressed() {
-  // Set Mode
-  if (keyCode === LEFT_ARROW) {
-    if (flowerMode !== true) {
-      localStorage.setItem("flower", "true");
-      window.location.reload();
-    }
-  } else if (keyCode === RIGHT_ARROW) {
-    if (flowerMode !== false) {
-      localStorage.setItem("flower", "false");
-      window.location.reload();
-    }
-  }
-
   // Set Level
   if (keyCode === 49 || keyCode === 97) {
     if (level !== "beginner") {
@@ -642,14 +676,4 @@ function keyPressed() {
   if (keyCode === 78) {
     window.location.reload();
   }
-
-  // Toggle Debug Mode
-  // if (keyCode === 68) {
-  //   if (window.location.hash === "") {
-  //     window.location.hash = "#debug";
-  //   } else if (window.location.hash === "#debug") {
-  //     window.location.hash = "";
-  //   }
-  //   window.location.reload();
-  // }
 }

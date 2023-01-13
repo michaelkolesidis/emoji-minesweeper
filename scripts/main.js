@@ -8,6 +8,12 @@
  * also handles the storage and the display of
  * the saved stats.
  */
+import themes from "./themes/themes.js";
+import favicon from "./utils/favicon.js";
+
+import header from "./components/header.js";
+import board from "./components/board.js";
+import footer from "./components/footer.js";
 
 /**
  * Data Storage
@@ -19,12 +25,18 @@ if (gameLevel === null) {
   window.localStorage.setItem("level", "beginner");
 }
 
-// Flower Mode
-let isFlower = window.localStorage.getItem("flower");
-if (isFlower === null) {
-  window.localStorage.setItem("flower", "false");
+// Theme
+let theme = window.localStorage.getItem("theme");
+if (theme === null) {
+  theme = "mine";
+  window.localStorage.setItem("theme", "mine");
 }
-let flower = JSON.parse(isFlower);
+
+// Emojis
+window.localStorage.setItem("emojiMine", themes[theme]["mine"]);
+window.localStorage.setItem("emojiDetonation", themes[theme]["detonation"]);
+window.localStorage.setItem("emojiWon", themes[theme]["won"]);
+window.localStorage.setItem("emojiLost", themes[theme]["lost"]);
 
 // Modal
 window.localStorage.setItem("modalOpen", "false");
@@ -148,29 +160,11 @@ switch (gameLevel) {
  * Basics
  */
 // Title
-if (flower) {
-  document.title = `Emoji Flower Field`;
-} else {
-  document.title = `Emoji Minesweeper`;
-}
+let title = themes[theme]["title"];
+document.title = title;
 
 // Favicon
-if (flower) {
-  const favicon =
-    document.querySelector("link[rel*='icon']") ||
-    document.createElement("link");
-  favicon.rel = "icon";
-  favicon.href =
-    "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌺</text></svg>";
-  document.getElementsByTagName("head")[0].appendChild(favicon);
-} else {
-  const favicon =
-    document.querySelector("link[rel*='icon']") ||
-    document.createElement("link");
-  favicon.rel = "icon";
-  favicon.href = "../assets/favicon.ico";
-  document.getElementsByTagName("head")[0].appendChild(favicon);
-}
+favicon(themes, theme);
 
 /**
  * Elements
@@ -181,66 +175,10 @@ gameContainer.setAttribute("id", "game-container");
 document.body.appendChild(gameContainer);
 
 // Header
-const header = document.createElement("div");
-header.className = `header`;
-header.innerHTML =
-  flower === true
-    ? `<span style="--i:0">E</span>
-<span style="--i:1">m</span>
-<span style="--i:2">o</span>
-<span style="--i:3">j</span>
-<span style="--i:4">i</span>
-<span style="--i:5">&nbsp;</span>
-<span style="--i:6">F</span>
-<span style="--i:7">l</span>
-<span style="--i:8">o</span>
-<span style="--i:9">w</span>
-<span style="--i:10">e</span>
-<span style="--i:11">r</span>
-<span style="--i:12">&nbsp;</span>
-<span style="--i:13">F</span>
-<span style="--i:14">i</span>
-<span style="--i:15">e</span>
-<span style="--i:16">l</span>
-<span style="--i:17">d</span>
-`
-    : `<span style="--i:0">E</span>
-<span style="--i:1">m</span>
-<span style="--i:2">o</span>
-<span style="--i:3">j</span>
-<span style="--i:4">i</span>
-<span style="--i:5">&nbsp;</span>
-<span style="--i:6">M</span>
-<span style="--i:7">i</span>
-<span style="--i:8">n</span>
-<span style="--i:9">e</span>
-<span style="--i:10">s</span>
-<span style="--i:11">w</span>
-<span style="--i:12">e</span>
-<span style="--i:13">e</span>
-<span style="--i:14">p</span>
-<span style="--i:15">e</span>
-<span style="--i:16">r</span>`;
-header.style.fontSize = "31px";
-header.style.letterSpacing = "1px";
-gameContainer.appendChild(header);
+header(title, gameContainer);
 
 // Board
-const board = document.createElement("div");
-board.setAttribute("id", "board");
-switch (level) {
-  case "beginner":
-    board.style.height = "317px"; // canvas size - 0.6px
-    break;
-  case "intermediate":
-    board.style.height = "541px";
-    break;
-  case "expert":
-    board.style.height = "541px";
-    break;
-}
-
-gameContainer.appendChild(board);
+board(gameContainer);
 
 // Buttons and Modals Container
 const container = document.createElement("div");
@@ -336,7 +274,7 @@ helpModal.innerHTML += `
   <hr>
   1️⃣2️⃣3️⃣ Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert (or use ⌨️ keys 1, 2, 3)
   <hr>
-  💣/🌺 Switch between <span style="font-weight:600;">flower / mine</span> modes (or use ⌨️ left/right arrows)
+  💣/🌺/🍄/🐻/🐙 Switch between <span style="font-weight:600;">themes</span> (or use ⌨️ left/right arrows)
   <hr>
   ❔ Toggle <span style="font-weight:600;">help</span>
   <hr>
@@ -347,9 +285,9 @@ helpModal.innerHTML += `
 container.appendChild(helpModal);
 
 // Level and Mode Buttons
-const levelModeContainer = document.createElement("div");
-levelModeContainer.setAttribute("id", "level-mode-container");
-gameContainer.appendChild(levelModeContainer);
+const emojiButtonContainer = document.createElement("div");
+emojiButtonContainer.setAttribute("id", "emoji-button-container");
+gameContainer.appendChild(emojiButtonContainer);
 
 const beginnerButton = document.createElement("div");
 beginnerButton.className = `emoji-button`;
@@ -357,7 +295,7 @@ beginnerButton.innerHTML = `1️⃣`;
 if (level === "beginner") {
   beginnerButton.classList.add("emoji-button-clicked");
 }
-levelModeContainer.appendChild(beginnerButton);
+emojiButtonContainer.appendChild(beginnerButton);
 
 const intermediateButton = document.createElement("div");
 intermediateButton.className = `emoji-button`;
@@ -365,7 +303,7 @@ intermediateButton.innerHTML = `2️⃣`;
 if (level === "intermediate") {
   intermediateButton.classList.add("emoji-button-clicked");
 }
-levelModeContainer.appendChild(intermediateButton);
+emojiButtonContainer.appendChild(intermediateButton);
 
 const expertButton = document.createElement("div");
 expertButton.className = `emoji-button`;
@@ -373,23 +311,24 @@ expertButton.innerHTML = `3️⃣`;
 if (level === "expert") {
   expertButton.classList.add("emoji-button-clicked");
 }
-levelModeContainer.appendChild(expertButton);
+emojiButtonContainer.appendChild(expertButton);
 
 const modeButton = document.createElement("div");
 modeButton.className = `emoji-button`;
-modeButton.innerHTML = flower ? `🌺` : `💣`;
-levelModeContainer.appendChild(modeButton);
+modeButton.innerHTML = themes[theme]["mine"];
+
+emojiButtonContainer.appendChild(modeButton);
 
 const helpButton = document.createElement("div");
 helpButton.className = `emoji-button`;
 helpButton.innerHTML = `❔`;
-levelModeContainer.appendChild(helpButton);
+emojiButtonContainer.appendChild(helpButton);
 
 const flagButton = document.createElement("div");
 flagButton.className = `emoji-button`;
 flagButton.innerHTML = `🚩`;
 // if (/Android|iPhone/i.test(navigator.userAgent)) {
-levelModeContainer.appendChild(flagButton);
+emojiButtonContainer.appendChild(flagButton);
 // }
 
 // Content Wrap (used for footer at the bottom functionality)
@@ -398,22 +337,7 @@ contentWrap.setAttribute("id", "content-wrap");
 gameContainer.appendChild(contentWrap);
 
 // Footer
-const footer = document.createElement("footer");
-footer.innerHTML += `
-<p>© 2023 Licensed under the 
-  <a 
-    href="https://www.gnu.org/licenses/agpl-3.0.html" 
-    target="_blank">
-      GNU AGPL
-  </a>
-   | 
-  <a 
-    href="https://github.com/michaelkolesidis/emoji-minesweeper" 
-    target="_blank">
-      GitHub
-  </a>
-</p>`;
-contentWrap.appendChild(footer);
+footer(contentWrap);
 
 /**
  * Button Functionality
@@ -479,10 +403,7 @@ expertButton.addEventListener("click", () => {
 
 // Mode Buttons Functionality
 modeButton.addEventListener("click", () => {
-  flower
-    ? localStorage.setItem("flower", "false")
-    : localStorage.setItem("flower", "true");
-  window.location.reload();
+  themeSwitcher();
 });
 
 // Flag Mode Button Functionality
@@ -528,5 +449,62 @@ helpButton.addEventListener("click", () => {
     helpModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
     helpButton.classList.add("emoji-button-clicked");
+  }
+});
+
+/**
+ * Utility Functions
+ */
+function themeSwitcher() {
+  if (theme === "mine") {
+    theme = "flower";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "flower") {
+    theme = "mushroom";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "mushroom") {
+    theme = "bear";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "bear") {
+    theme = "octopus";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "octopus") {
+    theme = "mine";
+    localStorage.setItem("theme", theme);
+  }
+  window.location.reload();
+}
+
+function reverseThemeSwitcher() {
+  if (theme === "mine") {
+    theme = "octopus";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "octopus") {
+    theme = "bear";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "bear") {
+    theme = "mushroom";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "mushroom") {
+    theme = "flower";
+    localStorage.setItem("theme", theme);
+  } else if (theme === "flower") {
+    theme = "mine";
+    localStorage.setItem("theme", theme);
+  }
+  window.location.reload();
+}
+
+/**
+ * Keyboard Action Handling
+ */
+document.addEventListener("keydown", (event) => {
+  // Switch Themes
+  if (event.code === "ArrowRight") {
+    themeSwitcher();
+  }
+
+  if (event.code === "ArrowLeft") {
+    reverseThemeSwitcher();
   }
 });

@@ -65,7 +65,6 @@ a:hover {
 .header span {
   position: relative;
   display: inline-block;
-  margin: -0.307rem;
 }
 
 .header:hover > span {
@@ -223,7 +222,7 @@ hr {
 }
 
 /* Emoji Buttons */
-#level-mode-container {
+#emoji-button-container {
   display: flex;
   align-items: center;
 }

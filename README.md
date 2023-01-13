@@ -17,7 +17,7 @@ Emoji Minesweeper **always makes the first click safe**. You open squares with t
 
 The game ends when all safe squares have been opened (**win**) or when a square containing a mine is opened (**loss**). If you win, the empty square get filled with happy faces 😄, and if you loose they get filled with sad faces 😵.
 
-There are **three levels** (beginner, intermediate, and expert) and **two modes** (flower mode and mine mode) to choose from.
+There are **three levels** (beginner, intermediate, and expert) and **five themes** (mine, flower, mushroom, bear and sea) to choose from.
 
 
 
@@ -86,6 +86,7 @@ If you click on a mine you lose the game. If you had wrongly flagged any squares
 
 ![Loss mine](./screenshots/loss_mines.png)
 ![Loss flower](./screenshots/loss_flowers.png)
+![Loss mushroom](./screenshots/loss_mushroom.png)
 
 Losing looks like this. Not too bad, huh? In order to win a game, you need to open all the safe squares. When you win or lose a game you need to start a new one. You can achieve that by clicking on the *New Game* button or by pressing the *N key*.
 
@@ -107,9 +108,13 @@ There are three difficulty levels, with different board sizes and numbers of min
 
 You can use the level buttons 1️⃣2️⃣3️⃣ to switch between levels. You can also use the *keyboard keys 1,2 and 3*.
 
-The game features the classic mine mode 💣 and the more peaceful and relaxing flower mode 🌺. You can use the mode button 💣/🌺 to switch between modes, or use the *left and right arrows* on your keyboard. 
+The game features five themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻 and a sea theme 🐙. You can use the theme button 💣/🌺/🍄/🐻/🐙 to switch between themes, or use the *left and right arrows* on your keyboard. 
 
-Your level and mode preferences are saved in your computer, so your next game always starts with the lastly used configuration.
+![Win mushroom](./screenshots/win_mushroom.png)
+![Win bear](./screenshots/win_bear.png)
+![Win octopus](./screenshots/win_octopus.png)
+
+These are the rest of the themes. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
 
 ![New Record](./screenshots/help.png)
 
@@ -125,7 +130,7 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 * *New Game* button restarts the game
 * *Stats* button toggles the **stats modal**
 * 1️⃣2️⃣3️⃣ buttons switch between **levels** (beginner, intermediate, and expert)
-* 💣/🌺 button switches between **modes** (mine and flower)
+* 💣/🌺/🍄/🐻/🐙 button switches between **themes** (mine, flower, mushroom, bear and sea)
 * ❔button toggles the **help modal**
 * 🚩 button toggles **flag mode** (for touchscreens)
 
@@ -133,9 +138,9 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 
 | Key           | Action                             |
 | :-----------: |:---------------------------------- |
-| Ν             | New game (current level and mode)  |
-| Left Arrow    | Switch to flower mode              |
-| Right Arrow   | Switch to mine mode                |
+| Ν             | New game (current level and theme) |
+| Left Arrow    | Switch to next  theme              |
+| Right Arrow   | Switch to previous theme           |
 | 1             | Switch to beginner level           |
 | 2             | Switch to intermediate level       |
 | 3             | Switch to expert level             |
@@ -145,18 +150,18 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 
 ## Feature List
 
-### Levels / Modes
+### Levels / Themes
 
 * Three levels: beginner, intermediate, expert
-* Two modes: flower mode, mine mode
+* Five themes: mine, flower, mushroom, bear and sea
 
 ### UI/UX
 
 * Levels can be changed using the buttons or keyboard shortcuts
-* Flower and mine modes can be toggled using a button or keyboard shortcuts
+* Themes can be switched using a button or keyboard shortcuts
 * New game with button or keyboard shortcut
 * Flag mode for touchscreens
-* Level and mode preferences are saved
+* Level and theme preferences are saved
 
 ### Mines
 
@@ -225,9 +230,22 @@ The following emojis are used throughout the game:
 
 😄 😵 🥳 🔲 💣 💥 🚩 ❌ ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛ 🧮 ❔
 
-The following emojis are used in flower mode only:
+Flower theme emojis:
 
 😊 😔 🌺 🐛
+
+Mushroom theme emojis:
+
+🍄 🦄 😎 😵‍💫
+
+Bear theme emojis:
+
+🐻 🐾 🌲 🪵
+
+Sea theme emojis:
+
+🐙 🌊 ⛵️ 🦈
+
 
 The suggested emoji font for the game is the **Segoe UI Emoji font** that can be found [here](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji). If you are running Windows 11, this font family is already installed on your computer. If you are running Linux, you can install and use the Segoe UI font family by following these [instructions](https://vyshnav.xyz/blog/windows-11-emojis-on-linux).
 
