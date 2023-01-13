@@ -82,6 +82,8 @@ In order to make our life easier, and keep track of the squares containing mines
 
 Be careful, because if you flag more squares than the total number of mines, you won't be able to finish the game, until you unflag some squares. Fortunately, we've got you covered on that too, as the **mine counter will turn red** if you do so.
 
+![X Marked](./screenshots/x_mark.png)
+
 If you click on a mine you lose the game. If you had wrongly flagged any squares as mines they will be marked with an ❌, to help you identify your mistakes. 
 
 ![Loss mine](./screenshots/loss_mines.png)
