@@ -116,13 +116,19 @@ There are three difficulty levels, with different board sizes and numbers of min
 
 You can use the level buttons 1️⃣2️⃣3️⃣ to switch between levels. You can also use the *keyboard keys 1,2 and 3*.
 
-The game features five themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻 and a sea theme 🐙. You can use the theme button 💣/🌺/🍄/🐻/🐙 to switch between themes, or use the *left and right arrows* on your keyboard. 
+The game features five themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻 and a sea theme 🐙. You can use the theme button 💣/🌺/🍄/🐻/🐙 to switch between themes, or use the *left and right arrows* on your keyboard. These are the rest of the themes:
 
 ![Win mushroom](./screenshots/win_mushroom.png)
+
+The mushroom theme.
+
 ![Win bear](./screenshots/win_bear.png)
+
+The bear theme.
+
 ![Win octopus](./screenshots/win_octopus.png)
 
-These are the rest of the themes. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
+And the sea (octopus) theme. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
 
 ![New Record](./screenshots/help.png)
 
