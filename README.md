@@ -17,7 +17,7 @@ Emoji Minesweeper **always makes the first click safe**. You open squares with t
 
 The game ends when all safe squares have been opened (**win**) or when a square containing a mine is opened (**loss**). If you win, the empty square get filled with happy faces 😄, and if you loose they get filled with sad faces 😵.
 
-There are **three levels** (beginner, intermediate, and expert) and **five themes** (mine, flower, mushroom, bear and sea) to choose from.
+There are **three levels** (beginner, intermediate, and expert) and **five themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻 and sea 🐙) to choose from.
 
 
 
