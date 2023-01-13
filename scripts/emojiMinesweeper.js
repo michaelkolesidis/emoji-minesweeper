@@ -642,4 +642,14 @@ function keyPressed() {
   if (keyCode === 78) {
     window.location.reload();
   }
+
+  // Toggle Debug Mode
+  // if (keyCode === 68) {
+  //   if (window.location.hash === "") {
+  //     window.location.hash = "#debug";
+  //   } else if (window.location.hash === "#debug") {
+  //     window.location.hash = "";
+  //   }
+  //   window.location.reload();
+  // }
 }
