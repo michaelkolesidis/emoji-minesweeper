@@ -87,10 +87,16 @@ Be careful, because if you flag more squares than the total number of mines, you
 If you click on a mine you lose the game. If you had wrongly flagged any squares as mines they will be marked with an ❌, to help you identify your mistakes. 
 
 ![Loss mine](./screenshots/loss_mines.png)
+
+Yeah, losing looks like this.
+
 ![Loss flower](./screenshots/loss_flowers.png)
+
+Or like this.
+
 ![Loss mushroom](./screenshots/loss_mushroom.png)
 
-Losing looks like this. Not too bad, huh? In order to win a game, you need to open all the safe squares. When you win or lose a game you need to start a new one. You can achieve that by clicking on the *New Game* button or by pressing the *N key*.
+Or like this. Not too bad, huh? In order to win a game, you need to open all the safe squares. When you win or lose a game you need to start a new one. You can achieve that by clicking on the *New Game* button or by pressing the *N key*.
 
 ![Stats](./screenshots/stats.png)
 
