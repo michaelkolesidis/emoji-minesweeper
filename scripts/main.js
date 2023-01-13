@@ -262,7 +262,7 @@ container.appendChild(statsModal);
 
 // Stats modal in debug mode
 if (window.location.hash === "#debug") {
-  statsModal.innerHTML = `<h2>Debug Mode<h2>`;
+  statsModal.innerHTML = `<h3>Debug Mode<h3>`;
 }
 
 // Help Modal
