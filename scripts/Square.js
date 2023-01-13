@@ -54,5 +54,16 @@ class Square {
     }
     // Empty squares
     text(EMPTY, this.x, this.y); // ⬜️
+
+    // Square numbers and mine locations for debugging
+    if (window.location.hash === "#debug") {
+      textSize(10.5);
+      if (this.mine) {
+        fill(255, 61, 61);
+      }
+      text(this.num, this.x + squareSize / 2.5, this.y - squareSize / 6);
+      textSize(squareSize - squareSize * 0.05);
+      fill(0, 0, 0);
+    }
   }
 }

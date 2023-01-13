@@ -322,6 +322,11 @@ statsModal.appendChild(clearDataButton);
 
 container.appendChild(statsModal);
 
+// Stats modal in debug mode
+if (window.location.hash === "#debug") {
+  statsModal.innerHTML = `<h2>Debug Mode<h2>`;
+}
+
 // Help Modal
 const helpModal = document.createElement("div");
 helpModal.setAttribute("id", "help-modal");
