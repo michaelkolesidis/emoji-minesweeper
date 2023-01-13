@@ -68,6 +68,7 @@ const themes = {
  * Emojis
  */
 let theme = window.localStorage.getItem("theme") ?? "mine";
+window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
 
 let mineEmoji = themes[theme]["mine"];
 let detonationEmoji = themes[theme]["detonation"];
@@ -85,6 +86,11 @@ const WON = wonEmoji;
 const LOST = lostEmoji;
 const TIMER = "⌛";
 const MOVES = "🧮";
+
+/**
+ * Title
+ */
+window.localStorage.setItem("title", themes[theme]["title"]);
 
 /**
  * Settings

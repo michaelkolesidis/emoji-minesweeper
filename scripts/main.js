@@ -8,9 +8,7 @@
  * also handles the storage and the display of
  * the saved stats.
  */
-import themes from "./themes/themes.js";
 import favicon from "./utils/favicon.js";
-
 import header from "./components/header.js";
 import board from "./components/board.js";
 import footer from "./components/footer.js";
@@ -32,11 +30,11 @@ if (theme === null) {
   window.localStorage.setItem("theme", "mine");
 }
 
-// Emojis
-window.localStorage.setItem("emojiMine", themes[theme]["mine"]);
-window.localStorage.setItem("emojiDetonation", themes[theme]["detonation"]);
-window.localStorage.setItem("emojiWon", themes[theme]["won"]);
-window.localStorage.setItem("emojiLost", themes[theme]["lost"]);
+// Emoji
+let mainEmoji = window.localStorage.getItem("mainEmoji");
+if (mainEmoji === null) {
+  mainEmoji = "💣";
+}
 
 // Modal
 window.localStorage.setItem("modalOpen", "false");
@@ -160,11 +158,11 @@ switch (gameLevel) {
  * Basics
  */
 // Title
-let title = themes[theme]["title"];
+let title = window.localStorage.getItem("title") ?? "Emoji Minesweeper";
 document.title = title;
 
 // Favicon
-favicon(themes, theme);
+favicon(mainEmoji);
 
 /**
  * Elements
@@ -315,7 +313,7 @@ emojiButtonContainer.appendChild(expertButton);
 
 const modeButton = document.createElement("div");
 modeButton.className = `emoji-button`;
-modeButton.innerHTML = themes[theme]["mine"];
+modeButton.innerHTML = mainEmoji;
 
 emojiButtonContainer.appendChild(modeButton);
 
