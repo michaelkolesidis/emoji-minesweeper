@@ -1,4 +1,4 @@
-export default function header(title, parent) {
+export default function Header(title) {
   const header = document.createElement("div");
   header.className = `header`;
 
@@ -11,5 +11,6 @@ export default function header(title, parent) {
   }
 
   header.style.fontSize = "31px";
-  parent.appendChild(header);
+
+  return header;
 }

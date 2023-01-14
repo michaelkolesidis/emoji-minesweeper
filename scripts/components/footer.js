@@ -1,4 +1,4 @@
-export default function footer(parent) {
+export default function Footer() {
   const footer = document.createElement("footer");
   footer.innerHTML += `
     <p>© 2023 Licensed under the 
@@ -14,5 +14,6 @@ export default function footer(parent) {
           GitHub
       </a>
     </p>`;
-  parent.appendChild(footer);
+
+  return footer;
 }

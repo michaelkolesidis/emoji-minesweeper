@@ -222,7 +222,7 @@ hr {
 }
 
 /* Emoji Buttons */
-#emoji-button-container {
+#emoji-buttons-container {
   display: flex;
   align-items: center;
 }

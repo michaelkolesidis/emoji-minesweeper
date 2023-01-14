@@ -1,4 +1,4 @@
-export default function board(parent) {
+export default function Board(parent) {
   const board = document.createElement("div");
   board.setAttribute("id", "board");
   switch (level) {
@@ -13,5 +13,5 @@ export default function board(parent) {
       break;
   }
 
-  parent.appendChild(board);
+  return board;
 }
