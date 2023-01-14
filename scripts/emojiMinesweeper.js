@@ -233,6 +233,7 @@ function setup() {
     boardSize.width,
     boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
   );
+  cnv,fontKerning = "none";
   cnv.parent("board");
   textSize(squareSize - squareSize * 0.05); // On Mac "squareSize - 1" works better, on Windows "squareSize - 6"
 
@@ -246,6 +247,10 @@ function setup() {
  */
 function draw() {
   background(255);
+
+  if (navigator.userAgent.includes("Firefox")) {
+    translate(squareSize / 10, 0);
+  }
 
   translate(-squareSize * 0.075, squareSize - squareSize * 0.075);
   squares.forEach(function (s) {
