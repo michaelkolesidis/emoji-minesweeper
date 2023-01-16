@@ -28,6 +28,13 @@ body {
   font-family: sans-serif;
 }
 
+#error-page {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
 a,
 a:focus,
 a:active,
