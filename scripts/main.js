@@ -8,7 +8,7 @@
  * also handles the storage and the display of
  * the saved stats.
  */
-import favicon from "./utils/favicon.js";
+// import favicon from "./utils/favicon.js";
 import Header from "./components/header.js";
 import Board from "./components/board.js";
 import Footer from "./components/footer.js";
@@ -50,7 +50,7 @@ let title = window.localStorage.getItem("title") ?? "Emoji Minesweeper";
 document.title = title;
 
 // Favicon
-favicon(mainEmoji);
+// favicon(mainEmoji);
 
 /**
  * Elements
@@ -61,7 +61,7 @@ gameContainer.setAttribute("id", "game-container");
 document.body.appendChild(gameContainer);
 
 // Header
-const header = Header(title);
+let header = Header(title);
 gameContainer.appendChild(header);
 
 // Board
@@ -215,7 +215,12 @@ function themeSwitcher() {
     theme = "mine";
     localStorage.setItem("theme", theme);
   }
-  window.location.reload();
+
+  if (!gameFinished) {
+    switchTheme();
+  } else {
+    window.location.reload();
+  }
 }
 
 function reverseThemeSwitcher() {
@@ -235,7 +240,25 @@ function reverseThemeSwitcher() {
     theme = "mine";
     localStorage.setItem("theme", theme);
   }
-  window.location.reload();
+
+  if (!gameFinished) {
+    switchTheme();
+  } else {
+    window.location.reload();
+  }
+}
+
+function switchTheme() {
+  MINE = themes[theme]["mine"];
+  DETONATION = themes[theme]["detonation"];
+  WON = themes[theme]["won"];
+  LOST = themes[theme]["lost"];
+  window.localStorage.setItem("title", themes[theme]["title"]);
+  title = window.localStorage.getItem("title");
+  document.title = title;
+  // favicon(themes[theme]["mine"]);
+  header.innerHTML = themes[theme]["title"];
+  themeButton.innerHTML = themes[theme]["mine"];
 }
 
 /**

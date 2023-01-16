@@ -79,11 +79,11 @@ let lostEmoji = themes[theme]["lost"];
 const EMPTY = "🔲";
 const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 const FLAG = "🚩";
-const DETONATION = detonationEmoji;
-const MINE = mineEmoji;
+let DETONATION = detonationEmoji;
+let MINE = mineEmoji;
 const WRONG = "❌";
-const WON = wonEmoji;
-const LOST = lostEmoji;
+let WON = wonEmoji;
+let LOST = lostEmoji;
 const TIMER = "⌛";
 const MOVES = "🧮";
 
