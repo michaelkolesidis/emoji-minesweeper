@@ -291,6 +291,8 @@ const isLocalhost = Boolean(
 
 if (!isLocalhost) {
   if (
+    window.location.href !== "emojiminesweeper.com" ||
+    window.location.href !== "https://emojiminesweeper.com" ||
     window.location.href !== "https://emojiminesweeper.com/" ||
     window.location.href !== "http://emojiminesweeper.com/" ||
     window.location.href !== "https://www.emojiminesweeper.com/" ||
