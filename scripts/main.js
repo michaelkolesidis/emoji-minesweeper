@@ -275,27 +275,3 @@ document.addEventListener("keydown", (event) => {
     reverseThemeSwitcher();
   }
 });
-
-/**
- * 404
- */
-const isLocalhost = Boolean(
-  window.location.hostname === "localhost" ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === "[::1]" ||
-    // 127.0.0.1/8 is considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-);
-
-let pathname = window.location.pathname;
-
-if (!isLocalhost) {
-  if (pathname !== "/" || pathname !== "/index.html") {
-    document.body.innerHTML = `<img src="../assets/woodmark.svg" style="width: 300px; margin: 20px;" alt="Emoji Minesweeper logo and woodmark">`;
-    document.body.innerHTML += `<h1 style="margin-top: 20px; font-size: 100px">404<h1>`;
-    document.body.innerHTML += `<h2 style="margin-bottom: 60px;font-size: 20px">Nothing to see here!<h2>`;
-    document.body.innerHTML += `<a href="https://emojiminesweeper.com/"><button  style="font-size: 30px; font-weight: 600">Back to Game</button></a>`;
-  }
-}
