@@ -256,6 +256,7 @@ function switchTheme() {
   window.localStorage.setItem("title", themes[theme]["title"]);
   title = window.localStorage.getItem("title");
   document.title = title;
+  window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
   // favicon(themes[theme]["mine"]);
   header.innerHTML = themes[theme]["title"];
   themeButton.innerHTML = themes[theme]["mine"];
