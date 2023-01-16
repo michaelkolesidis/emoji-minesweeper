@@ -1,3 +1,10 @@
+/*
+ *  Emoji Minesweeper
+ *  Copyright (c) 2023 Michael Kolesidis
+ *  GNU Affero General Public License v3.0
+ *
+ */
+
 export default function HelpModal() {
   const helpModal = document.createElement("div");
   helpModal.setAttribute("id", "help-modal");
@@ -11,7 +18,7 @@ export default function HelpModal() {
   <hr>
   ❔ Toggle <span style="font-weight:600;">help</span>
   <hr>
-  🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch/right-click (for touchscreens)
+  🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch / right-click (or use ⌨️ the F key)
 </div>
 `;
 

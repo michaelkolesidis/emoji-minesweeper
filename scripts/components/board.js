@@ -1,4 +1,11 @@
-export default function Board(parent) {
+/*
+ *  Emoji Minesweeper
+ *  Copyright (c) 2023 Michael Kolesidis
+ *  GNU Affero General Public License v3.0
+ *
+ */
+
+export default function Board() {
   const board = document.createElement("div");
   board.setAttribute("id", "board");
   switch (level) {

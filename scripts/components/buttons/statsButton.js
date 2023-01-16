@@ -1,3 +1,10 @@
+/*
+ *  Emoji Minesweeper
+ *  Copyright (c) 2023 Michael Kolesidis
+ *  GNU Affero General Public License v3.0
+ * 
+ */
+
 export default function StatsButton() {
   // Button
   const statsButton = document.createElement("button");

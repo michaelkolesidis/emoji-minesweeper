@@ -8,6 +8,7 @@
  * also handles the storage and the display of
  * the saved stats.
  */
+
 // import favicon from "./utils/favicon.js";
 import Header from "./components/header.js";
 import Board from "./components/board.js";
@@ -107,7 +108,7 @@ const expertButton = ExpertButton(level);
 emojiButtonsContainer.appendChild(expertButton);
 
 // Theme Button
-const themeButton = ThemeButton(mainEmoji);
+const themeButton = ThemeButton(mainEmoji, header);
 emojiButtonsContainer.appendChild(themeButton);
 
 // Help Button
@@ -115,7 +116,7 @@ const helpButton = HelpButton();
 emojiButtonsContainer.appendChild(helpButton);
 
 // Flag Button
-const flagButton = FlagButton();
+const flagButton = FlagButton(board);
 // if (/Android|iPhone/i.test(navigator.userAgent)) {
 emojiButtonsContainer.appendChild(flagButton);
 // }
@@ -158,11 +159,6 @@ statsButton.addEventListener("click", () => {
   }
 });
 
-// Theme Button Functionality
-themeButton.addEventListener("click", () => {
-  themeSwitcher();
-});
-
 // Help Button Functionality
 let helpModalOpen = false;
 helpButton.addEventListener("click", () => {
@@ -192,86 +188,5 @@ helpButton.addEventListener("click", () => {
     helpModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
     helpButton.classList.add("emoji-button-clicked");
-  }
-});
-
-/**
- * Utility Functions
- */
-function themeSwitcher() {
-  if (theme === "mine") {
-    theme = "flower";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "flower") {
-    theme = "mushroom";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "mushroom") {
-    theme = "bear";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "bear") {
-    theme = "octopus";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "octopus") {
-    theme = "mine";
-    localStorage.setItem("theme", theme);
-  }
-
-  if (!gameFinished) {
-    switchTheme();
-  } else {
-    window.location.reload();
-  }
-}
-
-function reverseThemeSwitcher() {
-  if (theme === "mine") {
-    theme = "octopus";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "octopus") {
-    theme = "bear";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "bear") {
-    theme = "mushroom";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "mushroom") {
-    theme = "flower";
-    localStorage.setItem("theme", theme);
-  } else if (theme === "flower") {
-    theme = "mine";
-    localStorage.setItem("theme", theme);
-  }
-
-  if (!gameFinished) {
-    switchTheme();
-  } else {
-    window.location.reload();
-  }
-}
-
-function switchTheme() {
-  MINE = themes[theme]["mine"];
-  DETONATION = themes[theme]["detonation"];
-  WON = themes[theme]["won"];
-  LOST = themes[theme]["lost"];
-  window.localStorage.setItem("title", themes[theme]["title"]);
-  title = window.localStorage.getItem("title");
-  document.title = title;
-  window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
-  // favicon(themes[theme]["mine"]);
-  header.innerHTML = themes[theme]["title"];
-  themeButton.innerHTML = themes[theme]["mine"];
-}
-
-/**
- * Keyboard Action Handling
- */
-document.addEventListener("keydown", (event) => {
-  // Switch Themes
-  if (event.code === "ArrowRight") {
-    themeSwitcher();
-  }
-
-  if (event.code === "ArrowLeft") {
-    reverseThemeSwitcher();
   }
 });

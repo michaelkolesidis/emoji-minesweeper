@@ -105,6 +105,10 @@ canvas {
   }
 }
 
+.flag-mode {
+  cursor: crosshair;
+}
+
 /* Elements Container */
 #container {
   padding: 0;

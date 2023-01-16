@@ -1,3 +1,11 @@
+/*
+ *  Emoji Minesweeper
+ *  Copyright (c) 2023 Michael Kolesidis
+ *  GNU Affero General Public License v3.0
+ *
+ * { CURRENTLY NOT IN USE! }
+ */
+
 const favicon = (emoji) => {
   const favicon =
     document.querySelector("link[rel*='icon']") ||
