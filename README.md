@@ -122,7 +122,7 @@ The game features five themes with different emoji sets to choose from. Apart fr
 
 The mushroom theme.
 
-![Win bear](./screenshots/win_bear.png)
+![Win bear](./screenshots/win_bear_v2.png)
 
 The bear theme.
 
@@ -254,7 +254,7 @@ Mushroom theme emojis:
 
 Bear theme emojis:
 
-🐻 🐾 🌲 🪵
+🐻 🐾 🌳 🪵
 
 Sea theme emojis:
 

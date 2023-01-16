@@ -51,7 +51,7 @@ const themes = {
     title: "Emoji Bearspotting",
     mine: "🐻",
     detonation: "🐾",
-    won: "🌲",
+    won: "🌳",
     lost: "🪵",
   },
   octopus: {
