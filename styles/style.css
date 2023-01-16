@@ -21,10 +21,6 @@
 html,
 body {
   background-color: var(--secondary-color);
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
 }
 
 body {
