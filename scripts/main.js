@@ -289,19 +289,10 @@ const isLocalhost = Boolean(
     )
 );
 
+let pathname = window.location.pathname;
+
 if (!isLocalhost) {
-  if (
-    window.location.href != "emojiminesweeper.com" ||
-    window.location.href != "https://emojiminesweeper.com" ||
-    window.location.href != "https://emojiminesweeper.com/" ||
-    window.location.href != "http://emojiminesweeper.com/" ||
-    window.location.href != "https://www.emojiminesweeper.com/" ||
-    window.location.href != "http://www.emojiminesweeper.com/" ||
-    window.location.href != "https://emojiminesweeper.com/index.html" ||
-    window.location.href != "http://emojiminesweeper.com/index.html" ||
-    window.location.href != "https://www.emojiminesweeper.com/index.html" ||
-    window.location.href != "http://www.emojiminesweeper.com/index.html"
-  ) {
+  if (pathname !== "/" || pathname !== "/index.html") {
     document.body.innerHTML = `<img src="../assets/woodmark.svg" style="width: 300px; margin: 20px;" alt="Emoji Minesweeper logo and woodmark">`;
     document.body.innerHTML += `<h1 style="margin-top: 20px; font-size: 100px">404<h1>`;
     document.body.innerHTML += `<h2 style="margin-bottom: 60px;font-size: 20px">Nothing to see here!<h2>`;
