@@ -155,12 +155,12 @@ Clicking on the flag button 🚩 will toggle flag mode. This will enable you to 
 | Key           | Action                             |
 | :-----------: |:---------------------------------- |
 | Ν             | New game (current level and theme) |
-| Left Arrow    | Switch to next  theme              |
-| Right Arrow   | Switch to previous theme           |
+| S             | Open/close stats modal             |
 | 1             | Switch to beginner level           |
 | 2             | Switch to intermediate level       |
 | 3             | Switch to expert level             |
-| S             | Open/close stats modal             |
+| Left Arrow    | Switch to next  theme              |
+| Right Arrow   | Switch to previous theme           |
 | H             | Open/close help modal              |
 | F             | Toggle flag mode                   |
 
