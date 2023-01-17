@@ -100,7 +100,7 @@ Or like this. Not too bad, huh? In order to win a game, you need to open all the
 
 ![Stats](./screenshots/stats.png)
 
-In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click on the *Stats* button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear Data* button, located inside the stats modal.
+In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click on the *Stats* button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear Data* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
 
 ![New Record](./screenshots/new_record.png)
 
@@ -132,7 +132,9 @@ And the sea (octopus) theme. I bet you can't decide which one to pick! Your leve
 
 ![New Record](./screenshots/help.png)
 
-If you forget the basic controls you can click the help button ❔to toggle the help modal. Clicking on the flag button 🚩 will toggle flag mode. This will enable you to flag squares by touching them, or by left-clicking on them. You might want to use this if you are on a phone or tablet. If, on the other hand, you are on a computer, the cursor will be changed to a *crosshair*, to inform you that flag mode is enabled.
+If you forget the basic controls you can click the help button ❔to toggle the help modal. You can also toggle the help modal by pressing the *H* key.
+
+Clicking on the flag button 🚩 will toggle flag mode. This will enable you to flag squares by touching them, or by left-clicking on them. You can also toggle flag mode by pressing the *F* key. You might want to use this if you are on a phone or tablet. If, on the other hand, you are on a computer, the cursor will be changed to a *crosshair*, to inform you that flag mode is enabled.
 
 ### Summary
 
@@ -158,6 +160,8 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 | 1             | Switch to beginner level           |
 | 2             | Switch to intermediate level       |
 | 3             | Switch to expert level             |
+| S             | Open/close stats modal             |
+| H             | Open/close help modal              |
 | F             | Toggle flag mode                   |
 
   

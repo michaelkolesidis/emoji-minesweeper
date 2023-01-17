@@ -16,7 +16,7 @@ export default function HelpModal() {
   <hr>
   💣/🌺/🍄/🐻/🐙 Switch between <span style="font-weight:600;">themes</span> (or use ⌨️ left/right arrows)
   <hr>
-  ❔ Toggle <span style="font-weight:600;">help</span>
+  ❔ Toggle <span style="font-weight:600;">help</span> (or use ⌨️ the H key)
   <hr>
   🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch / right-click (or use ⌨️ the F key)
 </div>

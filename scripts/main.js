@@ -131,11 +131,13 @@ const footer = Footer();
 contentWrap.appendChild(footer);
 
 /**
- * Button Functionality
+ * Stats Modal
  */
-// Stats Button Functionality
 let statsModalOpen = false;
-statsButton.addEventListener("click", () => {
+
+// Utility Function
+
+function toggleStatsModal() {
   if (statsModalOpen) {
     // Close stats modal
     setTimeout(() => {
@@ -157,11 +159,28 @@ statsButton.addEventListener("click", () => {
     statsModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
   }
+}
+
+// Stats Button Functionality
+statsButton.addEventListener("click", () => {
+  toggleStatsModal();
 });
 
-// Help Button Functionality
+// Keyboard Action Handling
+document.addEventListener("keydown", (e) => {
+  if (e.code === "KeyS") {
+    toggleStatsModal();
+  }
+});
+
+/**
+ * Help Modal
+ */
 let helpModalOpen = false;
-helpButton.addEventListener("click", () => {
+
+// Utility Function
+
+function toggleHelpModal() {
   if (helpModalOpen) {
     // Close help modal
     setTimeout(() => {
@@ -188,5 +207,17 @@ helpButton.addEventListener("click", () => {
     helpModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
     helpButton.classList.add("emoji-button-clicked");
+  }
+}
+
+// Help Button Functionality
+helpButton.addEventListener("click", () => {
+  toggleHelpModal();
+});
+
+// Keyboard Action Handling
+document.addEventListener("keydown", (e) => {
+  if (e.code === "KeyH") {
+    toggleHelpModal();
   }
 });

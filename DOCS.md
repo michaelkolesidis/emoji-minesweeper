@@ -11,10 +11,11 @@ Here you can find additional information about Emoji Minesweeper.
 
 ### UI/UX
 
+* The whole UI and all button actions can be triggered using keyboard shortcuts
 * Levels can be changed using the buttons or keyboard shortcuts
 * Themes can be switched using a button or keyboard shortcuts
 * New game with button or keyboard shortcut
-* Flag mode for touchscreens
+* Flag mode (for touchscreens) can be toggled using a button or keyboard shortcuts
 * Cursor becomes crosshair when flag mode is enabled
 * Level and theme preferences are saved
 
