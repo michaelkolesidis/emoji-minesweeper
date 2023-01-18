@@ -25,25 +25,18 @@ There are **three levels** (beginner, intermediate, and expert) and **five theme
 ## Technologies Used
 
 <a href="https://p5js.org/"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/p5js/p5js.svg" height="50px"/></a>
-
-[p5.js](https://p5js.org/) is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else. It can be used to create anything, from simple visuals to fully-fledged games like this one!
-
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/javascript/javascript-original.svg" height="50px" /></a>
-
-[JavaScript](https://en.wikipedia.org/wiki/JavaScript) is the programming language of the web. It started as a language confined in browsers, but it is now used almost everywhere.
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>
-
-[CSS](https://en.wikipedia.org/wiki/CSS) is a style sheet language that describes the appearance and presentation of documents and apps.
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
 
-[HTML](https://en.wikipedia.org/wiki/HTML) is the standard markup language for documents designed to be displayed in a web browser. It is used in every website and web app.
+You can find more information about the technologies used in the [documentation](./DOCS.md#technologies-used).
 
 ### Architecture
 
-The game logic and anything that happens inside the board is written in p5.js. The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element, with the help of the p5.js library. The object-oriented JavaScript paradigm is used, as each square is an instance of the class Square. The rest of the UI is written in vanilla JavaScript. Everything was written from scratch, with the whole project having only one dependency (p5.js). 
+Please refer to the [documentation](./DOCS.md#architecture).
 
 ### Server 
 
@@ -169,7 +162,7 @@ Clicking on the flag button 🚩 will toggle flag mode. This will enable you to 
 
 ## Feature List
 
-You can find a full(ish) feature list in the [docs file](./DOCS.md).
+You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-list).
 
 
 

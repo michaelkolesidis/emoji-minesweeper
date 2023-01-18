@@ -1,6 +1,52 @@
-# Emoji Minesweeper Docs
+# Emoji Minesweeper Documentation
 
-Here you can find additional information about Emoji Minesweeper.
+
+Welcome to the Emoji Minesweeper Docs. 
+Here you can find additional information for nerds! 🤓
+
+
+## Technologies Used
+
+<a href="https://p5js.org/"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/p5js/p5js.svg" height="50px"/></a>
+
+[p5.js](https://p5js.org/) is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else. It can be used to create anything, from simple visuals to fully-fledged games like this one!
+
+<a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/javascript/javascript-original.svg" height="50px" /></a>
+
+[JavaScript](https://en.wikipedia.org/wiki/JavaScript) is the programming language of the web. It started as a language confined in browsers, but it is now used almost everywhere.
+
+<a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>
+
+[CSS](https://en.wikipedia.org/wiki/CSS) is a style sheet language that describes the appearance and presentation of documents and apps.
+
+<a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
+
+[HTML](https://en.wikipedia.org/wiki/HTML) is the standard markup language for documents designed to be displayed in a web browser. It is used in every website and web app.
+
+
+
+
+## Architecture
+
+The game logic and anything that happens inside the board is written in p5.js. The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element, with the help of the p5.js library. The object-oriented JavaScript paradigm is used, as each square is an instance of the class Square. The rest of the UI is written in vanilla JavaScript. Everything was written from scratch, with the whole project having only one dependency (p5.js). 
+
+
+
+
+## Server 
+
+***Coming Soon:*** We are currently building our server, which will give players the ability to create an account, save stats and get ranked among other players worldwide! The repository of the server can be found [here](https://github.com/mamarmar/emoji-minesweeper-server).
+
+
+
+
+## Debug Mode
+In order to perform diagnostics or to study the game's internal functions, developers can access debug mode. In debug mode, the square numbers are visible on each squares, with the squares containing a mine having their number in red. Game stats are not accessible and **results are not counted** while in debug mode.
+
+In order to access debug mode add simply add **#debug** at the end of the game's URL. Here is a link that will take you to debug mode: [https://emojiminesweeper.com#debug](https://emojiminesweeper.com#debug)
+
+
+
 
 ## Feature List
 
@@ -56,6 +102,7 @@ Here you can find additional information about Emoji Minesweeper.
 
 ### Other
 
+* Debug mode
 * Easy to adjust canvas for different square sizes (no hard-coded values)
 * Help modal
 * Board fade-in effect
