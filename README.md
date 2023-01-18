@@ -19,28 +19,29 @@ The game ends when all safe squares have been opened (**win**) or when a square 
 
 There are **three levels** (beginner, intermediate, and expert) and **five themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻 and sea 🐙) to choose from.
 
+**Update: Players will soon have the ability to create an account, save their stats, get ranked, and complete against players from all over the world!**
+
+
+
+
+## Documentation
+
+Additional information for nerds 🤓 (architecture, technologies, debugging) can be found in the [documentation](./DOCS.md).
+
 
 
 
 ## Technologies Used
 
 <a href="https://p5js.org/"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/p5js/p5js.svg" height="50px"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/javascript/javascript-original.svg" height="50px" /></a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
 
-You can find more information about the technologies used in the [documentation](./DOCS.md#technologies-used).
-
-### Architecture
-
-Please refer to the [documentation](./DOCS.md#architecture).
-
-### Server 
-
-***Coming Soon:*** We are currently building our server, which will give players the ability to create an account, save stats and get ranked among other players worldwide! The repository of the server can be found [here](https://github.com/mamarmar/emoji-minesweeper-server).
+You can find more information in the [documentation](./DOCS.md#technologies-used).
 
 
 

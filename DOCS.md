@@ -1,8 +1,8 @@
-# Emoji Minesweeper Documentation
+# Emoji Minesweeper Documentation 🤓
 
 
 Welcome to the Emoji Minesweeper Docs. 
-Here you can find additional information for nerds! 🤓
+Here you can find additional information for nerds!
 
 
 ## Technologies Used
