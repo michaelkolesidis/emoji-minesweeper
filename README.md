@@ -191,26 +191,27 @@ You can find a full(ish) feature list in the [docs file](./DOCS.md).
 
 The following emojis are used throughout the game:
 
-😄 😵 🥳 🔲 💣 💥 🚩 ❌ ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ ⌛ 🧮 ❔
+🔲 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 🚩 ⌛ 🧮 ❔ ❌ 🥳 
 
-Flower theme emojis:
+### Themes & Emoji Sets
 
-😊 😔 🌺 🐛
-
-Mushroom theme emojis:
-
-🍄 🦄 😎 😵‍💫
-
-Bear theme emojis:
-
-🐻 🐾 🌳 🪵
-
-Sea theme emojis:
-
-🐙 🌊 ⛵️ 🦈
-
+| Theme         | Game Title            | Emoji Set    |
+| :-----------: |:--------------------: |:------------ |
+| Mine          | Emoji Minesweeper     | 💣 💥 😄 😵 |
+| Flower        | Emoji Flower Field    | 🌺 🐛 😊 😔 |
+| Mushroom      | Emoji Mushroom Picker | 🍄 🦄 😎 😵‍💫 |
+| Bear          | Emoji Bearspotting    | 🐻 🐾 🌳 🪵 |
+| Sea (Octopus) | Emoji Seasweeper      | 🐙 🌊 ⛵️ 🦈 |
 
 The suggested emoji font for the game is the **Segoe UI Emoji font** that can be found [here](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji). If you are running Windows 11, this font family is already installed on your computer. If you are running Linux, you can install and use the Segoe UI font family by following these [instructions](https://vyshnav.xyz/blog/windows-11-emojis-on-linux).
+
+### Emoji History
+
+![Pocket Bell](./assets/pocket_bell_emoji.png)
+
+The first ever modern emoji existed on a device that came even before phones. In 1995, Japanese Telecom Company NTT DoCoMo made the first emojis available on its Pocket Bell pager model. As you can see Emoji Minesweeper is using some of these very first emojis!
+
+You can find more information about the history of emoji [here](https://gem-ship-blog.com/blog/the-story-behind-emojis-1).
 
 
 
