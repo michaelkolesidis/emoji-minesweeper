@@ -129,6 +129,7 @@ export default function StatsModal() {
 
   // Modal
   const statsModal = document.createElement("div");
+  statsModal.classList.add("modal");
   statsModal.setAttribute("id", "stats-modal");
 
   // Stats: Level

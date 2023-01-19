@@ -23,8 +23,7 @@ import ExpertButton from "./components/buttons/expertButton.js";
 import ThemeButton from "./components/buttons/themeButton.js";
 import HelpButton from "./components/buttons/helpButton.js";
 import FlagButton from "./components/buttons/flagButton.js";
-import MenuButton from "./components/buttons/menuButton.js";
-
+import MenuContainer from "./components/buttons/menuContainer.js";
 
 /**
  * Basics
@@ -44,6 +43,9 @@ if (mainEmoji === null) {
 
 // Modal
 window.localStorage.setItem("modalOpen", "false");
+
+// Menu
+// window.localStorage.setItem("menuOpen", "false");
 
 // Flag mode
 window.localStorage.setItem("flagMode", "false");
@@ -225,7 +227,11 @@ document.addEventListener("keydown", (e) => {
 });
 
 /**
- * Menu Button
+ * Menu
  */
-const menuButton = MenuButton();
-document.body.appendChild(menuButton);
+
+/**
+ * Menu Button (Element & Functionality)
+ */
+const menuContainer = MenuContainer();
+document.body.appendChild(menuContainer);

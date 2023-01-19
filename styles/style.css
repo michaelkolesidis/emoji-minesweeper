@@ -152,8 +152,7 @@ button:active {
 }
 
 /* Modals */
-#stats-modal,
-#help-modal {
+.modal {
   margin-top: 0.7rem;
   border-radius: 40px;
   opacity: 0;
@@ -267,17 +266,39 @@ footer > p {
   margin: 0 0 0.3rem 0.3rem;
 }
 
+
+/* Menu Container */
+#menu-container {
+  
+}
+
+/* Menu */
+#menu {
+  position: absolute;
+  top: 1.7rem;
+  right: 1.7rem;
+  z-index: 0;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* border-radius: 20px; */
+}
+
+/* Menu Button */
 #menu-button {
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
   margin: 0;
   border-radius: 100px;
-  filter: grayscale(100%);
+  filter: grayscale(100%) contrast(180%);
   font-size: 2rem;
   line-height: 2.8rem;
   height: 3rem;
   width: 3rem;
   text-align: center;
-  background-color: rgb(217, 217, 217);
+  /* background-color: rgb(187, 187, 187); */
 }

@@ -7,6 +7,7 @@
 
 export default function HelpModal() {
   const helpModal = document.createElement("div");
+  helpModal.classList.add("modal");
   helpModal.setAttribute("id", "help-modal");
   helpModal.innerHTML += `
 <div>
