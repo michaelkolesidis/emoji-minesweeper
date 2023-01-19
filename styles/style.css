@@ -129,7 +129,6 @@ button {
   cursor: pointer;
   color: var(--main-color);
   background: var(--secondary-color);
-  border: 2px solid var(--main-color);
   width: 9.5em;
   position: relative;
   margin: 0.1rem 0.3rem;
@@ -266,4 +265,19 @@ footer {
 footer > p {
   color: #4f4f4f;
   margin: 0 0 0.3rem 0.3rem;
+}
+
+#menu-button {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  margin: 0;
+  border-radius: 100px;
+  filter: grayscale(100%);
+  font-size: 2rem;
+  line-height: 2.8rem;
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+  background-color: rgb(217, 217, 217);
 }

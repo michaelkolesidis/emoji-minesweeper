@@ -23,6 +23,8 @@ import ExpertButton from "./components/buttons/expertButton.js";
 import ThemeButton from "./components/buttons/themeButton.js";
 import HelpButton from "./components/buttons/helpButton.js";
 import FlagButton from "./components/buttons/flagButton.js";
+import MenuButton from "./components/buttons/menuButton.js";
+
 
 /**
  * Basics
@@ -221,3 +223,9 @@ document.addEventListener("keydown", (e) => {
     toggleHelpModal();
   }
 });
+
+/**
+ * Menu Button
+ */
+const menuButton = MenuButton();
+document.body.appendChild(menuButton);
