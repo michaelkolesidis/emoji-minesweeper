@@ -23,7 +23,7 @@ import ExpertButton from "./components/buttons/expertButton.js";
 import ThemeButton from "./components/buttons/themeButton.js";
 import HelpButton from "./components/buttons/helpButton.js";
 import FlagButton from "./components/buttons/flagButton.js";
-import MenuContainer from "./components/buttons/menuContainer.js";
+import MenuContainer from "./components/menu/menuContainer.js";
 
 /**
  * Basics
@@ -228,10 +228,6 @@ document.addEventListener("keydown", (e) => {
 
 /**
  * Menu
- */
-
-/**
- * Menu Button (Element & Functionality)
  */
 const menuContainer = MenuContainer();
 document.body.appendChild(menuContainer);

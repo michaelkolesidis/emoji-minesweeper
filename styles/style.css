@@ -119,7 +119,8 @@ canvas {
   position: relative;
 }
 
-button {
+button,
+.button {
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -138,11 +139,13 @@ button {
   transition: box-shadow 0.3s ease-in-out;
 }
 
-button:hover {
+button:hover,
+.button:hover {
   box-shadow: 2px 2px 0px 2px var(--shadow);
 }
 
-button:active {
+button:active,
+.button:active {
   transform: scale(0.98);
 }
 
@@ -266,25 +269,15 @@ footer > p {
   margin: 0 0 0.3rem 0.3rem;
 }
 
-
 /* Menu Container */
 #menu-container {
-  
 }
 
-/* Menu */
-#menu {
+/* Menu Logo */
+#menu-logo {
   position: absolute;
-  top: 1.7rem;
-  right: 1.7rem;
-  z-index: 0;
-  width: 200px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-  /* border-radius: 20px; */
+  top: 1em;
+  left: 1em;
 }
 
 /* Menu Button */
@@ -300,5 +293,56 @@ footer > p {
   height: 3rem;
   width: 3rem;
   text-align: center;
-  /* background-color: rgb(187, 187, 187); */
+  z-index: 4;
+}
+
+/* Menu */
+#menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  margin: 0;
+  pointer-events: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Login Form */
+.login-form,
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.2em;
+}
+
+.form-section > label {
+  margin: 0.15em;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+.form-section > input {
+  border-radius: 60px;
+  padding: 0.6rem;
+  border: 3px solid var(--main-color);
+  font-size: 0.8em;
+  width: 10em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-section > .button {
+  margin: 1.4em;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 3px solid var(--main-color);
+  color: var(--secondary-color);
+  background-color: var(--main-color);
 }
