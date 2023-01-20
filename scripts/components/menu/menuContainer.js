@@ -36,23 +36,6 @@ export default function Menu() {
   /**
    * Functionality
    */
-  let menuOpen = false;
-  menuButton.addEventListener("click", () => {
-    if (!menuOpen) {
-      menuButton.innerHTML = `❌`;
-      menu.style.opacity = 1;
-      menu.style.pointerEvents = "auto";
-      menu.style.zIndex = 3;
-      menuOpen = true;
-    } else {
-      menuButton.innerHTML = `👤`;
-      menu.style.opacity = 0;
-      menu.style.pointerEvents = "none";
-      menu.style.zIndex = 0;
-      menuOpen = false;
-    }
-  });
-
   menu.addEventListener("keydown", (e) => {
     e.stopPropagation(); // to prevent shortcuts from being triggered
   });

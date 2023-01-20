@@ -281,7 +281,8 @@ footer > p {
 }
 
 /* Menu Button */
-#menu-button {
+#menu-button,
+.menu-button-content {
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
@@ -294,6 +295,12 @@ footer > p {
   width: 3rem;
   text-align: center;
   z-index: 4;
+}
+
+.menu-button-content {
+  top: 0rem;
+  right: 0rem;
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* Menu */
