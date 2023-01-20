@@ -8,15 +8,15 @@
 import MenuLogo from "./menuLogo.js";
 import LogoutButton from "./logoutButton.js";
 
-export default function Menu() {
-  const menu = document.createElement("div");
+export default function MainMenu() {
+  const mainMenu = document.createElement("div");
 
   // Logo
   const menuLogo = MenuLogo();
-  menu.appendChild(menuLogo);
+  mainMenu.appendChild(menuLogo);
 
   const logoutButton = LogoutButton();
-  menu.appendChild(logoutButton);
+  mainMenu.appendChild(logoutButton);
 
-  return menu;
+  return mainMenu;
 }

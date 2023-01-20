@@ -333,7 +333,7 @@ footer > p {
   border: 3px solid var(--main-color);
   font-size: 0.8em;
   width: 10em;
-  font-weight: 600;
+  /* font-weight: 600; */
   text-align: center;
 }
 

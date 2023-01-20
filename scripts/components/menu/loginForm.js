@@ -70,5 +70,17 @@ export default function LoginForm() {
 
   loginForm.appendChild(form);
 
+  /**
+   * Register
+   */
+  const registerPrompt = document.createElement("div");
+  registerPrompt.innerHTML = `New Player?`;
+  loginForm.appendChild(registerPrompt);
+
+  const register = document.createElement("a");
+  register.innerHTML = `Register`;
+
+  loginForm.appendChild(register);
+
   return loginForm;
 }

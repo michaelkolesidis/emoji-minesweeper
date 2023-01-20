@@ -7,9 +7,9 @@
 
 import MenuButton from "./menuButton.js";
 import LoginForm from "./loginForm.js";
-import Menu from "./menu.js";
+import MainMenu from "./mainMenu.js";
 
-export default function MenuContainer() {
+export default function Menu() {
   /**
    * Elements
    */
@@ -27,7 +27,7 @@ export default function MenuContainer() {
     window.localStorage.setItem("isLoggedIn", "false");
   }
 
-  const menu = isLoggedIn ? Menu() : LoginForm();
+  const menu = isLoggedIn ? MainMenu() : LoginForm();
   menu.classList.add("modal");
   menu.setAttribute("id", "menu");
 
