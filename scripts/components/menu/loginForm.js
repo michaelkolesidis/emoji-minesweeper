@@ -6,6 +6,7 @@
  */
 
 import MenuLogo from "./menuLogo.js";
+import RegistrationForm from "./registrationForm.js";
 
 export default function LoginForm() {
   const loginForm = document.createElement("div");
@@ -21,7 +22,7 @@ export default function LoginForm() {
    */
   const form = document.createElement("form");
   form.setAttribute("method", "get");
-  form.classList.add("login-form");
+  form.classList.add("form");
 
   // Username
   const username = document.createElement("div");
@@ -59,7 +60,8 @@ export default function LoginForm() {
   const loginButton = document.createElement("input");
   loginButton.classList.add("button");
   loginButton.setAttribute("type", "submit");
-  loginButton.setAttribute("login", "Login");
+  loginButton.setAttribute("name", "Login");
+  loginButton.setAttribute("value", "Login");
   submit.appendChild(loginButton);
   form.appendChild(submit);
 
@@ -79,8 +81,17 @@ export default function LoginForm() {
 
   const register = document.createElement("a");
   register.innerHTML = `Register`;
-
   loginForm.appendChild(register);
+
+  let registerClicked = false;
+
+  register.addEventListener("click", () => {
+    if (!registerClicked) {
+      const registrationForm = RegistrationForm();
+      loginForm.appendChild(registrationForm);
+      registerClicked = true;
+    }
+  });
 
   return loginForm;
 }

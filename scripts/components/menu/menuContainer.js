@@ -27,7 +27,8 @@ export default function Menu() {
     window.localStorage.setItem("isLoggedIn", "false");
   }
 
-  const menu = isLoggedIn ? MainMenu() : LoginForm();
+  let menu;
+  menu = isLoggedIn ? MainMenu() : LoginForm();
   menu.classList.add("modal");
   menu.setAttribute("id", "menu");
 
