@@ -101,6 +101,10 @@ export default function StatsModal() {
     window.localStorage.setItem("expertBestMoves", "");
   }
 
+  // Total Time
+
+  // Total Moves
+
   let won, played, winPercentage, bestTime, bestMoves;
 
   switch (gameLevel) {
@@ -181,6 +185,19 @@ export default function StatsModal() {
   } else {
     statsTable.innerHTML += `<p class="value">N/A</p>`;
   }
+
+  statsTable.innerHTML += `<hr><hr>`;
+
+  // Stats: Total Time
+  statsTable.innerHTML += `<p class="label">Total Time</p>`;
+  // statsTable.innerHTML += `<p class="value">${totalTime}</p>`;
+  statsTable.innerHTML += `<p class="value">3:03:30</p>`; // Place holder
+  
+
+  // Stats: Total Moves
+  statsTable.innerHTML += `<p class="label">Total Moves</p>`;
+    // statsTable.innerHTML += `<p class="value">${totalMoves}</p>`;
+    statsTable.innerHTML += `<p class="value">8659</p>`; // Place holder
 
   statsModal.appendChild(statsTable);
 

@@ -186,17 +186,18 @@ hr {
 
 /* Stats Modal */
 #stats-modal {
-  top: -277px;
+  top: -305px;
   left: 50px;
   width: 8rem;
-  height: 140px;
+  height: 165px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  padding-top: 1.2rem;
 }
 
 #stats-table {
