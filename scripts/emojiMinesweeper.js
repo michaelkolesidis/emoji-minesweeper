@@ -423,9 +423,11 @@ function mousePressed() {
         if (!square.flagged) {
           flaggedSquares += 1;
           moves += 1;
+          addMove();
         } else {
           flaggedSquares -= 1;
           moves += 1;
+          addMove();
         }
         square.flagged = !square.flagged;
       }
@@ -449,11 +451,11 @@ function mousePressed() {
         }
         openSquare(square);
         moves += 1;
+        addMove();
         if (square.mine) {
           if (!gameFinished) {
             gameLost();
-            gameFinished = true;
-            calculateWinPercentage();
+            gameEnded();
           }
         } else {
           // Check if the game has been won
@@ -463,8 +465,7 @@ function mousePressed() {
           if (squaresLeft == 0) {
             if (!gameFinished) {
               gameWon();
-              gameFinished = true;
-              calculateWinPercentage();
+              gameEnded();
             }
           }
         }
@@ -476,6 +477,33 @@ function mousePressed() {
 /**
  * Endgame
  */
+// Handle end
+function gameEnded() {
+  gameFinished = true;
+  if (window.location.hash === "") {
+    calculateWinPercentage();
+
+    let totalTime;
+    switch (level) {
+      case "beginner":
+        totalTime = parseInt(localStorage.getItem("beginnerTotalTime"));
+        totalTime += timePassed;
+        localStorage.setItem("beginnerTotalTime", totalTime);
+        break;
+      case "intermediate":
+        totalTime = parseInt(localStorage.getItem("intermediateTotalTime"));
+        totalTime += timePassed;
+        localStorage.setItem("intermediateTotalTime", totalTime);
+        break;
+      case "expert":
+        totalTime = parseInt(localStorage.getItem("expertTotalTime"));
+        totalTime += timePassed;
+        localStorage.setItem("expertTotalTime", totalTime);
+        break;
+    }
+  }
+}
+
 // Handle win
 function gameWon() {
   NUMBERS[0] = WON;
@@ -613,6 +641,28 @@ function gameLost() {
   let time = endTime - startTime; //in ms
   time = time / 1000;
   stopTimer = true;
+}
+
+// Add move to total moves
+function addMove() {
+  let totalMoves;
+  switch (level) {
+    case "beginner":
+      totalMoves = parseInt(localStorage.getItem("beginnerTotalMoves"));
+      totalMoves += 1;
+      localStorage.setItem("beginnerTotalMoves", totalMoves);
+      break;
+    case "intermediate":
+      totalMoves = parseInt(localStorage.getItem("intermediateTotalMoves"));
+      totalMoves += 1;
+      localStorage.setItem("intermediateTotalMoves", totalMoves);
+      break;
+    case "expert":
+      totalMoves = parseInt(localStorage.getItem("expertTotalMoves"));
+      totalMoves += 1;
+      localStorage.setItem("expertTotalMoves", totalMoves);
+      break;
+  }
 }
 
 // Calculate percentage of wins / total games played
