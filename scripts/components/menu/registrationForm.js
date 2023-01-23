@@ -105,19 +105,15 @@ export default function RegistrationForm() {
 
   registrationButton.addEventListener("click", async (e) => {
     e.preventDefault();
-    if (countryInput.options[countryInput.selectedIndex].value) {
-      console.log(countryInput.options[countryInput.selectedIndex].value);
-    } else {
-      console.log("Please select a country");
-    }
     try {
-      const res = await axios.post("/user/signup", {
+      const res = await axios.post("https://emojiminesweeper.cyclic.app/user/signup", {
         username: usernameInput.value,
-        country: countryInput.value,
+        country: countryInput.options[countryInput.selectedIndex].value,
         password: passwordInput.value,
       });
-      const token = res.user.token;
+      const token = res.data.token;
       window.localStorage.setItem("token", token);
+      window.localStorage.setItem("isLoggedIn", true);
     } catch (error) {
       console.log(error);
     }
