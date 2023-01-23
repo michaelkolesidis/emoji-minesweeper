@@ -31,7 +31,6 @@ import MenuContainer from "./components/menu/menuContainer.js";
 // Theme
 let theme = window.localStorage.getItem("theme");
 if (theme === null) {
-  theme = "mine";
   window.localStorage.setItem("theme", "mine");
 }
 
@@ -100,15 +99,15 @@ emojiButtonsContainer.setAttribute("id", "emoji-buttons-container");
 gameContainer.appendChild(emojiButtonsContainer);
 
 // Beginner Button
-const beginnerButton = BeginnerButton(level);
+const beginnerButton = BeginnerButton();
 emojiButtonsContainer.appendChild(beginnerButton);
 
 // Intermediate Button
-const intermediateButton = IntermediateButton(level);
+const intermediateButton = IntermediateButton();
 emojiButtonsContainer.appendChild(intermediateButton);
 
 // Expert Button
-const expertButton = ExpertButton(level);
+const expertButton = ExpertButton();
 emojiButtonsContainer.appendChild(expertButton);
 
 // Theme Button

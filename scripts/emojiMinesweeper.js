@@ -76,7 +76,7 @@ let wonEmoji = themes[theme]["won"];
 let lostEmoji = themes[theme]["lost"];
 
 // Emojis
-const EMPTY = "🔲";
+const CLOSED = "🔲";
 const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 const FLAG = "🚩";
 let DETONATION = detonationEmoji;
@@ -233,7 +233,6 @@ function setup() {
     boardSize.width,
     boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
   );
-  cnv, (fontKerning = "none");
   cnv.parent("board");
   textSize(squareSize - squareSize * 0.05); // On Mac "squareSize - 1" works better, on Windows "squareSize - 6"
 
@@ -580,8 +579,7 @@ function gameWon() {
 
     // Time Data
     const endTime = new Date();
-    let time = endTime - startTime; //in ms
-    time = time / 1000;
+    let time = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
 
     let bestTime;
     switch (level) {
