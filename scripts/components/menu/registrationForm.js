@@ -6,6 +6,7 @@
  */
 
 import MenuLogo from "./menuLogo.js";
+import countryList from "./countryList.js";
 
 export default function RegistrationForm() {
   const registrationForm = document.createElement("div");
@@ -45,11 +46,19 @@ export default function RegistrationForm() {
   countryLabel.innerHTML = "Country";
   countryLabel.htmlFor = "country";
   country.appendChild(countryLabel);
-  const countryInput = document.createElement("input");
-  countryInput.setAttribute("type", "text");
+  const countryInput = document.createElement("select");
+  // countryInput.setAttribute("type", "text");
   countryInput.setAttribute("name", "country");
   countryInput.setAttribute("id", "country");
   countryInput.required = true;
+
+  let countries = countryList;
+  countryInput.innerHTML += `<option value=""></option>`;
+
+  for (let i = 0; i < countries.length; i++) {
+    countryInput.innerHTML += `<option value="${countries[i].text}">${countries[i].text}</option>`;
+  }
+
   country.appendChild(countryInput);
   form.appendChild(country);
 
@@ -96,6 +105,11 @@ export default function RegistrationForm() {
 
   registrationButton.addEventListener("click", async (e) => {
     e.preventDefault();
+    if (countryInput.options[countryInput.selectedIndex].value) {
+      console.log(countryInput.options[countryInput.selectedIndex].value);
+    } else {
+      console.log("Please select a country");
+    }
     try {
       const res = await axios.post("/user/signup", {
         username: usernameInput.value,

@@ -121,7 +121,8 @@ canvas {
 }
 
 button,
-.button {
+.button,
+select {
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -354,4 +355,8 @@ footer > p {
   border: 3px solid var(--main-color);
   color: var(--secondary-color);
   background-color: var(--main-color);
+}
+
+select {
+  width: 9.5rem;
 }
