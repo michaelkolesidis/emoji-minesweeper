@@ -35,6 +35,13 @@ export default function ThemeButton(mainEmoji, header) {
       theme = "octopus";
       localStorage.setItem("theme", theme);
     } else if (theme === "octopus") {
+      header.classList.add("japanese");
+      localStorage.setItem("japanese", "true");
+      theme = "japan";
+      localStorage.setItem("theme", theme);
+    } else if (theme === "japan") {
+      header.classList.remove("japanese");
+      localStorage.setItem("japanese", "false");
       theme = "mine";
       localStorage.setItem("theme", theme);
     }
@@ -48,6 +55,13 @@ export default function ThemeButton(mainEmoji, header) {
 
   function reverseThemeSwitcher() {
     if (theme === "mine") {
+      header.classList.add("japanese");
+      localStorage.setItem("japanese", "true");
+      theme = "japan";
+      localStorage.setItem("theme", theme);
+    } else if (theme === "japan") {
+      header.classList.remove("japanese");
+      localStorage.setItem("japanese", "false");
       theme = "octopus";
       localStorage.setItem("theme", theme);
     } else if (theme === "octopus") {

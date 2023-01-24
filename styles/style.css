@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 
 /* Global */
 :root {
@@ -68,6 +69,7 @@ a:hover {
   margin-bottom: 0.1rem;
   font-family: "Fredoka One", cursive;
   white-space: nowrap;
+  font-size: 31px;
 }
 
 .header span {
@@ -89,6 +91,11 @@ a:hover {
   20% {
     transform: translateY(-6px);
   }
+}
+
+.japanese {
+  font-family: 'Mochiy Pop One';
+  font-size: 26px;
 }
 
 /* Board */

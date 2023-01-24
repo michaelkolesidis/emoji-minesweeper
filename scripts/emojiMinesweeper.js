@@ -62,6 +62,14 @@ const themes = {
     won: "⛵️",
     lost: "🦈",
   },
+  japan: {
+    name: "japan",
+    title: "絵文字マインスイーパー",
+    mine: "🏯",
+    detonation: "👺",
+    won: "🌸",
+    lost: "🈲",
+  },
 };
 
 /**
