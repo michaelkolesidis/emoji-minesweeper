@@ -113,7 +113,8 @@ export default function RegistrationForm() {
       });
       const token = res.data.token;
       window.localStorage.setItem("token", token);
-      window.localStorage.setItem("isLoggedIn", true);
+      window.localStorage.setItem("isLoggedIn", "true");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
