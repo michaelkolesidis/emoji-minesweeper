@@ -65,9 +65,20 @@ export default function LoginForm() {
   submit.appendChild(loginButton);
   form.appendChild(submit);
 
-  loginButton.addEventListener("click", () => {
-    window.localStorage.setItem("isLoggedIn", "true");
-    window.location.reload();
+  loginButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("https://emojiminesweeper.cyclic.app/user/login", {
+        username: usernameInput.value,
+        password: passwordInput.value,
+      });
+      const token = res.data.user.token;
+      window.localStorage.setItem("token", token);
+      window.localStorage.setItem("isLoggedIn", "true");
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   loginForm.appendChild(form);
