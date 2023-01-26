@@ -12,6 +12,7 @@
 export default function ThemeButton(mainEmoji, header) {
   // Button
   const themeButton = document.createElement("div");
+  themeButton.title = `Change theme`;
   themeButton.className = `emoji-button`;
   themeButton.innerHTML = mainEmoji;
 

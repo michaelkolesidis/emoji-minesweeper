@@ -8,6 +8,7 @@
 export default function ExpertButton() {
   // Button
   const expertButton = document.createElement("div");
+  expertButton.title = `Expert level`;
   expertButton.className = `emoji-button`;
   expertButton.innerHTML = `3️⃣`;
   if (level === "expert") {
