@@ -63,7 +63,7 @@ class Square {
       }
       text(this.num, this.x + squareSize / 2.5, this.y - squareSize / 6);
       textSize(squareSize - squareSize * 0.05);
-      fill(0, 0, 0);
+      darkMode ? fill(225) : fill(35);
     }
   }
 }

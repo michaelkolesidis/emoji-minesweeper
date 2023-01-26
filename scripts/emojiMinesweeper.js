@@ -73,6 +73,11 @@ const themes = {
 };
 
 /**
+ * Dark Mode
+ */
+let darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
+
+/**
  * Emojis
  */
 let theme = window.localStorage.getItem("theme") ?? "mine";
@@ -84,8 +89,9 @@ let wonEmoji = themes[theme]["won"];
 let lostEmoji = themes[theme]["lost"];
 
 // Emojis
-const CLOSED = "🔲";
-const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
+const CLOSED = darkMode ? "⬛" : "🔲";
+let NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
+if (darkMode) NUMBERS[0] = "";
 const FLAG = "🚩";
 let DETONATION = detonationEmoji;
 let MINE = mineEmoji;
@@ -236,7 +242,7 @@ const startTimer = () => {
  * Setup
  */
 function setup() {
-  background(255);
+  darkMode ? background(25) : background(255);
   cnv = createCanvas(
     boardSize.width,
     boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
@@ -253,7 +259,7 @@ function setup() {
  * Draw
  */
 function draw() {
-  background(255);
+  darkMode ? background(25) : background(255);
 
   if (navigator.userAgent.includes("Firefox")) {
     translate(squareSize / 10, 0);
@@ -273,7 +279,7 @@ function draw() {
   if (flaggedSquares > initialMines) {
     fill(248, 49, 47);
   } else {
-    fill(35, 35, 35);
+    darkMode ? fill(225) : fill(35);
   }
   text(MINE, squareSize * 0.125, boardSize.height - squareSize * 0.275);
   text(
@@ -283,7 +289,7 @@ function draw() {
   );
 
   // Moves indicator
-  fill(35, 35, 35);
+  darkMode ? fill(225) : fill(35);
   text(
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 0.99,
@@ -299,7 +305,8 @@ function draw() {
   );
 
   // Time indicator
-  fill(35, 35, 35);
+  darkMode ? fill(225) : fill(35);
+
   text(
     TIMER,
     width - squareSize * 1.975,

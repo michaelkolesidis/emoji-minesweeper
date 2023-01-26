@@ -24,6 +24,7 @@ import ThemeButton from "./components/buttons/themeButton.js";
 import HelpButton from "./components/buttons/helpButton.js";
 import FlagButton from "./components/buttons/flagButton.js";
 import MenuContainer from "./components/menu/menuContainer.js";
+import DarkModeButton from "./components/buttons/darkModeButton.js";
 
 /**
  * Basics
@@ -32,6 +33,15 @@ import MenuContainer from "./components/menu/menuContainer.js";
 let theme = window.localStorage.getItem("theme");
 if (theme === null) {
   window.localStorage.setItem("theme", "mine");
+}
+
+// Dark Mode
+let darkMode = JSON.parse(localStorage.getItem("darkMode"));
+if (darkMode === null) {
+  window.localStorage.setItem("darkMode", "false");
+}
+if (darkMode) {
+  document.body.classList.add("dark-mode");
 }
 
 // Emoji
@@ -123,6 +133,10 @@ const flagButton = FlagButton(board);
 // if (/Android|iPhone/i.test(navigator.userAgent)) {
 emojiButtonsContainer.appendChild(flagButton);
 // }
+
+// Dark Mode Button
+const darkModeButton = DarkModeButton(darkMode);
+emojiButtonsContainer.appendChild(darkModeButton);
 
 // Content Wrap (used for footer at the bottom functionality)
 const contentWrap = document.createElement("div");
