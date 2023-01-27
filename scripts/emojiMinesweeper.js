@@ -131,7 +131,7 @@ switch (level) {
     settings.level = {
       columns: 9,
       rows: 9,
-      mines: 79,
+      mines: 10,
     };
     break;
   case "intermediate":
