@@ -131,7 +131,7 @@ switch (level) {
     settings.level = {
       columns: 9,
       rows: 9,
-      mines: 10,
+      mines: 79,
     };
     break;
   case "intermediate":
@@ -191,7 +191,7 @@ let newBestTime = false; // used when the player has made a new best time
  */
 function allocateMines() {
   while (numberOfMines > 0) {
-    let targetSquare = Math.floor(Math.random() * (numberOfSquares - 1)) + 1;
+    let targetSquare = Math.floor(Math.random() * numberOfSquares);
     if (!minedSquares.includes(targetSquare)) {
       minedSquares.push(targetSquare);
       numberOfMines -= 1;
@@ -372,12 +372,15 @@ function openSquare(square) {
 
     if (square.mine) {
       square.mine = false;
+      const originalSquareNum = square.num;
 
       while (!mineReallocated) {
-        let num = Math.floor(Math.random() * (numberOfSquares - 1)) + 1;
-        if (!squares[num].mine) {
-          squares[num].mine = true;
-          mineReallocated = true;
+        let num = Math.floor(Math.random() * numberOfSquares);
+        if (num !== originalSquareNum) {
+          if (!squares[num].mine) {
+            squares[num].mine = true;
+            mineReallocated = true;
+          }
         }
       }
     }

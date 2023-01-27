@@ -372,6 +372,8 @@ footer > p {
   width: 10em;
   /* font-weight: 600; */
   text-align: center;
+  color: var(--main-color);
+  background-color: var(--secondary-color);
 }
 
 .form-section > .button {
