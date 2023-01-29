@@ -65,5 +65,16 @@ class Square {
       textSize(squareSize - squareSize * 0.05);
       darkMode ? fill(225) : fill(35);
     }
+
+    // Mine locations for debugging
+    if (window.location.hash === "#debug-simple") {
+      textSize(10.5);
+      if (this.mine) {
+        fill(255, 61, 61);
+        text("🔴", this.x + squareSize / 2.5, this.y - squareSize / 6);
+      }
+      textSize(squareSize - squareSize * 0.05);
+      darkMode ? fill(225) : fill(35);
+    }
   }
 }

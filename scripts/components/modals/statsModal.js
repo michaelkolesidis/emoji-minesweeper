@@ -277,7 +277,7 @@ export default function StatsModal() {
   });
 
   // Stats modal in debug mode
-  if (window.location.hash === "#debug") {
+  if (window.location.hash === "#debug" || window.location.hash === "#debug-simple") {
     statsModal.innerHTML = `<h3>Debug Mode<h3>`;
   }
 
