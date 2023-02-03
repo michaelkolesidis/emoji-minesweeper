@@ -48,6 +48,14 @@ In order to access debug mode add simply add **#debug** at the end of the game's
 
 
 
+## Simple Debug Mode
+This mode is similar to debug mode, with the only difference being that square numbers are not visible and mines are marked with a red dot. It offered the ability for debugging in a much less visually cluttered board. For most debugging needs this is the one to choose.
+
+In order to access debug mode add simply add **#debug-simple** at the end of the game's URL. Here is a link that will take you to debug mode: [https://emojiminesweeper.com#debug-simple](https://emojiminesweeper.com#debug)
+
+
+
+
 ## Feature List
 
 ### Levels / Themes
