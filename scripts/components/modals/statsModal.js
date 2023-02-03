@@ -5,6 +5,27 @@
  *
  */
 
+function formatTime(time) {
+  let formattedTime, hours, minutes, seconds;
+
+  hours = Math.floor(time / 3600);
+  minutes = Math.floor((time - hours * 3600) / 60);
+  seconds = time - hours * 3600 - minutes * 60;
+
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  formattedTime = `${hours}:${minutes}:${seconds}`;
+  return formattedTime;
+}
+
 export default function StatsModal() {
   // Level: beginner || intermediate || expert
   let gameLevel = window.localStorage.getItem("level");
@@ -101,7 +122,43 @@ export default function StatsModal() {
     window.localStorage.setItem("expertBestMoves", "");
   }
 
-  let won, played, winPercentage, bestTime, bestMoves;
+  // Total Time
+  let beginnerTotalTime = window.localStorage.getItem("beginnerTotalTime");
+  if (beginnerTotalTime === null) {
+    window.localStorage.setItem("beginnerTotalTime", "0");
+  }
+
+  let intermediateTotalTime = window.localStorage.getItem(
+    "intermediateTotalTime"
+  );
+  if (intermediateTotalTime === null) {
+    window.localStorage.setItem("intermediateTotalTime", "0");
+  }
+
+  let expertTotalTime = window.localStorage.getItem("expertTotalTime");
+  if (expertTotalTime === null) {
+    window.localStorage.setItem("expertTotalTime", "0");
+  }
+
+  // Total Moves
+  let beginnerTotalMoves = window.localStorage.getItem("beginnerTotalMoves");
+  if (beginnerTotalMoves === null) {
+    window.localStorage.setItem("beginnerTotalMoves", "0");
+  }
+
+  let intermediateTotalMoves = window.localStorage.getItem(
+    "intermediateTotalMoves"
+  );
+  if (intermediateTotalMoves === null) {
+    window.localStorage.setItem("intermediateTotalMoves", "0");
+  }
+
+  let expertTotalMoves = window.localStorage.getItem("expertTotalMoves");
+  if (expertTotalMoves === null) {
+    window.localStorage.setItem("expertTotalMoves", "0");
+  }
+
+  let won, played, winPercentage, bestTime, bestMoves, totalTime, totalMoves;
 
   switch (gameLevel) {
     case "beginner":
@@ -110,6 +167,8 @@ export default function StatsModal() {
       winPercentage = beginnerWinPercentage;
       bestTime = beginnerBestTime;
       bestMoves = beginnerBestMoves;
+      totalTime = beginnerTotalTime;
+      totalMoves = beginnerTotalMoves;
       break;
     case "intermediate":
       played = intermediatePlayed;
@@ -117,6 +176,8 @@ export default function StatsModal() {
       winPercentage = intermediateWinPercentage;
       bestTime = intermediateBestTime;
       bestMoves = intermediateBestMoves;
+      totalTime = intermediateTotalTime;
+      totalMoves = intermediateTotalMoves;
       break;
     case "expert":
       played = expertPlayed;
@@ -124,11 +185,14 @@ export default function StatsModal() {
       winPercentage = expertWinPercentage;
       bestTime = expertBestTime;
       bestMoves = expertBestMoves;
+      totalTime = expertTotalTime;
+      totalMoves = expertTotalMoves;
       break;
   }
 
   // Modal
   const statsModal = document.createElement("div");
+  statsModal.classList.add("modal");
   statsModal.setAttribute("id", "stats-modal");
 
   // Stats: Level
@@ -181,6 +245,24 @@ export default function StatsModal() {
     statsTable.innerHTML += `<p class="value">N/A</p>`;
   }
 
+  statsTable.innerHTML += `<hr><hr>`;
+
+  // Stats: Total Time
+  statsTable.innerHTML += `<p class="label">Total Time</p>`;
+  if (totalTime) {
+    statsTable.innerHTML += `<p class="value">${formatTime(totalTime)}</p>`;
+  } else {
+    statsTable.innerHTML += `<p class="value">00:00:00</p>`;
+  }
+
+  // Stats: Total Moves
+  statsTable.innerHTML += `<p class="label">Total Moves</p>`;
+  if (totalMoves) {
+    statsTable.innerHTML += `<p class="value">${totalMoves}</p>`;
+  } else {
+    statsTable.innerHTML += `<p class="value">0</p>`;
+  }
+
   statsModal.appendChild(statsTable);
 
   // Stats: Clear Data Button
@@ -195,7 +277,7 @@ export default function StatsModal() {
   });
 
   // Stats modal in debug mode
-  if (window.location.hash === "#debug") {
+  if (window.location.hash === "#debug" || window.location.hash === "#debug-simple") {
     statsModal.innerHTML = `<h3>Debug Mode<h3>`;
   }
 

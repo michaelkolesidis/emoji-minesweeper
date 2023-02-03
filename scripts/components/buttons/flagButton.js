@@ -12,6 +12,7 @@
 export default function FlagButton(board) {
   // Button
   const flagButton = document.createElement("div");
+  flagButton.title = `Toggle flag mode`;
   flagButton.className = `emoji-button`;
   flagButton.innerHTML = `🚩`;
 

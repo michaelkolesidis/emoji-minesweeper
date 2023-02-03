@@ -7,6 +7,7 @@
 
 export default function HelpModal() {
   const helpModal = document.createElement("div");
+  helpModal.classList.add("modal");
   helpModal.setAttribute("id", "help-modal");
   helpModal.innerHTML += `
 <div>
@@ -19,6 +20,8 @@ export default function HelpModal() {
   ❔ Toggle <span style="font-weight:600;">help</span> (or use ⌨️ the H key)
   <hr>
   🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch / right-click (or use ⌨️ the F key)
+  <hr>
+  🌞/🌛 Toggle <span style="font-weight:600;">dark mode</span> (or use ⌨️ the D key)
 </div>
 `;
 

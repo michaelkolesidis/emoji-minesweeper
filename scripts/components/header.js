@@ -8,6 +8,9 @@
 export default function Header(title) {
   const header = document.createElement("div");
   header.className = `header`;
+  if (JSON.parse(localStorage.getItem("japanese")) === true) {
+    header.classList.add("japanese");
+  }
 
   let titleCharacters = title.split("");
   for (let i = 0; i < titleCharacters.length; i++) {
@@ -16,8 +19,6 @@ export default function Header(title) {
     }
     header.innerHTML += `<span style="--i:${i}">${titleCharacters[i]}</span>`;
   }
-
-  header.style.fontSize = "31px";
 
   return header;
 }

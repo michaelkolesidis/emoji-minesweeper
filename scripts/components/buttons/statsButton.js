@@ -2,7 +2,7 @@
  *  Emoji Minesweeper
  *  Copyright (c) 2023 Michael Kolesidis
  *  GNU Affero General Public License v3.0
- * 
+ *
  */
 
 export default function StatsButton() {
@@ -10,6 +10,11 @@ export default function StatsButton() {
   const statsButton = document.createElement("button");
   statsButton.setAttribute("id", "stats-button");
   statsButton.innerHTML = `Stats`;
+
+  // As emoji button
+  // const statsButton = document.createElement("div");
+  // statsButton.className = `emoji-button`;
+  // statsButton.innerHTML = `🥇`;
 
   // Functionality
   // In main.js

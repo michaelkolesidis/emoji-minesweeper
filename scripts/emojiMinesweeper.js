@@ -62,7 +62,20 @@ const themes = {
     won: "⛵️",
     lost: "🦈",
   },
+  japan: {
+    name: "japan",
+    title: "絵文字マインスイーパー",
+    mine: "🏯",
+    detonation: "👺",
+    won: "🌸",
+    lost: "🈲",
+  },
 };
+
+/**
+ * Dark Mode
+ */
+let darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
 
 /**
  * Emojis
@@ -76,8 +89,9 @@ let wonEmoji = themes[theme]["won"];
 let lostEmoji = themes[theme]["lost"];
 
 // Emojis
-const EMPTY = "🔲";
-const NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
+const CLOSED = darkMode ? "⬛" : "🔲";
+let NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
+if (darkMode) NUMBERS[0] = "";
 const FLAG = "🚩";
 let DETONATION = detonationEmoji;
 let MINE = mineEmoji;
@@ -177,7 +191,7 @@ let newBestTime = false; // used when the player has made a new best time
  */
 function allocateMines() {
   while (numberOfMines > 0) {
-    let targetSquare = Math.floor(Math.random() * (numberOfSquares - 1)) + 1;
+    let targetSquare = Math.floor(Math.random() * numberOfSquares);
     if (!minedSquares.includes(targetSquare)) {
       minedSquares.push(targetSquare);
       numberOfMines -= 1;
@@ -228,12 +242,11 @@ const startTimer = () => {
  * Setup
  */
 function setup() {
-  background(255);
+  darkMode ? background(25) : background(255);
   cnv = createCanvas(
     boardSize.width,
     boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
   );
-  cnv, (fontKerning = "none");
   cnv.parent("board");
   textSize(squareSize - squareSize * 0.05); // On Mac "squareSize - 1" works better, on Windows "squareSize - 6"
 
@@ -246,7 +259,7 @@ function setup() {
  * Draw
  */
 function draw() {
-  background(255);
+  darkMode ? background(25) : background(255);
 
   if (navigator.userAgent.includes("Firefox")) {
     translate(squareSize / 10, 0);
@@ -266,7 +279,7 @@ function draw() {
   if (flaggedSquares > initialMines) {
     fill(248, 49, 47);
   } else {
-    fill(35, 35, 35);
+    darkMode ? fill(225) : fill(35);
   }
   text(MINE, squareSize * 0.125, boardSize.height - squareSize * 0.275);
   text(
@@ -276,7 +289,7 @@ function draw() {
   );
 
   // Moves indicator
-  fill(35, 35, 35);
+  darkMode ? fill(225) : fill(35);
   text(
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 0.99,
@@ -292,7 +305,8 @@ function draw() {
   );
 
   // Time indicator
-  fill(35, 35, 35);
+  darkMode ? fill(225) : fill(35);
+
   text(
     TIMER,
     width - squareSize * 1.975,
@@ -358,12 +372,15 @@ function openSquare(square) {
 
     if (square.mine) {
       square.mine = false;
+      const originalSquareNum = square.num;
 
       while (!mineReallocated) {
-        let num = Math.floor(Math.random() * (numberOfSquares - 1)) + 1;
-        if (!squares[num].mine) {
-          squares[num].mine = true;
-          mineReallocated = true;
+        let num = Math.floor(Math.random() * numberOfSquares);
+        if (num !== originalSquareNum) {
+          if (!squares[num].mine) {
+            squares[num].mine = true;
+            mineReallocated = true;
+          }
         }
       }
     }
@@ -423,9 +440,11 @@ function mousePressed() {
         if (!square.flagged) {
           flaggedSquares += 1;
           moves += 1;
+          addMove();
         } else {
           flaggedSquares -= 1;
           moves += 1;
+          addMove();
         }
         square.flagged = !square.flagged;
       }
@@ -449,11 +468,11 @@ function mousePressed() {
         }
         openSquare(square);
         moves += 1;
+        addMove();
         if (square.mine) {
           if (!gameFinished) {
             gameLost();
-            gameFinished = true;
-            calculateWinPercentage();
+            gameEnded();
           }
         } else {
           // Check if the game has been won
@@ -463,8 +482,7 @@ function mousePressed() {
           if (squaresLeft == 0) {
             if (!gameFinished) {
               gameWon();
-              gameFinished = true;
-              calculateWinPercentage();
+              gameEnded();
             }
           }
         }
@@ -476,6 +494,33 @@ function mousePressed() {
 /**
  * Endgame
  */
+// Handle end
+function gameEnded() {
+  gameFinished = true;
+  if (window.location.hash === "") {
+    calculateWinPercentage();
+
+    let totalTime;
+    switch (level) {
+      case "beginner":
+        totalTime = parseInt(localStorage.getItem("beginnerTotalTime"));
+        totalTime += timePassed;
+        localStorage.setItem("beginnerTotalTime", totalTime);
+        break;
+      case "intermediate":
+        totalTime = parseInt(localStorage.getItem("intermediateTotalTime"));
+        totalTime += timePassed;
+        localStorage.setItem("intermediateTotalTime", totalTime);
+        break;
+      case "expert":
+        totalTime = parseInt(localStorage.getItem("expertTotalTime"));
+        totalTime += timePassed;
+        localStorage.setItem("expertTotalTime", totalTime);
+        break;
+    }
+  }
+}
+
 // Handle win
 function gameWon() {
   NUMBERS[0] = WON;
@@ -552,8 +597,7 @@ function gameWon() {
 
     // Time Data
     const endTime = new Date();
-    let time = endTime - startTime; //in ms
-    time = time / 1000;
+    let time = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
 
     let bestTime;
     switch (level) {
@@ -613,6 +657,28 @@ function gameLost() {
   let time = endTime - startTime; //in ms
   time = time / 1000;
   stopTimer = true;
+}
+
+// Add move to total moves
+function addMove() {
+  let totalMoves;
+  switch (level) {
+    case "beginner":
+      totalMoves = parseInt(localStorage.getItem("beginnerTotalMoves"));
+      totalMoves += 1;
+      localStorage.setItem("beginnerTotalMoves", totalMoves);
+      break;
+    case "intermediate":
+      totalMoves = parseInt(localStorage.getItem("intermediateTotalMoves"));
+      totalMoves += 1;
+      localStorage.setItem("intermediateTotalMoves", totalMoves);
+      break;
+    case "expert":
+      totalMoves = parseInt(localStorage.getItem("expertTotalMoves"));
+      totalMoves += 1;
+      localStorage.setItem("expertTotalMoves", totalMoves);
+      break;
+  }
 }
 
 // Calculate percentage of wins / total games played
