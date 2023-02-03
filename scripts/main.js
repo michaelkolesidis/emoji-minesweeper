@@ -23,6 +23,8 @@ import ExpertButton from "./components/buttons/expertButton.js";
 import ThemeButton from "./components/buttons/themeButton.js";
 import HelpButton from "./components/buttons/helpButton.js";
 import FlagButton from "./components/buttons/flagButton.js";
+import MenuContainer from "./components/menu/menuContainer.js";
+import DarkModeButton from "./components/buttons/darkModeButton.js";
 
 /**
  * Basics
@@ -30,8 +32,16 @@ import FlagButton from "./components/buttons/flagButton.js";
 // Theme
 let theme = window.localStorage.getItem("theme");
 if (theme === null) {
-  theme = "mine";
   window.localStorage.setItem("theme", "mine");
+}
+
+// Dark Mode
+let darkMode = JSON.parse(localStorage.getItem("darkMode"));
+if (darkMode === null) {
+  window.localStorage.setItem("darkMode", "false");
+}
+if (darkMode) {
+  document.body.classList.add("dark-mode");
 }
 
 // Emoji
@@ -42,6 +52,9 @@ if (mainEmoji === null) {
 
 // Modal
 window.localStorage.setItem("modalOpen", "false");
+
+// Menu
+// window.localStorage.setItem("menuOpen", "false");
 
 // Flag mode
 window.localStorage.setItem("flagMode", "false");
@@ -96,15 +109,15 @@ emojiButtonsContainer.setAttribute("id", "emoji-buttons-container");
 gameContainer.appendChild(emojiButtonsContainer);
 
 // Beginner Button
-const beginnerButton = BeginnerButton(level);
+const beginnerButton = BeginnerButton();
 emojiButtonsContainer.appendChild(beginnerButton);
 
 // Intermediate Button
-const intermediateButton = IntermediateButton(level);
+const intermediateButton = IntermediateButton();
 emojiButtonsContainer.appendChild(intermediateButton);
 
 // Expert Button
-const expertButton = ExpertButton(level);
+const expertButton = ExpertButton();
 emojiButtonsContainer.appendChild(expertButton);
 
 // Theme Button
@@ -120,6 +133,10 @@ const flagButton = FlagButton(board);
 // if (/Android|iPhone/i.test(navigator.userAgent)) {
 emojiButtonsContainer.appendChild(flagButton);
 // }
+
+// Dark Mode Button
+const darkModeButton = DarkModeButton(darkMode);
+emojiButtonsContainer.appendChild(darkModeButton);
 
 // Content Wrap (used for footer at the bottom functionality)
 const contentWrap = document.createElement("div");
@@ -221,3 +238,9 @@ document.addEventListener("keydown", (e) => {
     toggleHelpModal();
   }
 });
+
+/**
+ * Menu
+ */
+const menuContainer = MenuContainer();
+document.body.appendChild(menuContainer);

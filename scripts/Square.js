@@ -29,12 +29,12 @@ class Square {
   draw() {
     if (this.opened && this.clicked && this.mine) {
       // The mine the player opened
-      text(DETONATION, this.x, this.y); // 💥 or 🐛
+      text(DETONATION, this.x, this.y); // 💥 or according to theme
       return;
     }
     if (this.opened && this.mine) {
       // The mines the played didn't open
-      text(MINE, this.x, this.y); // 💣 or 🌺
+      text(MINE, this.x, this.y); // 💣 or according to theme
       return;
     }
     if (this.opened && this.flagged) {
@@ -44,7 +44,7 @@ class Square {
     }
     if (this.opened) {
       // Calculate the number of mines touching the square
-      text(NUMBERS[this.minesAround], this.x, this.y); // 1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣
+      text(NUMBERS[this.minesAround], this.x, this.y); // ⬜️1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣
       return;
     }
     if (this.flagged) {
@@ -53,7 +53,7 @@ class Square {
       return;
     }
     // Empty squares
-    text(EMPTY, this.x, this.y); // ⬜️
+    text(CLOSED, this.x, this.y); // ⬜️
 
     // Square numbers and mine locations for debugging
     if (window.location.hash === "#debug") {
@@ -63,7 +63,18 @@ class Square {
       }
       text(this.num, this.x + squareSize / 2.5, this.y - squareSize / 6);
       textSize(squareSize - squareSize * 0.05);
-      fill(0, 0, 0);
+      darkMode ? fill(225) : fill(35);
+    }
+
+    // Mine locations for debugging
+    if (window.location.hash === "#debug-simple") {
+      textSize(10.5);
+      if (this.mine) {
+        fill(255, 61, 61);
+        text("🔴", this.x + squareSize / 2.5, this.y - squareSize / 6);
+      }
+      textSize(squareSize - squareSize * 0.05);
+      darkMode ? fill(225) : fill(35);
     }
   }
 }

@@ -2,12 +2,13 @@
  *  Emoji Minesweeper
  *  Copyright (c) 2023 Michael Kolesidis
  *  GNU Affero General Public License v3.0
- * 
+ *
  */
 
 export default function ExpertButton() {
   // Button
   const expertButton = document.createElement("div");
+  expertButton.title = `Expert level`;
   expertButton.className = `emoji-button`;
   expertButton.innerHTML = `3️⃣`;
   if (level === "expert") {
