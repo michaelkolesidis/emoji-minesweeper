@@ -8,6 +8,7 @@
 import MenuButton from "./menuButton.js";
 import LoginForm from "./loginForm.js";
 import MainMenu from "./mainMenu.js";
+import ComingSoon from "./comingSoon.js";
 
 export default function Menu() {
   /**
@@ -28,7 +29,8 @@ export default function Menu() {
   }
 
   let menu;
-  menu = isLoggedIn ? MainMenu() : LoginForm();
+  // menu = isLoggedIn ? MainMenu() : LoginForm();
+  menu = ComingSoon();
   menu.classList.add("modal");
   menu.setAttribute("id", "menu");
 
