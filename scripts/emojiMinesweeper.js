@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2023 Michael Kolesidis
+ *  Copyright (c) 2024 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  * minesweeperEmoji.js contains the game functionality,

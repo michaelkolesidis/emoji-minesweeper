@@ -121,7 +121,9 @@ If you forget the basic controls you can click the help button ❔to toggle the 
 Clicking on the flag button 🚩 will toggle flag mode. This will enable you to flag squares by touching them, or by left-clicking on them. You can also toggle flag mode by pressing the _F_ key. You might want to use this if you are on a phone or tablet. If, on the other hand, you are on a computer, the cursor will be changed to a _crosshair_, to inform you that flag mode is enabled.
 
 ![Dark mines](./screenshots/dark_mines_v5.png)
+
 ![Dark flowers](./screenshots/dark_flowers_v5.png)
+
 ![Dark mushrrom](./screenshots/dark_mushroom_v5.png)
 
 Lastly, clicking on the 🌞/🌛 button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the _D_ key.
@@ -164,11 +166,11 @@ You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-l
 
 ### Intermediate Level
 
-![Intermediate Level](./screenshots/intermediate.png)
+![Intermediate Level](./screenshots/intermediate_v5.png)
 
 ### Expert Level
 
-![Expert Level](./screenshots/expert.png)
+![Expert Level](./screenshots/expert_v5.png)
 
 ## Emojis
 
@@ -224,5 +226,5 @@ The ICBL, in close partnership with a small number of states, the ICRC, and the 
 
 <a href="https://www.gnu.org/licenses/agpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AGPLv3_Logo.svg" height="100px" /></a>
 
-Copyright (c) 2023 Michael Kolesidis<br>
+Copyright (c) 2024 Michael Kolesidis<br>
 Licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).

@@ -1,5 +1,7 @@
 # Contributing to Emoji Minesweeper
 
+![Logo small](./assets/android-chrome-192x192.png)
+
 First off, **thank you** for considering contributing! We aim to build an
 inclusive community around the project. You should know that there
 are many ways to contribute. You can write tutorials, create videos or blog posts,

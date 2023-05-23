@@ -1,5 +1,7 @@
 # Emoji Minesweeper Contributor Covenant Code of Conduct
 
+![Logo small](./assets/android-chrome-192x192.png)
+
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
