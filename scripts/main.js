@@ -158,21 +158,21 @@ function toggleStatsModal() {
   if (statsModalOpen) {
     // Close stats modal
     setTimeout(() => {
-      statsModal.style.zIndex = -1;
+      statsModal.style.zIndex = "-1";
     }, 500);
-    statsModal.style.opacity = 0;
+    statsModal.style.opacity = "0";
     statsModalOpen = false;
     window.localStorage.setItem("modalOpen", "false");
   } else if (!statsModalOpen) {
     // Close help modal
-    helpModal.style.opacity = 0;
+    helpModal.style.opacity = "0";
     helpModalOpen = false;
     window.localStorage.setItem("modalOpen", "false");
     helpButton.style.opacity = "1";
 
     // Open stats modal
-    statsModal.style.zIndex = 2;
-    statsModal.style.opacity = 1;
+    statsModal.style.zIndex = "2";
+    statsModal.style.opacity = "1";
     statsModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
   }
@@ -201,9 +201,9 @@ function toggleHelpModal() {
   if (helpModalOpen) {
     // Close help modal
     setTimeout(() => {
-      helpModal.style.zIndex = -1;
+      helpModal.style.zIndex = "-1";
     }, 500);
-    helpModal.style.opacity = 0;
+    helpModal.style.opacity = "0";
     helpModalOpen = false;
     window.localStorage.setItem("modalOpen", "false");
     helpButton.classList.remove("emoji-button-clicked");
@@ -211,16 +211,16 @@ function toggleHelpModal() {
     // Close stats modal
     if (statsModalOpen) {
       setTimeout(() => {
-        statsModal.style.zIndex = -1;
+        statsModal.style.zIndex = "-1";
       }, 500);
-      statsModal.style.opacity = 0;
+      statsModal.style.opacity = "0";
       statsModalOpen = false;
       window.localStorage.setItem("modalOpen", "false");
     }
 
     // Open help modal
-    helpModal.style.zIndex = 2;
-    helpModal.style.opacity = 1;
+    helpModal.style.zIndex = "2";
+    helpModal.style.opacity = "1";
     helpModalOpen = true;
     window.localStorage.setItem("modalOpen", "true");
     helpButton.classList.add("emoji-button-clicked");

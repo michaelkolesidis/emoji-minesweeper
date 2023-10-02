@@ -1,7 +1,7 @@
 ![Emoji Minesweeper woodmark](./assets/woodmark_light.svg#gh-dark-mode-only)
 ![Emoji Minesweeper woodmark](./assets/woodmark.svg#gh-light-mode-only)
 
-### Minesweeper made with emojis. The most fun way to play minesweeper!
+### Minesweeper made with emojis. The most fun way to play minesweeper
 
 ![Win mines](./screenshots/win_mines_v5.png)
 ![Win flowers](./screenshots/win_flowers_v5.png)
@@ -14,7 +14,7 @@ Emoji Minesweeper **always makes the first click safe**. You open squares with t
 
 The game ends when all safe squares have been opened (**win**) or when a square containing a mine is opened (**loss**). If you win, the empty square get filled with happy faces 😄, and if you lose they get filled with sad faces 😵.
 
-There are **three levels** (beginner, intermediate, and expert) and **five themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻 and sea 🐙) to choose from.
+There are **three levels** (beginner, intermediate, and expert) and **six themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻, sea 🐙, and Japan 🏯) to choose from.
 
 Lastly, players can choose between light 🌞 and dark 🌛 mode.
 
@@ -100,7 +100,7 @@ There are three difficulty levels, with different board sizes and numbers of min
 
 You can use the level buttons 1️⃣2️⃣3️⃣ to switch between levels. You can also use the _keyboard keys 1,2 and 3_.
 
-The game features five themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻 and a sea theme 🐙. You can use the theme button 💣/🌺/🍄/🐻/🐙 to switch between themes, or use the _left and right arrows_ on your keyboard. These are the rest of the themes:
+The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a sea theme 🐙, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🐙/🏯 to switch between themes, or use the _left and right arrows_ on your keyboard. These are the rest of the themes:
 
 ![Win mushroom](./screenshots/win_mushroom_v5.png)
 
@@ -138,7 +138,7 @@ Lastly, clicking on the 🌞/🌛 button allows players to choose between light 
 - _New Game_ button restarts the game
 - _Stats_ button toggles the **stats modal**
 - 1️⃣2️⃣3️⃣ buttons switch between **levels** (beginner, intermediate, and expert)
-- 💣/🌺/🍄/🐻/🐙 button switches between **themes** (mine, flower, mushroom, bear and sea)
+- 💣/🌺/🍄/🐻/🐙/🏯 button switches between **themes** (mine, flower, mushroom, bear, sea, and Japan)
 - ❔button toggles the **help modal**
 - 🚩 button toggles **flag mode** (for touchscreens)
 - 🌞/🌛 button toggles **dark mode**
@@ -180,13 +180,14 @@ The following emojis are used throughout the game:
 
 ### Themes & Emoji Sets
 
-|     Theme     |      Game Title       | Emoji Set    |
-| :-----------: | :-------------------: | :----------- |
-|     Mine      |   Emoji Minesweeper   | 💣 💥 😄 😵  |
-|    Flower     |  Emoji Flower Field   | 🌺 🐛 😊 😔  |
-|   Mushroom    | Emoji Mushroom Picker | 🍄 🦄 😎 😵‍💫  |
-|     Bear      |  Emoji Bearspotting   | 🐻 🐾 🌳 🪵  |
-| Sea (Octopus) |   Emoji Seasweeper    | 🐙 🌊 ⛵️ 🦈 |
+|     Theme     |       Game Title       | Emoji Set     |
+| :-----------: | :--------------------: | :------------ |
+|     Mine      |   Emoji Minesweeper    | 💣 💥 😄 😵 |
+|    Flower     |   Emoji Flower Field   | 🌺 🐛 😊 😔 |
+|   Mushroom    | Emoji Mushroom Picker  | 🍄 🦄 😎 😵‍💫 |
+|     Bear      |   Emoji Bearspotting   | 🐻 🐾 🌳 🪵 |
+| Sea (Octopus) |    Emoji Seasweeper    | 🐙 🌊 ⛵️ 🦈 |
+|     Japan     |  絵文字マインスイーパー  | 🏯 👺 🌸 🈲 |
 
 The suggested emoji font for the game is the **Segoe UI Emoji font** that can be found [here](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji). If you are running Windows 11, this font family is already installed on your computer. If you are running Linux, you can install and use the Segoe UI font family by following these [instructions](https://vyshnav.xyz/blog/windows-11-emojis-on-linux).
 

@@ -18,7 +18,7 @@ Starting from version 4.0.1, the project is using semantic commit messages. Plea
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 [Git Commit Msg](http://karma-runner.github.io/1.0/dev/git-commit-msg.html)
 
-### The project is in active development, so if you have any ideas or want to help, feel free to:
+### The project is in active development, so if you have any ideas or want to help, feel free to
 
 0. Start by creating an issue, so proposed changes can be discussed
 1. Fork the Project

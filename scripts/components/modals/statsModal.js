@@ -196,9 +196,8 @@ export default function StatsModal() {
   statsModal.setAttribute("id", "stats-modal");
 
   // Stats: Level
-  statsModal.innerHTML += `<p class="level">${
-    gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
-  }</p>`;
+  statsModal.innerHTML += `<p class="level">${gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
+    }</p>`;
 
   const statsTable = document.createElement("div");
   statsTable.setAttribute("id", "stats-table");
