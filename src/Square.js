@@ -28,12 +28,12 @@ class Square {
     this.num = num;
     this.i = i;
     this.j = j;
-    this.x = i * squareSize; 
-    this.y = j * squareSize; 
+    this.x = i * squareSize;
+    this.y = j * squareSize;
     this.mine = false;
     this.minesAround = 0;
     this.opened = false;
-    this.clicked = false; 
+    this.clicked = false;
     this.flagged = false;
   }
 
