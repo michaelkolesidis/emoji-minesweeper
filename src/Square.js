@@ -13,16 +13,27 @@
 disableFriendlyErrors = true;
 
 class Square {
-  constructor(i, j) {
-    this.num;
+  num;
+  i;
+  j;
+  x; // the exact position of the square inside the canvas, in the horizontal axis (in pixels)
+  y; // the exact position of the square inside the canvas, in the vertical axis (in pixels)
+  mine;
+  minesAround;
+  opened;
+  clicked; // In order to show detonation only on clicked mine
+  flagged;
+
+  constructor(i, j, num) {
+    this.num = num;
     this.i = i;
     this.j = j;
-    this.x = i * squareSize; // the exact position of the square inside the canvas, in the horizontal axis (in pixels)
-    this.y = j * squareSize; // the exact position of the square inside the canvas, in the vertical axis (in pixels)
+    this.x = i * squareSize; 
+    this.y = j * squareSize; 
     this.mine = false;
     this.minesAround = 0;
     this.opened = false;
-    this.clicked = false; // In order to show detonation only on clicked mine
+    this.clicked = false; 
     this.flagged = false;
   }
 

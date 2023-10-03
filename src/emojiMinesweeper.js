@@ -202,8 +202,7 @@ function allocateMines() {
 function generateSquares() {
   for (let i = 0; i < columns; i++) {
     for (let j = 0; j < rows; j++) {
-      let newSquare = new Square(i, j);
-      newSquare.num = squareCounter;
+      let newSquare = new Square(i, j, squareCounter);
       squareCounter += 1;
 
       // Check whether square includes mine
