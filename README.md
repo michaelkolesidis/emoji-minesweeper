@@ -8,6 +8,8 @@
 
 ## [Play!](https://www.emojiminesweeper.com/)
 
+<a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:45px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 Emoji Minesweeper is a **logic puzzle game**, a variant of the classic [minesweeper game](<https://en.wikipedia.org/wiki/Minesweeper_(video_game)>) reimagined and implemented using **emojis**! It features a **grid of clickable squares**, with hidden **mines** (or flowers) scattered throughout the board. Safe squares have **numbers** telling you how many mines touch the square. If there is no number, the square doesn't touch any mine. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you **lose** the game!
 
 Emoji Minesweeper **always makes the first click safe**. You open squares with the **left mouse button** and put flags on mines with the **right mouse button**.
@@ -205,11 +207,11 @@ You can find more information about the history of emoji [here](https://gem-ship
 - [Margarita Marmaridou](https://github.com/mamarmar/)
 - You can be on this list, too!
 
-## Backers
+## 💖 Support the Project
 
-The costs are still minimal (domain name and server) and are paid for by us to offer you a great game and (hopefully) some fun moments. For the time being, we are not accepting any form of financial backing, but if in the future costs increase and/or you would like to support the future development or the game, or just say thank you for our effort, we might give you a way to show your support. Stay tuned!
+Thank you so much for your interest in my project! If you want to go a step further and support my open source work, buy me a coffee:
 
-PS. If someone asks you for any sort of financial backing/donations/payments, you should know that we have **not** asked for it, and your money will not benefit the contributors of the project.
+<a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:45px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## International Campaign to Ban Landmines
 
