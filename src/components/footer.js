@@ -8,7 +8,7 @@
 export default function Footer() {
   const footer = document.createElement("footer");
   footer.innerHTML += `
-    <p>© 2024 Michael Kolesidis. Licensed under the 
+    <p>© 2024 | Licensed under 
       <a 
         href="https://www.gnu.org/licenses/agpl-3.0.html" 
         target="_blank">
@@ -18,7 +18,7 @@ export default function Footer() {
       <a 
         href="https://github.com/michaelkolesidis/emoji-minesweeper" 
         target="_blank">
-          GitHub
+          Source
       </a>
     </p>`;
 
