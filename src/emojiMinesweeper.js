@@ -89,17 +89,33 @@ let wonEmoji = themes[theme]["won"];
 let lostEmoji = themes[theme]["lost"];
 
 // Emojis
-const CLOSED = darkMode ? "⬛" : "🔲";
+let CLOSED = darkMode ? "⬛" : "🔲";
 let NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
 if (darkMode) NUMBERS[0] = "";
-const FLAG = "🚩";
+let FLAG = "🚩";
 let DETONATION = detonationEmoji;
 let MINE = mineEmoji;
-const WRONG = "❌";
+let WRONG = "❌";
 let WON = wonEmoji;
 let LOST = lostEmoji;
-const TIMER = "⌛";
-const MOVES = "🧮";
+let TIMER = "⌛";
+let MOVES = "🧮";
+
+// Easter egg
+document.addEventListener("keydown", (e) => {
+  if (e.code === "KeyM") {
+    CLOSED = "🥸";
+    NUMBERS = ["🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸"];
+    FLAG = "🥸";
+    DETONATION = "🥸";
+    MINE = "🥸";
+    WRONG = "🥸";
+    WON = "🥸";
+    LOST = "🥸";
+    TIMER = "🥸";
+    MOVES = "🥸";
+  }
+});
 
 /**
  * Title

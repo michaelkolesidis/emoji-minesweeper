@@ -160,6 +160,8 @@ Lastly, clicking on the 🌞/🌛 button allows players to choose between light 
 |      F      | Toggle flag mode                   |
 |      D      | Toggle dark mode                   |
 
+Apart from these controls, an Easter egg awaits discovery! Can you find it?
+
 ## Feature List
 
 You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-list).
