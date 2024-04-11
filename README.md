@@ -1,5 +1,5 @@
-![Emoji Minesweeper woodmark](./assets/woodmark_light.svg#gh-dark-mode-only)
-![Emoji Minesweeper woodmark](./assets/woodmark.svg#gh-light-mode-only)
+![Emoji Minesweeper wordmark](./assets/wordmark_light.svg#gh-dark-mode-only)
+![Emoji Minesweeper wordmark](./assets/wordmark.svg#gh-light-mode-only)
 
 ### Minesweeper made with emojis. The most fun way to play minesweeper
 
@@ -19,8 +19,6 @@ The game ends when all safe squares have been opened (**win**) or when a square 
 There are **three levels** (beginner, intermediate, and expert) and **six themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻, sea 🐙, and Japan 🏯) to choose from.
 
 Lastly, players can choose between light 🌞 and dark 🌛 mode.
-
-**Update: Players will soon have the ability to create an account, save their stats, get ranked, and compete against players from all over the world!**
 
 ## Documentation
 
@@ -160,8 +158,6 @@ Lastly, clicking on the 🌞/🌛 button allows players to choose between light 
 |      F      | Toggle flag mode                   |
 |      D      | Toggle dark mode                   |
 
-Apart from these controls, an Easter egg awaits discovery! Can you find it?
-
 ## Feature List
 
 You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-list).
@@ -193,7 +189,7 @@ The following emojis are used throughout the game:
 | Sea (Octopus) |    Emoji Seasweeper    | 🐙 🌊 ⛵️ 🦈 |
 |     Japan     |  絵文字マインスイーパー  | 🏯 👺 🌸 🈲 |
 
-The suggested emoji font for the game is the **Segoe UI Emoji font** that can be found [here](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji). If you are running Windows 11, this font family is already installed on your computer. If you are running Linux, you can install and use the Segoe UI font family by following these [instructions](https://vyshnav.xyz/blog/windows-11-emojis-on-linux).
+The emoji font used in the game is the **Segoe UI Emoji font** that can be found [here](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji). If you are running Windows 11, this font family is already installed on your computer. If you are running Linux, you can install and use the Segoe UI font family by following these [instructions](https://vyshnav.xyz/blog/windows-11-emojis-on-linux).
 
 ### Emoji History
 

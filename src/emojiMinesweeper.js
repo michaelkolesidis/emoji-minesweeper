@@ -88,39 +88,44 @@ let detonationEmoji = themes[theme]["detonation"];
 let wonEmoji = themes[theme]["won"];
 let lostEmoji = themes[theme]["lost"];
 
-// Emojis
-let CLOSED = darkMode ? "⬛" : "🔲";
-let NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
-if (darkMode) NUMBERS[0] = "";
-let FLAG = "🚩";
-let DETONATION = detonationEmoji;
-let MINE = mineEmoji;
-let WRONG = "❌";
-let WON = wonEmoji;
-let LOST = lostEmoji;
-let TIMER = "⌛";
-let MOVES = "🧮";
+// Emoji
+let CLOSED;
+let NUMBERS = [];
+let FLAG;
+let DETONATION;
+let MINE;
+let WRONG;
+let WON;
+let LOST;
+let TIMER;
+let MOVES;
 
-// Easter egg
-document.addEventListener("keydown", (e) => {
-  if (e.code === "KeyM") {
-    CLOSED = "🥸";
-    NUMBERS = ["🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸"];
-    FLAG = "🥸";
-    DETONATION = "🥸";
-    MINE = "🥸";
-    WRONG = "🥸";
-    WON = "🥸";
-    LOST = "🥸";
-    TIMER = "🥸";
-    MOVES = "🥸";
-  }
-});
+function preload() {
+  CLOSED = loadImage("../emoji/black_square_button_flat.svg");
+  NUMBERS[0] = loadImage("../emoji/white_large_square_flat.svg");
+  NUMBERS[1] = loadImage("../emoji/keycap_1_flat.svg");
+  NUMBERS[2] = loadImage("../emoji/keycap_2_flat.svg");
+  NUMBERS[3] = loadImage("../emoji/keycap_3_flat.svg");
+  NUMBERS[4] = loadImage("../emoji/keycap_4_flat.svg");
+  NUMBERS[5] = loadImage("../emoji/keycap_5_flat.svg");
+  NUMBERS[6] = loadImage("../emoji/keycap_6_flat.svg");
+  NUMBERS[7] = loadImage("../emoji/keycap_7_flat.svg");
+  NUMBERS[8] = loadImage("../emoji/keycap_8_flat.svg");
+  NUMBERS[9] = loadImage("../emoji/keycap_9_flat.svg");
+  FLAG = loadImage("../emoji/triangular_flag_flat.svg");
+  DETONATION = loadImage("../emoji/collision_flat.svg");
+  MINE = loadImage("../emoji/bomb_flat.svg");
+  WRONG = loadImage("../emoji/cross_mark_flat.svg");
+  WON = loadImage("../emoji/grinning_face_with_smiling_eyes_flat.svg");
+  LOST = loadImage("../emoji/knocked-out_face_flat.svg");
+  TIMER = loadImage("../emoji/hourglass_done_flat.svg");
+  MOVES = loadImage("../emoji/abacus_flat.svg");
+}
 
 /**
  * Title
  */
-window.localStorage.setItem("title", themes[theme]["title"]);
+// window.localStorage.setItem("title", themes[theme]["title"]);
 
 /**
  * Settings
@@ -133,7 +138,7 @@ let settings = {
     mines: 10,
   },
   size: {
-    squareSize: 32,
+    squareSize: 35,
   },
 };
 
@@ -164,13 +169,6 @@ switch (level) {
       mines: 99,
     };
     break;
-  case "custom":
-    settings.level = {
-      columns: null,
-      rows: null,
-      mines: null,
-    };
-    break;
 }
 
 /**
@@ -181,14 +179,44 @@ let squareSize = settings.size.squareSize; // The size (in pixels of each square
 let columns = settings.level.columns; // The number of columns in the board
 let rows = settings.level.rows; // The number of rows in the board
 let numberOfSquares = rows * columns;
-let sizeError = squareSize * 0.175; // On Windows and on Linux if error is not added to size,
-// the left and bottom borders are not totally visible -
-// on Mac it works fine even without the error
 
-let boardSize = {
-  width: squareSize * columns + sizeError,
-  height: squareSize * rows + sizeError,
-};
+let boardSize;
+
+switch (level) {
+  case "beginner":
+    settings.level = {
+      columns: 9,
+      rows: 9,
+      mines: 10,
+    };
+    boardSize = {
+      width: squareSize * columns - 22,
+      height: squareSize * rows,
+    };
+    break;
+  case "intermediate":
+    settings.level = {
+      columns: 16,
+      rows: 16,
+      mines: 40,
+    };
+    boardSize = {
+      width: squareSize * columns - 40,
+      height: squareSize * rows,
+    };
+    break;
+  case "expert":
+    settings.level = {
+      columns: 30,
+      rows: 16,
+      mines: 99,
+    };
+    boardSize = {
+      width: squareSize * columns - 75,
+      height: squareSize * rows,
+    };
+    break;
+}
 
 let initialMines = settings.level.mines; // Used by the mine indicator
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to squares
@@ -263,7 +291,7 @@ function setup() {
     boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
   );
   cnv.parent("board");
-  textSize(squareSize - squareSize * 0.05); // On Mac "squareSize - 1" works better, on Windows "squareSize - 6"
+  imageMode(CENTER);
 
   allocateMines();
   generateSquares();
@@ -296,7 +324,13 @@ function draw() {
   } else {
     darkMode ? fill(225) : fill(35);
   }
-  text(MINE, squareSize * 0.125, boardSize.height - squareSize * 0.275);
+  image(
+    MINE,
+    squareSize * 0.125,
+    boardSize.height - squareSize * 0.9,
+    squareSize * 0.75,
+    squareSize * 0.75
+  );
   text(
     nf(Math.max(initialMines - flaggedSquares, 0), 3),
     squareSize,
@@ -305,11 +339,14 @@ function draw() {
 
   // Moves indicator
   darkMode ? fill(225) : fill(35);
-  text(
+  image(
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 0.99,
-    boardSize.height - squareSize * 0.275
+    boardSize.height - squareSize * 0.9,
+    squareSize * 0.75,
+    squareSize * 0.75
   );
+
   if (newBestMoves) {
     fill(255, 176, 46);
   }
@@ -321,12 +358,14 @@ function draw() {
 
   // Time indicator
   darkMode ? fill(225) : fill(35);
-
-  text(
+  image(
     TIMER,
     width - squareSize * 1.975,
-    boardSize.height - squareSize * 0.275
+    boardSize.height - squareSize * 0.9,
+    squareSize * 0.75,
+    squareSize * 0.75
   );
+
   if (newBestTime) {
     fill(255, 176, 46);
   }
@@ -472,7 +511,7 @@ function mousePressed() {
       let square = squares.find((s) => {
         return (
           s.x < mouseX &&
-          s.x + squareSize > mouseX &&
+          s.x + squareSize  > mouseX &&
           s.y < mouseY &&
           s.y + squareSize > mouseY
         );

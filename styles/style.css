@@ -63,6 +63,10 @@ a:hover {
   text-decoration: underline;
 }
 
+img {
+  -webkit-user-drag: none;
+}
+
 #game-container {
   position: relative;
   min-height: 100vh;
@@ -83,6 +87,7 @@ a:hover {
   font-family: "Fredoka One", cursive;
   white-space: nowrap;
   font-size: 31px;
+  height: 40px;
 }
 
 .header span {
@@ -109,6 +114,7 @@ a:hover {
 .japanese {
   font-family: "Mochiy Pop One";
   font-size: 26px;
+  height: 40px;
 }
 
 /* Board */
@@ -133,7 +139,7 @@ canvas {
 /* Elements Container */
 #container {
   padding: 0;
-  margin-top: 0.5rem;
+  margin-top: 3rem;
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
@@ -273,12 +279,15 @@ hr {
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
   margin: 0 0.15rem;
-  margin: 0 -0.08rem;
 }
 
 .emoji-button:hover,
 .emoji-button-clicked {
   opacity: 0.6;
+}
+
+.emoji-button > img {
+  height: 35px;
 }
 
 /* Footer */

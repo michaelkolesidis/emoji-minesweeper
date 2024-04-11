@@ -10,7 +10,7 @@ export default function BeginnerButton() {
   const beginnerButton = document.createElement("div");
   beginnerButton.title = `Beginner level`;
   beginnerButton.className = `emoji-button`;
-  beginnerButton.innerHTML = `1️⃣`;
+  beginnerButton.innerHTML = `<img src="../../../emoji/keycap_1_flat.svg" />`;
   if (level === "beginner") {
     beginnerButton.classList.add("emoji-button-clicked");
   }

@@ -14,7 +14,9 @@ export default function DarkModeButton(darkMode) {
   const darkModeButton = document.createElement("div");
   darkModeButton.title = `Toggle dark mode`;
   darkModeButton.className = `emoji-button`;
-  darkModeButton.innerHTML = darkMode ? "🌛" : "🌞";
+  darkModeButton.innerHTML = darkMode
+    ? `<img src="../../../emoji/waning_crescent_moon_flat.svg" />`
+    : `<img src="../../../emoji/sun_flat.svg" />`;
 
   // Theme Button Functionality
   darkModeButton.addEventListener("click", () => {

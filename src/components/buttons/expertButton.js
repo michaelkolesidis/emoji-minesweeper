@@ -10,7 +10,7 @@ export default function ExpertButton() {
   const expertButton = document.createElement("div");
   expertButton.title = `Expert level`;
   expertButton.className = `emoji-button`;
-  expertButton.innerHTML = `3️⃣`;
+  expertButton.innerHTML = `<img src="../../../emoji/keycap_3_flat.svg" />`;
   if (level === "expert") {
     expertButton.classList.add("emoji-button-clicked");
   }

@@ -10,7 +10,8 @@ export default function IntermediateButton() {
   const intermediateButton = document.createElement("div");
   intermediateButton.title = `Intermediate level`;
   intermediateButton.className = `emoji-button`;
-  intermediateButton.innerHTML = `2️⃣`;
+  intermediateButton.innerHTML = `<img src="../../../emoji/keycap_2_flat.svg" />`;
+
   if (level === "intermediate") {
     intermediateButton.classList.add("emoji-button-clicked");
   }

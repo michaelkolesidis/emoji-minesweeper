@@ -9,22 +9,20 @@
  * the saved stats.
  */
 
-// import favicon from "./utils/favicon.js";
-import Header from "./components/header.js";
-import Board from "./components/board.js";
-import Footer from "./components/footer.js";
-import StatsModal from "./components/modals/statsModal.js";
-import HelpModal from "./components/modals/helpModal.js";
-import NewGameButton from "./components/buttons/newGameButton.js";
-import StatsButton from "./components/buttons/statsButton.js";
-import BeginnerButton from "./components/buttons/beginnerButton.js";
-import IntermediateButton from "./components/buttons/intermediateButton.js";
-import ExpertButton from "./components/buttons/expertButton.js";
-import ThemeButton from "./components/buttons/themeButton.js";
-import HelpButton from "./components/buttons/helpButton.js";
-import FlagButton from "./components/buttons/flagButton.js";
-// import MenuContainer from "./components/menu/menuContainer.js";
-import DarkModeButton from "./components/buttons/darkModeButton.js";
+import Header from "./components/Header.js";
+import Board from "./components/Board.js";
+import Footer from "./components/Footer.js";
+import StatsModal from "./components/modals/StatsModal.js";
+import HelpModal from "./components/modals/HelpModal.js";
+import NewGameButton from "./components/buttons/NewGameButton.js";
+import StatsButton from "./components/buttons/StatsButton.js";
+import BeginnerButton from "./components/buttons/BeginnerButton.js";
+import IntermediateButton from "./components/buttons/IntermediateButton.js";
+import ExpertButton from "./components/buttons/ExpertButton.js";
+import ThemeButton from "./components/buttons/ThemeButton.js";
+import HelpButton from "./components/buttons/HelpButton.js";
+import FlagButton from "./components/buttons/FlagButton.js";
+import DarkModeButton from "./components/buttons/DarkModeButton.js";
 
 /**
  * Basics
@@ -53,18 +51,12 @@ if (mainEmoji === null) {
 // Modal
 window.localStorage.setItem("modalOpen", "false");
 
-// Menu
-// window.localStorage.setItem("menuOpen", "false");
-
 // Flag mode
 window.localStorage.setItem("flagMode", "false");
 
 // Title
 let title = window.localStorage.getItem("title") ?? "Emoji Minesweeper";
 document.title = title;
-
-// Favicon
-// favicon(mainEmoji);
 
 /**
  * Elements
@@ -153,7 +145,6 @@ contentWrap.appendChild(footer);
 let statsModalOpen = false;
 
 // Utility Function
-
 function toggleStatsModal() {
   if (statsModalOpen) {
     // Close stats modal
@@ -169,7 +160,6 @@ function toggleStatsModal() {
     helpModalOpen = false;
     window.localStorage.setItem("modalOpen", "false");
     helpButton.style.opacity = "1";
-
     // Open stats modal
     statsModal.style.zIndex = "2";
     statsModal.style.opacity = "1";
@@ -196,7 +186,6 @@ document.addEventListener("keydown", (e) => {
 let helpModalOpen = false;
 
 // Utility Function
-
 function toggleHelpModal() {
   if (helpModalOpen) {
     // Close help modal
@@ -217,7 +206,6 @@ function toggleHelpModal() {
       statsModalOpen = false;
       window.localStorage.setItem("modalOpen", "false");
     }
-
     // Open help modal
     helpModal.style.zIndex = "2";
     helpModal.style.opacity = "1";
@@ -238,9 +226,3 @@ document.addEventListener("keydown", (e) => {
     toggleHelpModal();
   }
 });
-
-/**
- * Menu
- */
-// const menuContainer = MenuContainer();
-// document.body.appendChild(menuContainer);

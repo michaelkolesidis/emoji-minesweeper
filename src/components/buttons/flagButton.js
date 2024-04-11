@@ -14,7 +14,7 @@ export default function FlagButton(board) {
   const flagButton = document.createElement("div");
   flagButton.title = `Toggle flag mode`;
   flagButton.className = `emoji-button`;
-  flagButton.innerHTML = `🚩`;
+  flagButton.innerHTML = `<img src="../../../emoji/triangular_flag_flat.svg" />`;
 
   // Flag Button Functionality
   let flagMode = false;
