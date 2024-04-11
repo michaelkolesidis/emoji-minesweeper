@@ -93,7 +93,7 @@ export default function ThemeButton(mainEmoji, header) {
     WON = themes[theme]["won"];
     LOST = themes[theme]["lost"];
     window.localStorage.setItem("title", themes[theme]["title"]);
-    let title = window.localStorage.getItem("title");
+    const title = window.localStorage.getItem("title");
     document.title = title;
     window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
     // favicon(themes[theme]["mine"]);

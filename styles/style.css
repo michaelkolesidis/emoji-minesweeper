@@ -34,6 +34,9 @@
 html,
 body {
   background-color: var(--secondary-color);
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -269,8 +272,6 @@ hr {
 /* Emoji Buttons */
 #emoji-buttons-container {
   display: flex;
-  /* display: grid; */
-  /* grid-template-columns: repeat(4, 1fr); */
   align-items: center;
 }
 

@@ -12,7 +12,7 @@ export default function Header(title) {
     header.classList.add("japanese");
   }
 
-  let titleCharacters = title.split("");
+  const titleCharacters = title.split("");
   for (let i = 0; i < titleCharacters.length; i++) {
     if (titleCharacters[i] === " ") {
       titleCharacters[i] = "&nbsp;";

@@ -6,7 +6,7 @@
  */
 
 function formatTime(time) {
-  let formattedTime, hours, minutes, seconds;
+  let hours, minutes, seconds;
 
   hours = Math.floor(time / 3600);
   minutes = Math.floor((time - hours * 3600) / 60);
@@ -22,7 +22,7 @@ function formatTime(time) {
     seconds = "0" + seconds;
   }
 
-  formattedTime = `${hours}:${minutes}:${seconds}`;
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
   return formattedTime;
 }
 
@@ -35,130 +35,138 @@ export default function StatsModal() {
   }
 
   // Games Played
-  let beginnerPlayed = window.localStorage.getItem("beginnerPlayed");
+  const beginnerPlayed = window.localStorage.getItem("beginnerPlayed");
   if (beginnerPlayed === null) {
     window.localStorage.setItem("beginnerPlayed", "0");
   }
 
-  let intermediatePlayed = window.localStorage.getItem("intermediatePlayed");
+  const intermediatePlayed = window.localStorage.getItem("intermediatePlayed");
   if (intermediatePlayed === null) {
     window.localStorage.setItem("intermediatePlayed", "0");
   }
 
-  let expertPlayed = window.localStorage.getItem("expertPlayed");
+  const expertPlayed = window.localStorage.getItem("expertPlayed");
   if (expertPlayed === null) {
     window.localStorage.setItem("expertPlayed", "0");
   }
 
   // Games Won
-  let beginnerWon = window.localStorage.getItem("beginnerWon");
+  const beginnerWon = window.localStorage.getItem("beginnerWon");
   if (beginnerWon === null) {
     window.localStorage.setItem("beginnerWon", "0");
   }
 
-  let intermediateWon = window.localStorage.getItem("intermediateWon");
+  const intermediateWon = window.localStorage.getItem("intermediateWon");
   if (intermediateWon === null) {
     window.localStorage.setItem("intermediateWon", "0");
   }
 
-  let expertWon = window.localStorage.getItem("expertWon");
+  const expertWon = window.localStorage.getItem("expertWon");
   if (expertWon === null) {
     window.localStorage.setItem("expertWon", "0");
   }
 
   // Win Percentage
-  let beginnerWinPercentage = window.localStorage.getItem(
+  const beginnerWinPercentage = window.localStorage.getItem(
     "beginnerWinPercentage"
   );
   if (beginnerWinPercentage === null) {
     window.localStorage.setItem("beginnerWinPercentage", "");
   }
 
-  let intermediateWinPercentage = window.localStorage.getItem(
+  const intermediateWinPercentage = window.localStorage.getItem(
     "intermediateWinPercentage"
   );
   if (intermediateWinPercentage === null) {
     window.localStorage.setItem("intermediateWinPercentage", "");
   }
 
-  let expertWinPercentage = window.localStorage.getItem("expertWinPercentage");
+  const expertWinPercentage = window.localStorage.getItem(
+    "expertWinPercentage"
+  );
   if (expertWinPercentage === null) {
     window.localStorage.setItem("expertWinPercentage", "");
   }
 
   // Best Time
-  let beginnerBestTime = window.localStorage.getItem("beginnerBestTime");
+  const beginnerBestTime = window.localStorage.getItem("beginnerBestTime");
   if (beginnerBestTime === null) {
     window.localStorage.setItem("beginnerBestTime", "");
   }
 
-  let intermediateBestTime = window.localStorage.getItem(
+  const intermediateBestTime = window.localStorage.getItem(
     "intermediateBestTime"
   );
   if (intermediateBestTime === null) {
     window.localStorage.setItem("intermediateBestTime", "");
   }
 
-  let expertBestTime = window.localStorage.getItem("expertBestTime");
+  const expertBestTime = window.localStorage.getItem("expertBestTime");
   if (expertBestTime === null) {
     window.localStorage.setItem("expertBestTime", "");
   }
 
   // Best Moves
-  let beginnerBestMoves = window.localStorage.getItem("beginnerBestMoves");
+  const beginnerBestMoves = window.localStorage.getItem("beginnerBestMoves");
   if (beginnerBestMoves === null) {
     window.localStorage.setItem("beginnerBestMoves", "");
   }
 
-  let intermediateBestMoves = window.localStorage.getItem(
+  const intermediateBestMoves = window.localStorage.getItem(
     "intermediateBestMoves"
   );
   if (intermediateBestMoves === null) {
     window.localStorage.setItem("intermediateBestMoves", "");
   }
 
-  let expertBestMoves = window.localStorage.getItem("expertBestMoves");
+  const expertBestMoves = window.localStorage.getItem("expertBestMoves");
   if (expertBestMoves === null) {
     window.localStorage.setItem("expertBestMoves", "");
   }
 
   // Total Time
-  let beginnerTotalTime = window.localStorage.getItem("beginnerTotalTime");
+  const beginnerTotalTime = window.localStorage.getItem("beginnerTotalTime");
   if (beginnerTotalTime === null) {
     window.localStorage.setItem("beginnerTotalTime", "0");
   }
 
-  let intermediateTotalTime = window.localStorage.getItem(
+  const intermediateTotalTime = window.localStorage.getItem(
     "intermediateTotalTime"
   );
   if (intermediateTotalTime === null) {
     window.localStorage.setItem("intermediateTotalTime", "0");
   }
 
-  let expertTotalTime = window.localStorage.getItem("expertTotalTime");
+  const expertTotalTime = window.localStorage.getItem("expertTotalTime");
   if (expertTotalTime === null) {
     window.localStorage.setItem("expertTotalTime", "0");
   }
 
   // Total Moves
-  let beginnerTotalMoves = window.localStorage.getItem("beginnerTotalMoves");
+  const beginnerTotalMoves = window.localStorage.getItem("beginnerTotalMoves");
   if (beginnerTotalMoves === null) {
     window.localStorage.setItem("beginnerTotalMoves", "0");
   }
 
-  let intermediateTotalMoves = window.localStorage.getItem(
+  const intermediateTotalMoves = window.localStorage.getItem(
     "intermediateTotalMoves"
   );
   if (intermediateTotalMoves === null) {
     window.localStorage.setItem("intermediateTotalMoves", "0");
   }
 
-  let expertTotalMoves = window.localStorage.getItem("expertTotalMoves");
+  const expertTotalMoves = window.localStorage.getItem("expertTotalMoves");
   if (expertTotalMoves === null) {
     window.localStorage.setItem("expertTotalMoves", "0");
   }
 
-  let won, played, winPercentage, bestTime, bestMoves, totalTime, totalMoves;
+  let won;
+  let played;
+  let winPercentage;
+  let bestTime;
+  let bestMoves;
+  let totalTime;
+  let totalMoves;
 
   switch (gameLevel) {
     case "beginner":
@@ -196,8 +204,9 @@ export default function StatsModal() {
   statsModal.setAttribute("id", "stats-modal");
 
   // Stats: Level
-  statsModal.innerHTML += `<p class="level">${gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
-    }</p>`;
+  statsModal.innerHTML += `<p class="level">${
+    gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
+  }</p>`;
 
   const statsTable = document.createElement("div");
   statsTable.setAttribute("id", "stats-table");

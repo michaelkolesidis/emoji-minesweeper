@@ -3,18 +3,14 @@
  *  Copyright (c) 2024 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
- * minesweeperEmoji.js contains the game functionality,
- * everything that happens inside the game's board. It
- * also handles the update of the stats accordingly.
+ *  minesweeperEmoji.js contains the game functionality,
+ *  everything that happens inside the game's board. It
+ *  also handles the update of the stats accordingly.
  */
 
 /**
  * Basics
  */
-// Disable the Friendly Error System
-// (not used in the minified version of p5js)
-disableFriendlyErrors = true;
-
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
@@ -78,7 +74,7 @@ const themes = {
 let darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
 
 /**
- * Emojis
+ * Emoji
  */
 let theme = window.localStorage.getItem("theme") ?? "mine";
 window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
@@ -88,7 +84,7 @@ let detonationEmoji = themes[theme]["detonation"];
 let wonEmoji = themes[theme]["won"];
 let lostEmoji = themes[theme]["lost"];
 
-// Emoji
+// Emoji images
 let CLOSED;
 let NUMBERS = [];
 let FLAG;
@@ -190,7 +186,7 @@ switch (level) {
       mines: 10,
     };
     boardSize = {
-      width: squareSize * columns - 22,
+      width: squareSize * columns,
       height: squareSize * rows,
     };
     break;
@@ -201,7 +197,7 @@ switch (level) {
       mines: 40,
     };
     boardSize = {
-      width: squareSize * columns - 40,
+      width: squareSize * columns,
       height: squareSize * rows,
     };
     break;
@@ -212,7 +208,7 @@ switch (level) {
       mines: 99,
     };
     boardSize = {
-      width: squareSize * columns - 75,
+      width: squareSize * columns,
       height: squareSize * rows,
     };
     break;
@@ -291,7 +287,6 @@ function setup() {
     boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
   );
   cnv.parent("board");
-  imageMode(CENTER);
 
   allocateMines();
   generateSquares();
@@ -304,11 +299,6 @@ function setup() {
 function draw() {
   darkMode ? background(25) : background(255);
 
-  if (navigator.userAgent.includes("Firefox")) {
-    translate(squareSize / 10, 0);
-  }
-
-  translate(-squareSize * 0.075, squareSize - squareSize * 0.075);
   squares.forEach(function (s) {
     s.draw();
   });
@@ -327,14 +317,14 @@ function draw() {
   image(
     MINE,
     squareSize * 0.125,
-    boardSize.height - squareSize * 0.9,
+    boardSize.height,
     squareSize * 0.75,
     squareSize * 0.75
   );
   text(
     nf(Math.max(initialMines - flaggedSquares, 0), 3),
     squareSize,
-    boardSize.height - squareSize * 0.25
+    boardSize.height + 20
   );
 
   // Moves indicator
@@ -342,7 +332,7 @@ function draw() {
   image(
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 0.99,
-    boardSize.height - squareSize * 0.9,
+    boardSize.height,
     squareSize * 0.75,
     squareSize * 0.75
   );
@@ -353,7 +343,7 @@ function draw() {
   text(
     nf(moves, 3),
     width / 2 - squareSize * 1.975 + 2 * squareSize * 0.99,
-    boardSize.height - squareSize * 0.275
+    boardSize.height + 20
   );
 
   // Time indicator
@@ -361,7 +351,7 @@ function draw() {
   image(
     TIMER,
     width - squareSize * 1.975,
-    boardSize.height - squareSize * 0.9,
+    boardSize.height,
     squareSize * 0.75,
     squareSize * 0.75
   );
@@ -369,11 +359,7 @@ function draw() {
   if (newBestTime) {
     fill(255, 176, 46);
   }
-  text(
-    nf(timePassed, 3),
-    width - squareSize * 1.1,
-    boardSize.height - squareSize * 0.25
-  );
+  text(nf(timePassed, 3), width - squareSize * 1.1, boardSize.height + 20);
   textSize(squareSize - squareSize * 0.05);
 }
 
@@ -511,7 +497,7 @@ function mousePressed() {
       let square = squares.find((s) => {
         return (
           s.x < mouseX &&
-          s.x + squareSize  > mouseX &&
+          s.x + squareSize > mouseX &&
           s.y < mouseY &&
           s.y + squareSize > mouseY
         );

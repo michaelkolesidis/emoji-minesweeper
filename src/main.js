@@ -3,10 +3,10 @@
  *  Copyright (c) 2024 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
- * main.js contains the rest of the UI of the game,
- * anything that happens outside of the board. It
- * also handles the storage and the display of
- * the saved stats.
+ *  main.js contains the rest of the UI of the game,
+ *  anything that happens outside of the board. It
+ *  also handles the storage and the display of
+ *  the saved stats.
  */
 
 import Header from "./components/Header.js";
