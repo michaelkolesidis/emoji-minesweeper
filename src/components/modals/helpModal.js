@@ -11,17 +11,40 @@ export default function HelpModal() {
   helpModal.setAttribute("id", "help-modal");
   helpModal.innerHTML += `
 <div>
-  🖱️ Left-click to <span style="font-weight:600;">open</span> a square, right-click to <span style="font-weight:600;">flag</span> a square
+  <p>Left-click to <span style="font-weight:600;">open</span>, right-click to <span style="font-weight:600;">flag</span> a square</p>
   <hr>
-  1️⃣2️⃣3️⃣ Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert (or use ⌨️ keys 1, 2, 3)
+  <p>
+    <img src="../../emoji/keycap_1_flat.png" class="help-emoji" />
+    <img src="../../emoji/keycap_2_flat.png" class="help-emoji" />
+    <img src="../../emoji/keycap_3_flat.png" class="help-emoji" />
+    Switch between <span style="font-weight:600;">levels</span>, beginner, intermediate, expert (or keys 1, 2, 3)
+  </p>
   <hr>
-  💣/🌺/🍄/🐻/🐙/🏯 Switch between <span style="font-weight:600;">themes</span> (or use ⌨️ left/right arrows)
+  <p>
+    <img src="../../emoji/bomb_flat.png" class="help-emoji" /> /
+    <img src="../../emoji/hibiscus_flat.png" class="help-emoji" /> /
+    🍄 /
+    🐻 /
+    🐙 /
+    🏯 
+    Switch between <span style="font-weight:600;">themes</span> (or left/right arrows)
+  </p>
   <hr>
-  ❔ Toggle <span style="font-weight:600;">help</span> (or use ⌨️ the H key)
+  <p>
+    <img src="../../emoji/white_question_mark_flat.png" class="help-emoji" />
+    Toggle <span style="font-weight:600;">help</span> (or H key)
+  </p>
   <hr>
-  🚩 Toggle <span style="font-weight:600;">flag mode</span>: flag with touch / right-click (or use ⌨️ the F key)
+  <p>
+    <img src="../../emoji/triangular_flag_flat.png" class="help-emoji" />
+    Toggle <span style="font-weight:600;">flag mode</span>: flag with touch / right-click (or F key)
+  </p>
   <hr>
-  🌞/🌛 Toggle <span style="font-weight:600;">dark mode</span> (or use ⌨️ the D key)
+  <p>
+    <img src="../../emoji/sun_flat.png" class="help-emoji" /> /
+    <img src="../../emoji/waning_crescent_moon_flat.png" class="help-emoji" />
+    Toggle <span style="font-weight:600;">dark mode</span> (or D key)
+  </p>
 </div>
 `;
 

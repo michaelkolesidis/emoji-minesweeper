@@ -7,7 +7,7 @@
 
 export default function Header(title) {
   const header = document.createElement("div");
-  header.className = `header`;
+  header.id = `header`;
   if (JSON.parse(localStorage.getItem("japanese")) === true) {
     header.classList.add("japanese");
   }

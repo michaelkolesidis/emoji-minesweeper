@@ -3,10 +3,10 @@
  *  Copyright (c) 2024 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
- * themeButton.js contains all the theme
- * button functionality, the button,
- * the utility functions and the keyboard
- * event handling.
+ *  themeButton.js contains all the theme
+ *  button functionality, the button,
+ *  the utility functions and the keyboard
+ *  event handling.
  */
 
 export default function ThemeButton(mainEmoji, header) {
@@ -14,8 +14,7 @@ export default function ThemeButton(mainEmoji, header) {
   const themeButton = document.createElement("div");
   themeButton.title = `Change theme`;
   themeButton.className = `emoji-button`;
-  // themeButton.innerHTML = mainEmoji;
-  themeButton.innerHTML = `<img src="../../../emoji/bomb_flat.svg" />`;
+  themeButton.innerHTML = `<img src="../../../emoji/bomb_flat.png" />`;
 
   // Theme Button Functionality
   themeButton.addEventListener("click", () => {
@@ -96,9 +95,8 @@ export default function ThemeButton(mainEmoji, header) {
     const title = window.localStorage.getItem("title");
     document.title = title;
     window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
-    // favicon(themes[theme]["mine"]);
     header.innerHTML = themes[theme]["title"];
-    themeButton.innerHTML = themes[theme]["mine"];
+    themeButton.innerHTML =  `<img src="${themes[theme]["mine"]}" / >`;
   }
 
   // Keyboard Action Handling

@@ -10,7 +10,7 @@ export default function HelpButton() {
   const helpButton = document.createElement("div");
   helpButton.title = `Toggle help modal`;
   helpButton.className = `emoji-button`;
-  helpButton.innerHTML = `<img src="../../../emoji/white_question_mark_flat.svg" />`;
+  helpButton.innerHTML = `<img src="../../../emoji/white_question_mark_flat.png" />`;
 
   // Functionality
   // In main.js

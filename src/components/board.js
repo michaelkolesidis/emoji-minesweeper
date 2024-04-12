@@ -10,13 +10,13 @@ export default function Board() {
   board.setAttribute("id", "board");
   switch (level) {
     case "beginner":
-      board.style.height = "317px"; // canvas size - 0.6px
+      board.style.height = "328px";
       break;
     case "intermediate":
-      board.style.height = "541px";
+      board.style.height = "560px";
       break;
     case "expert":
-      board.style.height = "541px";
+      board.style.height = "560px";
       break;
   }
 

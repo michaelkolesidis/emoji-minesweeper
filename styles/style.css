@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap'); */
 
 /* Global */
 :root {
@@ -83,22 +84,22 @@ img {
 }
 
 /* Header */
-.header {
+#header {
   color: var(--main-color);
   margin-top: 0.4rem;
   margin-bottom: 0.1rem;
-  font-family: "Fredoka One", cursive;
+  font-family: "Fredoka One", sans-serif;
   white-space: nowrap;
   font-size: 31px;
   height: 40px;
 }
 
-.header span {
+#header span {
   position: relative;
   display: inline-block;
 }
 
-.header:hover > span {
+.wavy > span {
   animation: wavy 1s infinite;
   animation-delay: calc(0.1s * var(--i));
 }
@@ -142,7 +143,7 @@ canvas {
 /* Elements Container */
 #container {
   padding: 0;
-  margin-top: 3rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
@@ -203,19 +204,20 @@ button:active,
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
-  padding: 1.3rem;
-  /* width: 14rem; */
-  width: 18rem;
-  /* height: 185px; */
-  height: 200px;
-  /* top: -330.5px; */
+  padding: 1.2rem;
+  width: 14rem;
+  height: 205px;
   top: -326px;
-  /* left: 13.3px; */
-  left: -19.5px;
+  left: 15px;
 }
 
 hr {
   margin: 0.2rem 0;
+}
+
+.help-emoji {
+  width: 14px;
+  margin-bottom: -2px;
 }
 
 /* Stats Modal */
@@ -304,98 +306,10 @@ footer {
   overflow: hidden;
 }
 
+footer > img {
+  margin-bottom: 0.25rem;
+}
+
 footer > p {
-  color: #4f4f4f;
   margin: 0 0 0.3rem 0.3rem;
-}
-
-/* Menu Container */
-#menu-container {
-}
-
-/* Menu Logo */
-#menu-logo {
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
-}
-
-/* Menu Button */
-#menu-button,
-.menu-button-content {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  margin: 0;
-  border-radius: 100px;
-  filter: var(--menu-button-filter);
-  font-size: 2rem;
-  line-height: 2.8rem;
-  height: 3rem;
-  width: 3rem;
-  text-align: center;
-  z-index: 4;
-}
-
-.menu-button-content {
-  top: 0rem;
-  right: 0rem;
-  transition: opacity 0.5s ease-in-out;
-}
-
-/* Menu */
-#menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 0;
-  margin: 0;
-  pointer-events: none;
-  border-radius: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Login Form */
-.form,
-.form-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0.2em;
-}
-
-.form-section > label {
-  margin: 0.15em;
-  font-size: 0.95em;
-  font-weight: 600;
-}
-
-.form-section > input {
-  border-radius: 60px;
-  padding: 0.6rem;
-  border: 3px solid var(--main-color);
-  font-size: 0.8em;
-  width: 10em;
-  /* font-weight: 600; */
-  text-align: center;
-  color: var(--main-color);
-  background-color: var(--secondary-color);
-}
-
-.form-section > .button {
-  margin: 1.4em;
-  padding: 0.6rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 3px solid var(--main-color);
-  color: var(--secondary-color);
-  background-color: var(--main-color);
-}
-
-select {
-  width: 9.5rem;
 }

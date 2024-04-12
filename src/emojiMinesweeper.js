@@ -21,18 +21,18 @@ const themes = {
   mine: {
     name: "mine",
     title: "Emoji Minesweeper",
-    mine: "💣",
-    detonation: "💥",
-    won: "😄",
-    lost: "😵",
+    mine: "../emoji/bomb_flat.png", // 💣
+    detonation: "../emoji/collision_flat.png", // 💥
+    won: "../emoji/grinning_face_with_smiling_eyes_flat.png", // 😄
+    lost: "../emoji/knocked-out_face_flat.png", // 😵
   },
   flower: {
     name: "flower",
     title: "Emoji Flower Field",
-    mine: "🌺",
-    detonation: "🐛",
-    won: "😊",
-    lost: "😔",
+    mine: "../emoji/hibiscus_flat.png", // 🌺
+    detonation: "../emoji/bug_flat.png", // 🐛
+    won: "../emoji/smiling_face_with_smiling_eyes_flat.png", // 😊
+    lost: "../emoji/pensive_face_flat.png", // 😔
   },
   mushroom: {
     name: "mushroom",
@@ -53,9 +53,9 @@ const themes = {
   octopus: {
     name: "octopus",
     title: "Emoji Seasweeper",
-    mine: "🐙",
+    mine: "🏄",
     detonation: "🌊",
-    won: "⛵️",
+    won: "🌊",
     lost: "🦈",
   },
   japan: {
@@ -97,25 +97,25 @@ let TIMER;
 let MOVES;
 
 function preload() {
-  CLOSED = loadImage("../emoji/black_square_button_flat.svg");
-  NUMBERS[0] = loadImage("../emoji/white_large_square_flat.svg");
-  NUMBERS[1] = loadImage("../emoji/keycap_1_flat.svg");
-  NUMBERS[2] = loadImage("../emoji/keycap_2_flat.svg");
-  NUMBERS[3] = loadImage("../emoji/keycap_3_flat.svg");
-  NUMBERS[4] = loadImage("../emoji/keycap_4_flat.svg");
-  NUMBERS[5] = loadImage("../emoji/keycap_5_flat.svg");
-  NUMBERS[6] = loadImage("../emoji/keycap_6_flat.svg");
-  NUMBERS[7] = loadImage("../emoji/keycap_7_flat.svg");
-  NUMBERS[8] = loadImage("../emoji/keycap_8_flat.svg");
-  NUMBERS[9] = loadImage("../emoji/keycap_9_flat.svg");
-  FLAG = loadImage("../emoji/triangular_flag_flat.svg");
-  DETONATION = loadImage("../emoji/collision_flat.svg");
-  MINE = loadImage("../emoji/bomb_flat.svg");
-  WRONG = loadImage("../emoji/cross_mark_flat.svg");
-  WON = loadImage("../emoji/grinning_face_with_smiling_eyes_flat.svg");
-  LOST = loadImage("../emoji/knocked-out_face_flat.svg");
-  TIMER = loadImage("../emoji/hourglass_done_flat.svg");
-  MOVES = loadImage("../emoji/abacus_flat.svg");
+  CLOSED = loadImage("../emoji/black_square_button_flat.png");
+  NUMBERS[0] = loadImage("../emoji/white_large_square_flat.png");
+  NUMBERS[1] = loadImage("../emoji/keycap_1_flat.png");
+  NUMBERS[2] = loadImage("../emoji/keycap_2_flat.png");
+  NUMBERS[3] = loadImage("../emoji/keycap_3_flat.png");
+  NUMBERS[4] = loadImage("../emoji/keycap_4_flat.png");
+  NUMBERS[5] = loadImage("../emoji/keycap_5_flat.png");
+  NUMBERS[6] = loadImage("../emoji/keycap_6_flat.png");
+  NUMBERS[7] = loadImage("../emoji/keycap_7_flat.png");
+  NUMBERS[8] = loadImage("../emoji/keycap_8_flat.png");
+  NUMBERS[9] = loadImage("../emoji/keycap_9_flat.png");
+  FLAG = loadImage("../emoji/triangular_flag_flat.png");
+  WRONG = loadImage("../emoji/cross_mark_flat.png");
+  TIMER = loadImage("../emoji/hourglass_done_flat.png");
+  MOVES = loadImage("../emoji/abacus_flat.png");
+  WON = loadImage(wonEmoji);
+  LOST = loadImage(lostEmoji);
+  MINE = loadImage(mineEmoji);
+  DETONATION = loadImage(detonationEmoji);
 }
 
 /**
@@ -134,7 +134,7 @@ let settings = {
     mines: 10,
   },
   size: {
-    squareSize: 35,
+    squareSize: 33,
   },
 };
 
@@ -177,6 +177,7 @@ let rows = settings.level.rows; // The number of rows in the board
 let numberOfSquares = rows * columns;
 
 let boardSize;
+let indicatorsHeight = 7;
 
 switch (level) {
   case "beginner":
@@ -187,7 +188,7 @@ switch (level) {
     };
     boardSize = {
       width: squareSize * columns,
-      height: squareSize * rows,
+      height: squareSize * rows + indicatorsHeight,
     };
     break;
   case "intermediate":
@@ -198,7 +199,7 @@ switch (level) {
     };
     boardSize = {
       width: squareSize * columns,
-      height: squareSize * rows,
+      height: squareSize * rows + indicatorsHeight,
     };
     break;
   case "expert":
@@ -209,7 +210,7 @@ switch (level) {
     };
     boardSize = {
       width: squareSize * columns,
-      height: squareSize * rows,
+      height: squareSize * rows + indicatorsHeight,
     };
     break;
 }
@@ -318,8 +319,8 @@ function draw() {
     MINE,
     squareSize * 0.125,
     boardSize.height,
-    squareSize * 0.75,
-    squareSize * 0.75
+    squareSize * 0.65,
+    squareSize * 0.65
   );
   text(
     nf(Math.max(initialMines - flaggedSquares, 0), 3),
@@ -333,8 +334,8 @@ function draw() {
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 0.99,
     boardSize.height,
-    squareSize * 0.75,
-    squareSize * 0.75
+    squareSize * 0.65,
+    squareSize * 0.65
   );
 
   if (newBestMoves) {
@@ -352,8 +353,8 @@ function draw() {
     TIMER,
     width - squareSize * 1.975,
     boardSize.height,
-    squareSize * 0.75,
-    squareSize * 0.75
+    squareSize * 0.65,
+    squareSize * 0.65
   );
 
   if (newBestTime) {
@@ -684,6 +685,9 @@ function gameWon() {
     }
   }
   stopTimer = true;
+
+  const header = document.getElementById("header");
+  header.classList.add("wavy");
 }
 
 // handle loss
