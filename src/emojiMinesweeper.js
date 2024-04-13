@@ -9,7 +9,7 @@
  */
 
 // Prevent right mouse click from opening browser context menu in order to be able to flag
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 // Canvas
 let cnv; // The canvas element that will contain the game
@@ -17,13 +17,13 @@ let cnv; // The canvas element that will contain the game
 /**
  * Dark Mode
  */
-let darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
+let darkMode = JSON.parse(localStorage.getItem('darkMode')) ?? false;
 
 /**
  * Emoji
  */
-let theme = window.localStorage.getItem("theme") ?? "mine";
-window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
+let theme = window.localStorage.getItem('theme') ?? 'mine';
+window.localStorage.setItem('mainEmoji', themes[theme]['mine']);
 
 // Emoji images
 let CLOSED;
@@ -41,34 +41,34 @@ let DETONATION;
 function preload() {
   CLOSED = darkMode
     ? loadImage(darkTheme.closed)
-    : loadImage("../emoji/black_square_button_flat.png");
+    : loadImage('../emoji/black_square_button_flat.png');
   NUMBERS[0] = darkMode
     ? loadImage(darkTheme.empty)
-    : loadImage("../emoji/white_large_square_flat.png");
-  NUMBERS[1] = loadImage("../emoji/keycap_1_flat.png");
-  NUMBERS[2] = loadImage("../emoji/keycap_2_flat.png");
-  NUMBERS[3] = loadImage("../emoji/keycap_3_flat.png");
-  NUMBERS[4] = loadImage("../emoji/keycap_4_flat.png");
-  NUMBERS[5] = loadImage("../emoji/keycap_5_flat.png");
-  NUMBERS[6] = loadImage("../emoji/keycap_6_flat.png");
-  NUMBERS[7] = loadImage("../emoji/keycap_7_flat.png");
-  NUMBERS[8] = loadImage("../emoji/keycap_8_flat.png");
-  NUMBERS[9] = loadImage("../emoji/keycap_9_flat.png");
-  FLAG = loadImage("../emoji/triangular_flag_flat.png");
-  WRONG = loadImage("../emoji/cross_mark_flat.png");
-  TIMER = loadImage("../emoji/hourglass_done_flat.png");
-  MOVES = loadImage("../emoji/abacus_flat.png");
-  BEST = loadImage("../emoji/partying_face_flat.png");
-  WON = loadImage(themes[theme]["won"]);
-  LOST = loadImage(themes[theme]["lost"]);
-  MINE = loadImage(themes[theme]["mine"]);
-  DETONATION = loadImage(themes[theme]["detonation"]);
+    : loadImage('../emoji/white_large_square_flat.png');
+  NUMBERS[1] = loadImage('../emoji/keycap_1_flat.png');
+  NUMBERS[2] = loadImage('../emoji/keycap_2_flat.png');
+  NUMBERS[3] = loadImage('../emoji/keycap_3_flat.png');
+  NUMBERS[4] = loadImage('../emoji/keycap_4_flat.png');
+  NUMBERS[5] = loadImage('../emoji/keycap_5_flat.png');
+  NUMBERS[6] = loadImage('../emoji/keycap_6_flat.png');
+  NUMBERS[7] = loadImage('../emoji/keycap_7_flat.png');
+  NUMBERS[8] = loadImage('../emoji/keycap_8_flat.png');
+  NUMBERS[9] = loadImage('../emoji/keycap_9_flat.png');
+  FLAG = loadImage('../emoji/triangular_flag_flat.png');
+  WRONG = loadImage('../emoji/cross_mark_flat.png');
+  TIMER = loadImage('../emoji/hourglass_done_flat.png');
+  MOVES = loadImage('../emoji/abacus_flat.png');
+  BEST = loadImage('../emoji/partying_face_flat.png');
+  WON = loadImage(themes[theme]['won']);
+  LOST = loadImage(themes[theme]['lost']);
+  MINE = loadImage(themes[theme]['mine']);
+  DETONATION = loadImage(themes[theme]['detonation']);
 }
 
 /**
  * Title
  */
-window.localStorage.setItem("title", themes[theme]["title"]);
+window.localStorage.setItem('title', themes[theme]['title']);
 
 /**
  * Settings
@@ -88,24 +88,24 @@ let settings = {
 /**
  * Level
  */
-let level = localStorage.getItem("level");
+let level = localStorage.getItem('level');
 
 switch (level) {
-  case "beginner":
+  case 'beginner':
     settings.level = {
       columns: 9,
       rows: 9,
       mines: 10,
     };
     break;
-  case "intermediate":
+  case 'intermediate':
     settings.level = {
       columns: 16,
       rows: 16,
       mines: 40,
     };
     break;
-  case "expert":
+  case 'expert':
     settings.level = {
       columns: 30,
       rows: 16,
@@ -130,7 +130,7 @@ let boardSize = {
 let counterHeight = 7;
 
 switch (level) {
-  case "beginner":
+  case 'beginner':
     settings.level = {
       columns: 9,
       rows: 9,
@@ -141,7 +141,7 @@ switch (level) {
       height: squareSize * rows + counterHeight,
     };
     break;
-  case "intermediate":
+  case 'intermediate':
     settings.level = {
       columns: 16,
       rows: 16,
@@ -152,7 +152,7 @@ switch (level) {
       height: squareSize * rows + counterHeight,
     };
     break;
-  case "expert":
+  case 'expert':
     settings.level = {
       columns: 30,
       rows: 16,
@@ -207,11 +207,11 @@ function generateSquares() {
 
 // Calculate mines around each square
 function calculateMines() {
-  squares.forEach((s) => {
+  squares.forEach(s => {
     // Find squares touching each square
     let neighbors = getNeighbors(s);
     let reducer = (accumulator, currentValue) => accumulator + currentValue;
-    s.minesAround = neighbors.map((n) => n.mine).reduce(reducer); // Add all mine values to find total
+    s.minesAround = neighbors.map(n => n.mine).reduce(reducer); // Add all mine values to find total
   });
 }
 
@@ -237,7 +237,7 @@ function setup() {
     boardSize.width,
     boardSize.height + squareSize * 0.75 // Added extra space for the mines, moves, and time counters
   );
-  cnv.parent("board");
+  cnv.parent('board');
 
   allocateMines();
   generateSquares();
@@ -257,7 +257,7 @@ function draw() {
   // Show mines, moves, and time
   textSize(squareSize * 0.6);
   textStyle(BOLD);
-  textFont("Arial");
+  textFont('Arial');
 
   // Mine counter
   if (flaggedSquares > initialMines) {
@@ -316,7 +316,7 @@ function draw() {
 
 // Get neighbors
 function getNeighbors(square) {
-  return squares.filter((n) => {
+  return squares.filter(n => {
     return (
       n.i >= square.i - 1 &&
       n.i <= square.i + 1 &&
@@ -340,23 +340,23 @@ function openSquare(square) {
     startTime = new Date();
 
     // Update local storage
-    if (window.location.hash === "") {
+    if (window.location.hash === '') {
       let played;
       switch (level) {
-        case "beginner":
-          played = parseInt(localStorage.getItem("beginnerPlayed"));
+        case 'beginner':
+          played = parseInt(localStorage.getItem('beginnerPlayed'));
           played += 1;
-          localStorage.setItem("beginnerPlayed", played);
+          localStorage.setItem('beginnerPlayed', played);
           break;
-        case "intermediate":
-          played = parseInt(localStorage.getItem("intermediatePlayed"));
+        case 'intermediate':
+          played = parseInt(localStorage.getItem('intermediatePlayed'));
           played += 1;
-          localStorage.setItem("intermediatePlayed", played);
+          localStorage.setItem('intermediatePlayed', played);
           break;
-        case "expert":
-          played = parseInt(localStorage.getItem("expertPlayed"));
+        case 'expert':
+          played = parseInt(localStorage.getItem('expertPlayed'));
           played += 1;
-          localStorage.setItem("expertPlayed", played);
+          localStorage.setItem('expertPlayed', played);
           break;
       }
     }
@@ -388,7 +388,7 @@ function openSquare(square) {
   square.clicked = true;
   if (square.mine) {
     // End game
-    squares.forEach((s) => {
+    squares.forEach(s => {
       s.opened = true;
     });
     noLoop();
@@ -397,7 +397,7 @@ function openSquare(square) {
   if (square.minesAround == 0) {
     // Recursively open neighbors
     let neighbors = getNeighbors(square);
-    neighbors.forEach((s) => {
+    neighbors.forEach(s => {
       if (!s.opened) {
         openSquare(s);
         if (s.flagged) {
@@ -411,13 +411,13 @@ function openSquare(square) {
 
 function mousePressed() {
   // Disable click if modal is open
-  if (JSON.parse(localStorage.getItem("modalOpen")) === true) {
+  if (JSON.parse(localStorage.getItem('modalOpen')) === true) {
     return;
   }
   // Flags
-  if (mouseButton === RIGHT || JSON.parse(localStorage.getItem("flagMode"))) {
+  if (mouseButton === RIGHT || JSON.parse(localStorage.getItem('flagMode'))) {
     // Find the square the player clicked on
-    let square = squares.find((s) => {
+    let square = squares.find(s => {
       return (
         s.x < mouseX &&
         s.x + squareSize > mouseX &&
@@ -443,9 +443,9 @@ function mousePressed() {
   }
 
   // Find the square pressed on
-  if (mouseButton === LEFT && !JSON.parse(localStorage.getItem("flagMode"))) {
+  if (mouseButton === LEFT && !JSON.parse(localStorage.getItem('flagMode'))) {
     if (!gameFinished) {
-      let square = squares.find((s) => {
+      let square = squares.find(s => {
         return (
           s.x < mouseX &&
           s.x + squareSize > mouseX &&
@@ -467,7 +467,7 @@ function mousePressed() {
           }
         } else {
           // Check if the game has been won
-          let squaresLeft = squares.filter((s) => {
+          let squaresLeft = squares.filter(s => {
             return !s.mine && !s.opened;
           }).length;
           if (squaresLeft == 0) {
@@ -488,25 +488,25 @@ function mousePressed() {
 // Handle end
 function gameEnded() {
   gameFinished = true;
-  if (window.location.hash === "") {
+  if (window.location.hash === '') {
     calculateWinPercentage();
 
     let totalTime;
     switch (level) {
-      case "beginner":
-        totalTime = parseInt(localStorage.getItem("beginnerTotalTime"));
+      case 'beginner':
+        totalTime = parseInt(localStorage.getItem('beginnerTotalTime'));
         totalTime += timePassed;
-        localStorage.setItem("beginnerTotalTime", totalTime);
+        localStorage.setItem('beginnerTotalTime', totalTime);
         break;
-      case "intermediate":
-        totalTime = parseInt(localStorage.getItem("intermediateTotalTime"));
+      case 'intermediate':
+        totalTime = parseInt(localStorage.getItem('intermediateTotalTime'));
         totalTime += timePassed;
-        localStorage.setItem("intermediateTotalTime", totalTime);
+        localStorage.setItem('intermediateTotalTime', totalTime);
         break;
-      case "expert":
-        totalTime = parseInt(localStorage.getItem("expertTotalTime"));
+      case 'expert':
+        totalTime = parseInt(localStorage.getItem('expertTotalTime'));
         totalTime += timePassed;
-        localStorage.setItem("expertTotalTime", totalTime);
+        localStorage.setItem('expertTotalTime', totalTime);
         break;
     }
   }
@@ -521,70 +521,70 @@ function gameWon() {
 
   // Update local storage
   // Won Data
-  if (window.location.hash === "") {
+  if (window.location.hash === '') {
     let won;
     switch (level) {
-      case "beginner":
-        won = parseInt(localStorage.getItem("beginnerWon"));
+      case 'beginner':
+        won = parseInt(localStorage.getItem('beginnerWon'));
         won += 1;
-        localStorage.setItem("beginnerWon", won);
+        localStorage.setItem('beginnerWon', won);
         break;
-      case "intermediate":
-        won = parseInt(localStorage.getItem("intermediateWon"));
+      case 'intermediate':
+        won = parseInt(localStorage.getItem('intermediateWon'));
         won += 1;
-        localStorage.setItem("intermediateWon", won);
+        localStorage.setItem('intermediateWon', won);
         break;
-      case "expert":
-        won = parseInt(localStorage.getItem("expertWon"));
+      case 'expert':
+        won = parseInt(localStorage.getItem('expertWon'));
         won += 1;
-        localStorage.setItem("expertWon", won);
+        localStorage.setItem('expertWon', won);
         break;
     }
 
     // Moves Data
     let bestMoves;
     switch (level) {
-      case "beginner":
-        bestMoves = Number(localStorage.getItem("beginnerBestMoves"));
+      case 'beginner':
+        bestMoves = Number(localStorage.getItem('beginnerBestMoves'));
         break;
-      case "intermediate":
-        bestMoves = Number(localStorage.getItem("intermediateBestMoves"));
+      case 'intermediate':
+        bestMoves = Number(localStorage.getItem('intermediateBestMoves'));
         break;
-      case "expert":
-        bestMoves = Number(localStorage.getItem("expertBestMoves"));
+      case 'expert':
+        bestMoves = Number(localStorage.getItem('expertBestMoves'));
         break;
     }
 
     if (bestMoves === 0) {
       switch (level) {
-        case "beginner":
-          localStorage.setItem("beginnerBestMoves", moves);
+        case 'beginner':
+          localStorage.setItem('beginnerBestMoves', moves);
           break;
-        case "intermediate":
-          localStorage.setItem("intermediateBestMoves", moves);
+        case 'intermediate':
+          localStorage.setItem('intermediateBestMoves', moves);
           break;
-        case "expert":
-          localStorage.setItem("expertBestMoves", moves);
+        case 'expert':
+          localStorage.setItem('expertBestMoves', moves);
           break;
       }
     } else {
       if (moves < bestMoves) {
-        const header = document.getElementById("header");
-        header.style.color = "#ffaf2e";
+        const header = document.getElementById('header');
+        header.style.color = '#ffaf2e';
         NUMBERS[0] = BEST;
         newBestMoves = true;
         switch (level) {
-          case "beginner":
-            localStorage.setItem("beginnerBestMoves", moves);
+          case 'beginner':
+            localStorage.setItem('beginnerBestMoves', moves);
             break;
-          case "intermediate":
-            localStorage.setItem("intermediateBestMoves", moves);
+          case 'intermediate':
+            localStorage.setItem('intermediateBestMoves', moves);
             break;
-          case "expert":
-            localStorage.setItem("expertBestMoves", moves);
+          case 'expert':
+            localStorage.setItem('expertBestMoves', moves);
             break;
         }
-        localStorage.setItem("newBestMoves", "true");
+        localStorage.setItem('newBestMoves', 'true');
       }
     }
 
@@ -594,54 +594,54 @@ function gameWon() {
 
     let bestTime;
     switch (level) {
-      case "beginner":
-        bestTime = Number(localStorage.getItem("beginnerBestTime"));
+      case 'beginner':
+        bestTime = Number(localStorage.getItem('beginnerBestTime'));
         break;
-      case "intermediate":
-        bestTime = Number(localStorage.getItem("intermediateBestTime"));
+      case 'intermediate':
+        bestTime = Number(localStorage.getItem('intermediateBestTime'));
         break;
-      case "expert":
-        bestTime = Number(localStorage.getItem("expertBestTime"));
+      case 'expert':
+        bestTime = Number(localStorage.getItem('expertBestTime'));
         break;
     }
 
     if (bestTime === 0) {
       switch (level) {
-        case "beginner":
-          localStorage.setItem("beginnerBestTime", time);
+        case 'beginner':
+          localStorage.setItem('beginnerBestTime', time);
           break;
-        case "intermediate":
-          localStorage.setItem("intermediateBestTime", time);
+        case 'intermediate':
+          localStorage.setItem('intermediateBestTime', time);
           break;
-        case "expert":
-          localStorage.setItem("expertBestTime", time);
+        case 'expert':
+          localStorage.setItem('expertBestTime', time);
           break;
       }
     } else {
       if (time < bestTime) {
-        const header = document.getElementById("header");
-        header.style.color = "#ffaf2e";
+        const header = document.getElementById('header');
+        header.style.color = '#ffaf2e';
         NUMBERS[0] = BEST;
         newBestTime = true;
         switch (level) {
-          case "beginner":
-            localStorage.setItem("beginnerBestTime", time);
+          case 'beginner':
+            localStorage.setItem('beginnerBestTime', time);
             break;
-          case "intermediate":
-            localStorage.setItem("intermediateBestTime", time);
+          case 'intermediate':
+            localStorage.setItem('intermediateBestTime', time);
             break;
-          case "expert":
-            localStorage.setItem("expertBestTime", time);
+          case 'expert':
+            localStorage.setItem('expertBestTime', time);
             break;
         }
-        localStorage.setItem("newBestTime", "true");
+        localStorage.setItem('newBestTime', 'true');
       }
     }
   }
   stopTimer = true;
 
-  const header = document.getElementById("header");
-  header.classList.add("wavy");
+  const header = document.getElementById('header');
+  header.classList.add('wavy');
 }
 
 // handle loss
@@ -661,40 +661,40 @@ function gameLost() {
 function addMove() {
   let totalMoves;
   switch (level) {
-    case "beginner":
-      totalMoves = parseInt(localStorage.getItem("beginnerTotalMoves"));
+    case 'beginner':
+      totalMoves = parseInt(localStorage.getItem('beginnerTotalMoves'));
       totalMoves += 1;
-      localStorage.setItem("beginnerTotalMoves", totalMoves);
+      localStorage.setItem('beginnerTotalMoves', totalMoves);
       break;
-    case "intermediate":
-      totalMoves = parseInt(localStorage.getItem("intermediateTotalMoves"));
+    case 'intermediate':
+      totalMoves = parseInt(localStorage.getItem('intermediateTotalMoves'));
       totalMoves += 1;
-      localStorage.setItem("intermediateTotalMoves", totalMoves);
+      localStorage.setItem('intermediateTotalMoves', totalMoves);
       break;
-    case "expert":
-      totalMoves = parseInt(localStorage.getItem("expertTotalMoves"));
+    case 'expert':
+      totalMoves = parseInt(localStorage.getItem('expertTotalMoves'));
       totalMoves += 1;
-      localStorage.setItem("expertTotalMoves", totalMoves);
+      localStorage.setItem('expertTotalMoves', totalMoves);
       break;
   }
 }
 
 // Calculate percentage of wins / total games played
 function calculateWinPercentage() {
-  if (window.location.hash === "") {
+  if (window.location.hash === '') {
     let played, won;
     switch (level) {
-      case "beginner":
-        played = parseInt(localStorage.getItem("beginnerPlayed"));
-        won = parseInt(localStorage.getItem("beginnerWon"));
+      case 'beginner':
+        played = parseInt(localStorage.getItem('beginnerPlayed'));
+        won = parseInt(localStorage.getItem('beginnerWon'));
         break;
-      case "intermediate":
-        played = parseInt(localStorage.getItem("intermediatePlayed"));
-        won = parseInt(localStorage.getItem("intermediateWon"));
+      case 'intermediate':
+        played = parseInt(localStorage.getItem('intermediatePlayed'));
+        won = parseInt(localStorage.getItem('intermediateWon'));
         break;
-      case "expert":
-        played = parseInt(localStorage.getItem("expertPlayed"));
-        won = parseInt(localStorage.getItem("expertWon"));
+      case 'expert':
+        played = parseInt(localStorage.getItem('expertPlayed'));
+        won = parseInt(localStorage.getItem('expertWon'));
         break;
     }
     let winPercentage = null;
@@ -706,17 +706,17 @@ function calculateWinPercentage() {
     if (winPercentage !== null) {
       // Update local storage
       switch (level) {
-        case "beginner":
-          window.localStorage.setItem("beginnerWinPercentage", winPercentage);
+        case 'beginner':
+          window.localStorage.setItem('beginnerWinPercentage', winPercentage);
           break;
-        case "intermediate":
+        case 'intermediate':
           window.localStorage.setItem(
-            "intermediateWinPercentage",
+            'intermediateWinPercentage',
             winPercentage
           );
           break;
-        case "expert":
-          window.localStorage.setItem("expertWinPercentage", winPercentage);
+        case 'expert':
+          window.localStorage.setItem('expertWinPercentage', winPercentage);
           break;
       }
     }
@@ -729,20 +729,20 @@ function calculateWinPercentage() {
 function keyPressed() {
   // Set Level
   if (keyCode === 49 || keyCode === 97) {
-    if (level !== "beginner") {
-      localStorage.setItem("level", "beginner");
+    if (level !== 'beginner') {
+      localStorage.setItem('level', 'beginner');
       window.location.reload();
     }
   }
   if (keyCode === 50 || keyCode === 98) {
-    if (level !== "intermediate") {
-      localStorage.setItem("level", "intermediate");
+    if (level !== 'intermediate') {
+      localStorage.setItem('level', 'intermediate');
       window.location.reload();
     }
   }
   if (keyCode === 51 || keyCode === 99) {
-    if (level !== "expert") {
-      localStorage.setItem("level", "expert");
+    if (level !== 'expert') {
+      localStorage.setItem('level', 'expert');
       window.location.reload();
     }
   }

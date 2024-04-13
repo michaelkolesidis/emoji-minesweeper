@@ -7,19 +7,19 @@
 
 export default function IntermediateButton() {
   // Button
-  const intermediateButton = document.createElement("div");
+  const intermediateButton = document.createElement('div');
   intermediateButton.title = `Intermediate level`;
   intermediateButton.className = `emoji-button`;
   intermediateButton.innerHTML = `<img src="../../../emoji/keycap_2_flat.png" />`;
 
-  if (level === "intermediate") {
-    intermediateButton.classList.add("emoji-button-clicked");
+  if (level === 'intermediate') {
+    intermediateButton.classList.add('emoji-button-clicked');
   }
 
   // Functionality
-  intermediateButton.addEventListener("click", () => {
-    if (level !== "intermediate") {
-      localStorage.setItem("level", "intermediate");
+  intermediateButton.addEventListener('click', () => {
+    if (level !== 'intermediate') {
+      localStorage.setItem('level', 'intermediate');
       window.location.reload();
     }
   });

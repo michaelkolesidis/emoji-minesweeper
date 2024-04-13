@@ -9,62 +9,62 @@
  *  the saved stats.
  */
 
-import Header from "./components/Header.js";
-import Board from "./components/Board.js";
-import Footer from "./components/Footer.js";
-import StatsModal from "./components/modals/StatsModal.js";
-import HelpModal from "./components/modals/HelpModal.js";
-import NewGameButton from "./components/buttons/NewGameButton.js";
-import StatsButton from "./components/buttons/StatsButton.js";
-import BeginnerButton from "./components/buttons/BeginnerButton.js";
-import IntermediateButton from "./components/buttons/IntermediateButton.js";
-import ExpertButton from "./components/buttons/ExpertButton.js";
-import ThemeButton from "./components/buttons/ThemeButton.js";
-import HelpButton from "./components/buttons/HelpButton.js";
-import FlagButton from "./components/buttons/FlagButton.js";
-import DarkModeButton from "./components/buttons/DarkModeButton.js";
-import DonateButton from "./components/buttons/DonateButton.js";
+import Header from './components/Header.js';
+import Board from './components/Board.js';
+import Footer from './components/Footer.js';
+import StatsModal from './components/modals/StatsModal.js';
+import HelpModal from './components/modals/HelpModal.js';
+import NewGameButton from './components/buttons/NewGameButton.js';
+import StatsButton from './components/buttons/StatsButton.js';
+import BeginnerButton from './components/buttons/BeginnerButton.js';
+import IntermediateButton from './components/buttons/IntermediateButton.js';
+import ExpertButton from './components/buttons/ExpertButton.js';
+import ThemeButton from './components/buttons/ThemeButton.js';
+import HelpButton from './components/buttons/HelpButton.js';
+import FlagButton from './components/buttons/FlagButton.js';
+import DarkModeButton from './components/buttons/DarkModeButton.js';
+import DonateButton from './components/buttons/DonateButton.js';
 
 /**
  * Basics
  */
 // Theme
-let theme = window.localStorage.getItem("theme");
+let theme = window.localStorage.getItem('theme');
 if (theme === null) {
-  window.localStorage.setItem("theme", "mine");
+  window.localStorage.setItem('theme', 'mine');
 }
 
 // Dark Mode
-let darkMode = JSON.parse(localStorage.getItem("darkMode"));
+let darkMode = JSON.parse(localStorage.getItem('darkMode'));
 if (darkMode === null) {
-  window.localStorage.setItem("darkMode", "false");
+  window.localStorage.setItem('darkMode', 'false');
 }
 if (darkMode) {
-  document.body.classList.add("dark-mode");
+  document.body.classList.add('dark-mode');
 }
 
 // Emoji
-let mainEmoji = window.localStorage.getItem("mainEmoji");
+let mainEmoji = window.localStorage.getItem('mainEmoji');
 if (mainEmoji === null) {
-  mainEmoji = themes[theme]["mine"];
+  mainEmoji = themes[theme]['mine'];
 }
 
 // Modal
-window.localStorage.setItem("modalOpen", "false");
+window.localStorage.setItem('modalOpen', 'false');
 
 // Flag mode
-window.localStorage.setItem("flagMode", "false");
+window.localStorage.setItem('flagMode', 'false');
 
 // Title
-let title = window.localStorage.getItem("title") ?? "Emoji Minesweeper";
+let title = window.localStorage.getItem('title') ?? 'Emoji Minesweeper';
 document.title = title;
 
 /**
  * Elements
  */
 // Game container (used for footer at the bottom functionality)
-const gameContainer = document.createElement("div");
-gameContainer.setAttribute("id", "game-container");
+const gameContainer = document.createElement('div');
+gameContainer.setAttribute('id', 'game-container');
 document.body.appendChild(gameContainer);
 
 // Header
@@ -76,8 +76,8 @@ const board = Board();
 gameContainer.appendChild(board);
 
 // Buttons and Modals Container
-const container = document.createElement("div");
-container.setAttribute("id", "container");
+const container = document.createElement('div');
+container.setAttribute('id', 'container');
 gameContainer.appendChild(container);
 
 // New Game Button
@@ -97,8 +97,8 @@ const helpModal = HelpModal();
 container.appendChild(helpModal);
 
 // Emoji Buttons Container
-const emojiButtonsContainer = document.createElement("div");
-emojiButtonsContainer.setAttribute("id", "emoji-buttons-container");
+const emojiButtonsContainer = document.createElement('div');
+emojiButtonsContainer.setAttribute('id', 'emoji-buttons-container');
 gameContainer.appendChild(emojiButtonsContainer);
 
 // Beginner Button
@@ -136,8 +136,8 @@ const donateButton = DonateButton();
 gameContainer.appendChild(donateButton);
 
 // Content Wrap (used for footer at the bottom functionality)
-const contentWrap = document.createElement("div");
-contentWrap.setAttribute("id", "content-wrap");
+const contentWrap = document.createElement('div');
+contentWrap.setAttribute('id', 'content-wrap');
 gameContainer.appendChild(contentWrap);
 
 // Footer
@@ -154,33 +154,33 @@ function toggleStatsModal() {
   if (statsModalOpen) {
     // Close stats modal
     setTimeout(() => {
-      statsModal.style.zIndex = "-1";
+      statsModal.style.zIndex = '-1';
     }, 500);
-    statsModal.style.opacity = "0";
+    statsModal.style.opacity = '0';
     statsModalOpen = false;
-    window.localStorage.setItem("modalOpen", "false");
+    window.localStorage.setItem('modalOpen', 'false');
   } else if (!statsModalOpen) {
     // Close help modal
-    helpModal.style.opacity = "0";
+    helpModal.style.opacity = '0';
     helpModalOpen = false;
-    window.localStorage.setItem("modalOpen", "false");
-    helpButton.style.opacity = "1";
+    window.localStorage.setItem('modalOpen', 'false');
+    helpButton.style.opacity = '1';
     // Open stats modal
-    statsModal.style.zIndex = "2";
-    statsModal.style.opacity = "1";
+    statsModal.style.zIndex = '2';
+    statsModal.style.opacity = '1';
     statsModalOpen = true;
-    window.localStorage.setItem("modalOpen", "true");
+    window.localStorage.setItem('modalOpen', 'true');
   }
 }
 
 // Stats Button Functionality
-statsButton.addEventListener("click", () => {
+statsButton.addEventListener('click', () => {
   toggleStatsModal();
 });
 
 // Keyboard Action Handling
-document.addEventListener("keydown", (e) => {
-  if (e.code === "KeyS") {
+document.addEventListener('keydown', e => {
+  if (e.code === 'KeyS') {
     toggleStatsModal();
   }
 });
@@ -195,39 +195,39 @@ function toggleHelpModal() {
   if (helpModalOpen) {
     // Close help modal
     setTimeout(() => {
-      helpModal.style.zIndex = "-1";
+      helpModal.style.zIndex = '-1';
     }, 500);
-    helpModal.style.opacity = "0";
+    helpModal.style.opacity = '0';
     helpModalOpen = false;
-    window.localStorage.setItem("modalOpen", "false");
-    helpButton.classList.remove("emoji-button-clicked");
+    window.localStorage.setItem('modalOpen', 'false');
+    helpButton.classList.remove('emoji-button-clicked');
   } else if (!helpModalOpen) {
     // Close stats modal
     if (statsModalOpen) {
       setTimeout(() => {
-        statsModal.style.zIndex = "-1";
+        statsModal.style.zIndex = '-1';
       }, 500);
-      statsModal.style.opacity = "0";
+      statsModal.style.opacity = '0';
       statsModalOpen = false;
-      window.localStorage.setItem("modalOpen", "false");
+      window.localStorage.setItem('modalOpen', 'false');
     }
     // Open help modal
-    helpModal.style.zIndex = "2";
-    helpModal.style.opacity = "1";
+    helpModal.style.zIndex = '2';
+    helpModal.style.opacity = '1';
     helpModalOpen = true;
-    window.localStorage.setItem("modalOpen", "true");
-    helpButton.classList.add("emoji-button-clicked");
+    window.localStorage.setItem('modalOpen', 'true');
+    helpButton.classList.add('emoji-button-clicked');
   }
 }
 
 // Help Button Functionality
-helpButton.addEventListener("click", () => {
+helpButton.addEventListener('click', () => {
   toggleHelpModal();
 });
 
 // Keyboard Action Handling
-document.addEventListener("keydown", (e) => {
-  if (e.code === "KeyH") {
+document.addEventListener('keydown', e => {
+  if (e.code === 'KeyH') {
     toggleHelpModal();
   }
 });

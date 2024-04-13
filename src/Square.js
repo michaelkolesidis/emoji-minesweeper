@@ -67,7 +67,7 @@ class Square {
     image(CLOSED, this.x, this.y, squareSize, squareSize);
 
     // Square numbers and mine locations for debugging
-    if (window.location.hash === "#debug") {
+    if (window.location.hash === '#debug') {
       textSize(10.5);
       if (this.mine) {
         fill(255, 61, 61);

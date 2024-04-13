@@ -6,9 +6,9 @@
  */
 
 export default function HelpModal() {
-  const helpModal = document.createElement("div");
-  helpModal.classList.add("modal");
-  helpModal.setAttribute("id", "help-modal");
+  const helpModal = document.createElement('div');
+  helpModal.classList.add('modal');
+  helpModal.setAttribute('id', 'help-modal');
   helpModal.innerHTML += `
 <div>
   <p>Left-click to <span style="font-weight:600;">open</span>, right-click to <span style="font-weight:600;">flag</span> a square</p>

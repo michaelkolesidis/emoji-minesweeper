@@ -7,8 +7,8 @@
 
 export default function DonateButton() {
   // Button
-  const donateButton = document.createElement("div");
-  donateButton.setAttribute("id", "donate-button");
+  const donateButton = document.createElement('div');
+  donateButton.setAttribute('id', 'donate-button');
   donateButton.innerHTML = `
         <a href='https://ko-fi.com/R5R3DX0VQ' target='_blank'>
             <img

@@ -6,17 +6,17 @@
  */
 
 export default function Header(title) {
-  const header = document.createElement("div");
+  const header = document.createElement('div');
   header.id = `header`;
-  header.classList.add("header");
-  if (JSON.parse(localStorage.getItem("japanese")) === true) {
-    header.classList.add("japanese");
+  header.classList.add('header');
+  if (JSON.parse(localStorage.getItem('japanese')) === true) {
+    header.classList.add('japanese');
   }
 
-  const titleCharacters = title.split("");
+  const titleCharacters = title.split('');
   for (let i = 0; i < titleCharacters.length; i++) {
-    if (titleCharacters[i] === " ") {
-      titleCharacters[i] = "&nbsp;";
+    if (titleCharacters[i] === ' ') {
+      titleCharacters[i] = '&nbsp;';
     }
     header.innerHTML += `<span style="--i:${i}">${titleCharacters[i]}</span>`;
   }

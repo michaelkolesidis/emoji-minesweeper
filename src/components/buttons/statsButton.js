@@ -7,9 +7,9 @@
 
 export default function StatsButton() {
   // Button
-  const statsButton = document.createElement("button");
-  statsButton.setAttribute("id", "stats-button");
-  statsButton.innerHTML = theme === "japan" ? `ステータス` : `Stats`;
+  const statsButton = document.createElement('button');
+  statsButton.setAttribute('id', 'stats-button');
+  statsButton.innerHTML = theme === 'japan' ? `ステータス` : `Stats`;
 
   // Functionality
   // In main.js

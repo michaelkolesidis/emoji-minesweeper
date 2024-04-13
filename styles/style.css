@@ -81,7 +81,7 @@ img {
 
 /* Header */
 .header {
-  font-family: "Fredoka One", sans-serif;
+  font-family: 'Fredoka One', sans-serif;
   font-size: 31px;
 }
 
@@ -115,12 +115,16 @@ img {
 }
 
 .japanese {
-  font-family: "Mochiy Pop One";
+  font-family: 'Mochiy Pop One';
   font-size: 26px;
   height: 40px;
 }
 
 /* Board */
+#board {
+  height: 328px;
+}
+
 canvas {
   animation: appear 0.8s;
   pointer-events: none;

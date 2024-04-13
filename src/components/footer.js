@@ -6,7 +6,7 @@
  */
 
 export default function Footer() {
-  const footer = document.createElement("footer");
+  const footer = document.createElement('footer');
   footer.innerHTML += `
     <img src="../../assets/logo.svg" />
     <p>© 2024 Michael Kolesidis • 

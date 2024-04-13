@@ -11,7 +11,7 @@
 
 export default function DarkModeButton(darkMode) {
   // Button
-  const darkModeButton = document.createElement("div");
+  const darkModeButton = document.createElement('div');
   darkModeButton.title = `Toggle dark mode`;
   darkModeButton.className = `emoji-button`;
   darkModeButton.innerHTML = darkMode
@@ -19,22 +19,22 @@ export default function DarkModeButton(darkMode) {
     : `<img src="../../../emoji/sun_flat.png" />`;
 
   // Theme Button Functionality
-  darkModeButton.addEventListener("click", () => {
+  darkModeButton.addEventListener('click', () => {
     toggleDarkMode();
   });
 
   function toggleDarkMode() {
     if (darkMode) {
-      window.localStorage.setItem("darkMode", "false");
+      window.localStorage.setItem('darkMode', 'false');
     } else {
-      window.localStorage.setItem("darkMode", "true");
+      window.localStorage.setItem('darkMode', 'true');
     }
     window.location.reload();
   }
 
   // Keyboard Action Handling
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "KeyD") {
+  document.addEventListener('keydown', event => {
+    if (event.code === 'KeyD') {
       toggleDarkMode();
     }
   });
