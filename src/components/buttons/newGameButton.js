@@ -9,7 +9,7 @@ export default function NewGameButton() {
   // Button
   const newGameButton = document.createElement("button");
   newGameButton.setAttribute("id", "new-game-button");
-  newGameButton.innerHTML = `New Game`;
+  newGameButton.innerHTML = theme === "japan" ? `新しいゲーム` : `New Game`;
 
   // Functionality
   newGameButton.addEventListener("click", () => {

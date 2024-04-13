@@ -1,7 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
-/* @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap'); */
-
 /* Global */
 :root {
   --main-color: #191919;
@@ -84,13 +80,16 @@ img {
 }
 
 /* Header */
+.header {
+  font-family: "Fredoka One", sans-serif;
+  font-size: 31px;
+}
+
 #header {
   color: var(--main-color);
   margin-top: 0.4rem;
   margin-bottom: 0.1rem;
-  font-family: "Fredoka One", sans-serif;
   white-space: nowrap;
-  font-size: 31px;
   height: 40px;
 }
 
@@ -162,6 +161,7 @@ select {
   cursor: pointer;
   color: var(--main-color);
   background: var(--secondary-color);
+  height: 3em;
   width: 9.5em;
   position: relative;
   margin: 0.1rem 0.3rem;
@@ -278,10 +278,10 @@ hr {
 }
 
 .emoji-button {
-  font-size: 2rem;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
   margin: 0 0.15rem;
+  width: 35px;
 }
 
 .emoji-button:hover,
@@ -308,6 +308,8 @@ footer {
 
 footer > img {
   margin-bottom: 0.25rem;
+  margin-left: 0.3em;
+  width: 20px;
 }
 
 footer > p {

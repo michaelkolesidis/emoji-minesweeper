@@ -46,7 +46,7 @@ if (darkMode) {
 // Emoji
 let mainEmoji = window.localStorage.getItem("mainEmoji");
 if (mainEmoji === null) {
-  mainEmoji = "💣";
+  mainEmoji = themes[theme]["mine"];
 }
 
 // Modal
@@ -114,7 +114,7 @@ const expertButton = ExpertButton();
 emojiButtonsContainer.appendChild(expertButton);
 
 // Theme Button
-const themeButton = ThemeButton(mainEmoji, header);
+const themeButton = ThemeButton(header);
 emojiButtonsContainer.appendChild(themeButton);
 
 // Help Button

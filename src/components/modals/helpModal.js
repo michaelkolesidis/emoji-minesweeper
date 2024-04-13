@@ -23,10 +23,10 @@ export default function HelpModal() {
   <p>
     <img src="../../emoji/bomb_flat.png" class="help-emoji" /> /
     <img src="../../emoji/hibiscus_flat.png" class="help-emoji" /> /
-    🍄 /
-    🐻 /
-    🐙 /
-    🏯 
+    <img src="../../emoji/mushroom_flat.png" class="help-emoji" /> /
+    <img src="../../emoji/bear_flat.png" class="help-emoji" /> /
+    <img src="../../emoji/person_surfing_flat_default.png" class="help-emoji" /> /
+    <img src="../../emoji/japanese_castle_flat.png" class="help-emoji" />
     Switch between <span style="font-weight:600;">themes</span> (or left/right arrows)
   </p>
   <hr>

@@ -8,65 +8,11 @@
  *  also handles the update of the stats accordingly.
  */
 
-/**
- * Basics
- */
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 // Canvas
 let cnv; // The canvas element that will contain the game
-
-const themes = {
-  mine: {
-    name: "mine",
-    title: "Emoji Minesweeper",
-    mine: "../emoji/bomb_flat.png", // 💣
-    detonation: "../emoji/collision_flat.png", // 💥
-    won: "../emoji/grinning_face_with_smiling_eyes_flat.png", // 😄
-    lost: "../emoji/knocked-out_face_flat.png", // 😵
-  },
-  flower: {
-    name: "flower",
-    title: "Emoji Flower Field",
-    mine: "../emoji/hibiscus_flat.png", // 🌺
-    detonation: "../emoji/bug_flat.png", // 🐛
-    won: "../emoji/smiling_face_with_smiling_eyes_flat.png", // 😊
-    lost: "../emoji/pensive_face_flat.png", // 😔
-  },
-  mushroom: {
-    name: "mushroom",
-    title: "Emoji Shroom Picker",
-    mine: "🍄",
-    detonation: "🦄",
-    won: "😎",
-    lost: "😵‍💫",
-  },
-  bear: {
-    name: "bear",
-    title: "Emoji Bearspotting",
-    mine: "🐻",
-    detonation: "🐾",
-    won: "🌳",
-    lost: "🪵",
-  },
-  octopus: {
-    name: "octopus",
-    title: "Emoji Seasweeper",
-    mine: "🏄",
-    detonation: "🌊",
-    won: "🌊",
-    lost: "🦈",
-  },
-  japan: {
-    name: "japan",
-    title: "絵文字マインスイーパー",
-    mine: "🏯",
-    detonation: "👺",
-    won: "🌸",
-    lost: "🈲",
-  },
-};
 
 /**
  * Dark Mode
@@ -79,26 +25,26 @@ let darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
 let theme = window.localStorage.getItem("theme") ?? "mine";
 window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
 
-let mineEmoji = themes[theme]["mine"];
-let detonationEmoji = themes[theme]["detonation"];
-let wonEmoji = themes[theme]["won"];
-let lostEmoji = themes[theme]["lost"];
-
 // Emoji images
 let CLOSED;
 let NUMBERS = [];
 let FLAG;
-let DETONATION;
-let MINE;
 let WRONG;
-let WON;
-let LOST;
 let TIMER;
 let MOVES;
+let BEST;
+let WON;
+let LOST;
+let MINE;
+let DETONATION;
 
 function preload() {
-  CLOSED = loadImage("../emoji/black_square_button_flat.png");
-  NUMBERS[0] = loadImage("../emoji/white_large_square_flat.png");
+  CLOSED = darkMode
+    ? loadImage(darkTheme.closed)
+    : loadImage("../emoji/black_square_button_flat.png");
+  NUMBERS[0] = darkMode
+    ? loadImage(darkTheme.empty)
+    : loadImage("../emoji/white_large_square_flat.png");
   NUMBERS[1] = loadImage("../emoji/keycap_1_flat.png");
   NUMBERS[2] = loadImage("../emoji/keycap_2_flat.png");
   NUMBERS[3] = loadImage("../emoji/keycap_3_flat.png");
@@ -112,16 +58,17 @@ function preload() {
   WRONG = loadImage("../emoji/cross_mark_flat.png");
   TIMER = loadImage("../emoji/hourglass_done_flat.png");
   MOVES = loadImage("../emoji/abacus_flat.png");
-  WON = loadImage(wonEmoji);
-  LOST = loadImage(lostEmoji);
-  MINE = loadImage(mineEmoji);
-  DETONATION = loadImage(detonationEmoji);
+  BEST = loadImage("../emoji/partying_face_flat.png");
+  WON = loadImage(themes[theme]["won"]);
+  LOST = loadImage(themes[theme]["lost"]);
+  MINE = loadImage(themes[theme]["mine"]);
+  DETONATION = loadImage(themes[theme]["detonation"]);
 }
 
 /**
  * Title
  */
-// window.localStorage.setItem("title", themes[theme]["title"]);
+window.localStorage.setItem("title", themes[theme]["title"]);
 
 /**
  * Settings
@@ -177,7 +124,7 @@ let rows = settings.level.rows; // The number of rows in the board
 let numberOfSquares = rows * columns;
 
 let boardSize;
-let indicatorsHeight = 7;
+let counterHeight = 7;
 
 switch (level) {
   case "beginner":
@@ -188,7 +135,7 @@ switch (level) {
     };
     boardSize = {
       width: squareSize * columns,
-      height: squareSize * rows + indicatorsHeight,
+      height: squareSize * rows + counterHeight,
     };
     break;
   case "intermediate":
@@ -199,7 +146,7 @@ switch (level) {
     };
     boardSize = {
       width: squareSize * columns,
-      height: squareSize * rows + indicatorsHeight,
+      height: squareSize * rows + counterHeight,
     };
     break;
   case "expert":
@@ -210,12 +157,12 @@ switch (level) {
     };
     boardSize = {
       width: squareSize * columns,
-      height: squareSize * rows + indicatorsHeight,
+      height: squareSize * rows + counterHeight,
     };
     break;
 }
 
-let initialMines = settings.level.mines; // Used by the mine indicator
+let initialMines = settings.level.mines; // Used by the mine counter
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to squares
 let squareCounter = 0; // The unique identifier of each square
 let minedSquares = []; // A array containing the unique identifiers of all the squares that will contain mines
@@ -265,7 +212,7 @@ function calculateMines() {
   });
 }
 
-// Time indicator
+// Time counter
 let timePassed = 0;
 let stopTimer = false;
 
@@ -285,7 +232,7 @@ function setup() {
   darkMode ? background(25) : background(255);
   cnv = createCanvas(
     boardSize.width,
-    boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
+    boardSize.height + squareSize * 0.75 // Added extra space for the mines, moves, and time counters
   );
   cnv.parent("board");
 
@@ -304,12 +251,12 @@ function draw() {
     s.draw();
   });
 
-  // Show mines and flagged squares indicators
+  // Show mines, moves, and time
   textSize(squareSize * 0.6);
   textStyle(BOLD);
   textFont("Arial");
 
-  // Mine indicator
+  // Mine counter
   if (flaggedSquares > initialMines) {
     fill(248, 49, 47);
   } else {
@@ -328,7 +275,7 @@ function draw() {
     boardSize.height + 20
   );
 
-  // Moves indicator
+  // Moves counter
   darkMode ? fill(225) : fill(35);
   image(
     MOVES,
@@ -347,7 +294,7 @@ function draw() {
     boardSize.height + 20
   );
 
-  // Time indicator
+  // Time counter
   darkMode ? fill(225) : fill(35);
   image(
     TIMER,
@@ -619,7 +566,9 @@ function gameWon() {
       }
     } else {
       if (moves < bestMoves) {
-        NUMBERS[0] = "🥳";
+        const header = document.getElementById("header");
+        header.style.color = "#ffaf2e";
+        NUMBERS[0] = BEST;
         newBestMoves = true;
         switch (level) {
           case "beginner":
@@ -667,7 +616,9 @@ function gameWon() {
       }
     } else {
       if (time < bestTime) {
-        NUMBERS[0] = "🥳";
+        const header = document.getElementById("header");
+        header.style.color = "#ffaf2e";
+        NUMBERS[0] = BEST;
         newBestTime = true;
         switch (level) {
           case "beginner":

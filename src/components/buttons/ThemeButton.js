@@ -9,12 +9,12 @@
  *  event handling.
  */
 
-export default function ThemeButton(mainEmoji, header) {
+export default function ThemeButton(header) {
   // Button
   const themeButton = document.createElement("div");
   themeButton.title = `Change theme`;
   themeButton.className = `emoji-button`;
-  themeButton.innerHTML = `<img src="../../../emoji/bomb_flat.png" />`;
+  themeButton.innerHTML = `<img src="../../${themes[theme]["mine"]}" / >`;
 
   // Theme Button Functionality
   themeButton.addEventListener("click", () => {
@@ -33,9 +33,9 @@ export default function ThemeButton(mainEmoji, header) {
       theme = "bear";
       localStorage.setItem("theme", theme);
     } else if (theme === "bear") {
-      theme = "octopus";
+      theme = "surf";
       localStorage.setItem("theme", theme);
-    } else if (theme === "octopus") {
+    } else if (theme === "surf") {
       header.classList.add("japanese");
       localStorage.setItem("japanese", "true");
       theme = "japan";
@@ -63,9 +63,9 @@ export default function ThemeButton(mainEmoji, header) {
     } else if (theme === "japan") {
       header.classList.remove("japanese");
       localStorage.setItem("japanese", "false");
-      theme = "octopus";
+      theme = "surf";
       localStorage.setItem("theme", theme);
-    } else if (theme === "octopus") {
+    } else if (theme === "surf") {
       theme = "bear";
       localStorage.setItem("theme", theme);
     } else if (theme === "bear") {
@@ -87,16 +87,20 @@ export default function ThemeButton(mainEmoji, header) {
   }
 
   function switchTheme() {
-    MINE = themes[theme]["mine"];
-    DETONATION = themes[theme]["detonation"];
-    WON = themes[theme]["won"];
-    LOST = themes[theme]["lost"];
+    WON = loadImage(themes[theme]["won"]);
+    LOST = loadImage(themes[theme]["lost"]);
+    MINE = loadImage(themes[theme]["mine"]);
+    DETONATION = loadImage(themes[theme]["detonation"]);
     window.localStorage.setItem("title", themes[theme]["title"]);
     const title = window.localStorage.getItem("title");
     document.title = title;
     window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
     header.innerHTML = themes[theme]["title"];
-    themeButton.innerHTML =  `<img src="${themes[theme]["mine"]}" / >`;
+    themeButton.innerHTML = `<img src="../../${themes[theme]["mine"]}" / >`;
+    const newGameButton = document.getElementById("new-game-button");
+    newGameButton.innerHTML = theme === "japan" ? `新しいゲーム` : `New Game`;
+    const statsButton = document.getElementById("stats-button");
+    statsButton.innerHTML = theme === "japan" ? `ステータス` : `Stats`;
   }
 
   // Keyboard Action Handling
