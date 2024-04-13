@@ -1,13 +1,44 @@
 {
   "name": "emoji-minesweeper",
-  "version": "1.0.0",
-  "description": "",
+  "author": "Michael Kolesidis",
+  "license": "AGPL-3.0-or-later",
+  "version": "6.0.0",
+  "description": "Minesweeper made with emojis 😄",
+  "private": false,
+  "type": "module",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelkolesidis/emoji-minesweeper.git"
+  },
+  "keywords": [
+    "minesweeper",
+    "emoji",
+    "game",
+    "canvas",
+    "canvas-game ",
+    "html5-game ",
+    "html5-canvas ",
+    "p5js ",
+    "minesweeper-game ",
+    "javascript-game ",
+    "emojis",
+    "casual-game ",
+    "minesweeper-js ",
+    "p5js-game ",
+    "cute-game ",
+    "minesweeper-javascript ",
+    "javascript-minesweeper ",
+    "emoji-game ",
+    "emoji-minesweeper"
+  ],
+  "bugs": {
+    "url": "https://github.com/michaelkolesidis/emoji-minesweeper/issues"
+  },
+  "homepage": "https://emojiminesweeper.com",
   "scripts": {
     "lint": "eslint ."
   },
-  "author": "",
-  "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.2",
     "@eslint/js": "^9.0.0",
