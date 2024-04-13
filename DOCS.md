@@ -36,7 +36,7 @@ In order to access debug mode add simply add **#debug** at the end of the game's
 ### Levels / Themes
 
 - Three levels: beginner, intermediate, expert
-- Six themes: mine, flower, mushroom, bear, sea, and Japan
+- Six themes: mine, flower, mushroom, bear, surf, and Japan
 - Dark mode
 
 ### UI/UX

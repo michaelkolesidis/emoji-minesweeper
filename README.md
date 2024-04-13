@@ -112,7 +112,7 @@ The bear theme.
 
 ![Win octopus](./screenshots/win_octopus_v5.png)
 
-And the sea (octopus) theme. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
+And the surf theme. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
 
 ![New Record](./screenshots/help_v5.png)
 
@@ -138,7 +138,7 @@ Lastly, clicking on the  ☀️/🌔  button allows players to choose between li
 - _New Game_ button restarts the game
 - _Stats_ button toggles the **stats modal**
 - 1️⃣2️⃣3️⃣ buttons switch between **levels** (beginner, intermediate, and expert)
-- 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (mine, flower, mushroom, bear, sea, and Japan)
+- 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (mine, flower, mushroom, bear, surf, and Japan)
 - ❔button toggles the **help modal**
 - 🚩 button toggles **flag mode** (for touchscreens)
 - ☀️/🌔 button toggles **dark mode**
