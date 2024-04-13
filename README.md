@@ -16,9 +16,9 @@ Emoji Minesweeper **always makes the first click safe**. You open squares with t
 
 The game ends when all safe squares have been opened (**win**) or when a square containing a mine is opened (**loss**). If you win, the empty square get filled with happy faces 😄, and if you lose they get filled with sad faces 😵.
 
-There are **three levels** (beginner, intermediate, and expert) and **six themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻, sea 🐙, and Japan 🏯) to choose from.
+There are **three levels** (beginner, intermediate, and expert) and **six themes** (mine 💣, flower 🌺, mushroom 🍄, bear 🐻, surf 🏄, and Japan 🏯) to choose from.
 
-Lastly, players can choose between light 🌞 and dark 🌛 mode.
+Lastly, players can choose between light ☀️ and dark 🌔 mode.
 
 ## Documentation
 
@@ -100,7 +100,7 @@ There are three difficulty levels, with different board sizes and numbers of min
 
 You can use the level buttons 1️⃣2️⃣3️⃣ to switch between levels. You can also use the _keyboard keys 1,2 and 3_.
 
-The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a sea theme 🐙, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🐙/🏯 to switch between themes, or use the _left and right arrows_ on your keyboard. These are the rest of the themes:
+The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a surf theme 🏄, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🏄/🏯 to switch between themes, or use the _left and right arrows_ on your keyboard. These are the rest of the themes:
 
 ![Win mushroom](./screenshots/win_mushroom_v5.png)
 
@@ -126,7 +126,7 @@ Clicking on the flag button 🚩 will toggle flag mode. This will enable you to 
 
 ![Dark mushrrom](./screenshots/dark_mushroom_v5.png)
 
-Lastly, clicking on the 🌞/🌛 button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the _D_ key.
+Lastly, clicking on the  ☀️/🌔  button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the _D_ key.
 
 ### Summary
 
@@ -138,10 +138,10 @@ Lastly, clicking on the 🌞/🌛 button allows players to choose between light 
 - _New Game_ button restarts the game
 - _Stats_ button toggles the **stats modal**
 - 1️⃣2️⃣3️⃣ buttons switch between **levels** (beginner, intermediate, and expert)
-- 💣/🌺/🍄/🐻/🐙/🏯 button switches between **themes** (mine, flower, mushroom, bear, sea, and Japan)
+- 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (mine, flower, mushroom, bear, sea, and Japan)
 - ❔button toggles the **help modal**
 - 🚩 button toggles **flag mode** (for touchscreens)
-- 🌞/🌛 button toggles **dark mode**
+- ☀️/🌔 button toggles **dark mode**
 
 ### Keyboard Controls
 
@@ -176,7 +176,7 @@ You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-l
 
 The following emojis are used throughout the game:
 
-🔲 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 🚩 ⌛ 🧮 ❔ ❌ 🥳 🌞 🌛
+🔲 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 🚩 ⌛ 🧮 ❔ ❌ 🥳 ☀️ 🌔
 
 ### Themes & Emoji Sets
 
@@ -186,8 +186,8 @@ The following emojis are used throughout the game:
 |    Flower     |   Emoji Flower Field   | 🌺 🐛 😊 😔 |
 |   Mushroom    | Emoji Mushroom Picker  | 🍄 🦄 😎 😵‍💫 |
 |     Bear      |   Emoji Bearspotting   | 🐻 🐾 🌳 🪵 |
-| Sea (Octopus) |    Emoji Seasweeper    | 🐙 🌊 ⛵️ 🦈 |
-|     Japan     |  絵文字マインスイーパー  | 🏯 👺 🌸 🈲 |
+|     Surf      |    Emoji Surfsweeper   | 🏄 🦑 🌊 🦈 |
+|     Japan     |   絵文字マインスイーパー   | 🏯 👺 🌸 😖 |
 
 The emoji font used in the game is the **Segoe UI Emoji font** that can be found [here](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji). If you are running Windows 11, this font family is already installed on your computer. If you are running Linux, you can install and use the Segoe UI font family by following these [instructions](https://vyshnav.xyz/blog/windows-11-emojis-on-linux).
 
