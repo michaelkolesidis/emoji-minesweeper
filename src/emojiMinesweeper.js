@@ -123,7 +123,10 @@ let columns = settings.level.columns; // The number of columns in the board
 let rows = settings.level.rows; // The number of rows in the board
 let numberOfSquares = rows * columns;
 
-let boardSize;
+let boardSize = {
+  width: 33 * 9,
+  height: 33 * 9 + 7,
+};
 let counterHeight = 7;
 
 switch (level) {
