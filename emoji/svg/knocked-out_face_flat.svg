@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="30"
+   height="30"
+   viewBox="0 0 30 30"
+   fill="none"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="knocked-out_face_flat.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   inkscape:export-filename="knocked-out_face_flat.png"
+   inkscape:export-xdpi="819.20001"
+   inkscape:export-ydpi="819.20001"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="7.375"
+     inkscape:cx="16"
+     inkscape:cy="16"
+     inkscape:window-width="1312"
+     inkscape:window-height="449"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4" />
+  <g
+     id="g4"
+     transform="translate(-0.9989,-0.9989)">
+    <path
+       d="m 15.9989,29.9978 c 9.3344,0 13.9989,-6.2675 13.9989,-13.9989 C 29.9978,8.26751 25.3333,2 15.9989,2 6.66443,2 2,8.26751 2,15.9989 2,23.7303 6.66443,29.9978 15.9989,29.9978 Z"
+       fill="#ffb02e"
+       id="path1" />
+    <path
+       d="m 7.29289,9.29289 c 0.39053,-0.39052 1.02369,-0.39052 1.41422,0 L 10.5,11.0858 12.2929,9.29289 c 0.3905,-0.39052 1.0237,-0.39052 1.4142,0 0.3905,0.39053 0.3905,1.02371 0,1.41421 l -1.7929,1.7929 1.7929,1.7929 c 0.3905,0.3905 0.3905,1.0237 0,1.4142 -0.3905,0.3905 -1.0237,0.3905 -1.4142,0 L 10.5,13.9142 8.70711,15.7071 c -0.39053,0.3905 -1.02369,0.3905 -1.41422,0 -0.39052,-0.3905 -0.39052,-1.0237 0,-1.4142 L 9.08579,12.5 7.29289,10.7071 c -0.39052,-0.3905 -0.39052,-1.02368 0,-1.41421 z"
+       fill="#402a32"
+       id="path2" />
+    <path
+       d="m 23.2929,9.29289 c 0.3905,-0.39052 1.0237,-0.39052 1.4142,0 0.3905,0.39053 0.3905,1.02371 0,1.41421 l -1.7929,1.7929 1.7929,1.7929 c 0.3905,0.3905 0.3905,1.0237 0,1.4142 -0.3905,0.3905 -1.0237,0.3905 -1.4142,0 L 21.5,13.9142 19.7071,15.7071 c -0.3905,0.3905 -1.0237,0.3905 -1.4142,0 -0.3905,-0.3905 -0.3905,-1.0237 0,-1.4142 L 20.0858,12.5 18.2929,10.7071 c -0.3905,-0.3905 -0.3905,-1.02368 0,-1.41421 0.3905,-0.39052 1.0237,-0.39052 1.4142,0 L 21.5,11.0858 Z"
+       fill="#402a32"
+       id="path3" />
+    <path
+       d="m 12,23 c 0,-2.2091 1.7909,-4 4,-4 2.2091,0 4,1.7909 4,4 0,2.2091 -1.7909,4 -4,4 -2.2091,0 -4,-1.7909 -4,-4 z"
+       fill="#bb1d80"
+       id="path4" />
+  </g>
+</svg>

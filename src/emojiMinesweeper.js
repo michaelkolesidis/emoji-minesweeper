@@ -3,17 +3,10 @@
  *  Copyright (c) 2024 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
- * minesweeperEmoji.js contains the game functionality,
- * everything that happens inside the game's board. It
- * also handles the update of the stats accordingly.
+ *  minesweeperEmoji.js contains the game functionality,
+ *  everything that happens inside the game's board. It
+ *  also handles the update of the stats accordingly.
  */
-
-/**
- * Basics
- */
-// Disable the Friendly Error System
-// (not used in the minified version of p5js)
-disableFriendlyErrors = true;
 
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener("contextmenu", (event) => event.preventDefault());
@@ -21,101 +14,56 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 // Canvas
 let cnv; // The canvas element that will contain the game
 
-const themes = {
-  mine: {
-    name: "mine",
-    title: "Emoji Minesweeper",
-    mine: "💣",
-    detonation: "💥",
-    won: "😄",
-    lost: "😵",
-  },
-  flower: {
-    name: "flower",
-    title: "Emoji Flower Field",
-    mine: "🌺",
-    detonation: "🐛",
-    won: "😊",
-    lost: "😔",
-  },
-  mushroom: {
-    name: "mushroom",
-    title: "Emoji Shroom Picker",
-    mine: "🍄",
-    detonation: "🦄",
-    won: "😎",
-    lost: "😵‍💫",
-  },
-  bear: {
-    name: "bear",
-    title: "Emoji Bearspotting",
-    mine: "🐻",
-    detonation: "🐾",
-    won: "🌳",
-    lost: "🪵",
-  },
-  octopus: {
-    name: "octopus",
-    title: "Emoji Seasweeper",
-    mine: "🐙",
-    detonation: "🌊",
-    won: "⛵️",
-    lost: "🦈",
-  },
-  japan: {
-    name: "japan",
-    title: "絵文字マインスイーパー",
-    mine: "🏯",
-    detonation: "👺",
-    won: "🌸",
-    lost: "🈲",
-  },
-};
-
 /**
  * Dark Mode
  */
 let darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
 
 /**
- * Emojis
+ * Emoji
  */
 let theme = window.localStorage.getItem("theme") ?? "mine";
 window.localStorage.setItem("mainEmoji", themes[theme]["mine"]);
 
-let mineEmoji = themes[theme]["mine"];
-let detonationEmoji = themes[theme]["detonation"];
-let wonEmoji = themes[theme]["won"];
-let lostEmoji = themes[theme]["lost"];
+// Emoji images
+let CLOSED;
+let NUMBERS = [];
+let FLAG;
+let WRONG;
+let TIMER;
+let MOVES;
+let BEST;
+let WON;
+let LOST;
+let MINE;
+let DETONATION;
 
-// Emojis
-let CLOSED = darkMode ? "⬛" : "🔲";
-let NUMBERS = ["⬜️", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"];
-if (darkMode) NUMBERS[0] = "";
-let FLAG = "🚩";
-let DETONATION = detonationEmoji;
-let MINE = mineEmoji;
-let WRONG = "❌";
-let WON = wonEmoji;
-let LOST = lostEmoji;
-let TIMER = "⌛";
-let MOVES = "🧮";
-
-// Easter egg
-document.addEventListener("keydown", (e) => {
-  if (e.code === "KeyM") {
-    CLOSED = "🥸";
-    NUMBERS = ["🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸", "🥸"];
-    FLAG = "🥸";
-    DETONATION = "🥸";
-    MINE = "🥸";
-    WRONG = "🥸";
-    WON = "🥸";
-    LOST = "🥸";
-    TIMER = "🥸";
-    MOVES = "🥸";
-  }
-});
+function preload() {
+  CLOSED = darkMode
+    ? loadImage(darkTheme.closed)
+    : loadImage("../emoji/black_square_button_flat.png");
+  NUMBERS[0] = darkMode
+    ? loadImage(darkTheme.empty)
+    : loadImage("../emoji/white_large_square_flat.png");
+  NUMBERS[1] = loadImage("../emoji/keycap_1_flat.png");
+  NUMBERS[2] = loadImage("../emoji/keycap_2_flat.png");
+  NUMBERS[3] = loadImage("../emoji/keycap_3_flat.png");
+  NUMBERS[4] = loadImage("../emoji/keycap_4_flat.png");
+  NUMBERS[5] = loadImage("../emoji/keycap_5_flat.png");
+  NUMBERS[6] = loadImage("../emoji/keycap_6_flat.png");
+  NUMBERS[7] = loadImage("../emoji/keycap_7_flat.png");
+  NUMBERS[8] = loadImage("../emoji/keycap_8_flat.png");
+  NUMBERS[9] = loadImage("../emoji/keycap_9_flat.png");
+  FLAG = loadImage("../emoji/triangular_flag_flat.png");
+  WRONG = loadImage("../emoji/cross_mark_flat.png");
+  TIMER = loadImage("../emoji/hourglass_done_flat.png");
+  MOVES = loadImage("../emoji/abacus_flat.png");
+  BEST = loadImage("../emoji/partying_face_flat.png");
+  WON = loadImage(themes[theme]["won"]);
+  LOST = loadImage(themes[theme]["lost"]);
+  MINE = loadImage(themes[theme]["mine"]);
+  DETONATION = loadImage(themes[theme]["detonation"]);
+}
 
 /**
  * Title
@@ -133,7 +81,7 @@ let settings = {
     mines: 10,
   },
   size: {
-    squareSize: 32,
+    squareSize: 33,
   },
 };
 
@@ -164,13 +112,6 @@ switch (level) {
       mines: 99,
     };
     break;
-  case "custom":
-    settings.level = {
-      columns: null,
-      rows: null,
-      mines: null,
-    };
-    break;
 }
 
 /**
@@ -181,16 +122,47 @@ let squareSize = settings.size.squareSize; // The size (in pixels of each square
 let columns = settings.level.columns; // The number of columns in the board
 let rows = settings.level.rows; // The number of rows in the board
 let numberOfSquares = rows * columns;
-let sizeError = squareSize * 0.175; // On Windows and on Linux if error is not added to size,
-// the left and bottom borders are not totally visible -
-// on Mac it works fine even without the error
 
-let boardSize = {
-  width: squareSize * columns + sizeError,
-  height: squareSize * rows + sizeError,
-};
+let boardSize;
+let counterHeight = 7;
 
-let initialMines = settings.level.mines; // Used by the mine indicator
+switch (level) {
+  case "beginner":
+    settings.level = {
+      columns: 9,
+      rows: 9,
+      mines: 10,
+    };
+    boardSize = {
+      width: squareSize * columns,
+      height: squareSize * rows + counterHeight,
+    };
+    break;
+  case "intermediate":
+    settings.level = {
+      columns: 16,
+      rows: 16,
+      mines: 40,
+    };
+    boardSize = {
+      width: squareSize * columns,
+      height: squareSize * rows + counterHeight,
+    };
+    break;
+  case "expert":
+    settings.level = {
+      columns: 30,
+      rows: 16,
+      mines: 99,
+    };
+    boardSize = {
+      width: squareSize * columns,
+      height: squareSize * rows + counterHeight,
+    };
+    break;
+}
+
+let initialMines = settings.level.mines; // Used by the mine counter
 let numberOfMines = initialMines; // Used to calculate mines to be allocated to squares
 let squareCounter = 0; // The unique identifier of each square
 let minedSquares = []; // A array containing the unique identifiers of all the squares that will contain mines
@@ -240,7 +212,7 @@ function calculateMines() {
   });
 }
 
-// Time indicator
+// Time counter
 let timePassed = 0;
 let stopTimer = false;
 
@@ -260,10 +232,9 @@ function setup() {
   darkMode ? background(25) : background(255);
   cnv = createCanvas(
     boardSize.width,
-    boardSize.height + squareSize * 0.75 // Added extra space for the mines and flagged squares indicators
+    boardSize.height + squareSize * 0.75 // Added extra space for the mines, moves, and time counters
   );
   cnv.parent("board");
-  textSize(squareSize - squareSize * 0.05); // On Mac "squareSize - 1" works better, on Windows "squareSize - 6"
 
   allocateMines();
   generateSquares();
@@ -276,65 +247,67 @@ function setup() {
 function draw() {
   darkMode ? background(25) : background(255);
 
-  if (navigator.userAgent.includes("Firefox")) {
-    translate(squareSize / 10, 0);
-  }
-
-  translate(-squareSize * 0.075, squareSize - squareSize * 0.075);
   squares.forEach(function (s) {
     s.draw();
   });
 
-  // Show mines and flagged squares indicators
+  // Show mines, moves, and time
   textSize(squareSize * 0.6);
   textStyle(BOLD);
   textFont("Arial");
 
-  // Mine indicator
+  // Mine counter
   if (flaggedSquares > initialMines) {
     fill(248, 49, 47);
   } else {
     darkMode ? fill(225) : fill(35);
   }
-  text(MINE, squareSize * 0.125, boardSize.height - squareSize * 0.275);
+  image(
+    MINE,
+    squareSize * 0.125,
+    boardSize.height,
+    squareSize * 0.65,
+    squareSize * 0.65
+  );
   text(
     nf(Math.max(initialMines - flaggedSquares, 0), 3),
     squareSize,
-    boardSize.height - squareSize * 0.25
+    boardSize.height + 20
   );
 
-  // Moves indicator
+  // Moves counter
   darkMode ? fill(225) : fill(35);
-  text(
+  image(
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 0.99,
-    boardSize.height - squareSize * 0.275
+    boardSize.height,
+    squareSize * 0.65,
+    squareSize * 0.65
   );
+
   if (newBestMoves) {
     fill(255, 176, 46);
   }
   text(
     nf(moves, 3),
     width / 2 - squareSize * 1.975 + 2 * squareSize * 0.99,
-    boardSize.height - squareSize * 0.275
+    boardSize.height + 20
   );
 
-  // Time indicator
+  // Time counter
   darkMode ? fill(225) : fill(35);
-
-  text(
+  image(
     TIMER,
     width - squareSize * 1.975,
-    boardSize.height - squareSize * 0.275
+    boardSize.height,
+    squareSize * 0.65,
+    squareSize * 0.65
   );
+
   if (newBestTime) {
     fill(255, 176, 46);
   }
-  text(
-    nf(timePassed, 3),
-    width - squareSize * 1.1,
-    boardSize.height - squareSize * 0.25
-  );
+  text(nf(timePassed, 3), width - squareSize * 1.1, boardSize.height + 20);
   textSize(squareSize - squareSize * 0.05);
 }
 
@@ -593,7 +566,9 @@ function gameWon() {
       }
     } else {
       if (moves < bestMoves) {
-        NUMBERS[0] = "🥳";
+        const header = document.getElementById("header");
+        header.style.color = "#ffaf2e";
+        NUMBERS[0] = BEST;
         newBestMoves = true;
         switch (level) {
           case "beginner":
@@ -641,7 +616,9 @@ function gameWon() {
       }
     } else {
       if (time < bestTime) {
-        NUMBERS[0] = "🥳";
+        const header = document.getElementById("header");
+        header.style.color = "#ffaf2e";
+        NUMBERS[0] = BEST;
         newBestTime = true;
         switch (level) {
           case "beginner":
@@ -659,6 +636,9 @@ function gameWon() {
     }
   }
   stopTimer = true;
+
+  const header = document.getElementById("header");
+  header.classList.add("wavy");
 }
 
 // handle loss

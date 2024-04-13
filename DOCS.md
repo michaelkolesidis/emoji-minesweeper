@@ -25,21 +25,11 @@ Here you can find additional information for nerds!
 
 The game logic and anything that happens inside the board is written in p5.js. The board is drawn inside a [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element, with the help of the p5.js library. Multiple programming paradigms are used, such as the object-oriented paradigm, as each square is an instance of the class Square. The rest of the UI is written in vanilla JavaScript. Everything was written from scratch, with the whole project having only one dependency (p5.js).
 
-## Server
-
-**_Coming Soon:_** We are currently building our server, which will give players the ability to create an account, save stats and get ranked among other players worldwide! The repository of the server can be found [here](https://github.com/mamarmar/emoji-minesweeper-server).
-
 ## Debug Mode
 
 In order to perform diagnostics or to study the game's internal functions, developers can access debug mode. In debug mode, the square numbers are visible on each square, with the squares containing a mine having their number in red. Game stats are not accessible and **results are not counted** while in debug mode.
 
 In order to access debug mode add simply add **#debug** at the end of the game's URL. Here is a link that will take you to debug mode: [https://emojiminesweeper.com#debug](https://emojiminesweeper.com#debug)
-
-## Simple Debug Mode
-
-This mode is similar to debug mode, with the only difference being that square numbers are not visible and mines are marked with a red dot. It offered the ability for debugging in a much less visually cluttered board. For most debugging needs this is the one to choose.
-
-In order to access debug mode add simply add **#debug-simple** at the end of the game's URL. Here is a link that will take you to debug mode: [https://emojiminesweeper.com#debug-simple](https://emojiminesweeper.com/#debug-simple)
 
 ## Feature List
 

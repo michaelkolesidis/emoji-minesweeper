@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="30"
+   height="30"
+   viewBox="0 0 30 30"
+   fill="none"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="keycap_2_flat.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   inkscape:export-filename="keycap_2_flat.png"
+   inkscape:export-xdpi="819.20001"
+   inkscape:export-ydpi="819.20001"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="7.375"
+     inkscape:cx="16"
+     inkscape:cy="16"
+     inkscape:window-width="1560"
+     inkscape:window-height="839"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <path
+     d="M 1,5 C 1,2.79086 2.79086,1 5,1 h 20 c 2.2091,0 4,1.79086 4,4 v 20 c 0,2.2091 -1.7909,4 -4,4 H 5 C 2.79086,29 1,27.2091 1,25 Z"
+     fill="#00a6ed"
+     id="path1" />
+  <path
+     d="m 15.179801,10.2515 c -0.3089,0.0154 -0.7987,0.1687 -1.3491,0.8234 -0.622,0.7398 -1.7259,0.8353 -2.4657,0.2134 -0.7398,-0.622 -0.8353,-1.7259004 -0.2133,-2.4657104 1.0777,-1.28191 2.4302,-1.99551 3.8531,-2.06673 1.3995,-0.07004 2.6803,0.49318 3.5935,1.40437 1.9049,1.9005704 2.141,5.1437704 -0.3018,7.7675704 -0.7109,0.7636 -1.5741,1.6656 -2.4453,2.576 -0.3999,0.4178 -0.8014,0.8374 -1.1907,1.2462 h 4.0993 c 0.9665,0 1.75,0.7835 1.75,1.75 0,0.9665 -0.7835,1.75 -1.75,1.75 h -7.0189 c -1.8810001,0 -3.0061801,-2.2443 -1.6599,-3.7284 0.8515,-0.9386 2.1158,-2.2608 3.3214,-3.5217 0.866,-0.9056 1.7017,-1.7795 2.3325,-2.4571 0.6664,-0.7157 0.8412,-1.3431 0.8429,-1.7838 0.0018,-0.4573 -0.1796,-0.8498 -0.4516,-1.1211 -0.2734,-0.2728 -0.6141,-0.403 -0.9464,-0.3864 z"
+     fill="#ffffff"
+     id="path2" />
+</svg>
