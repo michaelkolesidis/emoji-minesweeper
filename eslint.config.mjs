@@ -1,9 +1,9 @@
-import globals from "globals";
+import globals from 'globals';
 
-import path from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-import pluginJs from "@eslint/js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
+import pluginJs from '@eslint/js';
 
 // mimic CommonJS variables -- not needed if using CommonJS
 const __filename = fileURLToPath(import.meta.url);
@@ -15,5 +15,5 @@ const compat = new FlatCompat({
 
 export default [
   { languageOptions: { globals: globals.browser } },
-  ...compat.extends("airbnb-base"),
+  ...compat.extends('airbnb-base'),
 ];

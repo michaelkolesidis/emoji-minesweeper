@@ -18,6 +18,8 @@ export default function Board() {
     case 'expert':
       board.style.height = '560px';
       break;
+    default:
+      board.style.height = '328px';
   }
 
   return board;

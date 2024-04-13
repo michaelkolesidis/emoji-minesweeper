@@ -27,6 +27,6 @@ Starting from version 4.0.1, the project is using semantic commit messages. Plea
 4. Push to the Branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request to the develop branch
 
-Please contact us for any inquiries :)
+Please contact us for any inquiries 🙂
 
 [Our Contributor Covenant Code of Conduct](https://github.com/michaelkolesidis/emoji-minesweeper/blob/main/CODE_OF_CONDUCT.md)

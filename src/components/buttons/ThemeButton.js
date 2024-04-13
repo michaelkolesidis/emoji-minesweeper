@@ -14,7 +14,7 @@ export default function ThemeButton(header) {
   const themeButton = document.createElement('div');
   themeButton.title = `Change theme`;
   themeButton.className = `emoji-button`;
-  themeButton.innerHTML = `<img src="../../${themes[theme]['mine']}" / >`;
+  themeButton.innerHTML = `<img src="../../${themes[theme].mine}" / >`;
 
   // Theme Button Functionality
   themeButton.addEventListener('click', () => {
@@ -87,16 +87,16 @@ export default function ThemeButton(header) {
   }
 
   function switchTheme() {
-    WON = loadImage(themes[theme]['won']);
-    LOST = loadImage(themes[theme]['lost']);
-    MINE = loadImage(themes[theme]['mine']);
-    DETONATION = loadImage(themes[theme]['detonation']);
-    window.localStorage.setItem('title', themes[theme]['title']);
+    WON = loadImage(themes[theme].won);
+    LOST = loadImage(themes[theme].lost);
+    MINE = loadImage(themes[theme].mine);
+    DETONATION = loadImage(themes[theme].detonation);
+    window.localStorage.setItem('title', themes[theme].title);
     const title = window.localStorage.getItem('title');
     document.title = title;
-    window.localStorage.setItem('mainEmoji', themes[theme]['mine']);
-    header.innerHTML = themes[theme]['title'];
-    themeButton.innerHTML = `<img src="../../${themes[theme]['mine']}" / >`;
+    window.localStorage.setItem('mainEmoji', themes[theme].mine);
+    header.innerHTML = themes[theme].title;
+    themeButton.innerHTML = `<img src="../../${themes[theme].mine}" / >`;
     const newGameButton = document.getElementById('new-game-button');
     newGameButton.innerHTML = theme === 'japan' ? `新しいゲーム` : `New Game`;
     const statsButton = document.getElementById('stats-button');

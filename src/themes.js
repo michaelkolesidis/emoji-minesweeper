@@ -57,6 +57,6 @@ const themes = {
 };
 
 const darkTheme = {
-  closed: '../emoji/white_square_button_flat.png',
-  empty: '../emoji/black_large_square_flat.png',
+  closed: '../emoji/white_square_button_flat.png', // 🔳
+  empty: '../emoji/black_large_square_flat.png', // ⬛
 };

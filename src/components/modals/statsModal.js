@@ -6,7 +6,9 @@
  */
 
 function formatTime(time) {
-  let hours, minutes, seconds;
+  let hours;
+  let minutes;
+  let seconds;
 
   hours = Math.floor(time / 3600);
   minutes = Math.floor((time - hours * 3600) / 60);
