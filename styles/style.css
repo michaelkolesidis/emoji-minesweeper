@@ -306,8 +306,8 @@ footer {
   height: 2.5rem;
   display: flex;
   align-items: flex-end;
-  font-size: 0.7rem;
   overflow: hidden;
+  margin: 0.5em;
 }
 
 footer > img {
@@ -317,5 +317,6 @@ footer > img {
 }
 
 footer > p {
-  margin: 0 0 0.3rem 0.3rem;
+  font-size: 0.75rem;
+  margin: 0 0 0.25rem 0.35rem;
 }

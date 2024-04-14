@@ -8,7 +8,7 @@
 export default function Footer() {
   const footer = document.createElement('footer');
   footer.innerHTML += `
-    <img src="../../assets/logo.svg" />
+    <img src="../../assets/moustache_man.svg" />
     <p>© 2024 Michael Kolesidis • 
       <a 
         href="https://github.com/michaelkolesidis/emoji-minesweeper" 
