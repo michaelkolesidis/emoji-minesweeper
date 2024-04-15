@@ -128,7 +128,7 @@ Clicking on the flag button 🚩 will toggle flag mode. This will enable you to 
 
 ![Dark flowers](./screenshots/dark_flowers_v5.png)
 
-![Dark mushrrom](./screenshots/dark_mushroom_v5.png)
+![Dark mushroom](./screenshots/dark_mushroom_v5.png)
 
 Lastly, clicking on the  ☀️/🌔  button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the _D_ key.
 
@@ -178,15 +178,15 @@ You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-l
 
 ### Theme Titles/Headers
 
-The different themes come with their own titles/headers.
+Each theme comes with its own title reflected in the header.
 
-![Mine Header](./screenshots/mine_header.png)
+![Mine header](./screenshots/mine_header.png)
 
-![Mushroomrom Header](./screenshots/mushroom_header.png)
+![Mushroomrom header](./screenshots/mushroom_header.png)
 
-![Japan Header](./screenshots/japan_header.png)
+![Surf header](./screenshots/surf_header.png)
 
-![Surf Header](./screenshots/surf_header.png)
+![Japan header](./screenshots/japan_header.png)
 
 ## Emoji
 
