@@ -38,6 +38,8 @@ body {
   background-color: var(--secondary-color);
   display: flex;
   justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 body {
