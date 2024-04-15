@@ -1,7 +1,7 @@
 {
   "name": "Emoji Minesweeper",
   "short_name": "Emoji Minesweeper",
-  "description": "Minesweeper made with emojis",
+  "description": "Minesweeper made with emoji",
   "icons": [
     {
       "src": "/assets/android-chrome-192x192.png",

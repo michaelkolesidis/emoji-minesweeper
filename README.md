@@ -1,7 +1,7 @@
 ![Emoji Minesweeper wordmark](./assets/wordmark_light.svg#gh-dark-mode-only)
 ![Emoji Minesweeper wordmark](./assets/wordmark.svg#gh-light-mode-only)
 
-### Minesweeper made with emojis. The most fun way to play minesweeper
+### Minesweeper made with emoji. The most fun way to play minesweeper
 
 ![Win mines](./screenshots/win_mines_v5.png)
 ![Win flowers](./screenshots/win_flowers_v5.png)
@@ -10,7 +10,7 @@
 
 <a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:45px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-Emoji Minesweeper is a **logic puzzle game**, a variant of the classic [minesweeper game](<https://en.wikipedia.org/wiki/Minesweeper_(video_game)>) reimagined and implemented using **emojis**! It features a **grid of clickable squares**, with hidden **mines** (or flowers) scattered throughout the board. Safe squares have **numbers** telling you how many mines touch the square. If there is no number, the square doesn't touch any mine. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you **lose** the game!
+Emoji Minesweeper is a **logic puzzle game**, a variant of the classic [minesweeper game](<https://en.wikipedia.org/wiki/Minesweeper_(video_game)>) reimagined and implemented using **emoji**! It features a **grid of clickable squares**, with hidden **mines** (or flowers) scattered throughout the board. Safe squares have **numbers** telling you how many mines touch the square. If there is no number, the square doesn't touch any mine. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you **lose** the game!
 
 Emoji Minesweeper **always makes the first click safe**. You open squares with the **left mouse button** and put flags on mines with the **right mouse button**.
 
@@ -40,7 +40,7 @@ You can find more information in the [documentation](./DOCS.md#technologies-used
 
 ![Idle](./screenshots/idle_v5.png)
 
-This is the user interface of Emoji Minesweeper. Such a colorful amalgamation or emojis! On the top, you can see a grid of squares: the board. The black square button emoji 🔲 means that the square has not been opened yet. **Left-click on any square to open it**, and start the game. You don't have to worry about your first move, as we have made sure that your first square can never contain a mine (actually it can, but if that's the case, we relocate the mine to another square so fast that you don't even realize it - you can thank us later). Right below the board you can find three counters.
+This is the user interface of Emoji Minesweeper. Such a colorful amalgamation of emoji! On the top, you can see a grid of squares: the board. The black square button emoji 🔲 means that the square has not been opened yet. **Left-click on any square to open it**, and start the game. You don't have to worry about your first move, as we have made sure that your first square can never contain a mine (actually it can, but if that's the case, we relocate the mine to another square so fast that you don't even realize it - you can thank us later). Right below the board you can find three counters.
 
 On the left you can find the **mine counter** 💣. It shows the number of mines on the board without flags (we will talk about flagging shortly).
 
@@ -110,9 +110,13 @@ The mushroom theme.
 
 The bear theme.
 
-![Win octopus](./screenshots/win_octopus_v5.png)
+![Win surf](./screenshots/win_surf.png)
 
-And the surf theme. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
+The surf theme.
+
+![Win Japan](./screenshots/win_japan.png)
+
+And the Japan theme. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
 
 ![New Record](./screenshots/help_v5.png)
 
@@ -172,11 +176,23 @@ You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-l
 
 ![Expert Level](./screenshots/expert_v5.png)
 
-## Emojis
+### Theme Titles/Headers
 
-The following emojis are used throughout the game:
+The different themes come with their own titles/headers.
 
-🔲 ⬜️ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 🚩 ⌛ 🧮 ❔ ❌ 🥳 ☀️ 🌔
+![Mine Header](./screenshots/mine_header.png)
+
+![Mushroomrom Header](./screenshots/mushroom_header.png)
+
+![Japan Header](./screenshots/japan_header.png)
+
+![Surf Header](./screenshots/surf_header.png)
+
+## Emoji
+
+The following emoji are used throughout the game:
+
+🔲 ⬜️ 🔳 ⬛ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 🚩 ⌛ 🧮 ❔ ❌ 🥳 ☀️ 🌔
 
 ### Themes & Emoji Sets
 
@@ -195,7 +211,7 @@ The emoji font used in the game is the **Segoe UI Emoji font** that can be found
 
 ![Pocket Bell](./assets/pocket_bell_emoji.png)
 
-The first ever modern emoji existed on a device that came even before phones. In 1995, Japanese Telecom Company NTT DoCoMo made the first emojis available on its Pocket Bell pager model. As you can see Emoji Minesweeper is using some of these very first emojis!
+The first ever modern emoji existed on a device that came even before phones. In 1995, Japanese Telecom Company NTT DoCoMo made the first emoji available on its Pocket Bell pager model. As you can see Emoji Minesweeper is using some of these very first emoji!
 
 You can find more information about the history of emoji [here](https://gem-ship-blog.com/blog/the-story-behind-emojis-1).
 

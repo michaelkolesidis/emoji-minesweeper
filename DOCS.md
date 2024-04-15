@@ -39,6 +39,10 @@ In order to access debug mode add simply add **#debug** at the end of the game's
 - Six themes: mine, flower, mushroom, bear, surf, and Japan
 - Dark mode
 
+### Emoji
+
+- Emoji images of the **Segoe UI Emoji font** are used to ensure uniformity in all platforms
+
 ### UI/UX
 
 - The whole UI and all button actions can be triggered using keyboard shortcuts
@@ -73,9 +77,10 @@ In order to access debug mode add simply add **#debug** at the end of the game's
 
 - Empty squares become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost
 - Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)
-- Empty squares become a partying face emoji and time counter turns gold when the player has made a new best time
-- Empty squares become a partying face emoji and moves turns gold when the player has made a new moves recorded
+- Empty squares become a partying face emoji and time counter turns gold when the player has made a new best time or a new moves recorded
+- Header becomes yellow when the player has made a new best time or a new moves recorded
 - Wrongly flagged squares are marked with an X when the played loses
+- Header wave animation on win
 
 ### Stats
 
@@ -91,7 +96,6 @@ In order to access debug mode add simply add **#debug** at the end of the game's
 - Easy to adjust canvas for different square sizes (no hard-coded values)
 - Help modal
 - Board fade-in effect
-- Animated header on hover
 - Animated footer logo on hover
 - Extensive commenting to make the project's code accessible for beginners
 - Extensive documentation

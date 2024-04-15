@@ -3,7 +3,7 @@
   "author": "Michael Kolesidis",
   "license": "AGPL-3.0-or-later",
   "version": "6.0.0",
-  "description": "Minesweeper made with emojis 😄",
+  "description": "Minesweeper made with emoji 😄",
   "private": false,
   "type": "module",
   "main": "index.js",
