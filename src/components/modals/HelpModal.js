@@ -27,7 +27,7 @@ export default function HelpModal() {
 </p>
 <p>
   <img src="../../emoji/triangular_flag_flat.png" class="help-emoji" />
-  <span style="font-weight:600;">Flag mode</span>: touch to flag (F key)
+  <span style="font-weight:600;">Touch</span> (left-click) to flag (F key)
 </p>
 <p>
   <img src="../../emoji/sun_flat.png" class="help-emoji" />
