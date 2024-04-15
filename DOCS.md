@@ -96,6 +96,5 @@ In order to access debug mode add simply add **#debug** at the end of the game's
 - Easy to adjust canvas for different square sizes (no hard-coded values)
 - Help modal
 - Board fade-in effect
-- Animated footer logo on hover
 - Extensive commenting to make the project's code accessible for beginners
 - Extensive documentation

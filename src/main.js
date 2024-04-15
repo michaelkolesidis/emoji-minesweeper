@@ -11,7 +11,6 @@
 
 import Header from './components/Header.js';
 import Board from './components/Board.js';
-import Footer from './components/Footer.js';
 import StatsModal from './components/modals/StatsModal.js';
 import HelpModal from './components/modals/HelpModal.js';
 import NewGameButton from './components/buttons/NewGameButton.js';
@@ -62,7 +61,7 @@ document.title = title;
 /**
  * Elements
  */
-// Game container (used for footer at the bottom functionality)
+// Game container
 const gameContainer = document.createElement('div');
 gameContainer.setAttribute('id', 'game-container');
 document.body.appendChild(gameContainer);
@@ -123,9 +122,7 @@ emojiButtonsContainer.appendChild(helpButton);
 
 // Flag Button
 const flagButton = FlagButton(board);
-// if (/Android|iPhone/i.test(navigator.userAgent)) {
 emojiButtonsContainer.appendChild(flagButton);
-// }
 
 // Dark Mode Button
 const darkModeButton = DarkModeButton(darkMode);
@@ -134,15 +131,6 @@ emojiButtonsContainer.appendChild(darkModeButton);
 // Donate Button
 const donateButton = DonateButton();
 gameContainer.appendChild(donateButton);
-
-// Content Wrap (used for footer at the bottom functionality)
-const contentWrap = document.createElement('div');
-contentWrap.setAttribute('id', 'content-wrap');
-gameContainer.appendChild(contentWrap);
-
-// Footer
-const footer = Footer();
-contentWrap.appendChild(footer);
 
 /**
  * Stats Modal
@@ -161,10 +149,13 @@ function toggleStatsModal() {
     window.localStorage.setItem('modalOpen', 'false');
   } else if (!statsModalOpen) {
     // Close help modal
+    setTimeout(() => {
+      helpModal.style.zIndex = '-1';
+    }, 500);
     helpModal.style.opacity = '0';
     helpModalOpen = false;
     window.localStorage.setItem('modalOpen', 'false');
-    helpButton.style.opacity = '1';
+    helpButton.classList.remove('emoji-button-clicked');
     // Open stats modal
     statsModal.style.zIndex = '2';
     statsModal.style.opacity = '1';

@@ -20,6 +20,7 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -28,12 +29,15 @@
   user-select: none;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 html,
 body {
   background-color: var(--secondary-color);
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 body {
@@ -69,14 +73,11 @@ img {
 
 #game-container {
   position: relative;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   place-items: center;
-}
-
-#content-wrap {
-  padding-bottom: 2.5rem;
+  width: fit-content;
+  height: fit-content;
 }
 
 /* Header */
@@ -193,7 +194,7 @@ button:active,
 /* Modals */
 .modal {
   margin-top: 0.7rem;
-  border-radius: 40px;
+  border-radius: 30px;
   opacity: 0;
   background-color: var(--secondary-color);
   transition: opacity 0.4s ease-in-out;
@@ -208,20 +209,39 @@ button:active,
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
-  padding: 1.2rem;
-  width: 14rem;
-  height: 205px;
-  top: -326px;
-  left: 15px;
+  padding: 1rem;
+  padding-bottom: 1.3rem;
+  width: 13rem;
+  height: 240px;
+  top: -337px;
+  left: 26px;
 }
 
-hr {
-  margin: 0.2rem 0;
+#help-modal > * {
+  margin: 0.35em 0;
 }
 
 .help-emoji {
   width: 14px;
   margin-bottom: -2px;
+}
+
+#about {
+  margin-top: 0.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#about p {
+  font-weight: 600;
+  margin-bottom: -0.05em;
+}
+
+#moustache-man {
+  margin: 0.6em;
+  width: 35px;
 }
 
 /* Stats Modal */
@@ -248,12 +268,11 @@ hr {
 #stats-modal > button {
   color: var(--secondary-color);
   background-color: var(--main-color);
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   margin-bottom: -0.3rem;
   grid-column: span 2;
   text-align: center;
   transform: scale(0.8);
-  margin-top: 0.75rem;
   border: 0;
 }
 
@@ -295,28 +314,4 @@ hr {
 
 .emoji-button > img {
   height: 35px;
-}
-
-/* Footer */
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2.5rem;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  margin: 0.5em;
-}
-
-footer > img {
-  margin-bottom: 0.25rem;
-  margin-left: 0.3em;
-  width: 20px;
-}
-
-footer > p {
-  font-size: 0.75rem;
-  margin: 0 0 0.25rem 0.35rem;
 }

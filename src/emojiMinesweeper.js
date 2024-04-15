@@ -250,9 +250,11 @@ function setup() {
 function draw() {
   darkMode ? background(25) : background(255);
 
-  squares.forEach(function (s) {
-    s.draw();
-  });
+  if (squares.length !== 0) {
+    squares.forEach(function (s) {
+      s.draw();
+    });
+  }
 
   // Show mines, moves, and time
   textSize(squareSize * 0.6);
