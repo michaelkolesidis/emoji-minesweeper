@@ -179,8 +179,6 @@ You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-l
 
 ![Expert Level](./screenshots/expert_v5.png)
 
-### Custom Levels
-
 ### Theme Titles/Headers
 
 Each theme comes with its own title reflected in the header.
