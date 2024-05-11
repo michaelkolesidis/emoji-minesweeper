@@ -169,9 +169,9 @@ select {
   color: var(--main-color);
   background: var(--secondary-color);
   height: 3em;
-  width: 9.5em;
+  width: 10em;
   position: relative;
-  margin: 0.1rem 0.3rem;
+  margin: 0.1rem 0;
   animation: appear 0.8s;
   padding: 0.6rem;
   border: 3px solid var(--main-color);
@@ -191,6 +191,11 @@ button:active,
 #new-game-button {
   color: var(--new-game-button-color);
   background-color: var(--new-game-button-background);
+  margin-right: 0.25em;
+}
+
+#stats-button {
+  margin-left: 0.25em;
 }
 
 /* Modals */
@@ -216,11 +221,17 @@ button:active,
   width: 13rem;
   height: 240px;
   top: -337px;
-  left: 26px;
+  left: 27.5px;
 }
 
 #help-modal > * {
   margin: 0.35em 0;
+  max-width: 29ch;
+}
+
+#help-modal > h3 {
+  text-align: center;
+  max-width: 15ch;
 }
 
 .help-emoji {
@@ -241,15 +252,58 @@ button:active,
   margin-bottom: -0.05em;
 }
 
-#moustache-man {
-  margin: 0.6em;
-  width: 35px;
+#dog-face {
+  margin: 0.25em;
+  width: 52px;
+}
+
+/* Custom Modal */
+#custom-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 1rem 0.4rem 0.4rem 0.4rem;
+  width: 8rem;
+  height: 170px;
+  top: -265px;
+  left: 77.5px;
+}
+
+.custom-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.custom-label {
+  font-weight: 600;
+  padding-bottom: 0.275rem;
+  margin-right: 0.3rem;
+  width: 25px;
+}
+
+.custom-input {
+  width: 1.8rem;
+  height: 0.8rem;
+  text-align: center;
+  margin-top: 0.1rem;
+}
+
+#custom-modal > button {
+  color: var(--secondary-color);
+  background-color: var(--main-color);
+  grid-column: span 2;
+  text-align: center;
+  transform: scale(0.8);
+  border: 0;
 }
 
 /* Stats Modal */
 #stats-modal {
   top: -305px;
-  left: 50px;
+  left: 51.5px;
   width: 8rem;
   height: 165px;
   display: flex;
@@ -305,7 +359,7 @@ button:active,
 .emoji-button {
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
-  margin: 0 0.15rem;
+  margin: 0 0.075rem;
   width: 35px;
 }
 
@@ -316,4 +370,34 @@ button:active,
 
 .emoji-button > img {
   height: 35px;
+}
+
+/* Forcer */
+#forcer {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#forcer-title {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+input {
+  border: 2px dashed var(--main-color);
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  width: 265px;
+  margin-bottom: 0.5em;
+}
+
+::placeholder {
+  color: var(--main-color);
+  opacity: 0.4;
+}
+
+#forcer-submit {
+  scale: 0.85;
 }
