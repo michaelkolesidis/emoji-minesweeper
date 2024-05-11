@@ -2,7 +2,7 @@
   "name": "emoji-minesweeper",
   "author": "Michael Kolesidis",
   "license": "AGPL-3.0-or-later",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "Minesweeper made with emoji 😄",
   "private": false,
   "type": "module",
