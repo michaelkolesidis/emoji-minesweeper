@@ -38,6 +38,9 @@ let LOST;
 let MINE;
 let DETONATION;
 
+// Font
+let font
+
 function preload() {
   CLOSED = darkMode
     ? loadImage(darkTheme.closed)
@@ -63,6 +66,8 @@ function preload() {
   LOST = loadImage(themes[theme]['lost']);
   MINE = loadImage(themes[theme]['mine']);
   DETONATION = loadImage(themes[theme]['detonation']);
+
+  font = loadFont('../fonts/Nunito-Black.ttf');
 }
 
 /**
@@ -338,6 +343,8 @@ function setup() {
   );
   cnv.parent('board');
 
+  textFont(font);
+
   // Mine allocation
   if (window.location.hash === '#debug') {
     // Forcer functionality
@@ -373,8 +380,6 @@ function draw() {
 
   // Show mines, moves, and time
   textSize(squareSize * 0.6);
-  textStyle(BOLD);
-  textFont('Arial');
 
   const columns = settings.level.columns;
 
@@ -398,7 +403,7 @@ function draw() {
     columns < 9
       ? width / 2 - squareSize * 1.975 + squareSize * 0.99 - 1.6 * squareSize
       : width / 2 - squareSize * 1.975 + squareSize * 0.99 - 2.5 * squareSize,
-    boardSize.height + 20
+    boardSize.height + 19
   );
 
   // Moves counter
@@ -417,7 +422,7 @@ function draw() {
   text(
     nf(moves, 3),
     width / 2 - squareSize * 1.975 + squareSize * 1.85,
-    boardSize.height + 20
+    boardSize.height + 19
   );
 
   // Time counter
@@ -440,7 +445,7 @@ function draw() {
     columns < 9
       ? width / 2 - squareSize * 1.975 + squareSize * 0.99 + 3.4 * squareSize
       : width / 2 - squareSize * 1.975 + squareSize * 0.99 + 4.35 * squareSize,
-    boardSize.height + 20
+    boardSize.height + 19
   );
   textSize(squareSize - squareSize * 0.05);
 }
