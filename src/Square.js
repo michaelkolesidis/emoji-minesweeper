@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  *  Square.js contains the Square class with all the

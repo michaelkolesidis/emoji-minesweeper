@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  *  main.js contains the rest of the UI of the game,
@@ -81,18 +81,10 @@ gameContainer.appendChild(header);
 const board = Board();
 gameContainer.appendChild(board);
 
-// Buttons and Modals Container
+// Modals Container
 const container = document.createElement('div');
 container.setAttribute('id', 'container');
 gameContainer.appendChild(container);
-
-// New Game Button
-const newGameButton = NewGameButton();
-container.appendChild(newGameButton);
-
-// Stats Button
-const statsButton = StatsButton();
-container.appendChild(statsButton);
 
 // Stats Modal
 const statsModal = StatsModal();
@@ -106,6 +98,10 @@ container.appendChild(helpModal);
 const emojiButtonsContainer = document.createElement('div');
 emojiButtonsContainer.setAttribute('id', 'emoji-buttons-container');
 gameContainer.appendChild(emojiButtonsContainer);
+
+// New Game Button
+const newGameButton = NewGameButton();
+emojiButtonsContainer.appendChild(newGameButton);
 
 // Beginner Button
 const beginnerButton = BeginnerButton();
@@ -122,6 +118,10 @@ emojiButtonsContainer.appendChild(expertButton);
 // Custom Button
 const customButton = CustomButton();
 emojiButtonsContainer.appendChild(customButton);
+
+// Stats Button
+const statsButton = StatsButton();
+emojiButtonsContainer.appendChild(statsButton);
 
 // Theme Button
 const themeButton = ThemeButton(header);
@@ -144,8 +144,8 @@ const darkModeButton = DarkModeButton(darkMode);
 emojiButtonsContainer.appendChild(darkModeButton);
 
 // Donate Button
-const donateButton = DonateButton();
-gameContainer.appendChild(donateButton);
+// const donateButton = DonateButton();
+// gameContainer.appendChild(donateButton);
 
 /**
  * Custom Modal

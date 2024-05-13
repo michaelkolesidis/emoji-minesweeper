@@ -1,15 +1,16 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  */
 
 export default function NewGameButton() {
   // Button
-  const newGameButton = document.createElement('button');
-  newGameButton.setAttribute('id', 'new-game-button');
-  newGameButton.innerHTML = theme === 'japan' ? `新しいゲーム` : `New Game`;
+  const newGameButton = document.createElement('div');
+  newGameButton.title = `New game`;
+  newGameButton.className = `emoji-button`;
+  newGameButton.innerHTML = `<img src="../../../emoji/svg/new_button_flat.svg" />`;
 
   // Functionality
   newGameButton.addEventListener('click', () => {

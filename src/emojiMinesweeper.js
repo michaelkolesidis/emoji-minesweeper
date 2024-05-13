@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  *  minesweeperEmoji.js contains the game functionality,
@@ -133,8 +133,8 @@ switch (level) {
       if (columns < 7) {
         columns = 7;
         localStorage.setItem('columns', columns);
-      } else if (columns > 58) {
-        columns = 58;
+      } else if (columns > 52) {
+        columns = 52;
         localStorage.setItem('columns', columns);
       }
     }
@@ -146,8 +146,8 @@ switch (level) {
       if (rows < 7) {
         rows = 7;
         localStorage.setItem('rows', rows);
-      } else if (rows > 58) {
-        rows = 58;
+      } else if (rows > 52) {
+        rows = 52;
         localStorage.setItem('rows', rows);
       }
     }
