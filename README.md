@@ -38,7 +38,7 @@ You can find more information in the [documentation](./DOCS.md#technologies-used
 
 ## How to Play
 
-**NOTE: The screenshots have not been updated and still show version 6 of Emoji Minesweeper. The only difference is that the custon level button (*️⃣) did not exist back then and is not shown.**
+**NOTE: The screenshots have not been updated and still show version 6 of Emoji Minesweeper. The UI has changed since then, and new features have been added.**
 
 ![Idle](./screenshots/idle_v5.png)
 
@@ -86,7 +86,7 @@ Or like this. Not too bad, huh? In order to win a game, you need to open all the
 
 ![Stats](./screenshots/stats_v5.png)
 
-In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click on the *Stats* button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear Data* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
+In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click on the *Stats* button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
 
 ![New Record](./screenshots/new_record_v5.png)
 
@@ -137,13 +137,13 @@ Lastly, clicking on the  ☀️/🌔  button allows players to choose between li
 ### Summary
 
 - **Left-click** to open a square square
-- **Right-click** to flag a square (that you think it) contains a mine
+- **Right-click** to flag a square (that you think) contains a mine
 - 💣 Mines counter
 - 🧮 Moves counter
 - ⌛ Time counter
-- *New Game* button restarts the game
-- *Stats* button toggles the **stats modal**
+- 🆕 restarts the game
 - 1️⃣2️⃣3️⃣*️⃣ buttons switch between **levels** (beginner, intermediate, expert, and custom)
+- 📊 button toggles the **stats modal**
 - 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (mine, flower, mushroom, bear, surf, and Japan)
 - ❔button toggles the **help modal**
 - 🚩 button toggles **flag mode** (for touchscreens)
@@ -195,7 +195,7 @@ Each theme comes with its own title reflected in the header.
 
 The following emoji are used throughout the game:
 
-🔲 ⬜️ 🔳 ⬛ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ *️⃣ ↕️ ↔️ 🚩 ⌛ 🧮 ❔ ❌ 🥳 ☀️ 🌔
+🔲 ⬜️ 🔳 ⬛ 🆕 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ *️⃣ 📊 ↕️ ↔️ 🚩 ⌛ 🧮 ❔ ❌ 🥳 ☀️ 🌔
 
 ### Themes & Emoji Sets
 
@@ -246,5 +246,5 @@ The ICBL, in close partnership with a small number of states, the ICRC, and the 
 
 <a href="https://www.gnu.org/licenses/agpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AGPLv3_Logo.svg" height="100px" /></a>
 
-Copyright (c) 2024 Michael Kolesidis<br>
+Copyright (c) 2025 Michael Kolesidis<br>
 Licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).

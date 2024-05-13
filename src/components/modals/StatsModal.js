@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  */
@@ -277,7 +277,7 @@ export default function StatsModal() {
 
   // Stats: Clear Data Button
   const clearDataButton = document.createElement('button');
-  clearDataButton.innerHTML = `Clear Data`;
+  clearDataButton.innerHTML = `Clear`;
   statsModal.appendChild(clearDataButton);
 
   // Clear Data Button Functionality
@@ -287,19 +287,13 @@ export default function StatsModal() {
   });
 
   if (gameLevel === 'custom') {
-    statsModal.innerHTML = `<h3>Stats not available for custom levels</h3>`;
+    statsModal.innerHTML = `<h3 id="stats-not-available">Stats not available for custom levels</h3>`;
 
     if (gameLevel === 'custom') {
       statsModal.style.alignItems = 'center';
       statsModal.style.justifyContent = 'center';
 
-      statsModal.style.width = '7rem';
-      statsModal.style.height = '89px';
-
-      statsModal.style.top = '-237px';
-      statsModal.style.left = '67.5px';
-
-      statsModal.style.padding = '1.5rem';
+      statsModal.style.top = '-247px';
     }
   }
 

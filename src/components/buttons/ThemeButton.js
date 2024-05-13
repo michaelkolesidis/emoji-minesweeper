@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  *  themeButton.js contains all the theme
@@ -15,7 +15,7 @@ export default function ThemeButton(header) {
   themeButton.title = `Change theme`;
   themeButton.id = `theme-button`;
   themeButton.className = `emoji-button`;
-  themeButton.innerHTML = `<img src="../../${themes[theme].mine}" / >`;
+  themeButton.innerHTML = `<img src="../../${themes[theme].mine}" />`;
 
   // Theme Button Functionality
   themeButton.addEventListener('click', () => {
@@ -98,10 +98,6 @@ export default function ThemeButton(header) {
     window.localStorage.setItem('mainEmoji', themes[theme].mine);
     header.innerHTML = themes[theme].title;
     themeButton.innerHTML = `<img src="../../${themes[theme].mine}" / >`;
-    const newGameButton = document.getElementById('new-game-button');
-    newGameButton.innerHTML = theme === 'japan' ? `新しいゲーム` : `New Game`;
-    const statsButton = document.getElementById('stats-button');
-    statsButton.innerHTML = theme === 'japan' ? `ステータス` : `Stats`;
   }
 
   // Keyboard Action Handling

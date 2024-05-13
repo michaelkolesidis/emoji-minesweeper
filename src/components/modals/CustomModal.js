@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  */
@@ -14,15 +14,15 @@ export default function CustomModal() {
   // Columns
   const columnsSettings = document.createElement('div');
   columnsSettings.classList.add('custom-section');
-  columnsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/left-right_arrow_flat.svg" title="Columns"/>
-  <input type="text" id="columns-input" class="custom-input" placeholder="7-58">`;
+  columnsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/left-right_arrow_flat.svg" title="Columns "/>
+  <input type="text" id="columns-input" class="custom-input" placeholder="7-52">`;
   customModal.appendChild(columnsSettings);
 
   // Rows
   const rowsSettings = document.createElement('div');
   rowsSettings.classList.add('custom-section');
-  rowsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/up-down_arrow_flat.svg" title="Rows"/>
-  <input type="text" id="rows-input" class="custom-input" placeholder="7-58">`;
+  rowsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/up-down_arrow_flat.svg" title="Rows" />
+  <input type="text" id="rows-input" class="custom-input" placeholder="7-52">`;
   customModal.appendChild(rowsSettings);
 
   // Mines
@@ -49,8 +49,8 @@ export default function CustomModal() {
     } else {
       if (columns < 7) {
         columns = 7;
-      } else if (columns > 58) {
-        columns = 58;
+      } else if (columns > 52) {
+        columns = 52;
       }
     }
     localStorage.setItem('columns', columns);
@@ -60,8 +60,8 @@ export default function CustomModal() {
     } else {
       if (rows < 7) {
         rows = 7;
-      } else if (rows > 58) {
-        rows = 58;
+      } else if (rows > 52) {
+        rows = 52;
       }
     }
     localStorage.setItem('rows', rows);

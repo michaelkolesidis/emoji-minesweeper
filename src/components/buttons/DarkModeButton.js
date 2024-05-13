@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2024 Michael Kolesidis
+ *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
  * themeButton.js contains all the theme
@@ -16,7 +16,7 @@ export default function DarkModeButton(darkMode) {
   darkModeButton.className = `emoji-button`;
   darkModeButton.innerHTML = darkMode
     ? `<img src="../../../emoji/waning_crescent_moon_flat.png" />`
-    : `<img src="../../../emoji/sun_flat.png" />`;
+    : `<img src="../../../emoji/sun_flat.png"/>`;
 
   // Theme Button Functionality
   darkModeButton.addEventListener('click', () => {
