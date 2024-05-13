@@ -1,5 +1,5 @@
-![Emoji Minesweeper wordmark](./assets/wordmark_light.svg#gh-dark-mode-only)
-![Emoji Minesweeper wordmark](./assets/wordmark.svg#gh-light-mode-only)
+![Emoji Minesweeper wordmark](./assets/wordmark_light.png#gh-dark-mode-only)
+![Emoji Minesweeper wordmark](./assets/wordmark.png#gh-light-mode-only)
 
 ### Minesweeper made with emoji. The most fun way to play minesweeper
 
@@ -82,11 +82,11 @@ Or like this.
 
 ![Loss mushroom](./screenshots/loss_mushroom_v5.png)
 
-Or like this. Not too bad, huh? In order to win a game, you need to open all the safe squares. When you win or lose a game you need to start a new one. You can achieve that by clicking on the *New Game* button or by pressing the *N key*.
+Or like this. Not too bad, huh? In order to win a game, you need to open all the safe squares. When you win or lose a game you need to start a new one. You can achieve that by clicking on the 🆕 button or by pressing the *N key*.
 
 ![Stats](./screenshots/stats_v5.png)
 
-In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click on the *Stats* button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
+In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click the 📊 button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
 
 ![New Record](./screenshots/new_record_v5.png)
 
