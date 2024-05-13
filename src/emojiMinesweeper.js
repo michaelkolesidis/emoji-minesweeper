@@ -39,7 +39,7 @@ let MINE;
 let DETONATION;
 
 // Font
-let font
+let font;
 
 function preload() {
   CLOSED = darkMode
