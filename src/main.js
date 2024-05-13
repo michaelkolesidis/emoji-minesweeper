@@ -24,7 +24,6 @@ import ThemeButton from './components/buttons/ThemeButton.js';
 import HelpButton from './components/buttons/HelpButton.js';
 import FlagButton from './components/buttons/FlagButton.js';
 import DarkModeButton from './components/buttons/DarkModeButton.js';
-import DonateButton from './components/buttons/DonateButton.js';
 import Forcer from './components/Forcer.js';
 
 /**
@@ -142,10 +141,6 @@ emojiButtonsContainer.appendChild(flagButton);
 // Dark Mode Button
 const darkModeButton = DarkModeButton(darkMode);
 emojiButtonsContainer.appendChild(darkModeButton);
-
-// Donate Button
-// const donateButton = DonateButton();
-// gameContainer.appendChild(donateButton);
 
 /**
  * Custom Modal

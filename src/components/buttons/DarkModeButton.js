@@ -3,10 +3,6 @@
  *  Copyright (c) 2025 Michael Kolesidis
  *  GNU Affero General Public License v3.0
  *
- * themeButton.js contains all the theme
- * button functionality, the button,
- * the utility functions and the keyboard
- * event handling.
  */
 
 export default function DarkModeButton(darkMode) {
