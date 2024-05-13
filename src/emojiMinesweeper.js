@@ -133,8 +133,8 @@ switch (level) {
       if (columns < 7) {
         columns = 7;
         localStorage.setItem('columns', columns);
-      } else if (columns > 52) {
-        columns = 52;
+      } else if (columns > 58) {
+        columns = 58;
         localStorage.setItem('columns', columns);
       }
     }
@@ -146,8 +146,8 @@ switch (level) {
       if (rows < 7) {
         rows = 7;
         localStorage.setItem('rows', rows);
-      } else if (rows > 52) {
-        rows = 52;
+      } else if (rows > 58) {
+        rows = 58;
         localStorage.setItem('rows', rows);
       }
     }
