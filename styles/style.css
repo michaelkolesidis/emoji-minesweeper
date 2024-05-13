@@ -332,7 +332,8 @@ button:hover {
 .emoji-button {
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
-  margin: 0 0.05rem;
+  margin: 0.15rem 0.05rem;
+  height: 42px;
 }
 
 .emoji-button > img {
@@ -342,6 +343,12 @@ button:hover {
 .emoji-button:hover,
 .emoji-button-clicked {
   opacity: 0.6;
+}
+
+.flag-clicked {
+  opacity: 0.6;
+  background-color: var(--tertiary-color);
+  border-radius: 5px;
 }
 
 /* Forcer */

@@ -259,7 +259,6 @@ function toggleHelpModal() {
     helpModal.style.opacity = '0';
     helpModalOpen = false;
     window.localStorage.setItem('modalOpen', 'false');
-    helpButton.classList.remove('emoji-button-clicked');
   } else if (!helpModalOpen) {
     // Close custom modal
     setTimeout(() => {
@@ -282,7 +281,6 @@ function toggleHelpModal() {
     helpModal.style.opacity = '1';
     helpModalOpen = true;
     window.localStorage.setItem('modalOpen', 'true');
-    helpButton.classList.add('emoji-button-clicked');
   }
 }
 
