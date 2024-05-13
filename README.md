@@ -38,9 +38,7 @@ You can find more information in the [documentation](./DOCS.md#technologies-used
 
 ## How to Play
 
-**NOTE: The screenshots have not been updated and still show version 6 of Emoji Minesweeper. The UI has changed since then, and new features have been added.**
-
-![Idle](./screenshots/idle_v5.png)
+![Idle](./screenshots/idle_v8.png)
 
 This is the user interface of Emoji Minesweeper. Such a colorful amalgamation of emoji! On the top, you can see a grid of squares: the board. The black square button emoji 🔲 means that the square has not been opened yet. **Left-click on any square to open it**, and start the game. You don't have to worry about your first move, as we have made sure that your first square can never contain a mine (actually it can, but if that's the case, we relocate the mine to another square so fast that you don't even realize it - you can thank us later). Right below the board you can find three counters.
 
