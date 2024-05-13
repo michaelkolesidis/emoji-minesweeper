@@ -1,10 +1,10 @@
 ![Emoji Minesweeper wordmark](./assets/wordmark_light.png#gh-dark-mode-only)
 ![Emoji Minesweeper wordmark](./assets/wordmark.png#gh-light-mode-only)
 
-### Minesweeper made with emoji. The most fun way to play minesweeper
+#### Minesweeper made with emoji. The most fun way to play minesweeper
 
-![Win mines](./screenshots/win_mines_v6.png)
-![Win flowers](./screenshots/win_flowers_v6.png)
+![Win mines](./screenshots/win_mines_v8.png)
+![Win flowers](./screenshots/win_flowers_v8.png)
 
 ## [Play!](https://www.emojiminesweeper.com/)
 
