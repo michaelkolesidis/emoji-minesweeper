@@ -3,8 +3,8 @@
 
 #### Minesweeper made with emoji. The most fun way to play minesweeper
 
-![Win mines](./screenshots/win_mines_v8.png)
-![Win flowers](./screenshots/win_flowers_v8.png)
+![Win mines](./screenshots/win_mines_v8b.png)
+![Win flowers](./screenshots/win_flowers_v8b.png)
 
 ## [Play!](https://www.emojiminesweeper.com/)
 
