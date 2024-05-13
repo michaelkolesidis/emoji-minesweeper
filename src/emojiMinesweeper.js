@@ -387,7 +387,7 @@ function draw() {
   if (flaggedSquares > initialMines) {
     fill(248, 49, 47);
   } else {
-    darkMode ? fill(225) : fill(35);
+    darkMode ? fill(225) : fill(48);
   }
   image(
     MINE,
@@ -407,7 +407,7 @@ function draw() {
   );
 
   // Moves counter
-  darkMode ? fill(225) : fill(35);
+  darkMode ? fill(225) : fill(48);
   image(
     MOVES,
     width / 2 - squareSize * 1.975 + squareSize * 1.02,
@@ -426,7 +426,7 @@ function draw() {
   );
 
   // Time counter
-  darkMode ? fill(225) : fill(35);
+  darkMode ? fill(225) : fill(48);
   image(
     TIMER,
     columns < 9
