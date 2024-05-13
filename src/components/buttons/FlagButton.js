@@ -26,12 +26,12 @@ export default function FlagButton(board) {
   function toggleFlagMode() {
     if (flagMode) {
       localStorage.setItem('flagMode', 'false');
-      flagButton.classList.remove('emoji-button-clicked');
+      flagButton.classList.remove('flag-clicked');
       board.classList.remove('flag-mode');
       flagMode = false;
     } else {
       localStorage.setItem('flagMode', 'true');
-      flagButton.classList.add('emoji-button-clicked');
+      flagButton.classList.add('flag-clicked');
       board.classList.add('flag-mode');
       flagMode = true;
     }

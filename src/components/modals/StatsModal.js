@@ -299,7 +299,7 @@ export default function StatsModal() {
 
   // Stats modal in debug mode
   if (window.location.hash === '#debug') {
-    statsModal.innerHTML = `<h3>Debug Mode<h3>`;
+    statsModal.innerHTML = `<h3 id="stats-not-available">Debug mode</h3>`;
   }
 
   return statsModal;
