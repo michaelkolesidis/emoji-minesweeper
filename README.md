@@ -138,12 +138,15 @@ Clicking on the flag button 🚩 will toggle flag mode. This will enable you to 
 
 ![Dark mines](./screenshots/dark_loss_flowers_v8.png)
 
-Lastly, clicking on the  ☀️/🌔  button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the *D* key.
+Clicking on the  ☀️/🌔  button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the *D* key. Quite useful for those long night sessions!
+
+Lastly, we should mention the concept of **chording**. When an uncovered square with a number has exactly the correct number of adjacent squares flagged, performing a click using the mouse's wheel (or middle button) on it will uncover all unmarked squares. This is called a **chord**. It is a basic technique that allows players to clear squares using flags, and the reason why flagging styles are often more efficient than non-flagging ones.
 
 ### Summary
 
 - **Left-click** to open a square square
 - **Right-click** to flag a square (that you think) contains a mine
+- **Middle-click** for chording
 - 💣 Mines counter
 - 🧮 Moves counter
 - ⌛ Time counter

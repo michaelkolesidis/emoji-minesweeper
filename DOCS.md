@@ -70,6 +70,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Revealed squares cannot be flagged
 - Whenever a square is revealed it stops being flagged
 - Number of remaining mines becomes red if there are more flagged squares than the number of mines
+- Support for chording using middle-click
 
 ### Counters
 

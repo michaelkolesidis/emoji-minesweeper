@@ -550,6 +550,67 @@ function mousePressed() {
   if (JSON.parse(localStorage.getItem('modalOpen')) === true) {
     return;
   }
+
+  // Chord
+  if (mouseButton === CENTER) {
+    if (!gameFinished) {
+      let square = squares.find(s => {
+        return (
+          s.x < mouseX &&
+          s.x + squareSize > mouseX &&
+          s.y < mouseY &&
+          s.y + squareSize > mouseY
+        );
+      });
+      if (square && square.opened && square.minesAround > 0) {
+        let neighbors = getNeighbors(square);
+        let flaggedNeighbors = 0;
+
+        neighbors.forEach(s => {
+          if (s.flagged) {
+            flaggedNeighbors += 1;
+          }
+        });
+
+        if (square.minesAround === flaggedNeighbors) {
+          let openedSquares = 0;
+
+          neighbors.forEach(s => {
+            if (!s.opened && !s.flagged) {
+              openSquare(s);
+
+              if (s.mine) {
+                if (!gameFinished) {
+                  gameLost();
+                  gameEnded();
+                }
+              } else {
+                // Check if the game has been won
+                let squaresLeft = squares.filter(s => {
+                  return !s.mine && !s.opened;
+                }).length;
+
+                if (squaresLeft == 0) {
+                  if (!gameFinished) {
+                    gameWon();
+                    gameEnded();
+                  }
+                }
+              }
+
+              openedSquares += 1;
+            }
+          });
+
+          if (openedSquares > 0) {
+            moves += 1;
+            addMove();
+          }
+        }
+      }
+    }
+  }
+
   // Flags
   if (mouseButton === RIGHT || JSON.parse(localStorage.getItem('flagMode'))) {
     // Find the square the player clicked on

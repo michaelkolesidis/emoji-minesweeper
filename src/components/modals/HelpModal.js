@@ -21,7 +21,7 @@ export default function HelpModal() {
   }
 
   helpModal.innerHTML = `
-<p>Left-click to <span style="font-weight:900;">open</span>, right-click to <span style="font-weight:900;">flag</span></p>
+<p>Left-click to <span style="font-weight:900;">open</span>, right-click to <span style="font-weight:900;">flag</span> and middle-click for <span style="font-weight:900;">chording</span></p>
 <p>
   <img src="../../emoji/svg/new_button_flat.svg" class="help-emoji" />
   Start a <span style="font-weight:900;">new game</span> (N key)
