@@ -102,11 +102,11 @@ You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between lev
 
 If you click the *️⃣ button, the custom level modal will appear.
 
-![Win mushroom](./screenshots/custom_modal_v8.png)
+![Custom modal](./screenshots/custom_modal_v8.png)
 
 Here you can choose the width, the height, and the number of mines for your desired custom level. When you click Submit, your custom level will appear!
 
-![Win mushroom](./screenshots/custom_level_v8.png)
+![Custom level](./screenshots/custom_v8.png)
 
 Here is a custom level featuring 9 columns, 15 rows, and 6 mines. Quite long, isn't it?
 
