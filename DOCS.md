@@ -37,7 +37,9 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 
 ### Levels / Themes
 
-- Three levels: beginner, intermediate, expert
+- Four levels: beginner, intermediate, expert, custom
+- Ability to create custom level by choosing dimensions and number of mines
+- Custom level modal
 - Six themes: mine, flower, mushroom, bear, surf, and Japan
 - Dark mode
 
@@ -47,6 +49,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 
 ### UI/UX
 
+- Ten emoji buttons
 - The whole UI and all button actions can be triggered using keyboard shortcuts
 - Levels can be changed using the buttons or keyboard shortcuts
 - Themes can be switched using a button or keyboard shortcuts
@@ -59,7 +62,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 ### Mines
 
 - Random mine allocation on load
-- Ensure that the first click is never on a mine
+- Ensure that the first click is never on a mine by moving the mine randomly to another square if the first click is on a mine
 
 ### Flagging
 
@@ -77,7 +80,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 
 ### Endgame
 
-- Empty squares become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost
+- Empty squares become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost (according to selected theme)
 - Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)
 - Empty squares become a partying face emoji and time counter turns gold when the player has made a new best time or a new moves recorded
 - Header becomes yellow when the player has made a new best time or a new moves recorded
