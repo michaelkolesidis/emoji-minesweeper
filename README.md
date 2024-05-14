@@ -108,7 +108,7 @@ Here you can choose the width, the height, and the number of mines for your desi
 
 ![Custom level](./screenshots/custom_v8.png)
 
-Here is a custom level featuring 9 columns, 15 rows, and 6 mines. Quite long, isn't it?
+This is a custom level featuring 9 columns, 15 rows, and 6 mines. Quite long, isn't it?
 
 The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a surf theme 🏄, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🏄/🏯 to switch between themes, or use the *left and right arrows* on your keyboard. These are the rest of the themes:
 

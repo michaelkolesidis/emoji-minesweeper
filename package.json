@@ -2,7 +2,7 @@
   "name": "emoji-minesweeper",
   "author": "Michael Kolesidis",
   "license": "AGPL-3.0-or-later",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Minesweeper made with emoji 😄",
   "private": false,
   "type": "module",
@@ -37,14 +37,7 @@
   },
   "homepage": "https://emojiminesweeper.com",
   "scripts": {
-    "lint": "eslint ."
+    "build": ""
   },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.0.2",
-    "@eslint/js": "^9.0.0",
-    "eslint": "^7.32.0 || ^8.2.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "globals": "^15.0.0"
-  }
+  "devDependencies": {}
 }
