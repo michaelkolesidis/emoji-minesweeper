@@ -128,7 +128,7 @@ The surf theme.
 
 And the Japan theme. I bet you can't decide which one to pick! Your level and theme preferences are saved in your computer, so your next game always starts with the lastly used configuration.
 
-![Help modal](./screenshots/help_v8.png)
+![Help modal](./screenshots/help_v8b.png)
 
 If you forget the basic controls you can click the help button ❔to toggle the help modal. You can also toggle the help modal by pressing the *H* key.
 
