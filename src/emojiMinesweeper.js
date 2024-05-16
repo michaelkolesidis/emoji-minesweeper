@@ -41,6 +41,9 @@ let DETONATION;
 // Font
 let font;
 
+// Seconds
+let seconds;
+
 function preload() {
   CLOSED = darkMode
     ? loadImage(darkTheme.closed)
@@ -788,6 +791,7 @@ function gameWon() {
     // Time Data
     const endTime = new Date();
     let time = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
+    seconds = time;
 
     let bestTime;
     switch (level) {
@@ -841,11 +845,17 @@ function gameWon() {
   header.classList.add('wavy');
 
   const bbbv = calculate3BV(squares);
+  const bbbvPerSec =
+    Math.round((bbbv / seconds + Number.EPSILON) * 10000) / 10000;
   const efficinecny = Math.round((bbbv / moves) * 100);
 
-  console.log(`3BV: ${bbbv}`);
-  console.log(`Moves: ${moves}`);
+  console.log(`================`);
+  console.log(`      Time: ${seconds} sec`);
+  console.log(`       3BV: ${bbbv}`);
+  console.log(`   3BV/sec: ${bbbvPerSec}`);
+  console.log(`     Moves: ${moves}`);
   console.log(`Efficiency: ${efficinecny}%`);
+  console.log(`================`);
 }
 
 // handle loss
