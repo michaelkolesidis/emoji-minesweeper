@@ -839,6 +839,13 @@ function gameWon() {
 
   const header = document.getElementById('header');
   header.classList.add('wavy');
+
+  const bbbv = calculate3BV(squares);
+  const efficinecny = Math.round((bbbv / moves) * 100);
+
+  console.log(`3BV: ${bbbv}`);
+  console.log(`Moves: ${moves}`);
+  console.log(`Efficiency: ${efficinecny}%`);
 }
 
 // handle loss
@@ -960,4 +967,126 @@ function keyPressed() {
   if (keyCode === 78) {
     window.location.reload();
   }
+}
+
+/**
+ * 3BV utilities
+ */
+// Transform the board of square into a logical matrix (0 for empty squares, 1 for mines)
+function transformBoard(board) {
+  // Determine the board dimensions
+  const numRows = Math.max(...board.map(square => square.j)) + 1;
+  const numCols = Math.max(...board.map(square => square.i)) + 1;
+
+  // Initialize an empty 2D array with the dimensions of the board
+  const transformedBoard = Array.from({ length: numRows }, () =>
+    Array(numCols).fill(0)
+  );
+
+  // Populate the 2D array based on the 'mine' property of each square
+  board.forEach(square => {
+    transformedBoard[square.j][square.i] = square.mine ? 1 : 0;
+  });
+
+  return transformedBoard;
+}
+
+function calculate3BV(board) {
+  board = transformBoard(board);
+  const width = board.length;
+  const height = board.length;
+  const cells = [];
+
+  // Initialize cells with the given board
+  for (let i = 0; i < width; i++) {
+    const row = [];
+    for (let j = 0; j < height; j++) {
+      row.push({
+        x: i,
+        y: j,
+        number: board[j][i] === 1 ? -1 : 0,
+        group: 0,
+      });
+    }
+    cells.push(row);
+  }
+
+  // Function to get surrounding cells
+  function arround(cell) {
+    const result = [];
+    for (
+      let i = Math.max(0, cell.x - 1);
+      i <= Math.min(width - 1, cell.x + 1);
+      i++
+    ) {
+      for (
+        let j = Math.max(0, cell.y - 1);
+        j <= Math.min(height - 1, cell.y + 1);
+        j++
+      ) {
+        result.push(cells[i][j]);
+      }
+    }
+    return result;
+  }
+
+  // Calculate numbers for each cell
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
+      const cell = cells[i][j];
+      if (cell.number === -1) continue;
+      cell.number = arround(cell).filter(a => a.number === -1).length;
+    }
+  }
+
+  let current_group = 1;
+
+  // Grouping zero cells
+  cells.flat().forEach(cell => {
+    if (cell.group === 0 && cell.number === 0) {
+      cell.group = current_group;
+
+      while (true) {
+        let has_new = false;
+
+        cells.flat().forEach(cell2 => {
+          if (cell2.group === current_group) {
+            arround(cell2).forEach(a => {
+              if (a.number === 0 && a.group === 0) {
+                a.group = current_group;
+                has_new = true;
+              }
+            });
+          }
+        });
+
+        if (!has_new) break;
+      }
+      current_group++;
+    }
+  });
+
+  const opening_count = current_group - 1;
+
+  // Expand groups to adjacent cells
+  cells.flat().forEach(cell => {
+    if (cell.group !== 0 || cell.number === -1) return;
+
+    arround(cell).forEach(a => {
+      if (a.group !== 0 && a.number === 0) {
+        cell.group = a.group;
+      }
+    });
+  });
+
+  // Assign groups to remaining cells
+  cells.flat().forEach(cell => {
+    if (cell.group !== 0 || cell.number === -1) return;
+    cell.group = current_group++;
+  });
+
+  current_group--;
+  const bbbv = current_group;
+
+  return bbbv;
 }
