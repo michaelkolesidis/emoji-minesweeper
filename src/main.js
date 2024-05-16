@@ -9,6 +9,7 @@
  *  the saved stats.
  */
 
+// Elements
 import Header from './components/Header.js';
 import Board from './components/Board.js';
 import StatsModal from './components/modals/StatsModal.js';
@@ -26,9 +27,14 @@ import FlagButton from './components/buttons/FlagButton.js';
 import DarkModeButton from './components/buttons/DarkModeButton.js';
 import Forcer from './components/Forcer.js';
 
+// Utilities
+import { greet } from './utils/greet.js';
+
 /**
  * Basics
  */
+greet();
+
 // Theme
 let theme = window.localStorage.getItem('theme');
 if (theme === null) {
