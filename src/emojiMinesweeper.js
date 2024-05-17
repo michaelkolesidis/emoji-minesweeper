@@ -849,13 +849,11 @@ function gameWon() {
     Math.round((bbbv / seconds + Number.EPSILON) * 10000) / 10000;
   const efficinecny = Math.round((bbbv / moves) * 100);
 
-  console.log(`================`);
   console.log(`      Time: ${seconds} sec`);
   console.log(`       3BV: ${bbbv}`);
   console.log(`   3BV/sec: ${bbbvPerSec}`);
   console.log(`     Moves: ${moves}`);
   console.log(`Efficiency: ${efficinecny}%`);
-  console.log(`================`);
 }
 
 // handle loss
