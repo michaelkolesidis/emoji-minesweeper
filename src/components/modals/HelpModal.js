@@ -8,19 +8,19 @@
 export default function HelpModal() {
   let gameLevel = window.localStorage.getItem('level');
 
-  const helpModal = document.createElement('div');
-  helpModal.classList.add('modal');
-  helpModal.setAttribute('id', 'help-modal');
+  const modal = document.querySelector('.modal');
+  modal.setAttribute('id', 'help-modal');
+  modal.innerHTML = '';
 
   if (gameLevel === 'custom') {
     if (settings.level.rows === 7) {
-      helpModal.style.top = '-280px';
+      modal.style.top = '-280px';
     } else if (settings.level.rows === 8) {
-      helpModal.style.top = '-313px';
+      modal.style.top = '-313px';
     }
   }
 
-  helpModal.innerHTML = `
+  modal.innerHTML = `
 <p>Left-click to <span style="font-weight:900;">open</span>, right-click to <span style="font-weight:900;">flag</span> and middle-click for <span style="font-weight:900;">chording</span></p>
 <p>
   <img src="../../emoji/svg/new_button_flat.svg" class="help-emoji" />
@@ -62,6 +62,4 @@ export default function HelpModal() {
     </a>
 </div>
 `;
-
-  return helpModal;
 }

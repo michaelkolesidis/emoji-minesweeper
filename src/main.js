@@ -12,6 +12,7 @@
 // Elements
 import Header from './components/Header.js';
 import Board from './components/Board.js';
+import Modal from './components/modals/Modal.js';
 import StatsModal from './components/modals/StatsModal.js';
 import HelpModal from './components/modals/HelpModal.js';
 import NewGameButton from './components/buttons/NewGameButton.js';
@@ -59,10 +60,6 @@ if (mainEmoji === null) {
 // Modal
 window.localStorage.setItem('modalOpen', 'false');
 
-window.localStorage.setItem('statsModalOpen', 'false');
-window.localStorage.setItem('helpModalOpen', 'false');
-window.localStorage.setItem('customModalOpen', 'false');
-
 // Flag mode
 window.localStorage.setItem('flagMode', 'false');
 
@@ -91,13 +88,9 @@ const container = document.createElement('div');
 container.setAttribute('id', 'container');
 gameContainer.appendChild(container);
 
-// Stats Modal
-const statsModal = StatsModal();
-container.appendChild(statsModal);
-
-// Help Modal
-const helpModal = HelpModal();
-container.appendChild(helpModal);
+// Modal
+const modal = Modal();
+container.appendChild(modal);
 
 // Emoji Buttons Container
 const emojiButtonsContainer = document.createElement('div');
@@ -132,10 +125,6 @@ emojiButtonsContainer.appendChild(statsButton);
 const themeButton = ThemeButton(header);
 emojiButtonsContainer.appendChild(themeButton);
 
-// Custom Modal
-const customModal = CustomModal();
-container.appendChild(customModal);
-
 // Help Button
 const helpButton = HelpButton();
 emojiButtonsContainer.appendChild(helpButton);
@@ -149,87 +138,72 @@ const darkModeButton = DarkModeButton(darkMode);
 emojiButtonsContainer.appendChild(darkModeButton);
 
 /**
+ * Modals
+ */
+let modalOpen = false;
+
+/**
  * Custom Modal
  */
-let customModalOpen = false;
-
 // Utility Function
 function toggleCustomModal() {
-  if (customModalOpen) {
-    // Close custom modal
-    setTimeout(() => {
-      customModal.style.zIndex = '-1';
-    }, 500);
-    customModal.style.opacity = '0';
-    customModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
+  if (modalOpen) {
+    if ((modal.id = 'custom-modal')) {
+      // If custom modal is open
+      setTimeout(() => {
+        modal.style.zIndex = '-1';
+        // modal.removeAttribute('id');
+      }, 500);
+      modal.style.opacity = '0';
+      modalOpen = false;
+      window.localStorage.setItem('modalOpen', 'false');
+    } else {
+      // If another modal is open
+      CustomModal();
+    }
   } else {
-    // Close help modal
-    setTimeout(() => {
-      helpModal.style.zIndex = '-1';
-    }, 500);
-    helpModal.style.opacity = '0';
-    helpModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-    helpButton.classList.remove('emoji-button-clicked');
-
-    // Close stats modal
-    setTimeout(() => {
-      statsModal.style.zIndex = '-1';
-    }, 500);
-    statsModal.style.opacity = '0';
-    statsModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-
-    customModal.style.zIndex = '2';
-    customModal.style.opacity = '1';
-    customModalOpen = true;
+    // If no modals are open
+    modal.id = 'custom-modal';
+    modal.style.zIndex = '2';
+    modal.style.opacity = '1';
+    modalOpen = true;
     window.localStorage.setItem('modalOpen', 'true');
+    CustomModal();
   }
 }
 
 // Custom Button Functionality
 customButton.addEventListener('click', () => {
-  localStorage.setItem('modalOpen', 'true');
   toggleCustomModal();
 });
 
 /**
  * Stats Modal
  */
-let statsModalOpen = false;
-
 // Utility Function
 function toggleStatsModal() {
-  if (statsModalOpen) {
-    // Close stats modal
-    setTimeout(() => {
-      statsModal.style.zIndex = '-1';
-    }, 500);
-    statsModal.style.opacity = '0';
-    statsModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-  } else if (!statsModalOpen) {
-    // Close custom modal
-    setTimeout(() => {
-      customModal.style.zIndex = '-1';
-    }, 500);
-    customModal.style.opacity = '0';
-    customModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-    // Close help modal
-    setTimeout(() => {
-      helpModal.style.zIndex = '-1';
-    }, 500);
-    helpModal.style.opacity = '0';
-    helpModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-    helpButton.classList.remove('emoji-button-clicked');
-    // Open stats modal
-    statsModal.style.zIndex = '2';
-    statsModal.style.opacity = '1';
-    statsModalOpen = true;
+  if (modalOpen) {
+    if ((modal.id = 'stats-modal')) {
+      // If stats modal is open
+      setTimeout(() => {
+        modal.style.zIndex = '-1';
+        // modal.removeAttribute('id');
+      }, 500);
+      modal.style.opacity = '0';
+      modalOpen = false;
+      window.localStorage.setItem('modalOpen', 'false');
+    } else {
+      // If another modal is open
+      StatsModal();
+    }
+  } else {
+    // If no modals are open
+    modal.id = 'stats-modal';
+    modal.style.zIndex = '2';
+    modal.style.opacity = '1';
+    modalOpen = true;
     window.localStorage.setItem('modalOpen', 'true');
+    StatsModal();
   }
 }
 
@@ -248,40 +222,30 @@ document.addEventListener('keydown', e => {
 /**
  * Help Modal
  */
-let helpModalOpen = false;
-
 // Utility Function
 function toggleHelpModal() {
-  if (helpModalOpen) {
-    // Close help modal
-    setTimeout(() => {
-      helpModal.style.zIndex = '-1';
-    }, 500);
-    helpModal.style.opacity = '0';
-    helpModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-  } else if (!helpModalOpen) {
-    // Close custom modal
-    setTimeout(() => {
-      customModal.style.zIndex = '-1';
-    }, 500);
-    customModal.style.opacity = '0';
-    customModalOpen = false;
-    window.localStorage.setItem('modalOpen', 'false');
-    // Close stats modal
-    if (statsModalOpen) {
+  if (modalOpen) {
+    if ((modal.id = 'help-modal')) {
+      // If help modal is open
       setTimeout(() => {
-        statsModal.style.zIndex = '-1';
+        modal.style.zIndex = '-1';
+        // modal.removeAttribute('id');
       }, 500);
-      statsModal.style.opacity = '0';
-      statsModalOpen = false;
+      modal.style.opacity = '0';
+      modalOpen = false;
       window.localStorage.setItem('modalOpen', 'false');
+    } else {
+      // If another modal is open
+      HelpModal();
     }
-    // Open help modal
-    helpModal.style.zIndex = '2';
-    helpModal.style.opacity = '1';
-    helpModalOpen = true;
+  } else {
+    // If no modals are open
+    modal.id = 'help-modal';
+    modal.style.zIndex = '2';
+    modal.style.opacity = '1';
+    modalOpen = true;
     window.localStorage.setItem('modalOpen', 'true');
+    HelpModal();
   }
 }
 

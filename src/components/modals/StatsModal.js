@@ -201,12 +201,13 @@ export default function StatsModal() {
   }
 
   // Modal
-  const statsModal = document.createElement('div');
-  statsModal.classList.add('modal');
-  statsModal.setAttribute('id', 'stats-modal');
+  const modal = document.querySelector('.modal');
+  modal.setAttribute('id', 'stats-modal');
+  modal.setAttribute('id', 'stats-modal');
+  modal.innerHTML = '';
 
   // Stats: Level
-  statsModal.innerHTML += `<p class="level">${
+  modal.innerHTML += `<p class="level">${
     gameLevel.charAt(0).toUpperCase() + gameLevel.slice(1)
   }</p>`;
 
@@ -273,12 +274,12 @@ export default function StatsModal() {
     statsTable.innerHTML += `<p class="value">0</p>`;
   }
 
-  statsModal.appendChild(statsTable);
+  modal.appendChild(statsTable);
 
   // Stats: Clear Data Button
   const clearDataButton = document.createElement('button');
   clearDataButton.innerHTML = `Clear`;
-  statsModal.appendChild(clearDataButton);
+  modal.appendChild(clearDataButton);
 
   // Clear Data Button Functionality
   clearDataButton.addEventListener('click', () => {
@@ -287,20 +288,18 @@ export default function StatsModal() {
   });
 
   if (gameLevel === 'custom') {
-    statsModal.innerHTML = `<h3 id="stats-not-available">Stats not available for custom levels</h3>`;
+    modal.innerHTML = `<h3 id="stats-not-available">Stats not available for custom levels</h3>`;
 
     if (gameLevel === 'custom') {
-      statsModal.style.alignItems = 'center';
-      statsModal.style.justifyContent = 'center';
+      modal.style.alignItems = 'center';
+      modal.style.justifyContent = 'center';
 
-      statsModal.style.top = '-247px';
+      modal.style.top = '-247px';
     }
   }
 
   // Stats modal in debug mode
   if (window.location.hash === '#debug') {
-    statsModal.innerHTML = `<h3 id="stats-not-available">Debug mode</h3>`;
+    modal.innerHTML = `<h3 id="stats-not-available">Debug mode</h3>`;
   }
-
-  return statsModal;
 }
