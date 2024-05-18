@@ -41,8 +41,8 @@ let DETONATION;
 // Font
 let font;
 
-// Seconds
-let seconds;
+// Time
+let time;
 
 function preload() {
   CLOSED = darkMode
@@ -790,8 +790,8 @@ function gameWon() {
 
     // Time Data
     const endTime = new Date();
-    let time = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
-    seconds = time;
+    let seconds = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
+    time = seconds;
 
     let bestTime;
     switch (level) {
@@ -809,30 +809,30 @@ function gameWon() {
     if (bestTime === 0) {
       switch (level) {
         case 'beginner':
-          localStorage.setItem('beginnerBestTime', time);
+          localStorage.setItem('beginnerBestTime', seconds);
           break;
         case 'intermediate':
-          localStorage.setItem('intermediateBestTime', time);
+          localStorage.setItem('intermediateBestTime', seconds);
           break;
         case 'expert':
-          localStorage.setItem('expertBestTime', time);
+          localStorage.setItem('expertBestTime', seconds);
           break;
       }
     } else {
-      if (time < bestTime) {
+      if (seconds < bestTime) {
         const header = document.getElementById('header');
         header.style.color = '#ffaf2e';
         NUMBERS[0] = BEST;
         newBestTime = true;
         switch (level) {
           case 'beginner':
-            localStorage.setItem('beginnerBestTime', time);
+            localStorage.setItem('beginnerBestTime', seconds);
             break;
           case 'intermediate':
-            localStorage.setItem('intermediateBestTime', time);
+            localStorage.setItem('intermediateBestTime', seconds);
             break;
           case 'expert':
-            localStorage.setItem('expertBestTime', time);
+            localStorage.setItem('expertBestTime', seconds);
             break;
         }
         localStorage.setItem('newBestTime', 'true');
@@ -845,11 +845,10 @@ function gameWon() {
   header.classList.add('wavy');
 
   const bbbv = calculate3BV(squares);
-  const bbbvPerSec =
-    Math.round((bbbv / seconds + Number.EPSILON) * 10000) / 10000;
+  const bbbvPerSec = Math.round((bbbv / time + Number.EPSILON) * 10000) / 10000;
   const efficinecny = Math.round((bbbv / moves) * 100);
 
-  console.log(`      Time: ${seconds} sec`);
+  console.log(`      Time: ${time} sec`);
   console.log(`       3BV: ${bbbv}`);
   console.log(`   3BV/sec: ${bbbvPerSec}`);
   console.log(`     Moves: ${moves}`);
