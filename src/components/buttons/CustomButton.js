@@ -15,5 +15,15 @@ export default function CustomButton() {
     customButton.classList.add('emoji-button-clicked');
   }
 
+  // Keyboard Action Handling
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Digit4') {
+      if (level !== 'custom') {
+        localStorage.setItem('level', 'custom');
+        window.location.reload();
+      }
+    }
+  });
+
   return customButton;
 }

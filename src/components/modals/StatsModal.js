@@ -202,7 +202,7 @@ export default function StatsModal() {
 
   // Modal
   const modal = document.querySelector('.modal');
-  modal.setAttribute('id', 'stats-modal');
+  // modal.setAttribute('id', 'stats-modal');
   modal.setAttribute('id', 'stats-modal');
   modal.innerHTML = '';
 

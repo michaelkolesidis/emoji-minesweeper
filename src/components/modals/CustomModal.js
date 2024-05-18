@@ -8,7 +8,6 @@
 export default function CustomModal() {
   // Custom Modal
   const modal = document.querySelector('.modal');
-  modal.removeAttribute('id');
   modal.setAttribute('id', 'custom-modal');
   modal.innerHTML = '';
 

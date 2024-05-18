@@ -148,11 +148,10 @@ let modalOpen = false;
 // Utility Function
 function toggleCustomModal() {
   if (modalOpen) {
-    if ((modal.id = 'custom-modal')) {
+    if (modal.id === 'custom-modal') {
       // If custom modal is open
       setTimeout(() => {
         modal.style.zIndex = '-1';
-        // modal.removeAttribute('id');
       }, 500);
       modal.style.opacity = '0';
       modalOpen = false;
@@ -183,11 +182,10 @@ customButton.addEventListener('click', () => {
 // Utility Function
 function toggleStatsModal() {
   if (modalOpen) {
-    if ((modal.id = 'stats-modal')) {
+    if (modal.id === 'stats-modal') {
       // If stats modal is open
       setTimeout(() => {
         modal.style.zIndex = '-1';
-        // modal.removeAttribute('id');
       }, 500);
       modal.style.opacity = '0';
       modalOpen = false;
@@ -225,11 +223,10 @@ document.addEventListener('keydown', e => {
 // Utility Function
 function toggleHelpModal() {
   if (modalOpen) {
-    if ((modal.id = 'help-modal')) {
+    if (modal.id === 'help-modal') {
       // If help modal is open
       setTimeout(() => {
         modal.style.zIndex = '-1';
-        // modal.removeAttribute('id');
       }, 500);
       modal.style.opacity = '0';
       modalOpen = false;
