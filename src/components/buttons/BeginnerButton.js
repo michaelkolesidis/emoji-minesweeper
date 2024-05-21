@@ -18,20 +18,20 @@ export default function BeginnerButton() {
   // Functionality
   beginnerButton.addEventListener('click', () => {
     if (level !== 'beginner') {
-      localStorage.setItem('level', 'beginner');
+      window.localStorage.setItem('level', 'beginner');
       window.location.reload();
     }
   });
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    const customModalOpen = localStorage.getItem('customModalOpen');
+    const customModalOpen = window.localStorage.getItem('customModalOpen');
     if (
       e.code === 'Digit1' &&
       level !== 'beginner' &&
       customModalOpen !== 'true'
     ) {
-      localStorage.setItem('level', 'beginner');
+      window.localStorage.setItem('level', 'beginner');
       window.location.reload();
     }
   });

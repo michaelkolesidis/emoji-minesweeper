@@ -53,7 +53,7 @@ export default function CustomModal() {
         columns = 58;
       }
     }
-    localStorage.setItem('columns', columns);
+    window.localStorage.setItem('columns', columns);
 
     if (isNaN(rows)) {
       rows = 9;
@@ -64,7 +64,7 @@ export default function CustomModal() {
         rows = 58;
       }
     }
-    localStorage.setItem('rows', rows);
+    window.localStorage.setItem('rows', rows);
 
     if (isNaN(mines)) {
       mines = 10;
@@ -76,10 +76,10 @@ export default function CustomModal() {
         mines = columns * rows - 1;
       }
     }
-    localStorage.setItem('mines', mines);
+    window.localStorage.setItem('mines', mines);
 
     if (level !== 'custom') {
-      localStorage.setItem('level', 'custom');
+      window.localStorage.setItem('level', 'custom');
     }
 
     window.location.reload();

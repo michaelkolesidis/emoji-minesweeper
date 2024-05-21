@@ -19,20 +19,20 @@ export default function IntermediateButton() {
   // Functionality
   intermediateButton.addEventListener('click', () => {
     if (level !== 'intermediate') {
-      localStorage.setItem('level', 'intermediate');
+      window.localStorage.setItem('level', 'intermediate');
       window.location.reload();
     }
   });
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    const customModalOpen = localStorage.getItem('customModalOpen');
+    const customModalOpen = window.localStorage.getItem('customModalOpen');
     if (
       e.code === 'Digit2' &&
       level !== 'intermediate' &&
       customModalOpen !== 'true'
     ) {
-      localStorage.setItem('level', 'intermediate');
+      window.localStorage.setItem('level', 'intermediate');
       window.location.reload();
     }
   });

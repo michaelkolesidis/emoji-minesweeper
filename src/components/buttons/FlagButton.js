@@ -25,12 +25,12 @@ export default function FlagButton(board) {
   // Utility Function
   function toggleFlagMode() {
     if (flagMode) {
-      localStorage.setItem('flagMode', 'false');
+      window.localStorage.setItem('flagMode', 'false');
       flagButton.classList.remove('flag-clicked');
       board.classList.remove('flag-mode');
       flagMode = false;
     } else {
-      localStorage.setItem('flagMode', 'true');
+      window.localStorage.setItem('flagMode', 'true');
       flagButton.classList.add('flag-clicked');
       board.classList.add('flag-mode');
       flagMode = true;

@@ -26,26 +26,26 @@ export default function ThemeButton(header) {
   function themeSwitcher() {
     if (theme === 'mine') {
       theme = 'flower';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'flower') {
       theme = 'mushroom';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'mushroom') {
       theme = 'bear';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'bear') {
       theme = 'surf';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'surf') {
       header.classList.add('japanese');
-      localStorage.setItem('japanese', 'true');
+      window.localStorage.setItem('japanese', 'true');
       theme = 'japan';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'japan') {
       header.classList.remove('japanese');
-      localStorage.setItem('japanese', 'false');
+      window.localStorage.setItem('japanese', 'false');
       theme = 'mine';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     }
 
     if (!gameFinished) {
@@ -58,26 +58,26 @@ export default function ThemeButton(header) {
   function reverseThemeSwitcher() {
     if (theme === 'mine') {
       header.classList.add('japanese');
-      localStorage.setItem('japanese', 'true');
+      window.localStorage.setItem('japanese', 'true');
       theme = 'japan';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'japan') {
       header.classList.remove('japanese');
-      localStorage.setItem('japanese', 'false');
+      window.localStorage.setItem('japanese', 'false');
       theme = 'surf';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'surf') {
       theme = 'bear';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'bear') {
       theme = 'mushroom';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'mushroom') {
       theme = 'flower';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     } else if (theme === 'flower') {
       theme = 'mine';
-      localStorage.setItem('theme', theme);
+      window.localStorage.setItem('theme', theme);
     }
 
     if (!gameFinished) {

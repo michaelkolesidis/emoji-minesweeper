@@ -18,20 +18,20 @@ export default function ExpertButton() {
   // Functionality
   expertButton.addEventListener('click', () => {
     if (level !== 'expert') {
-      localStorage.setItem('level', 'expert');
+      window.localStorage.setItem('level', 'expert');
       window.location.reload();
     }
   });
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    const customModalOpen = localStorage.getItem('customModalOpen');
+    const customModalOpen = window.localStorage.getItem('customModalOpen');
     if (
       e.code === 'Digit3' &&
       level !== 'expert' &&
       customModalOpen !== 'true'
     ) {
-      localStorage.setItem('level', 'expert');
+      window.localStorage.setItem('level', 'expert');
       window.location.reload();
     }
   });

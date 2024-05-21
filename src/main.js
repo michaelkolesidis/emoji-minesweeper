@@ -43,7 +43,7 @@ if (theme === null) {
 }
 
 // Dark Mode
-let darkMode = JSON.parse(localStorage.getItem('darkMode'));
+let darkMode = JSON.parse(window.localStorage.getItem('darkMode'));
 if (darkMode === null) {
   window.localStorage.setItem('darkMode', 'false');
 }
@@ -282,8 +282,8 @@ if (window.location.hash === '#debug') {
           })
         )
       );
-      localStorage.setItem('mines', mines);
-      localStorage.setItem('numberOfMines', mines.length);
+      window.localStorage.setItem('mines', mines);
+      window.localStorage.setItem('numberOfMines', mines.length);
       location.reload();
     }
   });

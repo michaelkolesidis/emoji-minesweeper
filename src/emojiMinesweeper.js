@@ -14,10 +14,16 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 // Canvas
 let cnv; // The canvas element that will contain the game
 
+// Reset endgame stats
+window.localStorage.setItem('time', '');
+window.localStorage.setItem('bbbv', '');
+window.localStorage.setItem('bbbvPerSec', '');
+window.localStorage.setItem('efficinecny', '');
+
 /**
  * Dark Mode
  */
-let darkMode = JSON.parse(localStorage.getItem('darkMode')) ?? false;
+let darkMode = JSON.parse(window.localStorage.getItem('darkMode')) ?? false;
 
 /**
  * Emoji
@@ -96,7 +102,7 @@ let settings = {
 /**
  * Level
  */
-let level = localStorage.getItem('level');
+let level = window.localStorage.getItem('level');
 
 if (
   level !== 'beginner' &&
@@ -104,7 +110,7 @@ if (
   level !== 'expert' &&
   level !== 'custom'
 ) {
-  localStorage.setItem('level', 'beginner');
+  window.localStorage.setItem('level', 'beginner');
 }
 
 switch (level) {
@@ -130,47 +136,47 @@ switch (level) {
     };
     break;
   case 'custom':
-    let columns = parseInt(localStorage.getItem('columns'), 10);
-    let rows = parseInt(localStorage.getItem('rows'), 10);
-    let mines = parseInt(localStorage.getItem('mines'), 10);
+    let columns = parseInt(window.localStorage.getItem('columns'), 10);
+    let rows = parseInt(window.localStorage.getItem('rows'), 10);
+    let mines = parseInt(window.localStorage.getItem('mines'), 10);
 
     if (isNaN(columns)) {
       columns = 9;
-      localStorage.setItem('columns', columns);
+      window.localStorage.setItem('columns', columns);
     } else {
       if (columns < 7) {
         columns = 7;
-        localStorage.setItem('columns', columns);
+        window.localStorage.setItem('columns', columns);
       } else if (columns > 58) {
         columns = 58;
-        localStorage.setItem('columns', columns);
+        window.localStorage.setItem('columns', columns);
       }
     }
 
     if (isNaN(rows)) {
       rows = 9;
-      localStorage.setItem('rows', rows);
+      window.localStorage.setItem('rows', rows);
     } else {
       if (rows < 7) {
         rows = 7;
-        localStorage.setItem('rows', rows);
+        window.localStorage.setItem('rows', rows);
       } else if (rows > 58) {
         rows = 58;
-        localStorage.setItem('rows', rows);
+        window.localStorage.setItem('rows', rows);
       }
     }
 
     if (isNaN(mines)) {
       mines = 10;
-      localStorage.setItem('mines', mines);
+      window.localStorage.setItem('mines', mines);
     } else {
       if (mines < 1) {
         mines = 1;
-        localStorage.setItem('mines', mines);
+        window.localStorage.setItem('mines', mines);
       }
       if (mines > columns * rows - 1) {
         mines = columns * rows - 1;
-        localStorage.setItem('mines', mines);
+        window.localStorage.setItem('mines', mines);
       }
     }
 
@@ -232,32 +238,32 @@ switch (level) {
     };
     break;
   case 'custom':
-    let columns = parseInt(localStorage.getItem('columns'), 10);
+    let columns = parseInt(window.localStorage.getItem('columns'), 10);
     if (columns < 7) {
       columns = 7;
-      localStorage.setItem('columns', columns);
+      window.localStorage.setItem('columns', columns);
     } else if (columns > 58) {
       columns = 58;
-      localStorage.setItem('columns', columns);
+      window.localStorage.setItem('columns', columns);
     }
 
-    let rows = parseInt(localStorage.getItem('rows'), 10);
+    let rows = parseInt(window.localStorage.getItem('rows'), 10);
     if (rows < 7) {
       rows = 7;
-      localStorage.setItem('rows', rows);
+      window.localStorage.setItem('rows', rows);
     } else if (rows > 58) {
       rows = 58;
-      localStorage.setItem('rows', rows);
+      window.localStorage.setItem('rows', rows);
     }
 
-    let mines = parseInt(localStorage.getItem('mines'), 10);
+    let mines = parseInt(window.localStorage.getItem('mines'), 10);
     if (mines < 1) {
       mines = 1;
-      localStorage.setItem('mines', mines);
+      window.localStorage.setItem('mines', mines);
     }
     if (mines > columns * rows - 1) {
       mines = columns * rows - 1;
-      localStorage.setItem('mines', mines);
+      window.localStorage.setItem('mines', mines);
     }
 
     settings.level = {
@@ -351,14 +357,14 @@ function setup() {
   // Mine allocation
   if (window.location.hash === '#debug') {
     // Forcer functionality
-    const savedMines = JSON.stringify(localStorage.getItem('mines'));
+    const savedMines = JSON.stringify(window.localStorage.getItem('mines'));
     const mines = JSON.parse(savedMines);
     if (mines) {
       minedSquares = mines;
-      const numberOfMines = localStorage.getItem('numberOfMines');
+      const numberOfMines = window.localStorage.getItem('numberOfMines');
       initialMines = parseInt(numberOfMines, 10);
-      localStorage.removeItem('mines');
-      localStorage.removeItem('numberOfMines');
+      window.localStorage.removeItem('mines');
+      window.localStorage.removeItem('numberOfMines');
     } else {
       allocateMines();
     }
@@ -483,19 +489,19 @@ function openSquare(square) {
       let played;
       switch (level) {
         case 'beginner':
-          played = parseInt(localStorage.getItem('beginnerPlayed'));
+          played = parseInt(window.localStorage.getItem('beginnerPlayed'));
           played += 1;
-          localStorage.setItem('beginnerPlayed', played);
+          window.localStorage.setItem('beginnerPlayed', played);
           break;
         case 'intermediate':
-          played = parseInt(localStorage.getItem('intermediatePlayed'));
+          played = parseInt(window.localStorage.getItem('intermediatePlayed'));
           played += 1;
-          localStorage.setItem('intermediatePlayed', played);
+          window.localStorage.setItem('intermediatePlayed', played);
           break;
         case 'expert':
-          played = parseInt(localStorage.getItem('expertPlayed'));
+          played = parseInt(window.localStorage.getItem('expertPlayed'));
           played += 1;
-          localStorage.setItem('expertPlayed', played);
+          window.localStorage.setItem('expertPlayed', played);
           break;
       }
     }
@@ -550,7 +556,7 @@ function openSquare(square) {
 
 function mousePressed() {
   // Disable click if modal is open
-  if (JSON.parse(localStorage.getItem('modalOpen')) === true) {
+  if (JSON.parse(window.localStorage.getItem('modalOpen')) === true) {
     return;
   }
 
@@ -615,7 +621,10 @@ function mousePressed() {
   }
 
   // Flags
-  if (mouseButton === RIGHT || JSON.parse(localStorage.getItem('flagMode'))) {
+  if (
+    mouseButton === RIGHT ||
+    JSON.parse(window.localStorage.getItem('flagMode'))
+  ) {
     // Find the square the player clicked on
     let square = squares.find(s => {
       return (
@@ -643,7 +652,10 @@ function mousePressed() {
   }
 
   // Find the square pressed on
-  if (mouseButton === LEFT && !JSON.parse(localStorage.getItem('flagMode'))) {
+  if (
+    mouseButton === LEFT &&
+    !JSON.parse(window.localStorage.getItem('flagMode'))
+  ) {
     if (!gameFinished) {
       let square = squares.find(s => {
         return (
@@ -694,19 +706,21 @@ function gameEnded() {
     let totalTime;
     switch (level) {
       case 'beginner':
-        totalTime = parseInt(localStorage.getItem('beginnerTotalTime'));
+        totalTime = parseInt(window.localStorage.getItem('beginnerTotalTime'));
         totalTime += timePassed;
-        localStorage.setItem('beginnerTotalTime', totalTime);
+        window.localStorage.setItem('beginnerTotalTime', totalTime);
         break;
       case 'intermediate':
-        totalTime = parseInt(localStorage.getItem('intermediateTotalTime'));
+        totalTime = parseInt(
+          window.localStorage.getItem('intermediateTotalTime')
+        );
         totalTime += timePassed;
-        localStorage.setItem('intermediateTotalTime', totalTime);
+        window.localStorage.setItem('intermediateTotalTime', totalTime);
         break;
       case 'expert':
-        totalTime = parseInt(localStorage.getItem('expertTotalTime'));
+        totalTime = parseInt(window.localStorage.getItem('expertTotalTime'));
         totalTime += timePassed;
-        localStorage.setItem('expertTotalTime', totalTime);
+        window.localStorage.setItem('expertTotalTime', totalTime);
         break;
     }
   }
@@ -725,19 +739,19 @@ function gameWon() {
     let won;
     switch (level) {
       case 'beginner':
-        won = parseInt(localStorage.getItem('beginnerWon'));
+        won = parseInt(window.localStorage.getItem('beginnerWon'));
         won += 1;
-        localStorage.setItem('beginnerWon', won);
+        window.localStorage.setItem('beginnerWon', won);
         break;
       case 'intermediate':
-        won = parseInt(localStorage.getItem('intermediateWon'));
+        won = parseInt(window.localStorage.getItem('intermediateWon'));
         won += 1;
-        localStorage.setItem('intermediateWon', won);
+        window.localStorage.setItem('intermediateWon', won);
         break;
       case 'expert':
-        won = parseInt(localStorage.getItem('expertWon'));
+        won = parseInt(window.localStorage.getItem('expertWon'));
         won += 1;
-        localStorage.setItem('expertWon', won);
+        window.localStorage.setItem('expertWon', won);
         break;
     }
 
@@ -745,26 +759,28 @@ function gameWon() {
     let bestMoves;
     switch (level) {
       case 'beginner':
-        bestMoves = Number(localStorage.getItem('beginnerBestMoves'));
+        bestMoves = Number(window.localStorage.getItem('beginnerBestMoves'));
         break;
       case 'intermediate':
-        bestMoves = Number(localStorage.getItem('intermediateBestMoves'));
+        bestMoves = Number(
+          window.localStorage.getItem('intermediateBestMoves')
+        );
         break;
       case 'expert':
-        bestMoves = Number(localStorage.getItem('expertBestMoves'));
+        bestMoves = Number(window.localStorage.getItem('expertBestMoves'));
         break;
     }
 
     if (bestMoves === 0) {
       switch (level) {
         case 'beginner':
-          localStorage.setItem('beginnerBestMoves', moves);
+          window.localStorage.setItem('beginnerBestMoves', moves);
           break;
         case 'intermediate':
-          localStorage.setItem('intermediateBestMoves', moves);
+          window.localStorage.setItem('intermediateBestMoves', moves);
           break;
         case 'expert':
-          localStorage.setItem('expertBestMoves', moves);
+          window.localStorage.setItem('expertBestMoves', moves);
           break;
       }
     } else {
@@ -775,16 +791,16 @@ function gameWon() {
         newBestMoves = true;
         switch (level) {
           case 'beginner':
-            localStorage.setItem('beginnerBestMoves', moves);
+            window.localStorage.setItem('beginnerBestMoves', moves);
             break;
           case 'intermediate':
-            localStorage.setItem('intermediateBestMoves', moves);
+            window.localStorage.setItem('intermediateBestMoves', moves);
             break;
           case 'expert':
-            localStorage.setItem('expertBestMoves', moves);
+            window.localStorage.setItem('expertBestMoves', moves);
             break;
         }
-        localStorage.setItem('newBestMoves', 'true');
+        window.localStorage.setItem('newBestMoves', 'true');
       }
     }
 
@@ -796,26 +812,26 @@ function gameWon() {
     let bestTime;
     switch (level) {
       case 'beginner':
-        bestTime = Number(localStorage.getItem('beginnerBestTime'));
+        bestTime = Number(window.localStorage.getItem('beginnerBestTime'));
         break;
       case 'intermediate':
-        bestTime = Number(localStorage.getItem('intermediateBestTime'));
+        bestTime = Number(window.localStorage.getItem('intermediateBestTime'));
         break;
       case 'expert':
-        bestTime = Number(localStorage.getItem('expertBestTime'));
+        bestTime = Number(window.localStorage.getItem('expertBestTime'));
         break;
     }
 
     if (bestTime === 0) {
       switch (level) {
         case 'beginner':
-          localStorage.setItem('beginnerBestTime', seconds);
+          window.localStorage.setItem('beginnerBestTime', seconds);
           break;
         case 'intermediate':
-          localStorage.setItem('intermediateBestTime', seconds);
+          window.localStorage.setItem('intermediateBestTime', seconds);
           break;
         case 'expert':
-          localStorage.setItem('expertBestTime', seconds);
+          window.localStorage.setItem('expertBestTime', seconds);
           break;
       }
     } else {
@@ -826,16 +842,16 @@ function gameWon() {
         newBestTime = true;
         switch (level) {
           case 'beginner':
-            localStorage.setItem('beginnerBestTime', seconds);
+            window.localStorage.setItem('beginnerBestTime', seconds);
             break;
           case 'intermediate':
-            localStorage.setItem('intermediateBestTime', seconds);
+            window.localStorage.setItem('intermediateBestTime', seconds);
             break;
           case 'expert':
-            localStorage.setItem('expertBestTime', seconds);
+            window.localStorage.setItem('expertBestTime', seconds);
             break;
         }
-        localStorage.setItem('newBestTime', 'true');
+        window.localStorage.setItem('newBestTime', 'true');
       }
     }
   }
@@ -853,6 +869,11 @@ function gameWon() {
   console.log(`   3BV/sec: ${bbbvPerSec}`);
   console.log(`     Moves: ${moves}`);
   console.log(`Efficiency: ${efficinecny}%`);
+
+  window.localStorage.setItem('time', time);
+  window.localStorage.setItem('bbbv', bbbv);
+  window.localStorage.setItem('bbbvPerSec', bbbvPerSec);
+  window.localStorage.setItem('efficinecny', efficinecny);
 }
 
 // handle loss
@@ -873,19 +894,21 @@ function addMove() {
   let totalMoves;
   switch (level) {
     case 'beginner':
-      totalMoves = parseInt(localStorage.getItem('beginnerTotalMoves'));
+      totalMoves = parseInt(window.localStorage.getItem('beginnerTotalMoves'));
       totalMoves += 1;
-      localStorage.setItem('beginnerTotalMoves', totalMoves);
+      window.localStorage.setItem('beginnerTotalMoves', totalMoves);
       break;
     case 'intermediate':
-      totalMoves = parseInt(localStorage.getItem('intermediateTotalMoves'));
+      totalMoves = parseInt(
+        window.localStorage.getItem('intermediateTotalMoves')
+      );
       totalMoves += 1;
-      localStorage.setItem('intermediateTotalMoves', totalMoves);
+      window.localStorage.setItem('intermediateTotalMoves', totalMoves);
       break;
     case 'expert':
-      totalMoves = parseInt(localStorage.getItem('expertTotalMoves'));
+      totalMoves = parseInt(window.localStorage.getItem('expertTotalMoves'));
       totalMoves += 1;
-      localStorage.setItem('expertTotalMoves', totalMoves);
+      window.localStorage.setItem('expertTotalMoves', totalMoves);
       break;
   }
 }
@@ -896,16 +919,16 @@ function calculateWinPercentage() {
     let played, won;
     switch (level) {
       case 'beginner':
-        played = parseInt(localStorage.getItem('beginnerPlayed'));
-        won = parseInt(localStorage.getItem('beginnerWon'));
+        played = parseInt(window.localStorage.getItem('beginnerPlayed'));
+        won = parseInt(window.localStorage.getItem('beginnerWon'));
         break;
       case 'intermediate':
-        played = parseInt(localStorage.getItem('intermediatePlayed'));
-        won = parseInt(localStorage.getItem('intermediateWon'));
+        played = parseInt(window.localStorage.getItem('intermediatePlayed'));
+        won = parseInt(window.localStorage.getItem('intermediateWon'));
         break;
       case 'expert':
-        played = parseInt(localStorage.getItem('expertPlayed'));
-        won = parseInt(localStorage.getItem('expertWon'));
+        played = parseInt(window.localStorage.getItem('expertPlayed'));
+        won = parseInt(window.localStorage.getItem('expertWon'));
         break;
     }
     let winPercentage = null;
@@ -945,7 +968,7 @@ function keyPressed() {
     window.localStorage.getItem('modalOpen') === false
   ) {
     if (level !== 'beginner') {
-      localStorage.setItem('level', 'beginner');
+      window.localStorage.setItem('level', 'beginner');
       window.location.reload();
     }
   }
@@ -955,7 +978,7 @@ function keyPressed() {
     window.localStorage.getItem('modalOpen') === false
   ) {
     if (level !== 'intermediate') {
-      localStorage.setItem('level', 'intermediate');
+      window.localStorage.setItem('level', 'intermediate');
       window.location.reload();
     }
   }
@@ -965,7 +988,7 @@ function keyPressed() {
     window.localStorage.getItem('modalOpen') === false
   ) {
     if (level !== 'expert') {
-      localStorage.setItem('level', 'expert');
+      window.localStorage.setItem('level', 'expert');
       window.location.reload();
     }
   }

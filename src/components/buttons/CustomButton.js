@@ -19,7 +19,7 @@ export default function CustomButton() {
   document.addEventListener('keydown', e => {
     if (e.code === 'Digit4') {
       if (level !== 'custom') {
-        localStorage.setItem('level', 'custom');
+        window.localStorage.setItem('level', 'custom');
         window.location.reload();
       }
     }
