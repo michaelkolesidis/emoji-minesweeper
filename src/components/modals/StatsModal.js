@@ -29,7 +29,7 @@ function formatTime(time) {
 }
 
 export default function StatsModal() {
-  // Level: beginner || intermediate || expert
+  // Level: beginner || intermediate || expert || custom
   let gameLevel = window.localStorage.getItem('level');
   if (gameLevel === null) {
     gameLevel = 'beginner';
@@ -286,6 +286,7 @@ export default function StatsModal() {
     window.location.reload();
   });
 
+  // Stats modal in custom level
   if (gameLevel === 'custom') {
     modal.innerHTML = `<h3 id="stats-not-available">Stats not available for custom levels</h3>`;
 

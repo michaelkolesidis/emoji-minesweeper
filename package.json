@@ -16,28 +16,24 @@
     "emoji",
     "game",
     "canvas",
-    "canvas-game ",
-    "html5-game ",
-    "html5-canvas ",
-    "p5js ",
-    "minesweeper-game ",
-    "javascript-game ",
+    "canvas-game",
+    "html5-game",
+    "html5-canvas",
+    "p5js",
+    "minesweeper-game",
+    "javascript-game",
     "emojis",
-    "casual-game ",
-    "minesweeper-js ",
-    "p5js-game ",
-    "cute-game ",
-    "minesweeper-javascript ",
-    "javascript-minesweeper ",
-    "emoji-game ",
+    "casual-game",
+    "minesweeper-js",
+    "p5js-game",
+    "cute-game",
+    "minesweeper-javascript",
+    "javascript-minesweeper",
+    "emoji-game",
     "emoji-minesweeper"
   ],
   "bugs": {
     "url": "https://github.com/michaelkolesidis/emoji-minesweeper/issues"
   },
-  "homepage": "https://emojiminesweeper.com",
-  "scripts": {
-    "build": ""
-  },
-  "devDependencies": {}
+  "homepage": "https://emojiminesweeper.com"
 }
