@@ -25,11 +25,14 @@ export default function BeginnerButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    if (e.code === 'Digit1') {
-      if (level !== 'beginner') {
-        localStorage.setItem('level', 'beginner');
-        window.location.reload();
-      }
+    const customModalOpen = localStorage.getItem('customModalOpen');
+    if (
+      e.code === 'Digit1' &&
+      level !== 'beginner' &&
+      customModalOpen !== 'true'
+    ) {
+      localStorage.setItem('level', 'beginner');
+      window.location.reload();
     }
   });
 

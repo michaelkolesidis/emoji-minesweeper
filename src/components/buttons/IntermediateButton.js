@@ -26,11 +26,14 @@ export default function IntermediateButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    if (e.code === 'Digit2') {
-      if (level !== 'intermediate') {
-        localStorage.setItem('level', 'intermediate');
-        window.location.reload();
-      }
+    const customModalOpen = localStorage.getItem('customModalOpen');
+    if (
+      e.code === 'Digit2' &&
+      level !== 'intermediate' &&
+      customModalOpen !== 'true'
+    ) {
+      localStorage.setItem('level', 'intermediate');
+      window.location.reload();
     }
   });
 

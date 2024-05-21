@@ -25,11 +25,14 @@ export default function ExpertButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    if (e.code === 'Digit3') {
-      if (level !== 'expert') {
-        localStorage.setItem('level', 'expert');
-        window.location.reload();
-      }
+    const customModalOpen = localStorage.getItem('customModalOpen');
+    if (
+      e.code === 'Digit3' &&
+      level !== 'expert' &&
+      customModalOpen !== 'true'
+    ) {
+      localStorage.setItem('level', 'expert');
+      window.location.reload();
     }
   });
 

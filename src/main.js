@@ -141,6 +141,7 @@ emojiButtonsContainer.appendChild(darkModeButton);
  * Modals
  */
 let modalOpen = false;
+window.localStorage.setItem('customModalOpen', 'false');
 
 /**
  * Custom Modal
@@ -156,9 +157,11 @@ function toggleCustomModal() {
       modal.style.opacity = '0';
       modalOpen = false;
       window.localStorage.setItem('modalOpen', 'false');
+      window.localStorage.setItem('customModalOpen', 'false');
     } else {
       // If another modal is open
       CustomModal();
+      window.localStorage.setItem('customModalOpen', 'true');
     }
   } else {
     // If no modals are open
@@ -167,6 +170,7 @@ function toggleCustomModal() {
     modal.style.opacity = '1';
     modalOpen = true;
     window.localStorage.setItem('modalOpen', 'true');
+    window.localStorage.setItem('customModalOpen', 'true');
     CustomModal();
   }
 }
