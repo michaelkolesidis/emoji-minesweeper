@@ -110,24 +110,33 @@ Here you can choose the width, the height, and the number of mines for your desi
 
 This is a custom level featuring 9 columns, 15 rows, and 6 mines. Quite long, isn't it?
 
+### End modal
+
 ![End modal](./screenshots/end_stats_v8b.png)
 
 When a game is won, a modal containing stats about the current game appears. Let's see what's included:
 
-Time
+#### Time
+
 The time it took to finish the game in seconds, from openeing the first square until the last. It is the same time visible in the time counter, but now it is not rounded and is displayed in precision with up to three decimal digits.
 
-3BV
+#### 3BV
+
 3BV is the minimum number of clicks required to complete a board without using flags. The higher it is, the more difficult is the game.
 
-3BV/s
+#### 3BV/s
+
 3BV divided by the anount of seconds needed to finish the game. It indicates the amount of 3BV that a player solves per second and is meant as a speed-measuring statistic. For an expert game, a 3BV/s of 2 is considered to be high, while a 3bv/s of 3 is considered to be very high. For an intermediate game, a 3BV/s of 3 is considered to be high, while a 3BV/s of 4 is considered to be very high. The world record 3BV/s for intermediate and expert are 7.89 and 6.11 respectively.
 
-Moves
+#### Moves
+
 How many moves you have made from the beginning of the game util its end. Every click over the area of the board counts, even those clicks which don't make sense in Minesweeper, like clicking in an already opened opening, or a right-click on a number. The clicks that make sense are known as active clicks and are the first number in the parentheses, while those that don't make any sense are known as wasted clicks and are the second number in the parentheses.
 
-Efficiency
+#### Efficiency
+
 Efficiency is the 3BV of a board divided by the number of moves (clicks of taps) used to solve it. The less clicks used, the higher the efficiency. An Efficiency of 100% means you solved a 3BV 50 board in 50 clicks. The only way to gain efficiency is to chord. Efficiency is lost by placing flags, wasting clicks, or clicking cells that would be revealed by an opening. By combining NF technique and smart chording you can get more than 100% efficiency.
+
+### Themes
 
 The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a surf theme 🏄, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🏄/🏯 to switch between themes, or use the *left and right arrows* on your keyboard. These are the rest of the themes:
 
