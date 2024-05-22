@@ -14,10 +14,11 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 // Canvas
 let cnv; // The canvas element that will contain the game
 
-// Reset endgame stats
+// Reset end of game stats
 window.localStorage.setItem('time', '');
 window.localStorage.setItem('bbbv', '');
 window.localStorage.setItem('bbbvPerSec', '');
+window.localStorage.setItem('moves', '');
 window.localStorage.setItem('efficinecny', '');
 
 /**
@@ -695,7 +696,7 @@ function mousePressed() {
 }
 
 /**
- * Endgame
+ * End of game
  */
 // Handle end
 function gameEnded() {
@@ -864,16 +865,13 @@ function gameWon() {
   const bbbvPerSec = Math.round((bbbv / time + Number.EPSILON) * 10000) / 10000;
   const efficinecny = Math.round((bbbv / moves) * 100);
 
-  console.log(`      Time: ${time} sec`);
-  console.log(`       3BV: ${bbbv}`);
-  console.log(`   3BV/sec: ${bbbvPerSec}`);
-  console.log(`     Moves: ${moves}`);
-  console.log(`Efficiency: ${efficinecny}%`);
-
   window.localStorage.setItem('time', time);
   window.localStorage.setItem('bbbv', bbbv);
   window.localStorage.setItem('bbbvPerSec', bbbvPerSec);
+  window.localStorage.setItem('moves', moves);
   window.localStorage.setItem('efficinecny', efficinecny);
+
+  gameHasEnded();
 }
 
 // handle loss
@@ -997,6 +995,14 @@ function keyPressed() {
   if (keyCode === 78) {
     window.location.reload();
   }
+}
+
+/**
+ * End of game event
+ */
+function gameHasEnded() {
+  const gameHasEnded = new CustomEvent('gameHasEnded');
+  document.dispatchEvent(gameHasEnded);
 }
 
 /**

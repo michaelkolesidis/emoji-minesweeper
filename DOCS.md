@@ -79,7 +79,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Timer counter shows your time since opening the first square in seconds, gets activated on first click and stops when the game finishes
 - Moves counter
 
-### Endgame
+### Game End
 
 - Empty squares become a grinning face with smiling eyes if the game is won or a dizzy face if the game is lost (according to selected theme)
 - Different emoji for detonated mine (the mine the player clicked) and revealed mines (the rest of the mines)

@@ -17,11 +17,14 @@ export default function CustomButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    if (e.code === 'Digit4') {
-      if (level !== 'custom') {
-        window.localStorage.setItem('level', 'custom');
-        window.location.reload();
-      }
+    const customModalOpen = window.localStorage.getItem('customModalOpen');
+    if (
+      e.code === 'Digit4' &&
+      level !== 'custom' &&
+      customModalOpen !== 'true'
+    ) {
+      window.localStorage.setItem('level', 'custom');
+      window.location.reload();
     }
   });
 

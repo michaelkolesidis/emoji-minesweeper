@@ -29,7 +29,8 @@ import DarkModeButton from './components/buttons/DarkModeButton.js';
 import Forcer from './components/Forcer.js';
 
 // Utilities
-import { greet } from './utils/greet.js';
+import { greet } from './utils/consoleUtils.js';
+import { closeModal, openModal } from './utils/modalUtils.js';
 
 /**
  * Basics
@@ -151,13 +152,9 @@ function toggleCustomModal() {
   if (modalOpen) {
     if (modal.id === 'custom-modal') {
       // If custom modal is open
-      setTimeout(() => {
-        modal.style.zIndex = '-1';
-      }, 500);
-      modal.style.opacity = '0';
       modalOpen = false;
-      window.localStorage.setItem('modalOpen', 'false');
       window.localStorage.setItem('customModalOpen', 'false');
+      closeModal();
     } else {
       // If another modal is open
       CustomModal();
@@ -166,11 +163,9 @@ function toggleCustomModal() {
   } else {
     // If no modals are open
     modal.id = 'custom-modal';
-    modal.style.zIndex = '2';
-    modal.style.opacity = '1';
     modalOpen = true;
-    window.localStorage.setItem('modalOpen', 'true');
     window.localStorage.setItem('customModalOpen', 'true');
+    openModal();
     CustomModal();
   }
 }
@@ -188,12 +183,8 @@ function toggleStatsModal() {
   if (modalOpen) {
     if (modal.id === 'stats-modal') {
       // If stats modal is open
-      setTimeout(() => {
-        modal.style.zIndex = '-1';
-      }, 500);
-      modal.style.opacity = '0';
       modalOpen = false;
-      window.localStorage.setItem('modalOpen', 'false');
+      closeModal();
     } else {
       // If another modal is open
       StatsModal();
@@ -201,10 +192,8 @@ function toggleStatsModal() {
   } else {
     // If no modals are open
     modal.id = 'stats-modal';
-    modal.style.zIndex = '2';
-    modal.style.opacity = '1';
     modalOpen = true;
-    window.localStorage.setItem('modalOpen', 'true');
+    openModal();
     StatsModal();
   }
 }
@@ -229,12 +218,8 @@ function toggleHelpModal() {
   if (modalOpen) {
     if (modal.id === 'help-modal') {
       // If help modal is open
-      setTimeout(() => {
-        modal.style.zIndex = '-1';
-      }, 500);
-      modal.style.opacity = '0';
       modalOpen = false;
-      window.localStorage.setItem('modalOpen', 'false');
+      closeModal();
     } else {
       // If another modal is open
       HelpModal();
@@ -242,10 +227,8 @@ function toggleHelpModal() {
   } else {
     // If no modals are open
     modal.id = 'help-modal';
-    modal.style.zIndex = '2';
-    modal.style.opacity = '1';
     modalOpen = true;
-    window.localStorage.setItem('modalOpen', 'true');
+    openModal();
     HelpModal();
   }
 }
@@ -262,14 +245,48 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Forcer
+/**
+ * End modal
+ */
+document.addEventListener('gameHasEnded', () => {
+  modal.id = 'end-modal';
+  modalOpen = true;
+  openModal();
+
+  // Display stats in modal when the game ends
+  const time = window.localStorage.getItem('time');
+  const bbbv = window.localStorage.getItem('bbbv');
+  const bbbvPerSec = window.localStorage.getItem('bbbvPerSec');
+  const efficinecny = window.localStorage.getItem('efficinecny');
+
+  modal.innerHTML = '';
+  modal.innerHTML += `<p class="label">Time</p>`;
+  modal.innerHTML += `<p class="value">${time} sec</p>`;
+  modal.innerHTML += `<p class="label">3BV</p>`;
+  modal.innerHTML += `<p class="value">${bbbv}</p>`;
+  modal.innerHTML += `<p class="label">3BV/sec</p>`;
+  modal.innerHTML += `<p class="value">${bbbvPerSec}</p>`;
+  modal.innerHTML += `<p class="label">Moves</p>`;
+  modal.innerHTML += `<p class="value">${moves}</p>`;
+  modal.innerHTML += `<p class="label">Efficiency</p>`;
+  modal.innerHTML += `<p class="value">${efficinecny}%</p>`;
+  modal.innerHTML += `<button id="end-button">Close</button>`;
+
+  const endButton = document.getElementById('end-button');
+  endButton.addEventListener('click', () => {
+    modalOpen = false;
+    closeModal();
+  });
+});
+
+/**
+ * Forcer
+ */
 if (window.location.hash === '#debug') {
   const forcer = Forcer();
   gameContainer.appendChild(forcer);
 
-  /**
-   * Forcer functionality
-   */
+  // Forcer functionality
   const submitButton = document.getElementById('forcer-submit');
 
   submitButton.addEventListener('click', function () {

@@ -171,8 +171,8 @@ button {
   border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;
-  color: var(--main-color);
-  background: var(--secondary-color);
+  color: var(--secondary-color);
+  background-color: var(--main-color);
   height: 2rem;
   width: fit-content;
   position: relative;
@@ -267,11 +267,6 @@ button:hover {
   margin-top: 0.1rem;
 }
 
-#custom-modal > button {
-  color: var(--secondary-color);
-  background-color: var(--main-color);
-}
-
 /* Stats Modal */
 #stats-modal {
   top: -305px;
@@ -296,8 +291,6 @@ button:hover {
 }
 
 #stats-modal > button {
-  color: var(--secondary-color);
-  background-color: var(--main-color);
   grid-column: span 2;
   margin: 0.5rem 0 -0.85rem 0;
   border: 0;
@@ -320,6 +313,24 @@ button:hover {
 .value {
   text-align: left;
   margin-left: 0.5rem;
+}
+
+/* End Modal */
+#end-modal {
+  top: -265px;
+  font-size: 0.75rem;
+  width: max-content;
+  display: grid;
+  padding-top: 1.5em;
+  transition: opacity 0.75s ease-in-out;
+  grid-template-columns: 1fr 1fr;
+}
+
+#end-button {
+  grid-column: span 2;
+  text-align: center;
+  margin: 0.75rem auto -1rem;
+  font-size: 0.75rem;
 }
 
 /* Emoji Buttons */
