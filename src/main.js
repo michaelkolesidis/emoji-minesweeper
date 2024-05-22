@@ -264,10 +264,10 @@ document.addEventListener('gameHasEnded', () => {
   modal.innerHTML += `<p class="value">${time} sec</p>`;
   modal.innerHTML += `<p class="label">3BV</p>`;
   modal.innerHTML += `<p class="value">${bbbv}</p>`;
-  modal.innerHTML += `<p class="label">3BV/sec</p>`;
+  modal.innerHTML += `<p class="label">3BV/s</p>`;
   modal.innerHTML += `<p class="value">${bbbvPerSec}</p>`;
   modal.innerHTML += `<p class="label">Moves</p>`;
-  modal.innerHTML += `<p class="value">${moves}</p>`;
+  modal.innerHTML += `<p class="value">${moves} (${activeMoves} + ${wastedMoves})</p>`;
   modal.innerHTML += `<p class="label">Efficiency</p>`;
   modal.innerHTML += `<p class="value">${efficinecny}%</p>`;
   modal.innerHTML += `<button id="end-button">Close</button>`;

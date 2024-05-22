@@ -285,7 +285,9 @@ let squareCounter = 0; // The unique identifier of each square
 let minedSquares = []; // A array containing the unique identifiers of all the squares that will contain mines
 
 let flaggedSquares = 0;
-let moves = 0; // total number of moves (left and right clicks on active squares)
+let moves = 0; // total number of moves
+let activeMoves = 0; // total number of active moves (left and right clicks on active squares)
+let wastedMoves = 0; // total number of wasted moves
 let startTime = null; // used to calculate time
 let gameFinished = false;
 let newBestMoves = false; // used when the player has made a new best moves record
@@ -572,6 +574,11 @@ function mousePressed() {
           s.y + squareSize > mouseY
         );
       });
+
+      if (square) {
+        moves += 1;
+      }
+
       if (square && square.opened && square.minesAround > 0) {
         let neighbors = getNeighbors(square);
         let flaggedNeighbors = 0;
@@ -613,7 +620,7 @@ function mousePressed() {
           });
 
           if (openedSquares > 0) {
-            moves += 1;
+            activeMoves += 1;
             addMove();
           }
         }
@@ -636,15 +643,17 @@ function mousePressed() {
       );
     });
     if (square) {
+      moves += 1;
+
       // Prevent opened squares from being flagged
       if (!square.opened) {
         if (!square.flagged) {
           flaggedSquares += 1;
-          moves += 1;
+          activeMoves += 1;
           addMove();
         } else {
           flaggedSquares -= 1;
-          moves += 1;
+          activeMoves += 1;
           addMove();
         }
         square.flagged = !square.flagged;
@@ -667,11 +676,13 @@ function mousePressed() {
         );
       });
       if (square) {
+        moves += 1;
+
         if (square.flagged || square.opened) {
           return; // Do not allow opening when flagged
         }
         openSquare(square);
-        moves += 1;
+        activeMoves += 1;
         addMove();
         if (square.mine) {
           if (!gameFinished) {
@@ -864,10 +875,14 @@ function gameWon() {
   const bbbv = calculate3BV(squares);
   const bbbvPerSec = Math.round((bbbv / time + Number.EPSILON) * 10000) / 10000;
   const efficinecny = Math.round((bbbv / moves) * 100);
+  wastedMoves = moves - activeMoves;
 
   window.localStorage.setItem('time', time);
   window.localStorage.setItem('bbbv', bbbv);
   window.localStorage.setItem('bbbvPerSec', bbbvPerSec);
+  window.localStorage.setItem('moves', moves);
+  window.localStorage.setItem('activeMoves', activeMoves);
+  window.localStorage.setItem('wastedMoves', wastedMoves);
   window.localStorage.setItem('moves', moves);
   window.localStorage.setItem('efficinecny', efficinecny);
 
