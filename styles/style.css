@@ -326,6 +326,10 @@ button:hover {
   grid-template-columns: 1fr 1fr;
 }
 
+.help-link {
+  text-decoration: none;
+}
+
 #end-button {
   grid-column: span 2;
   text-align: center;

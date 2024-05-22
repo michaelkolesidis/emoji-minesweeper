@@ -260,15 +260,35 @@ document.addEventListener('gameHasEnded', () => {
   const efficinecny = window.localStorage.getItem('efficinecny');
 
   modal.innerHTML = '';
-  modal.innerHTML += `<p class="label">Time</p>`;
+  modal.innerHTML += `<a 
+                        class="label help-link" 
+                        href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#time" 
+                        target="_blank"
+                      >Time</a>`;
   modal.innerHTML += `<p class="value">${time} sec</p>`;
-  modal.innerHTML += `<p class="label">3BV</p>`;
+  modal.innerHTML += `<a 
+                        class="label help-link" 
+                        href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#3bv" 
+                        target="_blank"
+                      >3BV</a>`;
   modal.innerHTML += `<p class="value">${bbbv}</p>`;
-  modal.innerHTML += `<p class="label">3BV/s</p>`;
+  modal.innerHTML += `<a 
+                        class="label help-link" 
+                        href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#3bvs" 
+                        target="_blank"
+                      >3BV/s</a>`;
   modal.innerHTML += `<p class="value">${bbbvPerSec}</p>`;
-  modal.innerHTML += `<p class="label">Moves</p>`;
+  modal.innerHTML += `<a 
+                        class="label help-link" 
+                        href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#moves" 
+                        target="_blank"
+                      >Moves</a>`;
   modal.innerHTML += `<p class="value">${moves} (${activeMoves} + ${wastedMoves})</p>`;
-  modal.innerHTML += `<p class="label">Efficiency</p>`;
+  modal.innerHTML += `<a 
+                        class="label help-link" 
+                        href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#efficiency" 
+                        target="_blank"
+                      >Efficiency</a>`;
   modal.innerHTML += `<p class="value">${efficinecny}%</p>`;
   modal.innerHTML += `<button id="end-button">Close</button>`;
 

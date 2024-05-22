@@ -118,7 +118,7 @@ When a game is won, a modal containing stats about the current game appears. Let
 
 #### Time
 
-The time it took to finish the game in seconds, from openeing the first square until the last. It is the same time visible in the time counter, but now it is not rounded and is displayed in precision with up to three decimal digits.
+The time it took to finish the game in seconds, from opening the first square until the last. It is the same time visible in the time counter, but now it is not rounded and is displayed in precision with up to three decimal digits.
 
 #### 3BV
 
