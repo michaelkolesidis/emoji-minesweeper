@@ -126,7 +126,7 @@ The time it took to finish the game in seconds, from opening the first square un
 
 #### 3BV/s
 
-3BV divided by the anount of seconds needed to finish the game. It indicates the amount of 3BV that a player solves per second and is meant as a speed-measuring statistic. For an expert game, a 3BV/s of 2 is considered to be high, while a 3bv/s of 3 is considered to be very high. For an intermediate game, a 3BV/s of 3 is considered to be high, while a 3BV/s of 4 is considered to be very high. The world record 3BV/s for intermediate and expert are 7.89 and 6.11 respectively.
+3BV divided by the anount of seconds needed to finish the game. It indicates the amount of 3BV that a player solves per second and is meant as a speed-measuring statistic. For an expert game, a 3BV/s of 2 is considered to be high, while a 3BV/s of 3 is considered to be very high. For an intermediate game, a 3BV/s of 3 is considered to be high, while a 3BV/s of 4 is considered to be very high. The world record 3BV/s for intermediate and expert are 7.89 and 6.11 respectively.
 
 #### Moves
 
