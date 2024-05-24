@@ -95,6 +95,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Stats modal containing the aforementioned values
 - Stats modal smooth animation
 - Checks for null values
+- 3BV, 3BV/s, efficiency, moves, time after every game won
 
 ### Other
 
