@@ -130,7 +130,7 @@ The time it took to finish the game in seconds, from opening the first square un
 
 #### Moves
 
-How many moves you have made from the beginning of the game util its end. Every click over the area of the board counts, even those clicks which don't make sense in Minesweeper, like clicking in an already opened opening, or a right-click on a number. The clicks that make sense are known as active clicks and are the first number in the parentheses, while those that don't make any sense are known as wasted clicks and are the second number in the parentheses.
+How many moves you have made from the beginning of the game util its end. Every click over the area of the board counts, even those clicks which don't make sense in Minesweeper, like clicking in an already opened opening, or a right-click on a number. The clicks that make sense are known as active clicks, while those that don't make any sense are known as wasted clicks.
 
 #### Efficiency
 

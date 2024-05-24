@@ -283,7 +283,7 @@ document.addEventListener('gameHasEnded', () => {
                         href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#moves" 
                         target="_blank"
                       >Moves</a>`;
-  modal.innerHTML += `<p class="value">${moves} (${activeMoves} + ${wastedMoves})</p>`;
+  modal.innerHTML += `<p class="value">${moves}</p>`;
   modal.innerHTML += `<a 
                         class="label help-link" 
                         href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#efficiency" 
