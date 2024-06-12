@@ -325,3 +325,22 @@ if (window.location.hash === '#debug') {
     }
   });
 }
+
+/**
+ * Easter Egg
+ */
+document.addEventListener('keydown', event => {
+  if (event.code === 'KeyC') {
+    setInterval(addEasterEgg, 2000);
+
+    function addEasterEgg() {
+      const easterEgg = document.createElement('div');
+      easterEgg.classList.add('easter-egg');
+
+      easterEgg.innerHTML =
+        '<img src="../emoji/svg/grinning_cat_with_smiling_eyes_flat.svg" >';
+
+      document.body.appendChild(easterEgg);
+    }
+  }
+});
