@@ -329,8 +329,12 @@ if (window.location.hash === '#debug') {
 /**
  * Easter Egg
  */
+let easterEggActivated = false;
+
 document.addEventListener('keydown', event => {
-  if (event.code === 'KeyC') {
+  if (event.code === 'KeyC' && !easterEggActivated) {
+    easterEggActivated = true;
+
     setInterval(addEasterEgg, 2000);
 
     function addEasterEgg() {

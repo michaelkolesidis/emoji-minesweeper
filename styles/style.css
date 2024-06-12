@@ -420,7 +420,6 @@ input {
 /* Keyframe values control where the element will begin
     and end its trajectory across the screen. Each rule
     represents a path the element follows across the screen. */
-
 @keyframes fly {
   98.001%,
   0% {

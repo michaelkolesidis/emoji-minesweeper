@@ -185,7 +185,7 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 - ❔button toggles the **help modal**
 - 🚩 button toggles **flag mode** (for touchscreens)
 - ☀️/🌔 button toggles **dark mode**
-- There is an **easter egg** in the game, can you find it? 😸
+- There is an **Easter egg** in the game, can you find it? 😸
 
 ### Keyboard Controls
 
