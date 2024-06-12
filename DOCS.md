@@ -105,3 +105,4 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Board fade-in effect
 - Extensive commenting to make the project's code accessible for beginners
 - Extensive documentation
+- Press C and see what happens! 😸 (Thanks for reading all the documentation!)
