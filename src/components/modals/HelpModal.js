@@ -1,6 +1,6 @@
 /*
  *  Emoji Minesweeper
- *  Copyright (c) 2025 Michael Kolesidis
+ *  Copyright (c) Michael Kolesidis <michael.kolesidis@gmail.com>
  *  GNU Affero General Public License v3.0
  *
  */
@@ -54,7 +54,7 @@ export default function HelpModal() {
   <span style="font-weight:900;">Dark theme</span> (D key)
 </p>
 <div id="about">
-    <p>© 2025 Michael Kolesidis</p>
+    <p>© Michael Kolesidis</p>
     <a
       href="https://github.com/michaelkolesidis/emoji-minesweeper" 
       target="_blank">
