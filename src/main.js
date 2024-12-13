@@ -332,19 +332,40 @@ if (window.location.hash === '#debug') {
 let easterEggActivated = false;
 
 document.addEventListener('keydown', event => {
-  if (event.code === 'KeyC' && !easterEggActivated) {
+  if (event.code === 'KeyE' && !easterEggActivated) {
     easterEggActivated = true;
 
-    setInterval(addEasterEgg, 2000);
+    setInterval(() => {
+      addEasterEgg();
+    }, 2000);
 
     function addEasterEgg() {
       const easterEgg = document.createElement('div');
       easterEgg.classList.add('easter-egg');
 
-      easterEgg.innerHTML =
-        '<img src="../emoji/svg/grinning_cat_with_smiling_eyes_flat.svg" >';
-
+      easterEgg.innerHTML = '<img src="../assets/logo.svg">';
       document.body.appendChild(easterEgg);
+
+      const imgElement = easterEgg.querySelector('img');
+      setRandomAnimationProperties(imgElement);
+    }
+
+    function setRandomAnimationProperties(element) {
+      element.style.setProperty('--duration', randomValue(30, 60, 's')); // Random speed
+      element.style.setProperty('--start-x', randomValue(-200, -100, '%')); // Off-screen left start
+      element.style.setProperty('--start-y', randomValue(0, 100, 'vh')); // Random vertical start
+      element.style.setProperty('--mid1-x', randomValue(0, 50, 'vw')); // First trajectory point
+      element.style.setProperty('--mid1-y', randomValue(-50, 0, 'vh'));
+      element.style.setProperty('--mid2-x', randomValue(50, 100, 'vw')); // Second trajectory point
+      element.style.setProperty('--mid2-y', randomValue(0, 100, 'vh'));
+      element.style.setProperty('--mid3-x', randomValue(0, 100, 'vw')); // Third trajectory point
+      element.style.setProperty('--mid3-y', randomValue(50, 150, 'vh'));
+      element.style.setProperty('--end-x', randomValue(100, 200, '%')); // Off-screen right end
+      element.style.setProperty('--end-y', randomValue(0, 100, 'vh')); // Random vertical end
+    }
+
+    function randomValue(min, max, unit = '') {
+      return `${Math.random() * (max - min) + min}${unit}`;
     }
   }
 });
