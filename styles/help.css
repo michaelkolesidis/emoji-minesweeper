@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+#help-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+header img {
+  width: 35px;
+  margin: 10px;
+}
+
+header h1 {
+  display: flex;
+  font-size: 25px;
+  font-weight: 1000;
+  margin-top: 10px;
+}
+
+img {
+  margin: 10px;
+  max-width: 100%;
+  display: block;
+}
+
+p {
+  padding: 10px;
+  max-width: 55ch;
+  text-align: justify;
+}
+
+li {
+  max-width: 40ch;
+  padding: 5px;
+}
+
+h2,
+h3,
+h4 {
+  font-weight: 1000;
+}
+
+h2 {
+  font-size: 50px;
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+h4 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+table {
+  margin: 10px;
+  border-spacing: 30px 10px; /* 0 for columns, 10px for rows */
+}
+
+th {
+  font-weight: 1000;
+  text-align: left;
+}
+
+#emoji-list {
+  max-width: 15ch;
+}
