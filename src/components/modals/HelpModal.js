@@ -55,11 +55,19 @@ export default function HelpModal() {
 </p>
 <div id="about">
     <p>© Michael Kolesidis</p>
-    <a
-      href="https://github.com/michaelkolesidis/emoji-minesweeper" 
-      target="_blank">
-      GitHub
-    </a>
+    <div id="help-links">
+      <a
+        href="https://github.com/michaelkolesidis/emoji-minesweeper" 
+        target="_blank">
+        GitHub
+      </a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a
+        href="/help" 
+        target="_blank">
+        Help
+      </a>
+    </div>
 </div>
 `;
 }

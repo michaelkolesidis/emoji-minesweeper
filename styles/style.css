@@ -237,6 +237,12 @@ button:hover {
   margin-bottom: -0.4em;
 }
 
+#help-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 /* Custom Modal */
 #custom-modal {
   display: flex;
@@ -406,7 +412,7 @@ input {
 }
 
 .easter-egg > * {
-  animation: fly var(--duration, 50s) linear infinite;
+  animation: fly var(--duration, 10s) linear infinite;
   top: 0;
   left: 0;
   position: fixed;
@@ -414,7 +420,8 @@ input {
 }
 
 @keyframes fly {
-  0% {
+  0%,
+  100% {
     transform: translateX(var(--start-x, -200%))
       translateY(var(--start-y, 50vh)) rotateZ(0deg);
   }
@@ -432,10 +439,5 @@ input {
   75% {
     transform: translateX(var(--mid3-x, 50vw)) translateY(var(--mid3-y, 150%))
       rotateZ(270deg);
-  }
-
-  100% {
-    transform: translateX(var(--end-x, 100vw)) translateY(var(--end-y, 50vh))
-      rotateZ(360deg);
   }
 }

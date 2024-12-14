@@ -337,7 +337,7 @@ document.addEventListener('keydown', event => {
 
     setInterval(() => {
       addEasterEgg();
-    }, 2000);
+    }, 1000);
 
     function addEasterEgg() {
       const easterEgg = document.createElement('div');
