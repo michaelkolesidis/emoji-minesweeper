@@ -22,7 +22,7 @@ Lastly, players can choose between light ☀️ and dark 🌔 mode.
 
 ## Documentation
 
-Additional information for nerds 🤓 (architecture, technologies, debugging) can be found in the [documentation](./DOCS.md).
+Additional information for nerds 🤓 (architecture, technologies, debugging) can be found in the [documentation](./docs/DOCS.md).
 
 ## Technologies Used
 
@@ -272,5 +272,5 @@ The ICBL, in close partnership with a small number of states, the ICRC, and the 
 
 <a href="https://www.gnu.org/licenses/agpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AGPLv3_Logo.svg" height="100px" /></a>
 
-Copyright (c) Michael Kolesidis<br>
+Copyright (c) Michael Kolesidis  
 Licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).

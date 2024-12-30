@@ -1,0 +1,33 @@
+Emoji Minesweeper: Minesweeper Made with Emoji 😄
+
+https://emojiminesweeper.com/
+
+I have created a reimagining of minesweeper using emoji, and featuring themes, stats, and all the features of the game.
+
+Available as free and open source software, licensed under the GNU Affero General Public License v3.0.
+
+🎮 Four Difficulty Levels: Beginner (9x9 grid with 10 mines), Intermediate (16x16 grid with 40 mines), Expert (30x16 grid with 99 mines), Custom Mode (set your own grid size and number of mines)
+
+🎭 Six themes: 💣 Mine, 🌺 Flower, 🍄 Mushroom, 🐻 Bear, 🏄 Surf, 🏯 Japan
+
+🏆 Endgame: Safe squares transform into joyful faces 🥳 if player wins or into sad faces 😵 if player loses
+
+🌙 Light and Dark Modes
+
+🎯 First Click Guarantee: The first click is never on a mine
+
+🚩 Flag Mode: Toggle between digging and flagging for touchscreens.
+
+❌ Misflags are clearly marked
+
+💣 Mines Counter: Track how many mines remain unflagged. Excessive flagging marked
+
+⏱️ Timer: See how quickly you can clear the board.
+
+🔢 Moves Counter: Keep count of your clicks
+
+📈 Game Stats (for each level): Games Played 🎮, Wins and Win Percentage 🏆, Best Time ⏳, Lowest Moves 🏅, Advanced metrics (3BV, 3BV/s, Efficiency)
+
+❓Help Page with and introduction to Emoji Minesweeper and minesweeper game mechanics ( https://emojiminesweeper.com/help )
+
+Feel free to reach out if you have any feature requests, need assistance, or encounter any bugs! 😊
