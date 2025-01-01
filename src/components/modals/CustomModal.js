@@ -14,14 +14,14 @@ export default function CustomModal() {
   const columnsSettings = document.createElement('div');
   columnsSettings.classList.add('custom-section');
   columnsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/left-right_arrow_flat.svg" title="Columns "/>
-  <input type="text" id="columns-input" class="custom-input" placeholder="7-58">`;
+  <input type="text" id="columns-input" class="custom-input" placeholder="7-100">`;
   modal.appendChild(columnsSettings);
 
   // Rows
   const rowsSettings = document.createElement('div');
   rowsSettings.classList.add('custom-section');
   rowsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/up-down_arrow_flat.svg" title="Rows" />
-  <input type="text" id="rows-input" class="custom-input" placeholder="7-58">`;
+  <input type="text" id="rows-input" class="custom-input" placeholder="7-100">`;
   modal.appendChild(rowsSettings);
 
   // Mines
@@ -48,8 +48,8 @@ export default function CustomModal() {
     } else {
       if (columns < 7) {
         columns = 7;
-      } else if (columns > 58) {
-        columns = 58;
+      } else if (columns > 100) {
+        columns = 100;
       }
     }
     window.localStorage.setItem('columns', columns);
@@ -59,18 +59,31 @@ export default function CustomModal() {
     } else {
       if (rows < 7) {
         rows = 7;
-      } else if (rows > 58) {
-        rows = 58;
+      } else if (rows > 100) {
+        rows = 100;
       }
     }
     window.localStorage.setItem('rows', rows);
 
+    const minMinePercentage = 0.025;
+    const largeMinMinePercentage = 0.1;
+
+    const minMines = Math.ceil(columns * rows * minMinePercentage);
+    const largeMinMines = Math.ceil(columns * rows * largeMinMinePercentage);
+
     if (isNaN(mines)) {
       mines = 10;
     } else {
-      if (mines < 1) {
-        mines = 1;
+      if (columns * rows > 3600) {
+        if (mines < largeMinMines) {
+          mines = largeMinMines;
+        }
+      } else {
+        if (mines < minMines) {
+          mines = minMines;
+        }
       }
+
       if (mines > columns * rows - 1) {
         mines = columns * rows - 1;
       }

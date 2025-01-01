@@ -148,8 +148,8 @@ switch (level) {
       if (columns < 7) {
         columns = 7;
         window.localStorage.setItem('columns', columns);
-      } else if (columns > 58) {
-        columns = 58;
+      } else if (columns > 100) {
+        columns = 100;
         window.localStorage.setItem('columns', columns);
       }
     }
@@ -161,8 +161,8 @@ switch (level) {
       if (rows < 7) {
         rows = 7;
         window.localStorage.setItem('rows', rows);
-      } else if (rows > 58) {
-        rows = 58;
+      } else if (rows > 100) {
+        rows = 100;
         window.localStorage.setItem('rows', rows);
       }
     }
@@ -243,8 +243,8 @@ switch (level) {
     if (columns < 7) {
       columns = 7;
       window.localStorage.setItem('columns', columns);
-    } else if (columns > 58) {
-      columns = 58;
+    } else if (columns > 100) {
+      columns = 100;
       window.localStorage.setItem('columns', columns);
     }
 
@@ -252,8 +252,8 @@ switch (level) {
     if (rows < 7) {
       rows = 7;
       window.localStorage.setItem('rows', rows);
-    } else if (rows > 58) {
-      rows = 58;
+    } else if (rows > 100) {
+      rows = 100;
       window.localStorage.setItem('rows', rows);
     }
 

@@ -90,7 +90,7 @@ In order to keep track of how good (or bad) you are doing the game keeps your st
 
 If you do a new best time or win the game by less moves than ever before, not only are your stats updated accordingly, but empty squares become the partying emoji 🥳. The respective counters turn gold as well. In these examples, the player achieved both a new time record and a moves record, thus both counters have turned gold.
 
-There are four difficulty levels, with different board sizes and numbers of mines. Along with the classic and predetermined beginner, intermediate, and expert levels, there's a custom level as well, giving players the ability to set the dimensions of  the board, as well as the number of mines.
+There are four difficulty levels, with different board sizes and numbers of mines. Along with the classic and predetermined beginner, intermediate, and expert levels, there's a custom level as well, giving players the ability to set the dimensions of  the board, as well as the number of mines. Custom levels allow you to create boards as large as 100x100. Mines must cover at least 2.5% of the squares, or 5% for boards larger than 60x60. If the number of mines you choose falls below the minimum requirement, it will automatically adjust to meet the necessary threshold.
 
 |        Level | Dimensions | Mines | % of Mines |
 | -----------: | :--------: | :---: | :--------: |
