@@ -19,75 +19,62 @@ export default function ThemeButton(header) {
 
   // Theme Button Functionality
   themeButton.addEventListener('click', () => {
-    themeSwitcher();
+    switchTheme();
   });
 
-  // Utility Functions
-  function themeSwitcher() {
-    if (theme === 'mine') {
-      theme = 'flower';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'flower') {
-      theme = 'mushroom';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'mushroom') {
-      theme = 'bear';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'bear') {
-      theme = 'surf';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'surf') {
-      header.classList.add('japanese');
-      window.localStorage.setItem('japanese', 'true');
-      theme = 'japan';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'japan') {
-      header.classList.remove('japanese');
-      window.localStorage.setItem('japanese', 'false');
-      theme = 'mine';
-      window.localStorage.setItem('theme', theme);
-    }
-
-    if (!gameFinished) {
-      switchTheme();
-    } else {
-      window.location.reload();
-    }
-  }
-
-  function reverseThemeSwitcher() {
-    if (theme === 'mine') {
-      header.classList.add('japanese');
-      window.localStorage.setItem('japanese', 'true');
-      theme = 'japan';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'japan') {
-      header.classList.remove('japanese');
-      window.localStorage.setItem('japanese', 'false');
-      theme = 'surf';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'surf') {
-      theme = 'bear';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'bear') {
-      theme = 'mushroom';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'mushroom') {
-      theme = 'flower';
-      window.localStorage.setItem('theme', theme);
-    } else if (theme === 'flower') {
-      theme = 'mine';
-      window.localStorage.setItem('theme', theme);
-    }
-
-    if (!gameFinished) {
-      switchTheme();
-    } else {
-      window.location.reload();
-    }
-  }
-
+  // Utility Functions for Switching Themes
   function switchTheme() {
+    const themeKeys = Object.keys(themes);
+    let currentThemeIndex = themeKeys.indexOf(theme);
+
+    // Switch to next theme
+    currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
+    theme = themeKeys[currentThemeIndex];
+    window.localStorage.setItem('theme', theme);
+
+    // Handle Japanese theme
+    if (theme === 'japan') {
+      header.classList.add('japanese');
+      window.localStorage.setItem('japanese', 'true');
+    } else if (theme === 'mine') {
+      header.classList.remove('japanese');
+      window.localStorage.setItem('japanese', 'false');
+    }
+
+    if (!gameFinished) {
+      updateTheme();
+    } else {
+      window.location.reload();
+    }
+  }
+
+  function switchThemeReverse() {
+    const themeKeys = Object.keys(themes);
+    let currentThemeIndex = themeKeys.indexOf(theme);
+
+    // Switch to previous theme
+    currentThemeIndex =
+      (currentThemeIndex - 1 + themeKeys.length) % themeKeys.length;
+    theme = themeKeys[currentThemeIndex];
+    window.localStorage.setItem('theme', theme);
+
+    // Handle Japanese theme
+    if (theme === 'japan') {
+      header.classList.add('japanese');
+      window.localStorage.setItem('japanese', 'true');
+    } else if (theme === 'surf') {
+      header.classList.remove('japanese');
+      window.localStorage.setItem('japanese', 'false');
+    }
+
+    if (!gameFinished) {
+      updateTheme();
+    } else {
+      window.location.reload();
+    }
+  }
+
+  function updateTheme() {
     WON = loadImage(themes[theme].won);
     LOST = loadImage(themes[theme].lost);
     MINE = loadImage(themes[theme].mine);
@@ -104,12 +91,13 @@ export default function ThemeButton(header) {
   document.addEventListener('keydown', event => {
     // Switch Themes
     if (event.code === 'ArrowRight') {
-      themeSwitcher();
+      switchTheme();
     }
 
     if (event.code === 'ArrowLeft') {
-      reverseThemeSwitcher();
+      switchThemeReverse();
     }
   });
+
   return themeButton;
 }
