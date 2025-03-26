@@ -43,7 +43,7 @@ export default function CustomModal() {
     let rows = document.getElementById('rows-input').value;
     let mines = document.getElementById('mines-input').value;
 
-    if (isNaN(columns)) {
+    if (!columns) {
       columns = 9;
     } else {
       if (columns < 7) {
@@ -54,7 +54,7 @@ export default function CustomModal() {
     }
     window.localStorage.setItem('columns', columns);
 
-    if (isNaN(rows)) {
+    if (!rows) {
       rows = 9;
     } else {
       if (rows < 7) {
@@ -65,16 +65,17 @@ export default function CustomModal() {
     }
     window.localStorage.setItem('rows', rows);
 
+    const totalCells = columns * rows;
     const minMinePercentage = 0.025;
     const largeMinMinePercentage = 0.1;
 
-    const minMines = Math.ceil(columns * rows * minMinePercentage);
-    const largeMinMines = Math.ceil(columns * rows * largeMinMinePercentage);
+    const minMines = Math.ceil(totalCells * minMinePercentage);
+    const largeMinMines = Math.ceil(totalCells * largeMinMinePercentage);
 
-    if (isNaN(mines)) {
+    if (!mines) {
       mines = 10;
     } else {
-      if (columns * rows > 3600) {
+      if (totalCells > 3600) {
         if (mines < largeMinMines) {
           mines = largeMinMines;
         }
@@ -84,8 +85,10 @@ export default function CustomModal() {
         }
       }
 
-      if (mines > columns * rows - 1) {
-        mines = columns * rows - 1;
+      const maxMines = Math.floor(totalCells * 0.8); // Mines can be up to 80% of the board
+
+      if (mines > maxMines) {
+        mines = maxMines;
       }
     }
     window.localStorage.setItem('mines', mines);
