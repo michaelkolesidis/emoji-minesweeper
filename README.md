@@ -6,6 +6,8 @@
 ![Win mines](./screenshots/win_mines_v8c.png)
 ![Win flowers](./screenshots/win_flowers_v8c.png)
 
+<a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:80px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 ![Attention! Free Software](./assets/attention-free-software.png)
 
 This software is free (as in freedom). **If you use any part of this code, you must make your entire project's source code publicly available under the same license.** This applies whether you modify the code or use it as it is in your own project. This ensures that all modifications and derivative works remain free software, so that everyone can benefit. If you are not willing to comply with these terms, you must refrain from using any part of this code.
@@ -13,8 +15,6 @@ This software is free (as in freedom). **If you use any part of this code, you m
 For full license terms and conditions, you can read the AGPL-3.0 at: [gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/licenses/agpl-3.0.html).
 
 ## [Play!](https://www.emojiminesweeper.com/)
-
-<a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:80px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 Emoji Minesweeper is a **logic puzzle game**, a variant of the classic [minesweeper game](<https://en.wikipedia.org/wiki/Minesweeper_(video_game)>) reimagined and implemented using **emoji**! It features a **grid of clickable squares**, with hidden **mines** (or flowers) scattered throughout the board. Safe squares have **numbers** telling you how many mines touch the square. If there is no number, the square doesn't touch any mine. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you **lose** the game!
 
