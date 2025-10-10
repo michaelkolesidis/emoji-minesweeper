@@ -41,7 +41,8 @@ html,
 body {
   background-color: var(--secondary-color);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 100%;
 }
@@ -80,6 +81,7 @@ img {
   flex-direction: column;
   place-items: center;
   min-width: 290px;
+  max-width: fit-content;
   height: fit-content;
   border-radius: 20px;
   padding: 0.2rem 1rem 0.4rem;

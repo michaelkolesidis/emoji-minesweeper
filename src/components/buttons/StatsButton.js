@@ -10,9 +10,6 @@ export default function StatsButton() {
   statsButton.title = `Stats`;
   statsButton.className = `emoji-button`;
   statsButton.innerHTML = `<img src="../../../emoji/svg/bar_chart_flat.svg" />`;
-
-  // Functionality
-  // In main.js
-
+  // The click functionality is handled in main.js
   return statsButton;
 }

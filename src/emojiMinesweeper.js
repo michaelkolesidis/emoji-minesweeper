@@ -291,6 +291,55 @@ let gameFinished = false;
 let newBestMoves = false; // used when the player has made a new best moves record
 let newBestTime = false; // used when the player has made a new best time
 
+let timerInterval = null; // the timer's interval ID
+
+function resetGame() {
+  // 1. Reset all game state variables to their initial values
+  squares = [];
+  minedSquares = [];
+  squareCounter = 0;
+  numberOfMines = initialMines;
+  flaggedSquares = 0;
+  moves = 0;
+  startTime = null;
+  timePassed = 0;
+  gameFinished = false;
+  isFirstClick = true;
+  mineReallocated = false;
+  newBestMoves = false;
+  newBestTime = false;
+
+  // 2. Stop and reset the timer
+  stopTimer = true; // Ensure any running timer loop stops
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  stopTimer = false; // Reset the flag for the next game
+
+  // 3. Reset the visual state of emojis
+  NUMBERS[0] = darkMode
+    ? loadImage(darkTheme.empty)
+    : loadImage('../emoji/white_large_square_flat.png');
+
+  // 4. Remove end-game visual effects from the header
+  const header = document.getElementById('header');
+  if (header) {
+    header.classList.remove('wavy');
+    header.style.color = ''; // Resets to default CSS color
+  }
+
+  // 5. Re-initialize the board with new mines
+  allocateMines();
+  generateSquares();
+  calculateMines();
+
+  // 6. Tell p5.js to start the draw loop again
+  loop();
+}
+
+window.resetGame = resetGame; // Make the resetGame function globally accessible so other files can call it
+
 /**
  * Mine allocation
  */
@@ -333,14 +382,18 @@ function calculateMines() {
 let timePassed = 0;
 let stopTimer = false;
 
-const startTimer = () => {
-  setInterval(() => {
-    if (stopTimer) {
-      return;
+function startTimer() {
+  // Clear any previous interval to prevent multiple timers running
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+  // Store the interval ID so we can clear it later
+  timerInterval = setInterval(() => {
+    if (!stopTimer) {
+      timePassed += 1;
     }
-    timePassed += 1;
   }, 1000);
-};
+}
 
 /**
  * Setup
@@ -862,6 +915,7 @@ function gameWon() {
     }
   }
   stopTimer = true;
+  if (timerInterval) clearInterval(timerInterval); // Stop the timer
 
   const header = document.getElementById('header');
   header.classList.add('wavy');
@@ -891,6 +945,7 @@ function gameLost() {
   let time = endTime - startTime; //in ms
   time = time / 1000;
   stopTimer = true;
+  if (timerInterval) clearInterval(timerInterval); // Stop the timer
 }
 
 // Add move to total moves
@@ -999,7 +1054,7 @@ function keyPressed() {
 
   // New Game
   if (keyCode === 78) {
-    window.location.reload();
+    resetGame();
   }
 }
 

@@ -4,5 +4,4 @@
  *  GNU Affero General Public License v3.0
  */
 
-// Element creation & functionality
-// In main.js
+// Element creation & functionality is handled in main.js

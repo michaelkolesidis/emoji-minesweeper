@@ -27,6 +27,7 @@ import HelpButton from './components/buttons/HelpButton.js';
 import FlagButton from './components/buttons/FlagButton.js';
 import DarkModeButton from './components/buttons/DarkModeButton.js';
 import Forcer from './components/Forcer.js';
+import ICBLLogo from './components/ICBLLogo.js';
 
 // Utilities
 import { greet } from './utils/consoleUtils.js';
@@ -76,6 +77,10 @@ const gameContainer = document.createElement('div');
 gameContainer.setAttribute('id', 'game-container');
 document.body.appendChild(gameContainer);
 
+// ICBL Logo
+const icblLogo = ICBLLogo();
+document.body.appendChild(icblLogo);
+
 // Header
 let header = Header(title);
 gameContainer.appendChild(header);
@@ -101,6 +106,20 @@ gameContainer.appendChild(emojiButtonsContainer);
 // New Game Button
 const newGameButton = NewGameButton();
 emojiButtonsContainer.appendChild(newGameButton);
+newGameButton.addEventListener('click', () => {
+  // Check if the resetGame function from emojiMinesweeper.js is available
+  if (typeof window.resetGame === 'function') {
+    if (modalOpen) {
+      modalOpen = false;
+      window.localStorage.setItem('customModalOpen', 'false');
+      closeModal();
+    }
+    window.resetGame();
+  } else {
+    // Fallback to reload if something goes wrong
+    window.location.reload();
+  }
+});
 
 // Beginner Button
 const beginnerButton = BeginnerButton();

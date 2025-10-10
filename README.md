@@ -264,7 +264,7 @@ Thank you so much for your interest in my project! If you want to go a step furt
 
 ## International Campaign to Ban Landmines
 
-![ICBL Logo](./assets/icbl_logo.png)
+![ICBL Logo](./assets/icbl_logo.svg)
 
 Antipersonnel landmines are explosive devices designed to be detonated by the presence, proximity, or contact of a person. Placed under or on the ground, they can lie dormant for years and even decades until a person or animal triggers their detonating mechanism.
 
