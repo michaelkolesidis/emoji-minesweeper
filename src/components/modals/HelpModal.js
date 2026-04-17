@@ -58,7 +58,7 @@ export default function HelpModal() {
       <a
         href="https://github.com/michaelkolesidis/emoji-minesweeper" 
         target="_blank">
-        GitHub
+        Source
       </a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a
