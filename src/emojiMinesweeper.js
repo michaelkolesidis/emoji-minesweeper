@@ -54,30 +54,30 @@ let time;
 function preload() {
   CLOSED = darkMode
     ? loadImage(darkTheme.closed)
-    : loadImage('../emoji/black_square_button_flat.png');
+    : loadImage('emoji/black_square_button_flat.png');
   NUMBERS[0] = darkMode
     ? loadImage(darkTheme.empty)
-    : loadImage('../emoji/white_large_square_flat.png');
-  NUMBERS[1] = loadImage('../emoji/keycap_1_flat.png');
-  NUMBERS[2] = loadImage('../emoji/keycap_2_flat.png');
-  NUMBERS[3] = loadImage('../emoji/keycap_3_flat.png');
-  NUMBERS[4] = loadImage('../emoji/keycap_4_flat.png');
-  NUMBERS[5] = loadImage('../emoji/keycap_5_flat.png');
-  NUMBERS[6] = loadImage('../emoji/keycap_6_flat.png');
-  NUMBERS[7] = loadImage('../emoji/keycap_7_flat.png');
-  NUMBERS[8] = loadImage('../emoji/keycap_8_flat.png');
-  NUMBERS[9] = loadImage('../emoji/keycap_9_flat.png');
-  FLAG = loadImage('../emoji/triangular_flag_flat.png');
-  WRONG = loadImage('../emoji/cross_mark_flat.png');
-  TIMER = loadImage('../emoji/hourglass_done_flat.png');
-  MOVES = loadImage('../emoji/abacus_flat.png');
-  BEST = loadImage('../emoji/partying_face_flat.png');
+    : loadImage('emoji/white_large_square_flat.png');
+  NUMBERS[1] = loadImage('emoji/keycap_1_flat.png');
+  NUMBERS[2] = loadImage('emoji/keycap_2_flat.png');
+  NUMBERS[3] = loadImage('emoji/keycap_3_flat.png');
+  NUMBERS[4] = loadImage('emoji/keycap_4_flat.png');
+  NUMBERS[5] = loadImage('emoji/keycap_5_flat.png');
+  NUMBERS[6] = loadImage('emoji/keycap_6_flat.png');
+  NUMBERS[7] = loadImage('emoji/keycap_7_flat.png');
+  NUMBERS[8] = loadImage('emoji/keycap_8_flat.png');
+  NUMBERS[9] = loadImage('emoji/keycap_9_flat.png');
+  FLAG = loadImage('emoji/triangular_flag_flat.png');
+  WRONG = loadImage('emoji/cross_mark_flat.png');
+  TIMER = loadImage('emoji/hourglass_done_flat.png');
+  MOVES = loadImage('emoji/abacus_flat.png');
+  BEST = loadImage('emoji/partying_face_flat.png');
   WON = loadImage(themes[theme]['won']);
   LOST = loadImage(themes[theme]['lost']);
   MINE = loadImage(themes[theme]['mine']);
   DETONATION = loadImage(themes[theme]['detonation']);
 
-  font = loadFont('../fonts/Nunito-Black.ttf');
+  font = loadFont('fonts/Nunito-Black.ttf');
 }
 
 /**
@@ -320,7 +320,7 @@ function resetGame() {
   // 3. Reset the visual state of emojis
   NUMBERS[0] = darkMode
     ? loadImage(darkTheme.empty)
-    : loadImage('../emoji/white_large_square_flat.png');
+    : loadImage('emoji/white_large_square_flat.png');
 
   // 4. Remove end-game visual effects from the header
   const header = document.getElementById('header');
