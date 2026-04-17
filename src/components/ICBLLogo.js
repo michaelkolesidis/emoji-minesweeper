@@ -16,7 +16,7 @@ export default function ICBLLogo() {
   // Logo Image
   const icblLogo = document.createElement('img');
   icblLogo.style.width = '180px';
-  icblLogo.src = '../assets/icbl_logo.svg';
+  icblLogo.src = 'assets/icbl_logo.svg';
   icblLogo.id = 'icbl-logo';
 
   // Link Wrapper

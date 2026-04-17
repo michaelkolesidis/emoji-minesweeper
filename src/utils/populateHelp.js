@@ -8,7 +8,7 @@
 
 document.body.innerHTML = /* html */ `
 <header>
-  <img src="../assets/logo.svg" alt="Emoji Minesweeper logo and wordmark" />
+  <img src="assets/logo.svg" alt="Emoji Minesweeper logo and wordmark" />
   <h1>Emoji Minesweeper Help</h1>
 </header>
 <div id="help-page">

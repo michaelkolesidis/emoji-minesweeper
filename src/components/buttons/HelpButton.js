@@ -9,7 +9,7 @@ export default function HelpButton() {
   const helpButton = document.createElement('div');
   helpButton.title = `Toggle help modal`;
   helpButton.className = `emoji-button`;
-  helpButton.innerHTML = `<img src="../../../emoji/white_question_mark_flat.png" />`;
+  helpButton.innerHTML = `<img src="emoji/white_question_mark_flat.png" />`;
   // The click functionality is handled in main.js
   return helpButton;
 }

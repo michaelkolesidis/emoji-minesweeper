@@ -15,7 +15,7 @@ export default function ThemeButton(header) {
   themeButton.title = `Change theme`;
   themeButton.id = `theme-button`;
   themeButton.className = `emoji-button`;
-  themeButton.innerHTML = `<img src="../../${themes[theme].mine}" />`;
+  themeButton.innerHTML = `<img src="${themes[theme].mine}" />`;
 
   // Theme Button Functionality
   themeButton.addEventListener('click', () => {
@@ -84,7 +84,7 @@ export default function ThemeButton(header) {
     document.title = title;
     window.localStorage.setItem('mainEmoji', themes[theme].mine);
     header.innerHTML = themes[theme].title;
-    themeButton.innerHTML = `<img src="../../${themes[theme].mine}" / >`;
+    themeButton.innerHTML = `<img src="${themes[theme].mine}" / >`;
   }
 
   // Keyboard Action Handling

@@ -13,21 +13,21 @@ export default function CustomModal() {
   // Columns
   const columnsSettings = document.createElement('div');
   columnsSettings.classList.add('custom-section');
-  columnsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/left-right_arrow_flat.svg" title="Columns "/>
+  columnsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/left-right_arrow_flat.svg" title="Columns "/>
   <input type="text" id="columns-input" class="custom-input" placeholder="7-100">`;
   modal.appendChild(columnsSettings);
 
   // Rows
   const rowsSettings = document.createElement('div');
   rowsSettings.classList.add('custom-section');
-  rowsSettings.innerHTML = `<img class="custom-label" src="../../../emoji/svg/up-down_arrow_flat.svg" title="Rows" />
+  rowsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/up-down_arrow_flat.svg" title="Rows" />
   <input type="text" id="rows-input" class="custom-input" placeholder="7-100">`;
   modal.appendChild(rowsSettings);
 
   // Mines
   const mineSettings = document.createElement('div');
   mineSettings.classList.add('custom-section');
-  mineSettings.innerHTML = `<img class="custom-label" src="../../${themes[theme].mine}" title="Mines"/>
+  mineSettings.innerHTML = `<img class="custom-label" src="${themes[theme].mine}" title="Mines"/>
   <input type="text" id="mines-input" class="custom-input">`;
   modal.appendChild(mineSettings);
 
@@ -104,7 +104,7 @@ export default function CustomModal() {
   const themeButton = document.getElementById('theme-button');
 
   const resetMineIcon = () =>
-    (mineSettings.innerHTML = `<img class="custom-label" src="../../${themes[theme].mine}" title="Mines"/>
+    (mineSettings.innerHTML = `<img class="custom-label" src="${themes[theme].mine}" title="Mines"/>
   <input type="text" id="mines-input" class="custom-input">`);
 
   themeButton.addEventListener('click', () => {

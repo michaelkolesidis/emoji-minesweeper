@@ -9,7 +9,7 @@ export default function CustomButton() {
   const customButton = document.createElement('div');
   customButton.title = `Custom level`;
   customButton.className = `emoji-button`;
-  customButton.innerHTML = `<img src="../../../emoji/keycap_asterisk_flat.png" />`;
+  customButton.innerHTML = `<img src="emoji/keycap_asterisk_flat.png" />`;
   if (level === 'custom') {
     customButton.classList.add('emoji-button-clicked');
   }
