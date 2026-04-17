@@ -31,7 +31,7 @@ __WARNING: Debug mode is still experimental and many known bugs exist, that may 
 
 In order to perform diagnostics or to study the game's internal functions, developers can access debug mode. In debug mode, the square numbers are visible on each square, with the squares containing a mine having their number in red. Additionally, the mine locations can be chosen before the start of the game. Game stats are not accessible and __results are not counted__ while in debug mode.
 
-In order to access debug mode add simply add __#debug__ at the end of the game's URL. Here is a link that will take you to debug mode: [https://emojiminesweeper.com#debug](https://emojiminesweeper.com#debug)
+In order to access debug mode add simply add __#debug__ at the end of the game's URL. Here is a link that will take you to debug mode: [https://thumbfeed.com/emoji-minesweeper/#debug](https://thumbfeed.com/emoji-minesweeper/#debug)
 
 ## Feature List
 
