@@ -562,7 +562,7 @@ document.body.innerHTML = /* html */ `
 
   <h3>International Campaign to Ban Landmines</h3>
 
-  <img src="./assets/icbl_logo.png" alt="ICBL Logo" />
+  <img src="./assets/icbl_logo.svg" alt="ICBL Logo" />
 
   <p>
     Antipersonnel landmines are explosive devices designed to be detonated by
