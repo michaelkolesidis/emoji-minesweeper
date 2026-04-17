@@ -44,8 +44,8 @@ export default function IntermediateButton() {
     });
     setTimeout(() => {
       tooltip.classList.remove('tooltip-visible');
-      setTimeout(() => tooltip.remove(), 100);
-    }, 1000);
+      setTimeout(() => tooltip.remove(), 400);
+    }, 2000);
   };
 
   // Click Event
