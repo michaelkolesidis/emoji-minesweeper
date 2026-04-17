@@ -64,6 +64,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+#mobile-logo {
+  display: none;
+}
+
 .site-logo-img {
   width: 100%;
   -webkit-user-drag: none;
@@ -72,7 +76,15 @@ body {
 @media screen and (max-width: 600px) {
   .site-logo {
     opacity: 0.85;
-    width: 120px;
+    width: 50px;
+  }
+
+  #mobile-logo {
+    display: block;
+  }
+
+  #desktop-logo {
+    display: none;
   }
 
   #icbl-logo {
