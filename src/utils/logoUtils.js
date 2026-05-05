@@ -9,12 +9,29 @@ const desktopLogo = {
   dark: 'assets/thumbfeed-logo-inline-white.svg',
 };
 
+const icblLogo = {
+  light: 'assets/icbl_logo.svg',
+  dark: 'assets/icbl_logo_white.svg',
+};
+
+export function setLogoTheme(isDarkMode) {
+  setImageSource(
+    'desktop-logo',
+    isDarkMode ? desktopLogo.dark : desktopLogo.light
+  );
+  setImageSource('icbl-logo', isDarkMode ? icblLogo.dark : icblLogo.light);
+}
+
 export function setDesktopLogoTheme(isDarkMode) {
-  const logo = document.getElementById('desktop-logo');
+  setLogoTheme(isDarkMode);
+}
+
+function setImageSource(id, source) {
+  const logo = document.getElementById(id);
 
   if (!logo) {
     return;
   }
 
-  logo.src = isDarkMode ? desktopLogo.dark : desktopLogo.light;
+  logo.src = source;
 }

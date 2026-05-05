@@ -84,6 +84,7 @@ document.body.appendChild(gameContainer);
 // ICBL Logo
 const icblLogo = ICBLLogo();
 document.body.appendChild(icblLogo);
+setDesktopLogoTheme(darkMode);
 
 // Header
 let header = Header(title);
