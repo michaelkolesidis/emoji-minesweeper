@@ -189,7 +189,15 @@
   }
 
   function clear() {
-    adapter.clear();
+    LEVELS.forEach(level => {
+      Object.keys(statFields).forEach(field => {
+        adapter.remove(keyFor(level, field));
+      });
+    });
+
+    Object.keys(summaryFields).forEach(key => {
+      adapter.remove(key);
+    });
   }
 
   function setAdapter(nextAdapter) {

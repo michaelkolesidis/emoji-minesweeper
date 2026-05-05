@@ -4,7 +4,7 @@
  *  GNU Affero General Public License v3.0
  */
 
-import { setLevel } from '../../utils/levelUtils.js';
+import { setLevel, shouldIgnoreLevelShortcut } from '../../utils/levelUtils.js';
 
 export default function BeginnerButton() {
   // Button
@@ -30,13 +30,11 @@ export default function BeginnerButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
+    if (shouldIgnoreLevelShortcut(e)) return;
+
     const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
-    if (
-      e.code === 'Digit1' &&
-      level !== 'beginner' &&
-      modalOpen !== 'true'
-    ) {
+    if (e.code === 'Digit1' && level !== 'beginner' && modalOpen !== 'true') {
       setLevel('beginner');
     }
   });

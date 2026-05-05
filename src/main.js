@@ -109,14 +109,8 @@ gameContainer.appendChild(emojiButtonsContainer);
 const newGameButton = NewGameButton();
 emojiButtonsContainer.appendChild(newGameButton);
 newGameButton.addEventListener('click', () => {
-  // Check if the resetGame function from emojiMinesweeper.js is available
-  if (typeof window.emojiMinesweeper?.resetGame === 'function') {
-    closeActiveModal();
-    window.emojiMinesweeper.resetGame();
-  } else {
-    // Fallback to reload if something goes wrong
-    window.location.reload();
-  }
+  closeActiveModal();
+  window.emojiMinesweeper?.resetGame();
 });
 
 // Beginner Button
@@ -133,10 +127,12 @@ emojiButtonsContainer.appendChild(expertButton);
 
 // Custom Button
 const customButton = CustomButton();
+customButton.dataset.modalTarget = 'custom-modal';
 emojiButtonsContainer.appendChild(customButton);
 
 // Stats Button
 const statsButton = StatsButton();
+statsButton.dataset.modalTarget = 'stats-modal';
 emojiButtonsContainer.appendChild(statsButton);
 
 // Theme Button
@@ -145,6 +141,7 @@ emojiButtonsContainer.appendChild(themeButton);
 
 // Help Button
 const helpButton = HelpButton();
+helpButton.dataset.modalTarget = 'help-modal';
 emojiButtonsContainer.appendChild(helpButton);
 
 // Flag Button
@@ -159,6 +156,7 @@ emojiButtonsContainer.appendChild(darkModeButton);
  * Modals
  */
 let activeModalId = null;
+let suppressedModalToggleId = null;
 window.localStorage.setItem('customModalOpen', 'false');
 
 function setCustomModalState(modalId) {
@@ -185,6 +183,11 @@ function closeActiveModal() {
 }
 
 function toggleModal(modalId, renderModal) {
+  if (suppressedModalToggleId === modalId) {
+    suppressedModalToggleId = null;
+    return;
+  }
+
   if (activeModalId === modalId) {
     closeActiveModal();
     return;
@@ -202,6 +205,11 @@ statsButton.addEventListener('click', toggleStatsModal);
 helpButton.addEventListener('click', toggleHelpModal);
 
 document.addEventListener('keydown', e => {
+  if (e.code === 'Escape') {
+    closeActiveModal();
+    return;
+  }
+
   if (e.code === 'KeyS') {
     toggleStatsModal();
   }
@@ -217,6 +225,22 @@ document.addEventListener('levelChanged', () => {
 
 document.addEventListener('customLevelSubmitted', () => {
   closeActiveModal();
+});
+
+document.addEventListener('pointerdown', e => {
+  if (window.localStorage.getItem('modalOpen') !== 'true') {
+    return;
+  }
+
+  const modal = document.querySelector('.modal');
+  if (modal && !modal.contains(e.target)) {
+    const modalTrigger = e.target.closest('[data-modal-target]');
+    if (modalTrigger?.dataset.modalTarget === activeModalId) {
+      suppressedModalToggleId = activeModalId;
+    }
+
+    closeActiveModal();
+  }
 });
 
 /**
@@ -283,20 +307,67 @@ if (window.location.hash === '#debug') {
   const submitButton = document.getElementById('forcer-submit');
 
   submitButton.addEventListener('click', function () {
-    const numbers = document.getElementById('forcer-input').value;
-    if (numbers) {
-      const mines = Array.from(
-        new Set(
-          numbers.split(',').map(function (mine) {
-            return parseInt(mine, 10);
-          })
-        )
-      );
-      window.localStorage.setItem('mines', mines);
-      window.localStorage.setItem('numberOfMines', mines.length);
-      location.reload();
+    const input = document.getElementById('forcer-input');
+    const message = document.getElementById('forcer-message');
+    const mines = parseForcedMines(input.value);
+
+    if (mines.length === 0) {
+      message.textContent = 'Enter at least one valid square number.';
+      return;
     }
+
+    if (window.emojiMinesweeper?.setForcedMines(mines)) {
+      message.textContent = `Forced ${mines.length} mine${
+        mines.length === 1 ? '' : 's'
+      }.`;
+      input.value = mines.join(', ');
+      return;
+    }
+
+    message.textContent = 'Could not apply forced mines.';
   });
+
+  function parseForcedMines(value) {
+    const maxSquare = getCurrentBoardSquareCount() - 1;
+
+    return Array.from(
+      new Set(
+        value
+          .split(/[\s,;]+/)
+          .map(mine => Number.parseInt(mine, 10))
+          .filter(
+            mine => Number.isInteger(mine) && mine >= 0 && mine <= maxSquare
+          )
+      )
+    );
+  }
+
+  function getCurrentBoardSquareCount() {
+    const level = window.localStorage.getItem('level');
+
+    switch (level) {
+      case 'intermediate':
+        return 16 * 16;
+      case 'expert':
+        return 30 * 16;
+      case 'custom': {
+        const columns = Number.parseInt(
+          window.localStorage.getItem('columns'),
+          10
+        );
+        const rows = Number.parseInt(window.localStorage.getItem('rows'), 10);
+
+        if (Number.isInteger(columns) && Number.isInteger(rows)) {
+          return columns * rows;
+        }
+
+        return 9 * 9;
+      }
+      case 'beginner':
+      default:
+        return 9 * 9;
+    }
+  }
 }
 
 /**

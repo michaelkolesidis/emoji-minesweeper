@@ -260,7 +260,7 @@ button:hover {
   position: absolute;
   z-index: -1;
   padding: 1rem 2rem 2rem 2rem;
-  box-shadow: 0 0 12px var(--main-color);
+  box-shadow: 0 0 4px var(--main-color);
 }
 
 /* Help Modal */
@@ -314,27 +314,30 @@ button:hover {
   align-items: center;
   text-align: center;
   font-size: 0.8rem;
-  padding: 1rem 1.2rem 1rem 1.2rem;
-  top: -265px;
+  gap: 0.35rem;
+  padding: 1rem 1.25rem;
+  top: -285px;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
 }
 
 .custom-section {
   display: flex;
   align-items: center;
-  margin-bottom: 0.2rem;
+  justify-content: center;
 }
 
 .custom-label {
-  padding-bottom: 0.28rem;
-  margin-right: 0.3rem;
+  margin-right: 0.45rem;
   width: 30px;
 }
 
 .custom-input {
-  width: 4rem;
+  width: 5rem;
   height: 2rem;
   text-align: center;
-  margin-top: 0.1rem;
+  margin: 0;
+  font-weight: 900;
 }
 
 /* Stats Modal */
@@ -470,9 +473,9 @@ button:hover {
 }
 
 @media (hover: none) {
-  .mobile-desktop-only:hover,
-  .mobile-desktop-only:active,
-  .mobile-desktop-only:focus {
+  .emoji-button:hover:not(.emoji-button-clicked),
+  .emoji-button:active:not(.emoji-button-clicked),
+  .emoji-button:focus:not(.emoji-button-clicked) {
     opacity: 1;
   }
 }
@@ -494,6 +497,14 @@ button:hover {
 #forcer-title {
   font-weight: 900;
   margin-bottom: 0.5em;
+}
+
+#forcer-message {
+  font-size: 0.72rem;
+  font-weight: 900;
+  min-height: 1rem;
+  margin: -0.25rem 0 0.35rem;
+  text-align: center;
 }
 
 input {

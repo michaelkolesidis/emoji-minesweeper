@@ -17,26 +17,48 @@ export default function CustomModal() {
   // Columns
   const columnsSettings = document.createElement('div');
   columnsSettings.classList.add('custom-section');
-  columnsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/left-right_arrow_flat.svg" title="Columns "/>
-  <input type="text" id="columns-input" class="custom-input" placeholder="7-100">`;
+  columnsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/left-right_arrow_flat.svg" title="Columns"/>
+  <input type="number" id="columns-input" class="custom-input" min="7" max="100" step="1" placeholder="9">`;
   modal.appendChild(columnsSettings);
 
   // Rows
   const rowsSettings = document.createElement('div');
   rowsSettings.classList.add('custom-section');
   rowsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/up-down_arrow_flat.svg" title="Rows" />
-  <input type="text" id="rows-input" class="custom-input" placeholder="7-100">`;
+  <input type="number" id="rows-input" class="custom-input" min="7" max="100" step="1" placeholder="9">`;
   modal.appendChild(rowsSettings);
 
   // Mines
   const mineSettings = document.createElement('div');
   mineSettings.classList.add('custom-section');
   const getTheme = () => window.localStorage.getItem('theme') ?? 'mine';
-  mineSettings.innerHTML = `<img class="custom-label" src="${
-    themes[getTheme()].mine
-  }" title="Mines"/>
-  <input type="text" id="mines-input" class="custom-input">`;
+  const mineLabel = document.createElement('img');
+  mineLabel.className = 'custom-label';
+  mineLabel.title = 'Mines';
+  mineLabel.src = themes[getTheme()].mine;
+  const minesInput = document.createElement('input');
+  minesInput.type = 'number';
+  minesInput.id = 'mines-input';
+  minesInput.className = 'custom-input';
+  minesInput.min = '1';
+  minesInput.step = '1';
+  minesInput.placeholder = '10';
+  mineSettings.append(mineLabel, minesInput);
   modal.appendChild(mineSettings);
+
+  const savedColumns = parseInt(window.localStorage.getItem('columns'), 10);
+  const savedRows = parseInt(window.localStorage.getItem('rows'), 10);
+  const savedMines = parseInt(window.localStorage.getItem('mines'), 10);
+
+  if (Number.isInteger(savedColumns)) {
+    document.getElementById('columns-input').value = savedColumns;
+  }
+  if (Number.isInteger(savedRows)) {
+    document.getElementById('rows-input').value = savedRows;
+  }
+  if (Number.isInteger(savedMines)) {
+    minesInput.value = savedMines;
+  }
 
   // Submit Button
   const submitButton = document.createElement('button');
@@ -46,58 +68,14 @@ export default function CustomModal() {
 
   // Submit Button Functionality
   submitButton.addEventListener('click', () => {
-    let columns = document.getElementById('columns-input').value;
-    let rows = document.getElementById('rows-input').value;
-    let mines = document.getElementById('mines-input').value;
-
-    if (!columns) {
-      columns = 9;
-    } else {
-      if (columns < 7) {
-        columns = 7;
-      } else if (columns > 100) {
-        columns = 100;
-      }
-    }
+    const columns = readClampedInteger('columns-input', 9, 7, 100);
     window.localStorage.setItem('columns', columns);
 
-    if (!rows) {
-      rows = 9;
-    } else {
-      if (rows < 7) {
-        rows = 7;
-      } else if (rows > 100) {
-        rows = 100;
-      }
-    }
+    const rows = readClampedInteger('rows-input', 9, 7, 100);
     window.localStorage.setItem('rows', rows);
 
     const totalCells = columns * rows;
-    const minMinePercentage = 0.025;
-    const largeMinMinePercentage = 0.1;
-
-    const minMines = Math.ceil(totalCells * minMinePercentage);
-    const largeMinMines = Math.ceil(totalCells * largeMinMinePercentage);
-
-    if (!mines) {
-      mines = 10;
-    } else {
-      if (totalCells > 3600) {
-        if (mines < largeMinMines) {
-          mines = largeMinMines;
-        }
-      } else {
-        if (mines < minMines) {
-          mines = minMines;
-        }
-      }
-
-      const maxMines = Math.floor(totalCells * 0.8); // Mines can be up to 80% of the board
-
-      if (mines > maxMines) {
-        mines = maxMines;
-      }
-    }
+    const mines = readClampedInteger('mines-input', 10, 1, totalCells - 1);
     window.localStorage.setItem('mines', mines);
 
     if (window.localStorage.getItem('level') !== 'custom') {
@@ -115,11 +93,9 @@ export default function CustomModal() {
   const themeButton = document.getElementById('theme-button');
   const listenerController = new AbortController();
 
-  const resetMineIcon = () =>
-    (mineSettings.innerHTML = `<img class="custom-label" src="${
-      themes[getTheme()].mine
-    }" title="Mines"/>
-  <input type="text" id="mines-input" class="custom-input">`);
+  const resetMineIcon = () => {
+    mineLabel.src = themes[getTheme()].mine;
+  };
 
   themeButton.addEventListener('click', resetMineIcon, {
     signal: listenerController.signal,
@@ -139,4 +115,15 @@ export default function CustomModal() {
     listenerController.abort();
     window.cleanupCustomModalListeners = null;
   };
+}
+
+function readClampedInteger(inputId, fallback, min, max) {
+  const input = document.getElementById(inputId);
+  const value = Number.parseInt(input.value, 10);
+  const clampedValue = Number.isInteger(value)
+    ? Math.min(Math.max(value, min), max)
+    : fallback;
+
+  input.value = clampedValue;
+  return clampedValue;
 }

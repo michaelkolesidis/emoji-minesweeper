@@ -11,7 +11,21 @@ export function setLevel(level) {
   }
 
   window.emojiMinesweeper?.setLevel(level);
-  document.dispatchEvent(new CustomEvent('levelChanged', { detail: { level } }));
+  document.dispatchEvent(
+    new CustomEvent('levelChanged', { detail: { level } })
+  );
+}
+
+export function shouldIgnoreLevelShortcut(event) {
+  const target = event.target;
+
+  return (
+    window.location.hash === '#debug' ||
+    target instanceof HTMLInputElement ||
+    target instanceof HTMLTextAreaElement ||
+    target instanceof HTMLSelectElement ||
+    target?.isContentEditable
+  );
 }
 
 export function syncLevelButtons() {

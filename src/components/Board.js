@@ -8,24 +8,30 @@ export default function Board() {
   const board = document.createElement('div');
   board.setAttribute('id', 'board');
   const level = window.localStorage.getItem('level');
+  const squareSize = 33;
+  const beginnerHeight = 328;
+
+  const heightForRows = rows => beginnerHeight + (rows - 9) * squareSize;
 
   switch (level) {
     case 'beginner':
-      board.style.height = '328px';
+      board.style.height = `${heightForRows(9)}px`;
       break;
     case 'intermediate':
-      board.style.height = '560px';
+      board.style.height = `${heightForRows(16)}px`;
       break;
     case 'expert':
-      board.style.height = '560px';
+      board.style.height = `${heightForRows(16)}px`;
       break;
-    case 'custom':
-      board.style.height = `${
-        328 + (parseInt(window.localStorage.getItem('rows'), 10) - 9) * 33
-      }px`;
+    case 'custom': {
+      const rows = parseInt(window.localStorage.getItem('rows'), 10);
+      board.style.height = `${heightForRows(
+        Number.isInteger(rows) ? rows : 9
+      )}px`;
       break;
+    }
     default:
-      board.style.height = '328px';
+      board.style.height = `${heightForRows(9)}px`;
   }
 
   return board;

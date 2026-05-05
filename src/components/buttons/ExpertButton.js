@@ -4,7 +4,7 @@
  * GNU Affero General Public License v3.0
  */
 
-import { setLevel } from '../../utils/levelUtils.js';
+import { setLevel, shouldIgnoreLevelShortcut } from '../../utils/levelUtils.js';
 import {
   isMobileDevice,
   showDesktopOnlyTooltip,
@@ -42,15 +42,11 @@ export default function ExpertButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    if (isMobileDevice()) return;
+    if (isMobileDevice() || shouldIgnoreLevelShortcut(e)) return;
 
     const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
-    if (
-      e.code === 'Digit3' &&
-      level !== 'expert' &&
-      modalOpen !== 'true'
-    ) {
+    if (e.code === 'Digit3' && level !== 'expert' && modalOpen !== 'true') {
       setLevel('expert');
     }
   });

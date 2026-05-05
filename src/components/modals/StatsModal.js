@@ -80,9 +80,7 @@ export default function StatsModal() {
   statsTable.innerHTML += `<hr><hr>`;
 
   statsTable.innerHTML += `<p class="label">Total Time</p>`;
-  statsTable.innerHTML += `<p class="value">${formatTime(
-    stats.totalTime
-  )}</p>`;
+  statsTable.innerHTML += `<p class="value">${formatTime(stats.totalTime)}</p>`;
 
   statsTable.innerHTML += `<p class="label">Total Moves</p>`;
   statsTable.innerHTML += `<p class="value">${displayNumber(
@@ -97,6 +95,6 @@ export default function StatsModal() {
 
   clearDataButton.addEventListener('click', () => {
     window.statsStore.clear();
-    window.location.reload();
+    StatsModal();
   });
 }

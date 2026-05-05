@@ -5,6 +5,7 @@
  */
 
 export default function DarkModeButton(darkMode) {
+  const iconCache = new Map();
   let isDarkMode = darkMode;
 
   // Button
@@ -27,9 +28,17 @@ export default function DarkModeButton(darkMode) {
   }
 
   function renderButton() {
-    darkModeButton.innerHTML = isDarkMode
-      ? `<img src="emoji/waning_crescent_moon_flat.png" />`
-      : `<img src="emoji/sun_flat.png"/>`;
+    const iconPath = isDarkMode
+      ? 'emoji/waning_crescent_moon_flat.png'
+      : 'emoji/sun_flat.png';
+
+    if (!iconCache.has(iconPath)) {
+      const icon = document.createElement('img');
+      icon.src = iconPath;
+      iconCache.set(iconPath, icon);
+    }
+
+    darkModeButton.replaceChildren(iconCache.get(iconPath));
   }
 
   // Keyboard Action Handling

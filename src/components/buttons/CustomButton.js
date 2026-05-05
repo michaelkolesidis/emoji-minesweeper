@@ -45,11 +45,7 @@ export default function CustomButton() {
 
     const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
-    if (
-      e.code === 'Digit4' &&
-      level !== 'custom' &&
-      modalOpen !== 'true'
-    ) {
+    if (e.code === 'Digit4' && level !== 'custom' && modalOpen !== 'true') {
       setLevel('custom');
     }
   });

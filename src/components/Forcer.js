@@ -10,8 +10,9 @@ export default function Forcer() {
   forcer.classList.add('forcer');
 
   forcer.innerHTML += `<p id="forcer-title">Forcer</p>
-  <input type="text" id="forcer-input" placeholder="Mine positions">
-  <button id="forcer-submit" >Submit</button>
+  <input type="text" id="forcer-input" placeholder="Mine squares: 0, 4, 12">
+  <p id="forcer-message" aria-live="polite"></p>
+  <button id="forcer-submit">Submit</button>
   `;
 
   return forcer;

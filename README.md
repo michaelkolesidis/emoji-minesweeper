@@ -208,6 +208,7 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 |      H      | Open/close help modal              |
 |      F      | Toggle flag mode                   |
 |      D      | Toggle dark mode                   |
+|     Esc     | Close open modal                   |
 
 ## Feature List
 
