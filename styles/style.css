@@ -472,10 +472,16 @@ button:hover {
   opacity: 0.6;
 }
 
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
   .emoji-button:hover:not(.emoji-button-clicked),
   .emoji-button:active:not(.emoji-button-clicked),
   .emoji-button:focus:not(.emoji-button-clicked) {
+    opacity: 1;
+  }
+
+  .emoji-button:hover:not(.emoji-button-clicked) > img,
+  .emoji-button:active:not(.emoji-button-clicked) > img,
+  .emoji-button:focus:not(.emoji-button-clicked) > img {
     opacity: 1;
   }
 }
