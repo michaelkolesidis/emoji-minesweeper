@@ -16,11 +16,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 let cnv; // The canvas element that will contain the game
 
 // Reset end of game stats
-window.localStorage.setItem('time', '');
-window.localStorage.setItem('bbbv', '');
-window.localStorage.setItem('bbbvPerSec', '');
-window.localStorage.setItem('moves', '');
-window.localStorage.setItem('efficinecny', '');
+window.statsStore.resetCurrentGameSummary();
 
 /**
  * Dark Mode
@@ -620,26 +616,8 @@ function openSquare(square) {
     startTimer();
     startTime = new Date();
 
-    // Update local storage
     if (window.location.hash === '') {
-      let played;
-      switch (level) {
-        case 'beginner':
-          played = parseInt(window.localStorage.getItem('beginnerPlayed'));
-          played += 1;
-          window.localStorage.setItem('beginnerPlayed', played);
-          break;
-        case 'intermediate':
-          played = parseInt(window.localStorage.getItem('intermediatePlayed'));
-          played += 1;
-          window.localStorage.setItem('intermediatePlayed', played);
-          break;
-        case 'expert':
-          played = parseInt(window.localStorage.getItem('expertPlayed'));
-          played += 1;
-          window.localStorage.setItem('expertPlayed', played);
-          break;
-      }
+      window.statsStore.recordGameStarted(level);
     }
 
     if (square.mine) {
@@ -732,7 +710,7 @@ function mousePressed() {
               if (s.mine) {
                 if (!gameFinished) {
                   gameLost();
-                  gameEnded();
+                  gameEnded(false);
                 }
               } else {
                 // Check if the game has been won
@@ -743,7 +721,7 @@ function mousePressed() {
                 if (squaresLeft == 0) {
                   if (!gameFinished) {
                     gameWon();
-                    gameEnded();
+                    gameEnded(true);
                   }
                 }
               }
@@ -816,7 +794,7 @@ function mousePressed() {
         if (square.mine) {
           if (!gameFinished) {
             gameLost();
-            gameEnded();
+            gameEnded(false);
           }
         } else {
           // Check if the game has been won
@@ -826,7 +804,7 @@ function mousePressed() {
           if (squaresLeft == 0) {
             if (!gameFinished) {
               gameWon();
-              gameEnded();
+              gameEnded(true);
             }
           }
         }
@@ -839,31 +817,11 @@ function mousePressed() {
  * End of game
  */
 // Handle end
-function gameEnded() {
+function gameEnded(won) {
   gameFinished = true;
   if (window.location.hash === '') {
-    calculateWinPercentage();
-
-    let totalTime;
-    switch (level) {
-      case 'beginner':
-        totalTime = parseInt(window.localStorage.getItem('beginnerTotalTime'));
-        totalTime += timePassed;
-        window.localStorage.setItem('beginnerTotalTime', totalTime);
-        break;
-      case 'intermediate':
-        totalTime = parseInt(
-          window.localStorage.getItem('intermediateTotalTime')
-        );
-        totalTime += timePassed;
-        window.localStorage.setItem('intermediateTotalTime', totalTime);
-        break;
-      case 'expert':
-        totalTime = parseInt(window.localStorage.getItem('expertTotalTime'));
-        totalTime += timePassed;
-        window.localStorage.setItem('expertTotalTime', totalTime);
-        break;
-    }
+    time = startTime ? (new Date() - startTime) / 1000 : timePassed;
+    window.statsStore.recordGameEnded(level, { won, time, moves });
   }
 }
 
@@ -874,126 +832,23 @@ function gameWon() {
     s.opened = true;
   });
 
-  // Update local storage
-  // Won Data
   if (window.location.hash === '') {
-    let won;
-    switch (level) {
-      case 'beginner':
-        won = parseInt(window.localStorage.getItem('beginnerWon'));
-        won += 1;
-        window.localStorage.setItem('beginnerWon', won);
-        break;
-      case 'intermediate':
-        won = parseInt(window.localStorage.getItem('intermediateWon'));
-        won += 1;
-        window.localStorage.setItem('intermediateWon', won);
-        break;
-      case 'expert':
-        won = parseInt(window.localStorage.getItem('expertWon'));
-        won += 1;
-        window.localStorage.setItem('expertWon', won);
-        break;
+    if (window.statsStore.hasBestMoves(level, moves)) {
+      const header = document.getElementById('header');
+      header.style.color = '#ffaf2e';
+      NUMBERS[0] = BEST;
+      newBestMoves = true;
     }
 
-    // Moves Data
-    let bestMoves;
-    switch (level) {
-      case 'beginner':
-        bestMoves = Number(window.localStorage.getItem('beginnerBestMoves'));
-        break;
-      case 'intermediate':
-        bestMoves = Number(
-          window.localStorage.getItem('intermediateBestMoves')
-        );
-        break;
-      case 'expert':
-        bestMoves = Number(window.localStorage.getItem('expertBestMoves'));
-        break;
-    }
-
-    if (bestMoves === 0) {
-      switch (level) {
-        case 'beginner':
-          window.localStorage.setItem('beginnerBestMoves', moves);
-          break;
-        case 'intermediate':
-          window.localStorage.setItem('intermediateBestMoves', moves);
-          break;
-        case 'expert':
-          window.localStorage.setItem('expertBestMoves', moves);
-          break;
-      }
-    } else {
-      if (moves < bestMoves) {
-        const header = document.getElementById('header');
-        header.style.color = '#ffaf2e';
-        NUMBERS[0] = BEST;
-        newBestMoves = true;
-        switch (level) {
-          case 'beginner':
-            window.localStorage.setItem('beginnerBestMoves', moves);
-            break;
-          case 'intermediate':
-            window.localStorage.setItem('intermediateBestMoves', moves);
-            break;
-          case 'expert':
-            window.localStorage.setItem('expertBestMoves', moves);
-            break;
-        }
-        window.localStorage.setItem('newBestMoves', 'true');
-      }
-    }
-
-    // Time Data
     const endTime = new Date();
     let seconds = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
     time = seconds;
 
-    let bestTime;
-    switch (level) {
-      case 'beginner':
-        bestTime = Number(window.localStorage.getItem('beginnerBestTime'));
-        break;
-      case 'intermediate':
-        bestTime = Number(window.localStorage.getItem('intermediateBestTime'));
-        break;
-      case 'expert':
-        bestTime = Number(window.localStorage.getItem('expertBestTime'));
-        break;
-    }
-
-    if (bestTime === 0) {
-      switch (level) {
-        case 'beginner':
-          window.localStorage.setItem('beginnerBestTime', seconds);
-          break;
-        case 'intermediate':
-          window.localStorage.setItem('intermediateBestTime', seconds);
-          break;
-        case 'expert':
-          window.localStorage.setItem('expertBestTime', seconds);
-          break;
-      }
-    } else {
-      if (seconds < bestTime) {
-        const header = document.getElementById('header');
-        header.style.color = '#ffaf2e';
-        NUMBERS[0] = BEST;
-        newBestTime = true;
-        switch (level) {
-          case 'beginner':
-            window.localStorage.setItem('beginnerBestTime', seconds);
-            break;
-          case 'intermediate':
-            window.localStorage.setItem('intermediateBestTime', seconds);
-            break;
-          case 'expert':
-            window.localStorage.setItem('expertBestTime', seconds);
-            break;
-        }
-        window.localStorage.setItem('newBestTime', 'true');
-      }
+    if (window.statsStore.hasBestTime(level, seconds)) {
+      const header = document.getElementById('header');
+      header.style.color = '#ffaf2e';
+      NUMBERS[0] = BEST;
+      newBestTime = true;
     }
   }
   stopTimer = true;
@@ -1006,12 +861,13 @@ function gameWon() {
   const bbbvPerSec = Math.round((bbbv / time + Number.EPSILON) * 10000) / 10000;
   const efficinecny = Math.round((bbbv / moves) * 100);
 
-  window.localStorage.setItem('time', time);
-  window.localStorage.setItem('bbbv', bbbv);
-  window.localStorage.setItem('bbbvPerSec', bbbvPerSec);
-  window.localStorage.setItem('moves', moves);
-  window.localStorage.setItem('moves', moves);
-  window.localStorage.setItem('efficinecny', efficinecny);
+  window.statsStore.setCurrentGameSummary({
+    time,
+    bbbv,
+    bbbvPerSec,
+    moves,
+    efficinecny,
+  });
 
   gameHasEnded();
 }
@@ -1032,69 +888,8 @@ function gameLost() {
 
 // Add move to total moves
 function addMove() {
-  let totalMoves;
-  switch (level) {
-    case 'beginner':
-      totalMoves = parseInt(window.localStorage.getItem('beginnerTotalMoves'));
-      totalMoves += 1;
-      window.localStorage.setItem('beginnerTotalMoves', totalMoves);
-      break;
-    case 'intermediate':
-      totalMoves = parseInt(
-        window.localStorage.getItem('intermediateTotalMoves')
-      );
-      totalMoves += 1;
-      window.localStorage.setItem('intermediateTotalMoves', totalMoves);
-      break;
-    case 'expert':
-      totalMoves = parseInt(window.localStorage.getItem('expertTotalMoves'));
-      totalMoves += 1;
-      window.localStorage.setItem('expertTotalMoves', totalMoves);
-      break;
-  }
-}
-
-// Calculate percentage of wins / total games played
-function calculateWinPercentage() {
   if (window.location.hash === '') {
-    let played, won;
-    switch (level) {
-      case 'beginner':
-        played = parseInt(window.localStorage.getItem('beginnerPlayed'));
-        won = parseInt(window.localStorage.getItem('beginnerWon'));
-        break;
-      case 'intermediate':
-        played = parseInt(window.localStorage.getItem('intermediatePlayed'));
-        won = parseInt(window.localStorage.getItem('intermediateWon'));
-        break;
-      case 'expert':
-        played = parseInt(window.localStorage.getItem('expertPlayed'));
-        won = parseInt(window.localStorage.getItem('expertWon'));
-        break;
-    }
-    let winPercentage = null;
-
-    if (played !== 0) {
-      winPercentage = won / played;
-    }
-
-    if (winPercentage !== null) {
-      // Update local storage
-      switch (level) {
-        case 'beginner':
-          window.localStorage.setItem('beginnerWinPercentage', winPercentage);
-          break;
-        case 'intermediate':
-          window.localStorage.setItem(
-            'intermediateWinPercentage',
-            winPercentage
-          );
-          break;
-        case 'expert':
-          window.localStorage.setItem('expertWinPercentage', winPercentage);
-          break;
-      }
-    }
+    window.statsStore.recordMove(level);
   }
 }
 

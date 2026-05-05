@@ -221,10 +221,8 @@ document.addEventListener('gameHasEnded', () => {
   openModal(activeModalId);
 
   // Display stats in modal when the game ends
-  const time = window.localStorage.getItem('time');
-  const bbbv = window.localStorage.getItem('bbbv');
-  const bbbvPerSec = window.localStorage.getItem('bbbvPerSec');
-  const efficinecny = window.localStorage.getItem('efficinecny');
+  const { time, bbbv, bbbvPerSec, moves, efficinecny } =
+    window.statsStore.getCurrentGameSummary();
 
   modal.innerHTML = '';
   modal.innerHTML += `<a 
@@ -250,9 +248,7 @@ document.addEventListener('gameHasEnded', () => {
                         href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#moves" 
                         target="_blank"
                       >Moves</a>`;
-  modal.innerHTML += `<p class="value">${window.localStorage.getItem(
-    'moves'
-  )}</p>`;
+  modal.innerHTML += `<p class="value">${moves}</p>`;
   modal.innerHTML += `<a 
                         class="label help-link" 
                         href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#efficiency" 
