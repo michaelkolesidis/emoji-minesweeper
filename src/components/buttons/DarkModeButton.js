@@ -4,6 +4,8 @@
  *  GNU Affero General Public License v3.0
  */
 
+import { setDesktopLogoTheme } from '../../utils/logoUtils.js';
+
 export default function DarkModeButton(darkMode) {
   const iconCache = new Map();
   let isDarkMode = darkMode;
@@ -23,6 +25,7 @@ export default function DarkModeButton(darkMode) {
     isDarkMode = !isDarkMode;
     window.localStorage.setItem('darkMode', String(isDarkMode));
     document.body.classList.toggle('dark-mode', isDarkMode);
+    setDesktopLogoTheme(isDarkMode);
     window.emojiMinesweeper?.setDarkMode(isDarkMode);
     renderButton();
   }

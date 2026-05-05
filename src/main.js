@@ -33,6 +33,7 @@ import ICBLLogo from './components/ICBLLogo.js';
 import { greet } from './utils/consoleUtils.js';
 import { closeModal, openModal, resetModal } from './utils/modalUtils.js';
 import { syncLevelButtons } from './utils/levelUtils.js';
+import { setDesktopLogoTheme } from './utils/logoUtils.js';
 
 /**
  * Basics
@@ -53,6 +54,7 @@ if (darkMode === null) {
 if (darkMode) {
   document.body.classList.add('dark-mode');
 }
+setDesktopLogoTheme(darkMode);
 
 // Emoji
 let mainEmoji = window.localStorage.getItem('mainEmoji');
