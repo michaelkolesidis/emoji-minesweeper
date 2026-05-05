@@ -10,13 +10,15 @@
  */
 
 export default function ThemeButton(header) {
+  const themeIconCache = new Map();
+
   // Button
   const themeButton = document.createElement('div');
   themeButton.title = `Change theme`;
   themeButton.id = `theme-button`;
   themeButton.className = `emoji-button`;
   let theme = window.localStorage.getItem('theme') ?? 'mine';
-  themeButton.innerHTML = `<img src="${themes[theme].mine}" />`;
+  renderThemeIcon();
 
   // Theme Button Functionality
   themeButton.addEventListener('click', () => {
@@ -42,11 +44,7 @@ export default function ThemeButton(header) {
       window.localStorage.setItem('japanese', 'false');
     }
 
-    if (!window.emojiMinesweeper?.isGameFinished()) {
-      updateTheme();
-    } else {
-      window.location.reload();
-    }
+    updateTheme();
   }
 
   function switchThemeReverse() {
@@ -68,11 +66,7 @@ export default function ThemeButton(header) {
       window.localStorage.setItem('japanese', 'false');
     }
 
-    if (!window.emojiMinesweeper?.isGameFinished()) {
-      updateTheme();
-    } else {
-      window.location.reload();
-    }
+    updateTheme();
   }
 
   function updateTheme() {
@@ -82,7 +76,19 @@ export default function ThemeButton(header) {
     document.title = title;
     window.localStorage.setItem('mainEmoji', themes[theme].mine);
     header.innerHTML = themes[theme].title;
-    themeButton.innerHTML = `<img src="${themes[theme].mine}" / >`;
+    renderThemeIcon();
+  }
+
+  function renderThemeIcon() {
+    const iconPath = themes[theme].mine;
+
+    if (!themeIconCache.has(iconPath)) {
+      const icon = document.createElement('img');
+      icon.src = iconPath;
+      themeIconCache.set(iconPath, icon);
+    }
+
+    themeButton.replaceChildren(themeIconCache.get(iconPath));
   }
 
   // Keyboard Action Handling

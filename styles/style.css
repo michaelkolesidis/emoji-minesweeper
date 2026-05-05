@@ -412,21 +412,37 @@ button:hover {
   position: absolute;
   background-color: var(--secondary-color);
   color: var(--main-color);
-  padding: 10px 14px;
-  border-radius: 4px;
-  border-radius: 15px;
-
-  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.65rem 0.85rem;
+  border-radius: 18px;
+  font-size: 0.72rem;
+  line-height: 1.1;
   white-space: nowrap;
   z-index: 10000;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transform: translateY(4px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
   pointer-events: none;
-  box-shadow: 0 0 10px var(--main-color);
+  box-shadow: var(--shadow);
+}
+
+.mobile-tooltip strong {
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.mobile-tooltip span {
+  opacity: 0.78;
 }
 
 .tooltip-visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
 /* Emoji Buttons */
@@ -451,6 +467,14 @@ button:hover {
 .emoji-button:hover,
 .emoji-button-clicked {
   opacity: 0.6;
+}
+
+@media (hover: none) {
+  .mobile-desktop-only:hover,
+  .mobile-desktop-only:active,
+  .mobile-desktop-only:focus {
+    opacity: 1;
+  }
 }
 
 .flag-clicked {

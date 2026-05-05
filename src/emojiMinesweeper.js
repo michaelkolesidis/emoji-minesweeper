@@ -30,6 +30,7 @@ let theme = window.localStorage.getItem('theme') ?? 'mine';
 window.localStorage.setItem('mainEmoji', themes[theme]['mine']);
 
 // Emoji images
+const imageCache = new Map();
 let CLOSED;
 let NUMBERS = [];
 let FLAG;
@@ -47,6 +48,22 @@ let font;
 
 // Time
 let time;
+
+function loadCachedImage(path) {
+  if (!imageCache.has(path)) {
+    imageCache.set(path, loadImage(path));
+  }
+
+  return imageCache.get(path);
+}
+
+function closedSquarePath() {
+  return darkMode ? darkTheme.closed : 'emoji/black_square_button_flat.png';
+}
+
+function emptySquarePath() {
+  return darkMode ? darkTheme.empty : 'emoji/white_large_square_flat.png';
+}
 
 class Square {
   num;
@@ -118,30 +135,26 @@ class Square {
 }
 
 function preload() {
-  CLOSED = darkMode
-    ? loadImage(darkTheme.closed)
-    : loadImage('emoji/black_square_button_flat.png');
-  NUMBERS[0] = darkMode
-    ? loadImage(darkTheme.empty)
-    : loadImage('emoji/white_large_square_flat.png');
-  NUMBERS[1] = loadImage('emoji/keycap_1_flat.png');
-  NUMBERS[2] = loadImage('emoji/keycap_2_flat.png');
-  NUMBERS[3] = loadImage('emoji/keycap_3_flat.png');
-  NUMBERS[4] = loadImage('emoji/keycap_4_flat.png');
-  NUMBERS[5] = loadImage('emoji/keycap_5_flat.png');
-  NUMBERS[6] = loadImage('emoji/keycap_6_flat.png');
-  NUMBERS[7] = loadImage('emoji/keycap_7_flat.png');
-  NUMBERS[8] = loadImage('emoji/keycap_8_flat.png');
-  NUMBERS[9] = loadImage('emoji/keycap_9_flat.png');
-  FLAG = loadImage('emoji/triangular_flag_flat.png');
-  WRONG = loadImage('emoji/cross_mark_flat.png');
-  TIMER = loadImage('emoji/hourglass_done_flat.png');
-  MOVES = loadImage('emoji/abacus_flat.png');
-  BEST = loadImage('emoji/partying_face_flat.png');
-  WON = loadImage(themes[theme]['won']);
-  LOST = loadImage(themes[theme]['lost']);
-  MINE = loadImage(themes[theme]['mine']);
-  DETONATION = loadImage(themes[theme]['detonation']);
+  CLOSED = loadCachedImage(closedSquarePath());
+  NUMBERS[0] = loadCachedImage(emptySquarePath());
+  NUMBERS[1] = loadCachedImage('emoji/keycap_1_flat.png');
+  NUMBERS[2] = loadCachedImage('emoji/keycap_2_flat.png');
+  NUMBERS[3] = loadCachedImage('emoji/keycap_3_flat.png');
+  NUMBERS[4] = loadCachedImage('emoji/keycap_4_flat.png');
+  NUMBERS[5] = loadCachedImage('emoji/keycap_5_flat.png');
+  NUMBERS[6] = loadCachedImage('emoji/keycap_6_flat.png');
+  NUMBERS[7] = loadCachedImage('emoji/keycap_7_flat.png');
+  NUMBERS[8] = loadCachedImage('emoji/keycap_8_flat.png');
+  NUMBERS[9] = loadCachedImage('emoji/keycap_9_flat.png');
+  FLAG = loadCachedImage('emoji/triangular_flag_flat.png');
+  WRONG = loadCachedImage('emoji/cross_mark_flat.png');
+  TIMER = loadCachedImage('emoji/hourglass_done_flat.png');
+  MOVES = loadCachedImage('emoji/abacus_flat.png');
+  BEST = loadCachedImage('emoji/partying_face_flat.png');
+  WON = loadCachedImage(themes[theme]['won']);
+  LOST = loadCachedImage(themes[theme]['lost']);
+  MINE = loadCachedImage(themes[theme]['mine']);
+  DETONATION = loadCachedImage(themes[theme]['detonation']);
 
   font = loadFont('fonts/Nunito-Black.ttf');
 }
@@ -178,6 +191,7 @@ if (
   level !== 'custom'
 ) {
   window.localStorage.setItem('level', 'beginner');
+  level = 'beginner';
 }
 
 switch (level) {
@@ -359,6 +373,65 @@ let newBestTime = false; // used when the player has made a new best time
 
 let timerInterval = null; // the timer's interval ID
 
+function levelSettings(nextLevel) {
+  switch (nextLevel) {
+    case 'intermediate':
+      return {
+        columns: 16,
+        rows: 16,
+        mines: 40,
+      };
+    case 'expert':
+      return {
+        columns: 30,
+        rows: 16,
+        mines: 99,
+      };
+    case 'custom':
+      return {
+        columns: parseInt(window.localStorage.getItem('columns'), 10) || 9,
+        rows: parseInt(window.localStorage.getItem('rows'), 10) || 9,
+        mines: parseInt(window.localStorage.getItem('mines'), 10) || 10,
+      };
+    case 'beginner':
+    default:
+      return {
+        columns: 9,
+        rows: 9,
+        mines: 10,
+      };
+  }
+}
+
+function boardHeightForRows(nextRows) {
+  return 328 + (nextRows - 9) * squareSize;
+}
+
+function configureLevel(nextLevel) {
+  level = nextLevel;
+  window.localStorage.setItem('level', level);
+
+  settings.level = levelSettings(level);
+  columns = settings.level.columns;
+  rows = settings.level.rows;
+  numberOfSquares = rows * columns;
+  boardSize = {
+    width: squareSize * columns,
+    height: squareSize * rows + counterHeight,
+  };
+  initialMines = settings.level.mines;
+  numberOfMines = initialMines;
+
+  const board = document.getElementById('board');
+  if (board) {
+    board.style.height = `${boardHeightForRows(rows)}px`;
+  }
+
+  if (cnv) {
+    resizeCanvas(boardSize.width, boardSize.height + squareSize * 0.75);
+  }
+}
+
 function resetGame() {
   // 1. Reset all game state variables to their initial values
   squares = [];
@@ -384,9 +457,8 @@ function resetGame() {
   stopTimer = false; // Reset the flag for the next game
 
   // 3. Reset the visual state of emojis
-  NUMBERS[0] = darkMode
-    ? loadImage(darkTheme.empty)
-    : loadImage('emoji/white_large_square_flat.png');
+  CLOSED = loadCachedImage(closedSquarePath());
+  NUMBERS[0] = loadCachedImage(emptySquarePath());
 
   // 4. Remove end-game visual effects from the header
   const header = document.getElementById('header');
@@ -406,15 +478,43 @@ function resetGame() {
 
 function setTheme(nextTheme) {
   theme = nextTheme;
-  WON = loadImage(themes[theme].won);
-  LOST = loadImage(themes[theme].lost);
-  MINE = loadImage(themes[theme].mine);
-  DETONATION = loadImage(themes[theme].detonation);
+  WON = loadCachedImage(themes[theme].won);
+  LOST = loadCachedImage(themes[theme].lost);
+  MINE = loadCachedImage(themes[theme].mine);
+  DETONATION = loadCachedImage(themes[theme].detonation);
+
+  if (gameFinished) {
+    redraw();
+  } else {
+    loop();
+  }
+}
+
+function setDarkMode(nextDarkMode) {
+  darkMode = nextDarkMode;
+  CLOSED = loadCachedImage(closedSquarePath());
+
+  if (!gameFinished) {
+    NUMBERS[0] = loadCachedImage(emptySquarePath());
+  }
+
+  if (gameFinished) {
+    redraw();
+  } else {
+    loop();
+  }
+}
+
+function setLevel(nextLevel) {
+  configureLevel(nextLevel);
+  resetGame();
 }
 
 window.emojiMinesweeper = Object.freeze({
   resetGame,
   setTheme,
+  setDarkMode,
+  setLevel,
   isGameFinished: () => gameFinished,
 });
 
@@ -903,30 +1003,30 @@ function keyPressed() {
     window.location.hash !== '#debug' &&
     window.localStorage.getItem('modalOpen') !== 'true'
   ) {
-    if (level !== 'beginner') {
-      window.localStorage.setItem('level', 'beginner');
-      window.location.reload();
-    }
+    setLevel('beginner');
+    document.dispatchEvent(
+      new CustomEvent('levelChanged', { detail: { level: 'beginner' } })
+    );
   }
   if (
     (keyCode === 50 || keyCode === 98) &&
     window.location.hash !== '#debug' &&
     window.localStorage.getItem('modalOpen') !== 'true'
   ) {
-    if (level !== 'intermediate') {
-      window.localStorage.setItem('level', 'intermediate');
-      window.location.reload();
-    }
+    setLevel('intermediate');
+    document.dispatchEvent(
+      new CustomEvent('levelChanged', { detail: { level: 'intermediate' } })
+    );
   }
   if (
     (keyCode === 51 || keyCode === 99) &&
     window.location.hash !== '#debug' &&
     window.localStorage.getItem('modalOpen') !== 'true'
   ) {
-    if (level !== 'expert') {
-      window.localStorage.setItem('level', 'expert');
-      window.location.reload();
-    }
+    setLevel('expert');
+    document.dispatchEvent(
+      new CustomEvent('levelChanged', { detail: { level: 'expert' } })
+    );
   }
 
   // New Game

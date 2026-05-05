@@ -4,11 +4,14 @@
  *  GNU Affero General Public License v3.0
  */
 
+import { setLevel } from '../../utils/levelUtils.js';
+
 export default function BeginnerButton() {
   // Button
   const beginnerButton = document.createElement('div');
   beginnerButton.title = `Beginner level`;
   beginnerButton.className = `emoji-button`;
+  beginnerButton.dataset.level = 'beginner';
   beginnerButton.innerHTML = `<img src="emoji/keycap_1_flat.png" />`;
   const level = window.localStorage.getItem('level');
 
@@ -21,8 +24,7 @@ export default function BeginnerButton() {
     const level = window.localStorage.getItem('level');
 
     if (level !== 'beginner') {
-      window.localStorage.setItem('level', 'beginner');
-      window.location.reload();
+      setLevel('beginner');
     }
   });
 
@@ -35,8 +37,7 @@ export default function BeginnerButton() {
       level !== 'beginner' &&
       modalOpen !== 'true'
     ) {
-      window.localStorage.setItem('level', 'beginner');
-      window.location.reload();
+      setLevel('beginner');
     }
   });
 

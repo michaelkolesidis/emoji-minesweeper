@@ -4,17 +4,18 @@
  * GNU Affero General Public License v3.0
  */
 
-export default function ExpertButton() {
-  //  Mobile Check
-  const isMobile =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    ) || window.innerWidth < 768;
+import { setLevel } from '../../utils/levelUtils.js';
+import {
+  isMobileDevice,
+  showDesktopOnlyTooltip,
+} from '../../utils/mobileTooltip.js';
 
+export default function ExpertButton() {
   //  Button Creation
   const expertButton = document.createElement('div');
   expertButton.title = `Expert level`;
-  expertButton.className = `emoji-button`;
+  expertButton.className = `emoji-button mobile-desktop-only`;
+  expertButton.dataset.level = 'expert';
   expertButton.innerHTML = `<img src="emoji/keycap_3_flat.png" />`;
   const level = window.localStorage.getItem('level');
 
@@ -22,52 +23,26 @@ export default function ExpertButton() {
     expertButton.classList.add('emoji-button-clicked');
   }
 
-  const showMobileTooltip = anchorElement => {
-    if (document.querySelector('.mobile-tooltip')) return;
-
-    const tooltip = document.createElement('div');
-    tooltip.className = 'mobile-tooltip';
-    tooltip.innerText = 'Please visit on desktop';
-    document.body.appendChild(tooltip);
-
-    // Get button position
-    const rect = anchorElement.getBoundingClientRect();
-
-    // Calculate position
-    const tooltipX = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
-    const tooltipY = rect.top + window.scrollY - tooltip.offsetHeight - 10;
-
-    tooltip.style.left = `${tooltipX}px`;
-    tooltip.style.top = `${tooltipY}px`;
-
-    requestAnimationFrame(() => {
-      tooltip.classList.add('tooltip-visible');
-    });
-
-    setTimeout(() => {
-      tooltip.classList.remove('tooltip-visible');
-      setTimeout(() => tooltip.remove(), 400);
-    }, 2000);
-  };
-
   // Click Event
   expertButton.addEventListener('click', e => {
-    if (isMobile) {
-      showMobileTooltip(expertButton);
+    if (isMobileDevice()) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      showDesktopOnlyTooltip(expertButton);
       return;
     }
 
     const level = window.localStorage.getItem('level');
 
     if (level !== 'expert') {
-      window.localStorage.setItem('level', 'expert');
-      window.location.reload();
+      setLevel('expert');
     }
   });
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    if (isMobile) return;
+    if (isMobileDevice()) return;
 
     const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
@@ -76,8 +51,7 @@ export default function ExpertButton() {
       level !== 'expert' &&
       modalOpen !== 'true'
     ) {
-      window.localStorage.setItem('level', 'expert');
-      window.location.reload();
+      setLevel('expert');
     }
   });
 

@@ -104,7 +104,11 @@ export default function CustomModal() {
       window.localStorage.setItem('level', 'custom');
     }
 
-    window.location.reload();
+    window.emojiMinesweeper?.setLevel('custom');
+    document.dispatchEvent(
+      new CustomEvent('levelChanged', { detail: { level: 'custom' } })
+    );
+    document.dispatchEvent(new CustomEvent('customLevelSubmitted'));
   });
 
   // Handle theme changing

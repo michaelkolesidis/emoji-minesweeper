@@ -32,6 +32,7 @@ import ICBLLogo from './components/ICBLLogo.js';
 // Utilities
 import { greet } from './utils/consoleUtils.js';
 import { closeModal, openModal, resetModal } from './utils/modalUtils.js';
+import { syncLevelButtons } from './utils/levelUtils.js';
 
 /**
  * Basics
@@ -208,6 +209,14 @@ document.addEventListener('keydown', e => {
   if (e.code === 'KeyH') {
     toggleHelpModal();
   }
+});
+
+document.addEventListener('levelChanged', () => {
+  syncLevelButtons();
+});
+
+document.addEventListener('customLevelSubmitted', () => {
+  closeActiveModal();
 });
 
 /**
