@@ -31,7 +31,10 @@ export default function CustomModal() {
   // Mines
   const mineSettings = document.createElement('div');
   mineSettings.classList.add('custom-section');
-  mineSettings.innerHTML = `<img class="custom-label" src="${themes[theme].mine}" title="Mines"/>
+  const getTheme = () => window.localStorage.getItem('theme') ?? 'mine';
+  mineSettings.innerHTML = `<img class="custom-label" src="${
+    themes[getTheme()].mine
+  }" title="Mines"/>
   <input type="text" id="mines-input" class="custom-input">`;
   modal.appendChild(mineSettings);
 
@@ -97,7 +100,7 @@ export default function CustomModal() {
     }
     window.localStorage.setItem('mines', mines);
 
-    if (level !== 'custom') {
+    if (window.localStorage.getItem('level') !== 'custom') {
       window.localStorage.setItem('level', 'custom');
     }
 
@@ -109,7 +112,9 @@ export default function CustomModal() {
   const listenerController = new AbortController();
 
   const resetMineIcon = () =>
-    (mineSettings.innerHTML = `<img class="custom-label" src="${themes[theme].mine}" title="Mines"/>
+    (mineSettings.innerHTML = `<img class="custom-label" src="${
+      themes[getTheme()].mine
+    }" title="Mines"/>
   <input type="text" id="mines-input" class="custom-input">`);
 
   themeButton.addEventListener('click', resetMineIcon, {

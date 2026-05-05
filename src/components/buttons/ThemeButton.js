@@ -15,6 +15,7 @@ export default function ThemeButton(header) {
   themeButton.title = `Change theme`;
   themeButton.id = `theme-button`;
   themeButton.className = `emoji-button`;
+  let theme = window.localStorage.getItem('theme') ?? 'mine';
   themeButton.innerHTML = `<img src="${themes[theme].mine}" />`;
 
   // Theme Button Functionality
@@ -41,7 +42,7 @@ export default function ThemeButton(header) {
       window.localStorage.setItem('japanese', 'false');
     }
 
-    if (!gameFinished) {
+    if (!window.emojiMinesweeper?.isGameFinished()) {
       updateTheme();
     } else {
       window.location.reload();
@@ -67,7 +68,7 @@ export default function ThemeButton(header) {
       window.localStorage.setItem('japanese', 'false');
     }
 
-    if (!gameFinished) {
+    if (!window.emojiMinesweeper?.isGameFinished()) {
       updateTheme();
     } else {
       window.location.reload();
@@ -75,10 +76,7 @@ export default function ThemeButton(header) {
   }
 
   function updateTheme() {
-    WON = loadImage(themes[theme].won);
-    LOST = loadImage(themes[theme].lost);
-    MINE = loadImage(themes[theme].mine);
-    DETONATION = loadImage(themes[theme].detonation);
+    window.emojiMinesweeper?.setTheme(theme);
     window.localStorage.setItem('title', themes[theme].title);
     const title = window.localStorage.getItem('title');
     document.title = title;

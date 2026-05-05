@@ -8,6 +8,7 @@
  *  also handles the update of the stats accordingly.
  */
 
+(() => {
 // Prevent right mouse click from opening browser context menu in order to be able to flag
 document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -50,6 +51,75 @@ let font;
 
 // Time
 let time;
+
+class Square {
+  num;
+  i;
+  j;
+  x; // horizontal position of the square in the canvas
+  y; // vertical position of the square inside the canvas
+  mine;
+  minesAround;
+  opened;
+  clicked; // to show detonation only on the clicked mine
+  flagged;
+
+  constructor(i, j, num) {
+    this.num = num;
+    this.i = i;
+    this.j = j;
+    this.x = i * squareSize;
+    this.y = j * squareSize;
+    this.mine = false;
+    this.minesAround = 0;
+    this.opened = false;
+    this.clicked = false;
+    this.flagged = false;
+  }
+
+  draw() {
+    if (this.opened && this.clicked && this.mine) {
+      // The mine the player clicked
+      image(DETONATION, this.x, this.y, squareSize, squareSize);
+      return;
+    }
+
+    if (this.opened && this.mine) {
+      // Mine the played didn't click
+      image(MINE, this.x, this.y, squareSize, squareSize);
+      return;
+    }
+
+    if (this.opened && this.flagged) {
+      // Flagged square was not a mine
+      image(WRONG, this.x, this.y, squareSize, squareSize);
+      return;
+    }
+    if (this.opened) {
+      // Opened square showing the number of mines touching the square
+      image(NUMBERS[this.minesAround], this.x, this.y, squareSize, squareSize);
+      return;
+    }
+
+    if (this.flagged) {
+      image(FLAG, this.x, this.y, squareSize, squareSize);
+      return;
+    }
+
+    image(CLOSED, this.x, this.y, squareSize, squareSize);
+
+    // Square numbers and mine locations for debugging
+    if (window.location.hash === '#debug') {
+      textSize(10.5);
+      if (this.mine) {
+        fill(255, 61, 61);
+      }
+      text(this.num, this.x + squareSize / 3.5, this.y + squareSize / 1.6);
+      textSize(squareSize - squareSize * 0.05);
+      darkMode ? fill(225) : fill(35);
+    }
+  }
+}
 
 function preload() {
   CLOSED = darkMode
@@ -338,7 +408,19 @@ function resetGame() {
   loop();
 }
 
-window.resetGame = resetGame; // Make the resetGame function globally accessible so other files can call it
+function setTheme(nextTheme) {
+  theme = nextTheme;
+  WON = loadImage(themes[theme].won);
+  LOST = loadImage(themes[theme].lost);
+  MINE = loadImage(themes[theme].mine);
+  DETONATION = loadImage(themes[theme].detonation);
+}
+
+window.emojiMinesweeper = Object.freeze({
+  resetGame,
+  setTheme,
+  isGameFinished: () => gameFinished,
+});
 
 /**
  * Mine allocation
@@ -1187,3 +1269,10 @@ function calculate3BV(board) {
 
   return bbbv;
 }
+
+window.preload = preload;
+window.setup = setup;
+window.draw = draw;
+window.mousePressed = mousePressed;
+window.keyPressed = keyPressed;
+})();

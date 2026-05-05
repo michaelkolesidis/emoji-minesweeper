@@ -7,6 +7,8 @@
 export default function Board() {
   const board = document.createElement('div');
   board.setAttribute('id', 'board');
+  const level = window.localStorage.getItem('level');
+
   switch (level) {
     case 'beginner':
       board.style.height = '328px';

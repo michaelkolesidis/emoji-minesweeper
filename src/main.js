@@ -109,9 +109,9 @@ const newGameButton = NewGameButton();
 emojiButtonsContainer.appendChild(newGameButton);
 newGameButton.addEventListener('click', () => {
   // Check if the resetGame function from emojiMinesweeper.js is available
-  if (typeof window.resetGame === 'function') {
+  if (typeof window.emojiMinesweeper?.resetGame === 'function') {
     closeActiveModal();
-    window.resetGame();
+    window.emojiMinesweeper.resetGame();
   } else {
     // Fallback to reload if something goes wrong
     window.location.reload();
@@ -250,7 +250,9 @@ document.addEventListener('gameHasEnded', () => {
                         href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#moves" 
                         target="_blank"
                       >Moves</a>`;
-  modal.innerHTML += `<p class="value">${moves}</p>`;
+  modal.innerHTML += `<p class="value">${window.localStorage.getItem(
+    'moves'
+  )}</p>`;
   modal.innerHTML += `<a 
                         class="label help-link" 
                         href="https://github.com/michaelkolesidis/emoji-minesweeper?tab=readme-ov-file#efficiency" 

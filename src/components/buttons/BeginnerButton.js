@@ -10,12 +10,16 @@ export default function BeginnerButton() {
   beginnerButton.title = `Beginner level`;
   beginnerButton.className = `emoji-button`;
   beginnerButton.innerHTML = `<img src="emoji/keycap_1_flat.png" />`;
+  const level = window.localStorage.getItem('level');
+
   if (level === 'beginner') {
     beginnerButton.classList.add('emoji-button-clicked');
   }
 
   // Functionality
   beginnerButton.addEventListener('click', () => {
+    const level = window.localStorage.getItem('level');
+
     if (level !== 'beginner') {
       window.localStorage.setItem('level', 'beginner');
       window.location.reload();
@@ -24,6 +28,7 @@ export default function BeginnerButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
+    const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit1' &&

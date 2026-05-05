@@ -16,8 +16,9 @@ export default function ExpertButton() {
   expertButton.title = `Expert level`;
   expertButton.className = `emoji-button`;
   expertButton.innerHTML = `<img src="emoji/keycap_3_flat.png" />`;
+  const level = window.localStorage.getItem('level');
 
-  if (typeof level !== 'undefined' && level === 'expert') {
+  if (level === 'expert') {
     expertButton.classList.add('emoji-button-clicked');
   }
 
@@ -56,7 +57,9 @@ export default function ExpertButton() {
       return;
     }
 
-    if (typeof level !== 'undefined' && level !== 'expert') {
+    const level = window.localStorage.getItem('level');
+
+    if (level !== 'expert') {
       window.localStorage.setItem('level', 'expert');
       window.location.reload();
     }
@@ -66,10 +69,10 @@ export default function ExpertButton() {
   document.addEventListener('keydown', e => {
     if (isMobile) return;
 
+    const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit3' &&
-      typeof level !== 'undefined' &&
       level !== 'expert' &&
       modalOpen !== 'true'
     ) {

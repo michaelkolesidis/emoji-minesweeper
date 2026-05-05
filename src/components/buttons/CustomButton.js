@@ -40,8 +40,9 @@ export default function CustomButton() {
   customButton.title = `Custom level`;
   customButton.className = `emoji-button`;
   customButton.innerHTML = `<img src="emoji/keycap_asterisk_flat.png" />`;
+  const level = window.localStorage.getItem('level');
 
-  if (typeof level !== 'undefined' && level === 'custom') {
+  if (level === 'custom') {
     customButton.classList.add('emoji-button-clicked');
   }
 
@@ -65,10 +66,10 @@ export default function CustomButton() {
     // Ignore keyboard shortcuts on mobile devices
     if (isMobile) return;
 
+    const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit4' &&
-      typeof level !== 'undefined' &&
       level !== 'custom' &&
       modalOpen !== 'true'
     ) {

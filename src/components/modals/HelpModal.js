@@ -12,9 +12,11 @@ export default function HelpModal() {
   modal.innerHTML = '';
 
   if (gameLevel === 'custom') {
-    if (settings.level.rows === 7) {
+    const rows = parseInt(window.localStorage.getItem('rows'), 10);
+
+    if (rows === 7) {
       modal.style.top = '-280px';
-    } else if (settings.level.rows === 8) {
+    } else if (rows === 8) {
       modal.style.top = '-313px';
     }
   }

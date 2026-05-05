@@ -16,8 +16,9 @@ export default function IntermediateButton() {
   intermediateButton.title = `Intermediate level`;
   intermediateButton.className = `emoji-button`;
   intermediateButton.innerHTML = `<img src="emoji/keycap_2_flat.png" />`;
+  const level = window.localStorage.getItem('level');
 
-  if (typeof level !== 'undefined' && level === 'intermediate') {
+  if (level === 'intermediate') {
     intermediateButton.classList.add('emoji-button-clicked');
   }
 
@@ -55,7 +56,9 @@ export default function IntermediateButton() {
       return; // Stop here
     }
 
-    if (typeof level !== 'undefined' && level !== 'intermediate') {
+    const level = window.localStorage.getItem('level');
+
+    if (level !== 'intermediate') {
       window.localStorage.setItem('level', 'intermediate');
       window.location.reload();
     }
@@ -65,10 +68,10 @@ export default function IntermediateButton() {
   document.addEventListener('keydown', e => {
     if (isMobile) return;
 
+    const level = window.localStorage.getItem('level');
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit2' &&
-      typeof level !== 'undefined' &&
       level !== 'intermediate' &&
       modalOpen !== 'true'
     ) {
