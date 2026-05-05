@@ -65,12 +65,12 @@ export default function IntermediateButton() {
   document.addEventListener('keydown', e => {
     if (isMobile) return;
 
-    const customModalOpen = window.localStorage.getItem('customModalOpen');
+    const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit2' &&
       typeof level !== 'undefined' &&
       level !== 'intermediate' &&
-      customModalOpen !== 'true'
+      modalOpen !== 'true'
     ) {
       window.localStorage.setItem('level', 'intermediate');
       window.location.reload();

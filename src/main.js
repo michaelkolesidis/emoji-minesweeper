@@ -31,7 +31,7 @@ import ICBLLogo from './components/ICBLLogo.js';
 
 // Utilities
 import { greet } from './utils/consoleUtils.js';
-import { closeModal, openModal } from './utils/modalUtils.js';
+import { closeModal, openModal, resetModal } from './utils/modalUtils.js';
 
 /**
  * Basics
@@ -61,6 +61,7 @@ if (mainEmoji === null) {
 
 // Modal
 window.localStorage.setItem('modalOpen', 'false');
+window.localStorage.setItem('activeModal', '');
 
 // Flag mode
 window.localStorage.setItem('flagMode', 'false');
@@ -109,11 +110,7 @@ emojiButtonsContainer.appendChild(newGameButton);
 newGameButton.addEventListener('click', () => {
   // Check if the resetGame function from emojiMinesweeper.js is available
   if (typeof window.resetGame === 'function') {
-    if (modalOpen) {
-      modalOpen = false;
-      window.localStorage.setItem('customModalOpen', 'false');
-      closeModal();
-    }
+    closeActiveModal();
     window.resetGame();
   } else {
     // Fallback to reload if something goes wrong
@@ -160,105 +157,54 @@ emojiButtonsContainer.appendChild(darkModeButton);
 /**
  * Modals
  */
-let modalOpen = false;
+let activeModalId = null;
 window.localStorage.setItem('customModalOpen', 'false');
 
-/**
- * Custom Modal
- */
-// Utility Function
-function toggleCustomModal() {
-  if (modalOpen) {
-    if (modal.id === 'custom-modal') {
-      // If custom modal is open
-      modalOpen = false;
-      window.localStorage.setItem('customModalOpen', 'false');
-      closeModal();
-    } else {
-      // If another modal is open
-      CustomModal();
-      window.localStorage.setItem('customModalOpen', 'true');
-    }
-  } else {
-    // If no modals are open
-    modal.id = 'custom-modal';
-    modalOpen = true;
-    window.localStorage.setItem('customModalOpen', 'true');
-    openModal();
-    CustomModal();
+function setCustomModalState(modalId) {
+  window.localStorage.setItem(
+    'customModalOpen',
+    modalId === 'custom-modal' ? 'true' : 'false'
+  );
+}
+
+function openActiveModal(modalId, renderModal) {
+  resetModal();
+  renderModal();
+  activeModalId = modalId;
+  setCustomModalState(modalId);
+  openModal(modalId);
+}
+
+function closeActiveModal() {
+  if (activeModalId !== null) {
+    activeModalId = null;
+    setCustomModalState(null);
+    closeModal();
   }
 }
 
-// Custom Button Functionality
-customButton.addEventListener('click', () => {
-  toggleCustomModal();
-});
-
-/**
- * Stats Modal
- */
-// Utility Function
-function toggleStatsModal() {
-  if (modalOpen) {
-    if (modal.id === 'stats-modal') {
-      // If stats modal is open
-      modalOpen = false;
-      closeModal();
-    } else {
-      // If another modal is open
-      StatsModal();
-    }
-  } else {
-    // If no modals are open
-    modal.id = 'stats-modal';
-    modalOpen = true;
-    openModal();
-    StatsModal();
+function toggleModal(modalId, renderModal) {
+  if (activeModalId === modalId) {
+    closeActiveModal();
+    return;
   }
+
+  openActiveModal(modalId, renderModal);
 }
 
-// Stats Button Functionality
-statsButton.addEventListener('click', () => {
-  toggleStatsModal();
-});
+const toggleCustomModal = () => toggleModal('custom-modal', CustomModal);
+const toggleStatsModal = () => toggleModal('stats-modal', StatsModal);
+const toggleHelpModal = () => toggleModal('help-modal', HelpModal);
 
-// Keyboard Action Handling
+customButton.addEventListener('click', toggleCustomModal);
+statsButton.addEventListener('click', toggleStatsModal);
+helpButton.addEventListener('click', toggleHelpModal);
+
 document.addEventListener('keydown', e => {
   if (e.code === 'KeyS') {
     toggleStatsModal();
   }
-});
 
-/**
- * Help Modal
- */
-// Utility Function
-function toggleHelpModal() {
-  if (modalOpen) {
-    if (modal.id === 'help-modal') {
-      // If help modal is open
-      modalOpen = false;
-      closeModal();
-    } else {
-      // If another modal is open
-      HelpModal();
-    }
-  } else {
-    // If no modals are open
-    modal.id = 'help-modal';
-    modalOpen = true;
-    openModal();
-    HelpModal();
-  }
-}
-
-// Help Button Functionality
-helpButton.addEventListener('click', () => {
-  toggleHelpModal();
-});
-
-// Keyboard Action Handling
-document.addEventListener('keydown', e => {
   if (e.code === 'KeyH') {
     toggleHelpModal();
   }
@@ -268,9 +214,11 @@ document.addEventListener('keydown', e => {
  * End modal
  */
 document.addEventListener('gameHasEnded', () => {
+  resetModal();
   modal.id = 'end-modal';
-  modalOpen = true;
-  openModal();
+  activeModalId = 'end-modal';
+  setCustomModalState(activeModalId);
+  openModal(activeModalId);
 
   // Display stats in modal when the game ends
   const time = window.localStorage.getItem('time');
@@ -313,8 +261,7 @@ document.addEventListener('gameHasEnded', () => {
 
   const endButton = document.getElementById('end-button');
   endButton.addEventListener('click', () => {
-    modalOpen = false;
-    closeModal();
+    closeActiveModal();
   });
 });
 

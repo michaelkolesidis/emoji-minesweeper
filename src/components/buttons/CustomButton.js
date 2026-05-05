@@ -56,11 +56,6 @@ export default function CustomButton() {
         showMobileTooltip(customButton);
         return false;
       }
-
-      if (typeof level !== 'undefined' && level !== 'custom') {
-        window.localStorage.setItem('level', 'custom');
-        window.location.reload();
-      }
     },
     true
   );
@@ -70,12 +65,12 @@ export default function CustomButton() {
     // Ignore keyboard shortcuts on mobile devices
     if (isMobile) return;
 
-    const customModalOpen = window.localStorage.getItem('customModalOpen');
+    const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit4' &&
       typeof level !== 'undefined' &&
       level !== 'custom' &&
-      customModalOpen !== 'true'
+      modalOpen !== 'true'
     ) {
       window.localStorage.setItem('level', 'custom');
       window.location.reload();

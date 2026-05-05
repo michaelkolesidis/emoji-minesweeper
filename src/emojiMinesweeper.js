@@ -1024,7 +1024,7 @@ function keyPressed() {
   if (
     (keyCode === 49 || keyCode === 97) &&
     window.location.hash !== '#debug' &&
-    window.localStorage.getItem('modalOpen') === false
+    window.localStorage.getItem('modalOpen') !== 'true'
   ) {
     if (level !== 'beginner') {
       window.localStorage.setItem('level', 'beginner');
@@ -1034,7 +1034,7 @@ function keyPressed() {
   if (
     (keyCode === 50 || keyCode === 98) &&
     window.location.hash !== '#debug' &&
-    window.localStorage.getItem('modalOpen') === false
+    window.localStorage.getItem('modalOpen') !== 'true'
   ) {
     if (level !== 'intermediate') {
       window.localStorage.setItem('level', 'intermediate');
@@ -1044,7 +1044,7 @@ function keyPressed() {
   if (
     (keyCode === 51 || keyCode === 99) &&
     window.location.hash !== '#debug' &&
-    window.localStorage.getItem('modalOpen') === false
+    window.localStorage.getItem('modalOpen') !== 'true'
   ) {
     if (level !== 'expert') {
       window.localStorage.setItem('level', 'expert');

@@ -66,12 +66,12 @@ export default function ExpertButton() {
   document.addEventListener('keydown', e => {
     if (isMobile) return;
 
-    const customModalOpen = window.localStorage.getItem('customModalOpen');
+    const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit3' &&
       typeof level !== 'undefined' &&
       level !== 'expert' &&
-      customModalOpen !== 'true'
+      modalOpen !== 'true'
     ) {
       window.localStorage.setItem('level', 'expert');
       window.location.reload();

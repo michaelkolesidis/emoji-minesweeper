@@ -5,6 +5,10 @@
  */
 
 export default function CustomModal() {
+  if (window.cleanupCustomModalListeners) {
+    window.cleanupCustomModalListeners();
+  }
+
   // Custom Modal
   const modal = document.querySelector('.modal');
   modal.setAttribute('id', 'custom-modal');
@@ -102,18 +106,28 @@ export default function CustomModal() {
 
   // Handle theme changing
   const themeButton = document.getElementById('theme-button');
+  const listenerController = new AbortController();
 
   const resetMineIcon = () =>
     (mineSettings.innerHTML = `<img class="custom-label" src="${themes[theme].mine}" title="Mines"/>
   <input type="text" id="mines-input" class="custom-input">`);
 
-  themeButton.addEventListener('click', () => {
-    resetMineIcon();
+  themeButton.addEventListener('click', resetMineIcon, {
+    signal: listenerController.signal,
   });
 
-  document.addEventListener('keydown', event => {
-    if (event.code === 'ArrowRight' || event.code === 'ArrowLeft') {
-      resetMineIcon();
-    }
-  });
+  document.addEventListener(
+    'keydown',
+    event => {
+      if (event.code === 'ArrowRight' || event.code === 'ArrowLeft') {
+        resetMineIcon();
+      }
+    },
+    { signal: listenerController.signal }
+  );
+
+  window.cleanupCustomModalListeners = () => {
+    listenerController.abort();
+    window.cleanupCustomModalListeners = null;
+  };
 }

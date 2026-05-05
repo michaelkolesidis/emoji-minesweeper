@@ -24,11 +24,11 @@ export default function BeginnerButton() {
 
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
-    const customModalOpen = window.localStorage.getItem('customModalOpen');
+    const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit1' &&
       level !== 'beginner' &&
-      customModalOpen !== 'true'
+      modalOpen !== 'true'
     ) {
       window.localStorage.setItem('level', 'beginner');
       window.location.reload();
