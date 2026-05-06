@@ -39,6 +39,10 @@
   outline: none !important;
 }
 
+*:active {
+  opacity: 1 !important;
+}
+
 html,
 body {
   background-color: var(--secondary-color);
