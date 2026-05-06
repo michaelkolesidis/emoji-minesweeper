@@ -152,7 +152,7 @@ function buildAbout() {
   source.textContent = 'Source';
 
   const help = document.createElement('a');
-  help.href = '/help';
+  help.href = 'git ahelp';
   help.target = '_blank';
   help.textContent = 'Help';
 
