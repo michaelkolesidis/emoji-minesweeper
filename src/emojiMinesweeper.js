@@ -48,13 +48,34 @@
 
   // Time
   let time;
+  let gameResult = null;
 
   function loadCachedImage(path) {
     if (!imageCache.has(path)) {
-      imageCache.set(path, loadImage(path));
+      imageCache.set(
+        path,
+        loadImage(path, () => {
+          if (gameFinished) {
+            redraw();
+          }
+        })
+      );
     }
 
     return imageCache.get(path);
+  }
+
+  function syncEndGameEmoji() {
+    if (!gameFinished) {
+      return;
+    }
+
+    if (newBestMoves || newBestTime) {
+      NUMBERS[0] = BEST;
+      return;
+    }
+
+    NUMBERS[0] = gameResult === 'won' ? WON : LOST;
   }
 
   function closedSquarePath() {
@@ -450,6 +471,7 @@
     startTime = null;
     timePassed = 0;
     gameFinished = false;
+    gameResult = null;
     isFirstClick = true;
     mineReallocated = false;
     newBestMoves = false;
@@ -489,6 +511,7 @@
     LOST = loadCachedImage(themes[theme].lost);
     MINE = loadCachedImage(themes[theme].mine);
     DETONATION = loadCachedImage(themes[theme].detonation);
+    syncEndGameEmoji();
 
     if (gameFinished) {
       redraw();
@@ -963,6 +986,7 @@
   // Handle end
   function gameEnded(won) {
     gameFinished = true;
+    gameResult = won ? 'won' : 'lost';
     if (window.location.hash === '') {
       time = startTime ? (new Date() - startTime) / 1000 : timePassed;
       window.statsStore.recordGameEnded(level, { won, time, moves });
