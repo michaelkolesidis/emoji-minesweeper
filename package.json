@@ -2,7 +2,7 @@
   "name": "emoji-minesweeper",
   "author": "Michael Kolesidis",
   "license": "AGPL-3.0-or-later",
-  "description": "Minesweeper made with emoji. The most fun way to play minesweeper! 😄",
+  "description": "Play Emoji Minesweeper online, a cheerful twist on classic Minesweeper with colorful emoji themes, difficulty levels, stats, and records.",
   "main": "index.js",
   "repository": {
     "type": "git",
