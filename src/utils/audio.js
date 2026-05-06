@@ -9,7 +9,7 @@ const AudioContextClass = window.AudioContext || window.webkitAudioContext;
 const audioBuffers = {};
 const audioVolumes = {
   pop: 0.15,
-  flag: 0.1,
+  flag: 0.15,
   win: 0.15,
   loss: 0.15,
 };
