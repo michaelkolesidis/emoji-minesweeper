@@ -146,7 +146,7 @@ function buildAbout() {
   links.id = 'help-links';
 
   const source = document.createElement('a');
-  source.id = 'source'
+  source.id = 'source';
   source.href = 'https://github.com/michaelkolesidis/emoji-minesweeper';
   source.target = '_blank';
   source.textContent = 'Source';

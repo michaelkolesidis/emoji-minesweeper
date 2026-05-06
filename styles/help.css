@@ -100,3 +100,8 @@ th {
 #emoji-list {
   max-width: 15ch;
 }
+
+.site-logo-img {
+  margin-top: 80px;
+  width: 500px;
+}
