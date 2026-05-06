@@ -14,24 +14,52 @@ const icblLogo = {
   dark: 'assets/icbl_logo_white.svg',
 };
 
+const logoCache = new Map();
+
 export function setLogoTheme(isDarkMode) {
-  setImageSource(
+  replaceImage(
     'desktop-logo',
-    isDarkMode ? desktopLogo.dark : desktopLogo.light
+    isDarkMode ? desktopLogo.dark : desktopLogo.light,
+    'Thumbfeed logo'
   );
-  setImageSource('icbl-logo', isDarkMode ? icblLogo.dark : icblLogo.light);
+  replaceImage(
+    'icbl-logo',
+    isDarkMode ? icblLogo.dark : icblLogo.light,
+    'ICBL logo'
+  );
 }
 
 export function setDesktopLogoTheme(isDarkMode) {
   setLogoTheme(isDarkMode);
 }
 
-function setImageSource(id, source) {
-  const logo = document.getElementById(id);
+function replaceImage(id, source, alt) {
+  const currentLogo = document.getElementById(id);
 
-  if (!logo) {
+  if (!currentLogo || currentLogo.getAttribute('src') === source) {
     return;
   }
 
-  logo.src = source;
+  const nextLogo = getCachedLogo(id, source, alt, currentLogo);
+  currentLogo.replaceWith(nextLogo);
+}
+
+function getCachedLogo(id, source, alt, currentLogo) {
+  const cacheKey = `${id}:${source}`;
+
+  if (!logoCache.has(cacheKey)) {
+    const logo = document.createElement('img');
+    logo.id = id;
+    logo.className = currentLogo.className;
+    logo.alt = currentLogo.alt || alt;
+    logo.src = source;
+
+    if (currentLogo.style.cssText) {
+      logo.style.cssText = currentLogo.style.cssText;
+    }
+
+    logoCache.set(cacheKey, logo);
+  }
+
+  return logoCache.get(cacheKey);
 }

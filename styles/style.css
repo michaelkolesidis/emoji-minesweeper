@@ -311,6 +311,10 @@ button:hover {
   justify-content: space-around;
 }
 
+#source {
+  margin-right: 15px;
+}
+
 /* Custom Modal */
 #custom-modal {
   display: flex;
