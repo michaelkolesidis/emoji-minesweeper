@@ -115,6 +115,58 @@ body {
   outline: none;
 }
 
+#muteButton {
+  height: 54px;
+  width: 58px;
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+  user-select: none;
+  transition: transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#muteButton .mute-icon {
+  color: var(--main-color);
+  display: block;
+  height: auto;
+  width: 45px;
+}
+
+#muteButton:hover {
+  box-shadow: none;
+}
+
+.site-logo:focus,
+#muteButton:focus {
+  outline: none;
+}
+
+#muteButton:active {
+  transform: scale(0.9);
+}
+
+@media screen and (max-width: 600px) {
+  #muteButton {
+    top: 12px;
+    right: 10px;
+    height: 54px;
+    width: 58px;
+  }
+}
+
 #error-page {
   display: flex;
   flex-direction: column;

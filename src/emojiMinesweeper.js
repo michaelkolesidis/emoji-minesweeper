@@ -870,6 +870,7 @@
             });
 
             if (openedSquares > 0) {
+              window.emojiMinesweeperAudio?.playSound('pop');
               addMove();
             }
           }
@@ -896,6 +897,8 @@
 
         // Prevent opened squares from being flagged
         if (!square.opened) {
+          window.emojiMinesweeperAudio?.playSound('flag');
+
           if (!square.flagged) {
             flaggedSquares += 1;
             addMove();
@@ -936,6 +939,8 @@
               gameEnded(false);
             }
           } else {
+            window.emojiMinesweeperAudio?.playSound('pop');
+
             // Check if the game has been won
             let squaresLeft = squares.filter(s => {
               return !s.mine && !s.opened;
@@ -982,6 +987,8 @@
 
   // Handle win
   function gameWon() {
+    window.emojiMinesweeperAudio?.playSound('win');
+
     NUMBERS[0] = WON;
     squares.forEach(function (s) {
       s.opened = true;
@@ -1030,6 +1037,8 @@
 
   // handle loss
   function gameLost() {
+    window.emojiMinesweeperAudio?.playSound('loss');
+
     NUMBERS[0] = LOST;
     squares.forEach(function (s) {
       s.opened = true;

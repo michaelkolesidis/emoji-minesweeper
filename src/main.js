@@ -11,6 +11,7 @@
 
 // Elements
 import Header from './components/Header.js';
+import MuteButton from './components/buttons/MuteButton.js';
 import Board from './components/Board.js';
 import Modal from './components/modals/Modal.js';
 import StatsModal from './components/modals/StatsModal.js';
@@ -89,6 +90,10 @@ setDesktopLogoTheme(darkMode);
 // Header
 let header = Header(title);
 gameContainer.appendChild(header);
+
+// Mute Button
+let muteButton = MuteButton();
+gameContainer.appendChild(muteButton);
 
 // Board
 const board = Board();
