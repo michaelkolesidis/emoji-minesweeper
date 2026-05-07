@@ -44,7 +44,8 @@ greet();
 // Theme
 let theme = window.localStorage.getItem('theme');
 if (theme === null) {
-  window.localStorage.setItem('theme', 'mine');
+  theme = 'mine';
+  window.localStorage.setItem('theme', theme);
 }
 
 // Dark Mode
@@ -71,8 +72,7 @@ window.localStorage.setItem('activeModal', '');
 window.localStorage.setItem('flagMode', 'false');
 
 // Title
-let title = window.localStorage.getItem('title') ?? 'Emoji Minesweeper';
-document.title = title;
+let title = themes[theme]?.title ?? 'Emoji Minesweeper';
 
 /**
  * Elements

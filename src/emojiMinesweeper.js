@@ -187,11 +187,6 @@
   }
 
   /**
-   * Title
-   */
-  window.localStorage.setItem('title', themes[theme]['title']);
-
-  /**
    * Settings
    */
   let settings = {

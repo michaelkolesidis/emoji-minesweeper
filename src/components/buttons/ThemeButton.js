@@ -71,9 +71,6 @@ export default function ThemeButton(header) {
 
   function updateTheme() {
     window.emojiMinesweeper?.setTheme(theme);
-    window.localStorage.setItem('title', themes[theme].title);
-    const title = window.localStorage.getItem('title');
-    document.title = title;
     window.localStorage.setItem('mainEmoji', themes[theme].mine);
     header.innerHTML = themes[theme].title;
     renderThemeIcon();
