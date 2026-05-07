@@ -40,25 +40,51 @@ export default function CustomModal() {
   minesInput.type = 'number';
   minesInput.id = 'mines-input';
   minesInput.className = 'custom-input';
-  minesInput.min = '1';
   minesInput.step = '1';
   minesInput.placeholder = '10';
+  minesInput.title = 'Mines must be at least 10% of the level.';
   mineSettings.append(mineLabel, minesInput);
   modal.appendChild(mineSettings);
 
-  const savedColumns = parseInt(window.localStorage.getItem('columns'), 10);
-  const savedRows = parseInt(window.localStorage.getItem('rows'), 10);
-  const savedMines = parseInt(window.localStorage.getItem('mines'), 10);
+  const columnsInput = document.getElementById('columns-input');
+  const rowsInput = document.getElementById('rows-input');
+  const listenerController = new AbortController();
+  const savedLevel = window.customLevelRules.readCustomLevel();
+  columnsInput.value = savedLevel.columns;
+  rowsInput.value = savedLevel.rows;
+  minesInput.value = savedLevel.mines;
 
-  if (Number.isInteger(savedColumns)) {
-    document.getElementById('columns-input').value = savedColumns;
+  const mineRequirement = document.createElement('p');
+  mineRequirement.id = 'custom-mine-requirement';
+  modal.appendChild(mineRequirement);
+
+  function updateMineInputBounds() {
+    const { columns, rows, minimumMines, maximumMines } =
+      window.customLevelRules.normalizeCustomLevel({
+        columns: columnsInput.value,
+        rows: rowsInput.value,
+      });
+
+    minesInput.min = String(minimumMines);
+    minesInput.max = String(maximumMines);
+    minesInput.placeholder = String(Math.max(10, minimumMines));
+    mineRequirement.textContent = `At least 10% of the board must be mines: ${minimumMines} minimum for ${columns}x${rows}.`;
+
+    const mines = Number.parseInt(minesInput.value, 10);
+    if (Number.isInteger(mines) && mines < minimumMines) {
+      minesInput.value = minimumMines;
+    } else if (Number.isInteger(mines) && mines > maximumMines) {
+      minesInput.value = maximumMines;
+    }
   }
-  if (Number.isInteger(savedRows)) {
-    document.getElementById('rows-input').value = savedRows;
-  }
-  if (Number.isInteger(savedMines)) {
-    minesInput.value = savedMines;
-  }
+
+  updateMineInputBounds();
+  columnsInput.addEventListener('input', updateMineInputBounds, {
+    signal: listenerController.signal,
+  });
+  rowsInput.addEventListener('input', updateMineInputBounds, {
+    signal: listenerController.signal,
+  });
 
   // Submit Button
   const submitButton = document.createElement('button');
@@ -68,15 +94,16 @@ export default function CustomModal() {
 
   // Submit Button Functionality
   submitButton.addEventListener('click', () => {
-    const columns = readClampedInteger('columns-input', 9, 7, 100);
-    window.localStorage.setItem('columns', columns);
-
-    const rows = readClampedInteger('rows-input', 9, 7, 100);
-    window.localStorage.setItem('rows', rows);
-
-    const totalCells = columns * rows;
-    const mines = readClampedInteger('mines-input', 10, 1, totalCells - 1);
-    window.localStorage.setItem('mines', mines);
+    const customLevel = window.customLevelRules.normalizeCustomLevel({
+      columns: columnsInput.value,
+      rows: rowsInput.value,
+      mines: minesInput.value,
+    });
+    window.customLevelRules.saveCustomLevel(customLevel);
+    columnsInput.value = customLevel.columns;
+    rowsInput.value = customLevel.rows;
+    minesInput.value = customLevel.mines;
+    updateMineInputBounds();
 
     if (window.localStorage.getItem('level') !== 'custom') {
       window.localStorage.setItem('level', 'custom');
@@ -91,7 +118,6 @@ export default function CustomModal() {
 
   // Handle theme changing
   const themeButton = document.getElementById('theme-button');
-  const listenerController = new AbortController();
 
   const resetMineIcon = () => {
     mineLabel.src = themes[getTheme()].mine;
@@ -115,15 +141,4 @@ export default function CustomModal() {
     listenerController.abort();
     window.cleanupCustomModalListeners = null;
   };
-}
-
-function readClampedInteger(inputId, fallback, min, max) {
-  const input = document.getElementById(inputId);
-  const value = Number.parseInt(input.value, 10);
-  const clampedValue = Number.isInteger(value)
-    ? Math.min(Math.max(value, min), max)
-    : fallback;
-
-  input.value = clampedValue;
-  return clampedValue;
 }

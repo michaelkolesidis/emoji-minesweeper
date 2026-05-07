@@ -24,12 +24,6 @@ function displayDecimal(value, fallback = 'N/A') {
 }
 
 export default function StatsModal() {
-  let gameLevel = window.localStorage.getItem('level') ?? 'beginner';
-  if (!window.statsStore.levels.includes(gameLevel)) {
-    gameLevel = 'beginner';
-    window.localStorage.setItem('level', gameLevel);
-  }
-
   const modal = document.querySelector('.modal');
   modal.setAttribute('id', 'stats-modal');
   modal.innerHTML = '';
@@ -45,6 +39,12 @@ export default function StatsModal() {
   if (window.location.hash === '#debug') {
     modal.innerHTML = `<h3 id="stats-not-available">Debug mode</h3>`;
     return;
+  }
+
+  let gameLevel = window.localStorage.getItem('level') ?? 'beginner';
+  if (!window.statsStore.levels.includes(gameLevel)) {
+    gameLevel = 'beginner';
+    window.localStorage.setItem('level', gameLevel);
   }
 
   const stats = window.statsStore.getLevelStats(gameLevel);

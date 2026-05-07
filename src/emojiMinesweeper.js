@@ -244,49 +244,8 @@
       };
       break;
     case 'custom':
-      let columns = parseInt(window.localStorage.getItem('columns'), 10);
-      let rows = parseInt(window.localStorage.getItem('rows'), 10);
-      let mines = parseInt(window.localStorage.getItem('mines'), 10);
-
-      if (isNaN(columns)) {
-        columns = 9;
-        window.localStorage.setItem('columns', columns);
-      } else {
-        if (columns < 7) {
-          columns = 7;
-          window.localStorage.setItem('columns', columns);
-        } else if (columns > 100) {
-          columns = 100;
-          window.localStorage.setItem('columns', columns);
-        }
-      }
-
-      if (isNaN(rows)) {
-        rows = 9;
-        window.localStorage.setItem('rows', rows);
-      } else {
-        if (rows < 7) {
-          rows = 7;
-          window.localStorage.setItem('rows', rows);
-        } else if (rows > 100) {
-          rows = 100;
-          window.localStorage.setItem('rows', rows);
-        }
-      }
-
-      if (isNaN(mines)) {
-        mines = 10;
-        window.localStorage.setItem('mines', mines);
-      } else {
-        if (mines < 1) {
-          mines = 1;
-          window.localStorage.setItem('mines', mines);
-        }
-        if (mines > columns * rows - 1) {
-          mines = columns * rows - 1;
-          window.localStorage.setItem('mines', mines);
-        }
-      }
+      let { columns, rows, mines } = window.customLevelRules.readCustomLevel();
+      window.customLevelRules.saveCustomLevel({ columns, rows, mines });
 
       settings.level = {
         columns,
@@ -346,33 +305,8 @@
       };
       break;
     case 'custom':
-      let columns = parseInt(window.localStorage.getItem('columns'), 10);
-      if (columns < 7) {
-        columns = 7;
-        window.localStorage.setItem('columns', columns);
-      } else if (columns > 100) {
-        columns = 100;
-        window.localStorage.setItem('columns', columns);
-      }
-
-      let rows = parseInt(window.localStorage.getItem('rows'), 10);
-      if (rows < 7) {
-        rows = 7;
-        window.localStorage.setItem('rows', rows);
-      } else if (rows > 100) {
-        rows = 100;
-        window.localStorage.setItem('rows', rows);
-      }
-
-      let mines = parseInt(window.localStorage.getItem('mines'), 10);
-      if (mines < 1) {
-        mines = 1;
-        window.localStorage.setItem('mines', mines);
-      }
-      if (mines > columns * rows - 1) {
-        mines = columns * rows - 1;
-        window.localStorage.setItem('mines', mines);
-      }
+      let { columns, rows, mines } = window.customLevelRules.readCustomLevel();
+      window.customLevelRules.saveCustomLevel({ columns, rows, mines });
 
       settings.level = {
         columns,
@@ -415,11 +349,7 @@
           mines: 99,
         };
       case 'custom':
-        return {
-          columns: parseInt(window.localStorage.getItem('columns'), 10) || 9,
-          rows: parseInt(window.localStorage.getItem('rows'), 10) || 9,
-          mines: parseInt(window.localStorage.getItem('mines'), 10) || 10,
-        };
+        return window.customLevelRules.readCustomLevel();
       case 'beginner':
       default:
         return {
