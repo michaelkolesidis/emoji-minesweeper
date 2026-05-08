@@ -8,8 +8,9 @@ export default function HelpButton() {
   // Button
   const helpButton = document.createElement('div');
   helpButton.title = `Toggle help modal`;
+  helpButton.setAttribute('aria-label', 'Help');
   helpButton.className = `emoji-button`;
-  helpButton.innerHTML = `<img src="emoji/white_question_mark_flat.png" />`;
+  helpButton.innerHTML = `<img src="emoji/white_question_mark_flat.png" alt="Help" />`;
   // The click functionality is handled in main.js
   return helpButton;
 }

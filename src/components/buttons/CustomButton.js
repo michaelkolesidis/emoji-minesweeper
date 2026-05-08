@@ -14,9 +14,10 @@ export default function CustomButton() {
   // Button Creation
   const customButton = document.createElement('div');
   customButton.title = `Custom level`;
+  customButton.setAttribute('aria-label', 'Custom level');
   customButton.className = `emoji-button mobile-desktop-only`;
   customButton.dataset.level = 'custom';
-  customButton.innerHTML = `<img src="emoji/keycap_asterisk_flat.png" />`;
+  customButton.innerHTML = `<img src="emoji/keycap_asterisk_flat.png" alt="Custom level" />`;
   const level = window.localStorage.getItem('level');
 
   if (level === 'custom') {

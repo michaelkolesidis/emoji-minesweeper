@@ -457,7 +457,7 @@ document.addEventListener('keydown', event => {
       const easterEgg = document.createElement('div');
       easterEgg.classList.add('easter-egg');
 
-      easterEgg.innerHTML = '<img src="assets/logo.svg">';
+      easterEgg.innerHTML = '<img src="assets/logo.svg" alt="">';
       document.body.appendChild(easterEgg);
 
       const imgElement = easterEgg.querySelector('img');

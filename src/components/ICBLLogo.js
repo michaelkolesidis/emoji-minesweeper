@@ -18,11 +18,17 @@ export default function ICBLLogo() {
   icblLogo.style.width = '180px';
   icblLogo.src = 'assets/icbl_logo.svg';
   icblLogo.id = 'icbl-logo';
+  icblLogo.alt = 'International Campaign to Ban Landmines logo';
 
   // Link Wrapper
   const icblLink = document.createElement('a');
   icblLink.href = 'https://www.icblcmc.org/';
   icblLink.target = '_blank';
+  icblLink.rel = 'noopener noreferrer';
+  icblLink.setAttribute(
+    'aria-label',
+    'International Campaign to Ban Landmines'
+  );
   icblLink.appendChild(icblLogo);
 
   // Assemble

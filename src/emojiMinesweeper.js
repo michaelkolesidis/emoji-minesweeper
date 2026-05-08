@@ -1135,18 +1135,18 @@
 
   function calculate3BV(board) {
     board = transformBoard(board);
-    const width = board.length;
     const height = board.length;
+    const width = board[0]?.length ?? 0;
     const cells = [];
 
     // Initialize cells with the given board
-    for (let i = 0; i < width; i++) {
+    for (let x = 0; x < width; x++) {
       const row = [];
-      for (let j = 0; j < height; j++) {
+      for (let y = 0; y < height; y++) {
         row.push({
-          x: i,
-          y: j,
-          number: board[j][i] === 1 ? -1 : 0,
+          x,
+          y,
+          number: board[y][x] === 1 ? -1 : 0,
           group: 0,
         });
       }
@@ -1157,25 +1157,25 @@
     function arround(cell) {
       const result = [];
       for (
-        let i = Math.max(0, cell.x - 1);
-        i <= Math.min(width - 1, cell.x + 1);
-        i++
+        let x = Math.max(0, cell.x - 1);
+        x <= Math.min(width - 1, cell.x + 1);
+        x++
       ) {
         for (
-          let j = Math.max(0, cell.y - 1);
-          j <= Math.min(height - 1, cell.y + 1);
-          j++
+          let y = Math.max(0, cell.y - 1);
+          y <= Math.min(height - 1, cell.y + 1);
+          y++
         ) {
-          result.push(cells[i][j]);
+          result.push(cells[x][y]);
         }
       }
       return result;
     }
 
     // Calculate numbers for each cell
-    for (let i = 0; i < width; i++) {
-      for (let j = 0; j < height; j++) {
-        const cell = cells[i][j];
+    for (let x = 0; x < width; x++) {
+      for (let y = 0; y < height; y++) {
+        const cell = cells[x][y];
         if (cell.number === -1) continue;
         cell.number = arround(cell).filter(a => a.number === -1).length;
       }

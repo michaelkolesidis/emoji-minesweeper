@@ -14,9 +14,10 @@ export default function IntermediateButton() {
   // Button Creation
   const intermediateButton = document.createElement('div');
   intermediateButton.title = `Intermediate level`;
+  intermediateButton.setAttribute('aria-label', 'Intermediate level');
   intermediateButton.className = `emoji-button mobile-desktop-only`;
   intermediateButton.dataset.level = 'intermediate';
-  intermediateButton.innerHTML = `<img src="emoji/keycap_2_flat.png" />`;
+  intermediateButton.innerHTML = `<img src="emoji/keycap_2_flat.png" alt="Intermediate level" />`;
   const level = window.localStorage.getItem('level');
 
   if (level === 'intermediate') {

@@ -17,6 +17,7 @@ export default function ThemeButton(header) {
   // Button
   const themeButton = document.createElement('div');
   themeButton.title = `Change theme`;
+  themeButton.setAttribute('aria-label', 'Change theme');
   themeButton.id = `theme-button`;
   themeButton.className = `emoji-button`;
   let theme = window.localStorage.getItem('theme') ?? 'mine';
@@ -73,6 +74,7 @@ export default function ThemeButton(header) {
     if (!themeIconCache.has(iconPath)) {
       const icon = document.createElement('img');
       icon.src = iconPath;
+      icon.alt = `${themes[theme].title} theme`;
       themeIconCache.set(iconPath, icon);
     }
 

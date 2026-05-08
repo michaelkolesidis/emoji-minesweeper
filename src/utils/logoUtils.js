@@ -25,7 +25,7 @@ export function setLogoTheme(isDarkMode) {
   replaceImage(
     'icbl-logo',
     isDarkMode ? icblLogo.dark : icblLogo.light,
-    'ICBL logo'
+    'International Campaign to Ban Landmines logo'
   );
 }
 

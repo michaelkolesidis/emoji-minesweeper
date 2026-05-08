@@ -19,14 +19,14 @@ export default function CustomModal() {
   // Columns
   const columnsSettings = document.createElement('div');
   columnsSettings.classList.add('custom-section');
-  columnsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/left-right_arrow_flat.svg" title="Columns"/>
+  columnsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/left-right_arrow_flat.svg" title="Columns" alt="Columns"/>
   <input type="number" id="columns-input" class="custom-input" min="7" max="100" step="1" placeholder="9">`;
   modal.appendChild(columnsSettings);
 
   // Rows
   const rowsSettings = document.createElement('div');
   rowsSettings.classList.add('custom-section');
-  rowsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/up-down_arrow_flat.svg" title="Rows" />
+  rowsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/up-down_arrow_flat.svg" title="Rows" alt="Rows" />
   <input type="number" id="rows-input" class="custom-input" min="7" max="100" step="1" placeholder="9">`;
   modal.appendChild(rowsSettings);
 
@@ -37,6 +37,7 @@ export default function CustomModal() {
   const mineLabel = document.createElement('img');
   mineLabel.className = 'custom-label';
   mineLabel.title = 'Mines';
+  mineLabel.alt = 'Mines';
   mineLabel.src = themes[getTheme()].mine;
   const minesInput = document.createElement('input');
   minesInput.type = 'number';

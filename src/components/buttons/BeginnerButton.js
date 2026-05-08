@@ -10,9 +10,10 @@ export default function BeginnerButton() {
   // Button
   const beginnerButton = document.createElement('div');
   beginnerButton.title = `Beginner level`;
+  beginnerButton.setAttribute('aria-label', 'Beginner level');
   beginnerButton.className = `emoji-button`;
   beginnerButton.dataset.level = 'beginner';
-  beginnerButton.innerHTML = `<img src="emoji/keycap_1_flat.png" />`;
+  beginnerButton.innerHTML = `<img src="emoji/keycap_1_flat.png" alt="Beginner level" />`;
   const level = window.localStorage.getItem('level');
 
   if (level === 'beginner') {

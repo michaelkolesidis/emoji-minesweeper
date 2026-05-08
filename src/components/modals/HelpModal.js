@@ -136,6 +136,7 @@ function icon(src) {
   const element = document.createElement('img');
   element.src = src;
   element.className = 'help-emoji';
+  element.alt = '';
   return element;
 }
 

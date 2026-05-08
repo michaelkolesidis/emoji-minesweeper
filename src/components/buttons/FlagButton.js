@@ -13,8 +13,9 @@ export default function FlagButton(board) {
   // Button
   const flagButton = document.createElement('div');
   flagButton.title = `Toggle flag mode`;
+  flagButton.setAttribute('aria-label', 'Toggle flag mode');
   flagButton.className = `emoji-button`;
-  flagButton.innerHTML = `<img src="emoji/triangular_flag_flat.png" />`;
+  flagButton.innerHTML = `<img src="emoji/triangular_flag_flat.png" alt="Flag mode" />`;
 
   // Flag Button Functionality
   let flagMode = false;

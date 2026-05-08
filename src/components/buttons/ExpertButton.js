@@ -14,9 +14,10 @@ export default function ExpertButton() {
   //  Button Creation
   const expertButton = document.createElement('div');
   expertButton.title = `Expert level`;
+  expertButton.setAttribute('aria-label', 'Expert level');
   expertButton.className = `emoji-button mobile-desktop-only`;
   expertButton.dataset.level = 'expert';
-  expertButton.innerHTML = `<img src="emoji/keycap_3_flat.png" />`;
+  expertButton.innerHTML = `<img src="emoji/keycap_3_flat.png" alt="Expert level" />`;
   const level = window.localStorage.getItem('level');
 
   if (level === 'expert') {

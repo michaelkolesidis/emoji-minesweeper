@@ -8,8 +8,9 @@ export default function NewGameButton() {
   // Button
   const newGameButton = document.createElement('div');
   newGameButton.title = `New game (N)`;
+  newGameButton.setAttribute('aria-label', 'New game');
   newGameButton.className = `emoji-button`;
-  newGameButton.innerHTML = `<img src="emoji/svg/new_button_flat.svg" />`;
+  newGameButton.innerHTML = `<img src="emoji/svg/new_button_flat.svg" alt="New game" />`;
   // The click functionality is  handled in main.js
   return newGameButton;
 }

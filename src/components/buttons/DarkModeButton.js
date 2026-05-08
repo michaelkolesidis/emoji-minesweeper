@@ -13,6 +13,7 @@ export default function DarkModeButton(darkMode) {
   // Button
   const darkModeButton = document.createElement('div');
   darkModeButton.title = `Toggle dark mode`;
+  darkModeButton.setAttribute('aria-label', 'Toggle dark mode');
   darkModeButton.className = `emoji-button`;
   renderButton();
 
@@ -38,6 +39,7 @@ export default function DarkModeButton(darkMode) {
     if (!iconCache.has(iconPath)) {
       const icon = document.createElement('img');
       icon.src = iconPath;
+      icon.alt = isDarkMode ? 'Dark mode' : 'Light mode';
       iconCache.set(iconPath, icon);
     }
 
