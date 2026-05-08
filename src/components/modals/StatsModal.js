@@ -28,23 +28,9 @@ export default function StatsModal() {
   modal.setAttribute('id', 'stats-modal');
   modal.innerHTML = '';
 
-  if (window.localStorage.getItem('level') === 'custom') {
-    modal.innerHTML = `<h3 id="stats-not-available">Stats not available for custom levels</h3>`;
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.top = '-247px';
-    return;
-  }
-
-  if (window.location.hash === '#debug') {
-    modal.innerHTML = `<h3 id="stats-not-available">Debug mode</h3>`;
-    return;
-  }
-
   let gameLevel = window.localStorage.getItem('level') ?? 'beginner';
   if (!window.statsStore.levels.includes(gameLevel)) {
     gameLevel = 'beginner';
-    window.localStorage.setItem('level', gameLevel);
   }
 
   const stats = window.statsStore.getLevelStats(gameLevel);

@@ -6,19 +6,13 @@
 ![Win mines](./screenshots/win_mines_v8c.png)
 ![Win flowers](./screenshots/win_flowers_v8c.png)
 
+<a href='https://thumbfeed.com/emoji-minesweeper/' target='_blank'><img src='assets/only-on-outline-400px.png'  alt='Play Emoji Minesweeper on Thumnbfeed.com' /></a>  
+
 <a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:80px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-![Attention! Free Software](./assets/attention-free-software.png)
-
-This software is free (as in freedom). **If you use any part of this code, you must make your entire project's source code publicly available under the same license.** This applies whether you modify the code or use it as it is in your own project. This ensures that all modifications and derivative works remain free software, so that everyone can benefit. If you are not willing to comply with these terms, you must refrain from using any part of this code.
-
-For full license terms and conditions, you can read the AGPL-3.0 at: [gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/licenses/agpl-3.0.html).
-
-## [Play!](https://thumbfeed.com/emoji-minesweeper/)
 
 Emoji Minesweeper is a **logic puzzle game**, a variant of the classic [minesweeper game](<https://en.wikipedia.org/wiki/Minesweeper_(video_game)>) reimagined and implemented using **emoji**! It features a **grid of clickable squares**, with hidden **mines** (or flowers) scattered throughout the board. Safe squares have **numbers** telling you how many mines touch the square. If there is no number, the square doesn't touch any mine. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you **lose** the game!
 
-Emoji Minesweeper **always makes the first click safe**. You open squares with the **left mouse button** and put flags on mines with the **right mouse button**.
+Emoji Minesweeper **always makes the first click safe**. You open squares with the **left mouse button** and put flags on mines with the **right mouse button**. You can also use **chording** with either the left mouse button or the middle mouse button once a numbered square has the correct number of adjacent flags.
 
 The game ends when all safe squares have been opened (**win**) or when a square containing a mine is opened (**loss**). If you win, the empty square get filled with happy faces 😄, and if you lose they get filled with sad faces 😵.
 
@@ -40,7 +34,7 @@ Additional information for nerds 🤓 (architecture, technologies, debugging) ca
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
 
-You can find more information in the [documentation](./DOCS.md#technologies-used).
+You can find more information in the [documentation](./docs/DOCS.md#technologies-used).
 
 ## How to Play
 
@@ -90,13 +84,13 @@ Or like this. Not too bad, huh? In order to win a game, you need to open all the
 
 ![Stats](./screenshots/stats_v8.png)
 
-In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click the 📊 button. Stats include metrics such as games played, games won, percentage of wins, best time and best moves and are kept separately for each level. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
+In order to keep track of how good (or bad) you are doing the game keeps your stats. To open the stats modal click the 📊 button. Stats include metrics such as games played, games won, percentage of wins, best time, best moves, total time, and total moves, and are kept separately for beginner, intermediate, and expert. Custom levels and debug mode do not save stats; if you try to open stats there, the game shows a short message instead of opening the modal. Don't worry if you are not doing that well, as you can always clear your data by clicking on the *Clear* button, located inside the stats modal. You can also toggle the stats modal by pressing the *S* key.
 
 ![New Record](./screenshots/new_record_v8.png)
 
 If you do a new best time or win the game by less moves than ever before, not only are your stats updated accordingly, but empty squares become the partying emoji 🥳. The respective counters turn gold as well. In these examples, the player achieved both a new time record and a moves record, thus both counters have turned gold.
 
-There are four difficulty levels, with different board sizes and numbers of mines. Along with the classic and predetermined beginner, intermediate, and expert levels, there's a custom level as well, giving players the ability to set the dimensions of  the board, as well as the number of mines. Custom levels allow you to create boards as large as 100x100. Mines must cover at least 10% of the squares. If the number of mines you choose falls below the minimum requirement, it will automatically adjust to meet the necessary threshold.
+There are four difficulty levels, with different board sizes and numbers of mines. Along with the classic and predetermined beginner, intermediate, and expert levels, there's a custom level as well, giving players the ability to set the dimensions of the board, as well as the number of mines. Custom levels allow you to create boards as large as 100x100. Mines must cover at least 10% of the squares. If the number of mines you choose falls below the minimum requirement, it will automatically adjust to meet the necessary threshold. If a custom configuration exactly matches a standard level, such as 9x9 with 10 mines, the game switches to that standard level instead of creating a custom level.
 
 |        Level | Dimensions | Mines | % of Mines |
 | -----------: | :--------: | :---: | :--------: |
@@ -104,7 +98,7 @@ There are four difficulty levels, with different board sizes and numbers of mine
 | Intermediate |   16x16    |  40   |  ~15.63%   |
 |       Expert |   30x16    |  99   |  ~20.63%   |
 
-You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between levels. You can also use the *keyboard keys 1, 2, 3, and 4*.
+You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between levels. You can also use the *keyboard keys 1, 2, 3, and 4*. Intermediate, expert, and custom levels are desktop-only, as mobile screens are too small to play comfortably.
 
 If you click the *️⃣ button, the custom level modal will appear.
 
@@ -174,13 +168,14 @@ Clicking on the flag button 🚩 will toggle flag mode. This will enable you to 
 
 Clicking on the  ☀️/🌔  button allows players to choose between light and dark mode. You can also switch between dark and light by pressing the *D* key. Quite useful for those long night sessions!
 
-Lastly, we should mention the concept of **chording**. When an uncovered square with a number has exactly the correct number of adjacent squares flagged, performing a click using the mouse's wheel (or middle button) on it will uncover all unmarked squares. This is called a **chord**. It is a basic technique that allows players to clear squares using flags, and the reason why flagging styles are often more efficient than non-flagging ones.
+Lastly, we should mention the concept of **chording**. When an uncovered square with a number has exactly the correct number of adjacent squares flagged, left-clicking or middle-clicking it will uncover all unmarked adjacent squares. It is a basic technique that allows players to clear squares using flags, and the reason why flagging styles are often more efficient than non-flagging ones.
 
 ### Summary
 
-- **Left-click** to open a square square
+- **Left-click** to open a square
 - **Right-click** to flag a square (that you think) contains a mine
-- **Middle-click** for chording
+- **Left-click** an open numbered square for chording
+- **Middle-click** an open numbered square for chording
 - 💣 Mines counter
 - 🧮 Moves counter
 - ⌛ Time counter
@@ -210,9 +205,13 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 |      D      | Toggle dark mode                   |
 |     Esc     | Close open modal                   |
 
+### Debug Mode
+
+Developers can add `#debug` to the URL to show square numbers and use the Forcer tool. The Forcer appears as soon as `#debug` is added, without needing to refresh the page. Enter mine square numbers separated by spaces, commas, or semicolons, then click Submit or press Enter in the input. If the forced mine count matches the current board dimensions for beginner, intermediate, or expert, the game stays on that standard level. Otherwise, the current dimensions become a custom level with the forced mine count. Debug mode does not record stats, moves, or game results.
+
 ## Feature List
 
-You can find a full(ish) feature list in the [documentation](./DOCS.md#feature-list).
+You can find a full(ish) feature list in the [documentation](./docs/DOCS.md#feature-list).
 
 ## More Screenshots
 
@@ -236,7 +235,7 @@ The following emoji are used throughout the game:
 | :-----------: | :--------------------: | :------------ |
 |     Mine      |   Emoji Minesweeper    | 💣 💥 😄 😵 |
 |    Flower     |   Emoji Flower Field   | 🌺 🐛 😊 😔 |
-|   Mushroom    | Emoji Mushroom Picker  | 🍄 🦄 😎 😵‍💫 |
+|   Mushroom    | Emoji Shroom Picker  | 🍄 🦄 😎 😵‍💫 |
 |     Bear      |   Emoji Bearspotting   | 🐻 🐾 🌳 🪵 |
 |     Surf      |    Emoji Surfsweeper   | 🏄 🦑 🌊 🦈 |
 |     Japan     |   絵文字マインスイーパー   | 🏯 👺 🌸 😖 |
@@ -277,7 +276,13 @@ The ICBL, in close partnership with a small number of states, the ICRC, and the 
 
 ## License
 
+![Attention! Free Software](./assets/attention-free-software.png)
+
+This software is free (as in freedom). **If you use any part of this code, you must make your entire project's source code publicly available under the same license.** This applies whether you modify the code or use it as it is in your own project. This ensures that all modifications and derivative works remain free software, so that everyone can benefit. If you are not willing to comply with these terms, you must refrain from using any part of this code.
+
 <a href="https://www.gnu.org/licenses/agpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AGPLv3_Logo.svg" height="100px" /></a>
+
+For full license terms and conditions, you can read the AGPL-3.0 at: [gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/licenses/agpl-3.0.html).
 
 Copyright (c) Michael Kolesidis  
 Licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).

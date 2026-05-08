@@ -576,6 +576,7 @@
       boardSize.height + squareSize * 0.75 // Added extra space for the mines, moves, and time counters
     );
     cnv.parent('board');
+    bindBoardPointerEvents();
 
     textFont(font);
 
@@ -678,6 +679,29 @@
     textSize(squareSize - squareSize * 0.05);
   }
 
+  function pointerPositionFromEvent(event) {
+    if (!cnv?.elt) {
+      return null;
+    }
+
+    const rect = cnv.elt.getBoundingClientRect();
+
+    return {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
+  }
+
+  function findSquareAtPosition(x, y) {
+    return squares.find(s => {
+      return s.x < x && s.x + squareSize > x && s.y < y && s.y + squareSize > y;
+    });
+  }
+
+  function findSquareAtPointer() {
+    return findSquareAtPosition(mouseX, mouseY);
+  }
+
   // Get neighbors
   function getNeighbors(square) {
     return squares.filter(n => {
@@ -755,6 +779,90 @@
     }
   }
 
+  function checkGameWon() {
+    let squaresLeft = squares.filter(s => {
+      return !s.mine && !s.opened;
+    }).length;
+
+    if (squaresLeft == 0 && !gameFinished) {
+      gameWon();
+      gameEnded(true);
+    }
+  }
+
+  function chordSquare(square) {
+    if (!square || !square.opened || square.minesAround === 0) {
+      return;
+    }
+
+    let neighbors = getNeighbors(square);
+    let flaggedNeighbors = 0;
+
+    neighbors.forEach(s => {
+      if (s.flagged) {
+        flaggedNeighbors += 1;
+      }
+    });
+
+    if (square.minesAround !== flaggedNeighbors) {
+      return;
+    }
+
+    let openedSquares = 0;
+
+    neighbors.forEach(s => {
+      if (!s.opened && !s.flagged) {
+        openSquare(s);
+
+        if (s.mine) {
+          if (!gameFinished) {
+            gameLost();
+            gameEnded(false);
+          }
+        } else {
+          checkGameWon();
+        }
+
+        openedSquares += 1;
+      }
+    });
+
+    if (openedSquares > 0) {
+      window.emojiMinesweeperAudio?.playSound('pop');
+      addMove();
+    }
+  }
+
+  function bindBoardPointerEvents() {
+    const board = document.getElementById('board');
+
+    if (!board) {
+      return;
+    }
+
+    board.addEventListener('pointerdown', event => {
+      if (
+        event.button !== 0 ||
+        gameFinished ||
+        JSON.parse(window.localStorage.getItem('modalOpen')) === true ||
+        JSON.parse(window.localStorage.getItem('flagMode'))
+      ) {
+        return;
+      }
+
+      const position = pointerPositionFromEvent(event);
+      if (!position) {
+        return;
+      }
+
+      const square = findSquareAtPosition(position.x, position.y);
+      if (square?.opened && !square.flagged) {
+        moves += 1;
+        chordSquare(square);
+      }
+    });
+  }
+
   function mousePressed() {
     // Disable click if modal is open
     if (JSON.parse(window.localStorage.getItem('modalOpen')) === true) {
@@ -764,65 +872,13 @@
     // Chord
     if (mouseButton === CENTER) {
       if (!gameFinished) {
-        let square = squares.find(s => {
-          return (
-            s.x < mouseX &&
-            s.x + squareSize > mouseX &&
-            s.y < mouseY &&
-            s.y + squareSize > mouseY
-          );
-        });
+        let square = findSquareAtPointer();
 
         if (square) {
           moves += 1;
         }
 
-        if (square && square.opened && square.minesAround > 0) {
-          let neighbors = getNeighbors(square);
-          let flaggedNeighbors = 0;
-
-          neighbors.forEach(s => {
-            if (s.flagged) {
-              flaggedNeighbors += 1;
-            }
-          });
-
-          if (square.minesAround === flaggedNeighbors) {
-            let openedSquares = 0;
-
-            neighbors.forEach(s => {
-              if (!s.opened && !s.flagged) {
-                openSquare(s);
-
-                if (s.mine) {
-                  if (!gameFinished) {
-                    gameLost();
-                    gameEnded(false);
-                  }
-                } else {
-                  // Check if the game has been won
-                  let squaresLeft = squares.filter(s => {
-                    return !s.mine && !s.opened;
-                  }).length;
-
-                  if (squaresLeft == 0) {
-                    if (!gameFinished) {
-                      gameWon();
-                      gameEnded(true);
-                    }
-                  }
-                }
-
-                openedSquares += 1;
-              }
-            });
-
-            if (openedSquares > 0) {
-              window.emojiMinesweeperAudio?.playSound('pop');
-              addMove();
-            }
-          }
-        }
+        chordSquare(square);
       }
     }
 
@@ -832,14 +888,7 @@
       JSON.parse(window.localStorage.getItem('flagMode'))
     ) {
       // Find the square the player clicked on
-      let square = squares.find(s => {
-        return (
-          s.x < mouseX &&
-          s.x + squareSize > mouseX &&
-          s.y < mouseY &&
-          s.y + squareSize > mouseY
-        );
-      });
+      let square = findSquareAtPointer();
       if (square) {
         moves += 1;
 
@@ -865,20 +914,17 @@
       !JSON.parse(window.localStorage.getItem('flagMode'))
     ) {
       if (!gameFinished) {
-        let square = squares.find(s => {
-          return (
-            s.x < mouseX &&
-            s.x + squareSize > mouseX &&
-            s.y < mouseY &&
-            s.y + squareSize > mouseY
-          );
-        });
+        let square = findSquareAtPointer();
         if (square) {
-          moves += 1;
-
-          if (square.flagged || square.opened) {
+          if (square.flagged) {
             return; // Do not allow opening when flagged
           }
+
+          if (square.opened) {
+            return;
+          }
+
+          moves += 1;
           openSquare(square);
           addMove();
           if (square.mine) {
@@ -890,15 +936,7 @@
             window.emojiMinesweeperAudio?.playSound('pop');
 
             // Check if the game has been won
-            let squaresLeft = squares.filter(s => {
-              return !s.mine && !s.opened;
-            }).length;
-            if (squaresLeft == 0) {
-              if (!gameFinished) {
-                gameWon();
-                gameEnded(true);
-              }
-            }
+            checkGameWon();
           }
         }
       }
@@ -943,6 +981,9 @@
       s.opened = true;
     });
 
+    const endTime = new Date();
+    time = startTime ? (endTime - startTime) / 1000 : timePassed;
+
     if (window.location.hash === '') {
       if (window.statsStore.hasBestMoves(level, moves)) {
         const header = document.getElementById('header');
@@ -951,11 +992,7 @@
         newBestMoves = true;
       }
 
-      const endTime = new Date();
-      let seconds = (endTime - startTime) / 1000; //initially in milliseconds, divide by 1000 for seconds
-      time = seconds;
-
-      if (window.statsStore.hasBestTime(level, seconds)) {
+      if (window.statsStore.hasBestTime(level, time)) {
         const header = document.getElementById('header');
         header.style.color = '#ffaf2e';
         NUMBERS[0] = BEST;
@@ -966,6 +1003,7 @@
     if (timerInterval) clearInterval(timerInterval); // Stop the timer
 
     const header = document.getElementById('header');
+    ensureHeaderCanDance(header);
     header.classList.add('wavy');
 
     const bbbv = calculate3BV(squares);
@@ -982,6 +1020,22 @@
     });
 
     gameHasEnded();
+  }
+
+  function ensureHeaderCanDance(header) {
+    if (!header || header.querySelector('span')) {
+      return;
+    }
+
+    const titleCharacters = Array.from(header.textContent);
+    header.innerHTML = '';
+
+    titleCharacters.forEach((character, index) => {
+      const span = document.createElement('span');
+      span.style.setProperty('--i', index);
+      span.textContent = character === ' ' ? '\u00a0' : character;
+      header.appendChild(span);
+    });
   }
 
   // handle loss

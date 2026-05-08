@@ -16,6 +16,8 @@ Available as free and open source software, licensed under the GNU Affero Genera
 
 🎯 First Click Guarantee: The first click is never on a mine
 
+⚡ Chording: Open all unflagged neighbors around a solved numbered square with left-click or middle-click
+
 🚩 Flag Mode: Toggle between digging and flagging for touchscreens.
 
 ❌ Misflags are clearly marked
@@ -26,8 +28,10 @@ Available as free and open source software, licensed under the GNU Affero Genera
 
 🔢 Moves Counter: Keep count of your clicks
 
-📈 Game Stats (for each level): Games Played 🎮, Wins and Win Percentage 🏆, Best Time ⏳, Lowest Moves 🏅, Advanced metrics (3BV, 3BV/s, Efficiency)
+📈 Game Stats (for standard levels): Games Played 🎮, Wins and Win Percentage 🏆, Best Time ⏳, Lowest Moves 🏅, Total Time and Moves, Advanced metrics (3BV, 3BV/s, Efficiency).
 
-❓Help Page with and introduction to Emoji Minesweeper and minesweeper game mechanics ( https://thumbfeed.com/emoji-minesweeper/help )
+🛠️ Debug Mode: Add #debug to show square numbers and use the Forcer. The Forcer appears without refresh, supports Enter to submit, and switches to custom when forced mines do not match a standard level configuration.
+
+❓Help Page with an introduction to Emoji Minesweeper and minesweeper game mechanics ( https://thumbfeed.com/emoji-minesweeper/help )
 
 Feel free to reach out if you have any feature requests, need assistance, or encounter any bugs! 😊

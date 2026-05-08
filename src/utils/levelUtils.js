@@ -4,6 +4,12 @@
  *  GNU Affero General Public License v3.0
  */
 
+export const STANDARD_LEVELS = Object.freeze([
+  Object.freeze({ level: 'beginner', columns: 9, rows: 9, mines: 10 }),
+  Object.freeze({ level: 'intermediate', columns: 16, rows: 16, mines: 40 }),
+  Object.freeze({ level: 'expert', columns: 30, rows: 16, mines: 99 }),
+]);
+
 export function setLevel(level) {
   const currentLevel = window.localStorage.getItem('level');
   if (currentLevel === level) {
@@ -14,6 +20,33 @@ export function setLevel(level) {
   document.dispatchEvent(
     new CustomEvent('levelChanged', { detail: { level } })
   );
+}
+
+export function getMatchingStandardLevel({ columns, rows, mines }) {
+  const match = STANDARD_LEVELS.find(
+    standardLevel =>
+      standardLevel.columns === columns &&
+      standardLevel.rows === rows &&
+      standardLevel.mines === mines
+  );
+
+  return match?.level ?? null;
+}
+
+export function getLevelSettings(level) {
+  const standardLevel = STANDARD_LEVELS.find(
+    candidateLevel => candidateLevel.level === level
+  );
+
+  if (standardLevel) {
+    return {
+      columns: standardLevel.columns,
+      rows: standardLevel.rows,
+      mines: standardLevel.mines,
+    };
+  }
+
+  return window.customLevelRules.readCustomLevel();
 }
 
 export function shouldIgnoreLevelShortcut(event) {

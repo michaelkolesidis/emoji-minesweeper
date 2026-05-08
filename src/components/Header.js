@@ -12,13 +12,21 @@ export default function Header(title) {
     header.classList.add('japanese');
   }
 
-  const titleCharacters = title.split('');
-  for (let i = 0; i < titleCharacters.length; i++) {
-    if (titleCharacters[i] === ' ') {
-      titleCharacters[i] = '&nbsp;';
-    }
-    header.innerHTML += `<span style="--i:${i}">${titleCharacters[i]}</span>`;
-  }
+  renderHeaderTitle(header, title);
 
   return header;
+}
+
+export function renderHeaderTitle(header, title) {
+  header.innerHTML = '';
+
+  const titleCharacters = Array.from(title);
+  for (let i = 0; i < titleCharacters.length; i++) {
+    const character =
+      titleCharacters[i] === ' ' ? '\u00a0' : titleCharacters[i];
+    const span = document.createElement('span');
+    span.style.setProperty('--i', i);
+    span.textContent = character;
+    header.appendChild(span);
+  }
 }

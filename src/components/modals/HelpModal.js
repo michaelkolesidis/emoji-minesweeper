@@ -28,10 +28,14 @@ function buildHelpContent() {
     paragraph(
       'Left-click to ',
       strong('open'),
+      ' or ',
+      strong('chord'),
       ', right-click to ',
       strong('flag'),
-      ' and middle-click for ',
-      strong('chording')
+      ' ',
+      '(also middle-click to ',
+      strong('chord'),
+      ')'
     )
   );
 

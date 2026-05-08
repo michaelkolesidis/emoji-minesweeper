@@ -98,7 +98,9 @@
       <p>
         Emoji Minesweeper <strong>always makes the first click safe</strong>.
         You open squares with the <strong>left mouse button</strong> and put
-        flags on mines with the <strong>right mouse button</strong>.
+        flags on mines with the <strong>right mouse button</strong>. You can
+        also chord with the left mouse button or middle mouse button once a
+        numbered square has the correct number of adjacent flags.
       </p>
 
       <p>
@@ -243,9 +245,12 @@
         In order to keep track of how good (or bad) you are doing, the game
         keeps your stats. To open the stats modal, click the 📊 button. Stats
         include metrics such as games played, games won, percentage of wins,
-        best time, and best moves and are kept separately for each level. Don't
-        worry if you are not doing that well, as you can always clear your data
-        by clicking on the
+        best time, best moves, total time, and total moves, and are kept
+        separately for beginner, intermediate, and expert. Custom levels and
+        debug mode do not save stats; if you try to open stats there, the game
+        shows a short message instead of opening the modal. Don't worry if you
+        are not doing that well, as you can always clear your data by clicking
+        on the
         <em>Clear</em> button, located inside the stats modal. You can also
         toggle the stats modal by pressing the <em>S key</em>.
       </p>
@@ -266,10 +271,12 @@
         intermediate, and expert levels, there's a custom level as well, giving
         players the ability to set the dimensions of the board, as well as the
         number of mines. Custom levels allow you to create boards as large as
-        100x100. Mines must cover at least 10% of the squares. If the number
-        of mines you choose falls below the
-        minimum requirement, it will automatically adjust to meet the necessary
-        threshold.
+        100x100. Mines must cover at least 10% of the squares. If the number of
+        mines you choose falls below the minimum requirement, it will
+        automatically adjust to meet the necessary threshold. If a custom
+        configuration exactly matches a standard level, such as 9x9 with 10
+        mines, the game switches to that standard level instead of creating a
+        custom level.
       </p>
 
       <table>
@@ -305,7 +312,10 @@
 
       <p>
         You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between levels. You can
-        also use the <em>keyboard keys 1, 2, 3, and 4</em>.
+        also use the <em>keyboard keys 1, 2, 3, and 4</em>. Intermediate,
+        expert, and custom are desktop-only on small/mobile screens; the game
+        shows a short message if those controls are used on a screen that is too
+        narrow.
       </p>
       <p>
         If you click the <strong>*️⃣</strong> button, the custom level modal will
@@ -450,8 +460,8 @@
       <p>
         Lastly, we should mention the concept of <strong>chording</strong>. When
         an uncovered square with a number has exactly the correct number of
-        adjacent squares flagged, performing a click using the mouse's wheel (or
-        middle button) on it will uncover all unmarked squares. This is called a
+        adjacent squares flagged, left-clicking or middle-clicking it will
+        uncover all unmarked adjacent squares. This is called a
         <strong>chord</strong>. It is a basic technique that allows players to
         clear squares using flags, and the reason why flagging styles are often
         more efficient than non-flagging ones.
@@ -464,7 +474,12 @@
           <strong>Right-click</strong> to flag a square (that you think contains
           a mine)
         </li>
-        <li><strong>Middle-click</strong> for chording</li>
+        <li>
+          <strong>Left-click</strong> an open numbered square for chording
+        </li>
+        <li>
+          <strong>Middle-click</strong> an open numbered square for chording
+        </li>
         <li>💣 Mines counter</li>
         <li>🧮 Moves counter</li>
         <li>⌛ Time counter</li>
@@ -540,6 +555,10 @@
             <td>D</td>
             <td>Toggle dark mode</td>
           </tr>
+          <tr>
+            <td>Esc</td>
+            <td>Close open modal</td>
+          </tr>
         </tbody>
       </table>
 
@@ -580,7 +599,7 @@
           </tr>
           <tr>
             <td>Mushroom</td>
-            <td>Emoji Mushroom Picker</td>
+            <td>Emoji Shroom Picker</td>
             <td>🍄 🦄 😎 😵‍💫</td>
           </tr>
           <tr>

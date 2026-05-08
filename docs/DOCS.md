@@ -27,11 +27,11 @@ The game logic and anything that happens inside the board is written in p5.js. T
 
 ## Debug Mode
 
-__WARNING: Debug mode is still experimental and many known bugs exist, that may result in freezing your browser window. Use at your own risk.__
+In order to perform diagnostics or to study the game's internal functions, developers can access debug mode. In debug mode, the square numbers are visible on each square, with the squares containing a mine having their number in red. Additionally, the mine locations can be forced with the Forcer tool. Game stats are not accessible and __results are not counted__ while in debug mode; clicking the stats button displays a short message instead of opening the stats modal.
 
-In order to perform diagnostics or to study the game's internal functions, developers can access debug mode. In debug mode, the square numbers are visible on each square, with the squares containing a mine having their number in red. Additionally, the mine locations can be chosen before the start of the game. Game stats are not accessible and __results are not counted__ while in debug mode.
+In order to access debug mode simply add __#debug__ at the end of the game's URL. The Forcer appears immediately when the hash is added, so refreshing the page is not required. Here is a link that will take you to debug mode: [https://thumbfeed.com/emoji-minesweeper/#debug](https://thumbfeed.com/emoji-minesweeper/#debug)
 
-In order to access debug mode add simply add __#debug__ at the end of the game's URL. Here is a link that will take you to debug mode: [https://thumbfeed.com/emoji-minesweeper/#debug](https://thumbfeed.com/emoji-minesweeper/#debug)
+The Forcer accepts square numbers separated by spaces, commas, or semicolons. Click Submit or press Enter while focused in the input to apply the forced mines. If the forced mine count and current board dimensions match beginner, intermediate, or expert, the game stays on or switches to that standard level. Otherwise, the current dimensions are saved as a custom level with the forced mine count.
 
 ## Feature List
 
@@ -39,7 +39,9 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 
 - Four levels: beginner, intermediate, expert, custom
 - Ability to create custom level by choosing dimensions and number of mines
+- Custom configurations that match beginner, intermediate, or expert automatically switch to the matching standard level
 - Custom level modal
+- Custom levels support 7x7 through 100x100 boards, with mines clamped to at least 10% of the board
 - Six themes: mine, flower, mushroom, bear, surf, and Japan
 - Dark mode
 
@@ -58,6 +60,8 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Cursor becomes crosshair when flag mode is enabled
 - Level and theme preferences are saved
 - Dark mode can be switched using a button or keyboard shortcuts
+- Intermediate, expert, and custom controls are desktop-only and show a short message when unavailable
+- Custom level and debug mode stats attempts show a short message instead of opening an unavailable stats modal
 
 ### Mines
 
@@ -70,7 +74,7 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Revealed squares cannot be flagged
 - Whenever a square is revealed it stops being flagged
 - Number of remaining mines becomes red if there are more flagged squares than the number of mines
-- Support for chording using middle-click
+- Support for chording using left-click or middle-click on an open numbered square
 
 ### Counters
 
@@ -86,13 +90,15 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 - Empty squares become a partying face emoji and time counter turns gold when the player has made a new best time or a new moves recorded
 - Header becomes yellow when the player has made a new best time or a new moves recorded
 - Wrongly flagged squares are marked with an X when the played loses
-- Header wave animation on win
+- Header wave animation on every win
 
 ### Stats
 
 - Games played, games won, winning percentage, and best time are saved on local storage
 - Separate stats for the three levels (beginner, intermediate, expert)
-- Stats modal containing the aforementioned values
+- Custom levels and debug mode do not save stats
+- Stats modal containing the aforementioned values, total time, and total moves
+- Stats modal does not open in custom levels or debug mode and shows a message instead
 - Stats modal smooth animation
 - Checks for null values
 - 3BV, 3BV/s, efficiency, moves, time after every game won
@@ -100,9 +106,12 @@ In order to access debug mode add simply add __#debug__ at the end of the game's
 ### Other
 
 - Debug mode
+- Debug mode can be entered by adding `#debug` without refreshing
+- Debug Forcer can force mines by button click or Enter key
+- Debug Forcer switches to custom if the forced mine count does not match the active standard board configuration
 - Easy to adjust canvas for different square sizes (no hard-coded values)
 - Help modal
 - Board fade-in effect
 - Extensive commenting to make the project's code accessible for beginners
 - Extensive documentation
-- Press C and see what happens! 😸 (Thanks for reading all the documentation!)
+- Press C and see what happens! 😜 (Thanks for reading through all the documentation!)

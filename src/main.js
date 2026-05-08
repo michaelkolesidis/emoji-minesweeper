@@ -33,8 +33,14 @@ import ICBLLogo from './components/ICBLLogo.js';
 // Utilities
 import { greet } from './utils/consoleUtils.js';
 import { closeModal, openModal, resetModal } from './utils/modalUtils.js';
-import { syncLevelButtons } from './utils/levelUtils.js';
+import {
+  getLevelSettings,
+  getMatchingStandardLevel,
+  setLevel,
+  syncLevelButtons,
+} from './utils/levelUtils.js';
 import { setDesktopLogoTheme } from './utils/logoUtils.js';
+import { showTooltip } from './utils/mobileTooltip.js';
 
 /**
  * Basics
@@ -205,7 +211,27 @@ function toggleModal(modalId, renderModal) {
 }
 
 const toggleCustomModal = () => toggleModal('custom-modal', CustomModal);
-const toggleStatsModal = () => toggleModal('stats-modal', StatsModal);
+const toggleStatsModal = () => {
+  if (window.location.hash === '#debug') {
+    showTooltip(
+      statsButton,
+      'Stats unavailable',
+      'Debug mode does not save stats.'
+    );
+    return;
+  }
+
+  if (window.localStorage.getItem('level') === 'custom') {
+    showTooltip(
+      statsButton,
+      'Stats unavailable',
+      'Custom levels do not save stats.'
+    );
+    return;
+  }
+
+  toggleModal('stats-modal', StatsModal);
+};
 const toggleHelpModal = () => toggleModal('help-modal', HelpModal);
 
 customButton.addEventListener('click', toggleCustomModal);
@@ -307,76 +333,112 @@ document.addEventListener('gameHasEnded', () => {
 /**
  * Forcer
  */
-if (window.location.hash === '#debug') {
-  const forcer = Forcer();
+let forcer = null;
+
+function syncForcer() {
+  if (window.location.hash !== '#debug') {
+    forcer?.remove();
+    forcer = null;
+    return;
+  }
+
+  if (forcer) {
+    return;
+  }
+
+  forcer = Forcer();
   gameContainer.appendChild(forcer);
 
-  // Forcer functionality
   const submitButton = document.getElementById('forcer-submit');
+  const input = document.getElementById('forcer-input');
 
-  submitButton.addEventListener('click', function () {
-    const input = document.getElementById('forcer-input');
-    const message = document.getElementById('forcer-message');
-    const mines = parseForcedMines(input.value);
-
-    if (mines.length === 0) {
-      message.textContent = 'Enter at least one valid square number.';
-      return;
+  submitButton.addEventListener('click', handleForcedMinesSubmit);
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleForcedMinesSubmit();
     }
+  });
+}
 
-    if (window.emojiMinesweeper?.setForcedMines(mines)) {
-      message.textContent = `Forced ${mines.length} mine${
-        mines.length === 1 ? '' : 's'
-      }.`;
-      input.value = mines.join(', ');
-      return;
-    }
+function handleForcedMinesSubmit() {
+  const input = document.getElementById('forcer-input');
+  const message = document.getElementById('forcer-message');
+  const mines = parseForcedMines(input.value);
 
-    message.textContent = 'Could not apply forced mines.';
+  if (mines.length === 0) {
+    message.textContent = 'Enter at least one valid square number.';
+    return;
+  }
+
+  applyLevelForForcedMines(mines);
+
+  if (window.emojiMinesweeper?.setForcedMines(mines)) {
+    message.textContent = `Forced ${mines.length} mine${
+      mines.length === 1 ? '' : 's'
+    }.`;
+    input.value = mines.join(', ');
+    return;
+  }
+
+  message.textContent = 'Could not apply forced mines.';
+}
+
+function applyLevelForForcedMines(mines) {
+  const { columns, rows } = getCurrentBoardDimensions();
+  const matchingLevel = getMatchingStandardLevel({
+    columns,
+    rows,
+    mines: mines.length,
   });
 
-  function parseForcedMines(value) {
-    const maxSquare = getCurrentBoardSquareCount() - 1;
-
-    return Array.from(
-      new Set(
-        value
-          .split(/[\s,;]+/)
-          .map(mine => Number.parseInt(mine, 10))
-          .filter(
-            mine => Number.isInteger(mine) && mine >= 0 && mine <= maxSquare
-          )
-      )
-    );
+  if (matchingLevel !== null) {
+    setLevel(matchingLevel);
+    return;
   }
 
-  function getCurrentBoardSquareCount() {
-    const level = window.localStorage.getItem('level');
-
-    switch (level) {
-      case 'intermediate':
-        return 16 * 16;
-      case 'expert':
-        return 30 * 16;
-      case 'custom': {
-        const columns = Number.parseInt(
-          window.localStorage.getItem('columns'),
-          10
-        );
-        const rows = Number.parseInt(window.localStorage.getItem('rows'), 10);
-
-        if (Number.isInteger(columns) && Number.isInteger(rows)) {
-          return columns * rows;
-        }
-
-        return 9 * 9;
-      }
-      case 'beginner':
-      default:
-        return 9 * 9;
-    }
-  }
+  const customLevel = window.customLevelRules.normalizeCustomLevel({
+    columns,
+    rows,
+    mines: mines.length,
+  });
+  window.customLevelRules.saveCustomLevel(customLevel);
+  window.emojiMinesweeper?.setLevel('custom');
+  document.dispatchEvent(
+    new CustomEvent('levelChanged', { detail: { level: 'custom' } })
+  );
 }
+
+function parseForcedMines(value) {
+  const maxSquare = getCurrentBoardSquareCount() - 1;
+
+  return Array.from(
+    new Set(
+      value
+        .split(/[\s,;]+/)
+        .map(mine => Number.parseInt(mine, 10))
+        .filter(
+          mine => Number.isInteger(mine) && mine >= 0 && mine <= maxSquare
+        )
+    )
+  );
+}
+
+function getCurrentBoardSquareCount() {
+  const { columns, rows } = getCurrentBoardDimensions();
+
+  return columns * rows;
+}
+
+function getCurrentBoardDimensions() {
+  const level = window.localStorage.getItem('level') ?? 'beginner';
+  const { columns, rows } = getLevelSettings(level);
+
+  return { columns, rows };
+}
+
+syncForcer();
+window.addEventListener('hashchange', syncForcer);
 
 /**
  * Easter Egg

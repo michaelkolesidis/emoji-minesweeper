@@ -4,6 +4,8 @@
  *  GNU Affero General Public License v3.0
  */
 
+import { getMatchingStandardLevel, setLevel } from '../../utils/levelUtils.js';
+
 export default function CustomModal() {
   if (window.cleanupCustomModalListeners) {
     window.cleanupCustomModalListeners();
@@ -41,7 +43,7 @@ export default function CustomModal() {
   minesInput.id = 'mines-input';
   minesInput.className = 'custom-input';
   minesInput.step = '1';
-  minesInput.placeholder = '10';
+  minesInput.placeholder = '12';
   minesInput.title = 'Mines must be at least 10% of the level.';
   mineSettings.append(mineLabel, minesInput);
   modal.appendChild(mineSettings);
@@ -68,7 +70,15 @@ export default function CustomModal() {
     minesInput.min = String(minimumMines);
     minesInput.max = String(maximumMines);
     minesInput.placeholder = String(Math.max(10, minimumMines));
-    mineRequirement.textContent = `At least 10% of the board must be mines: ${minimumMines} minimum for ${columns}x${rows}.`;
+    mineRequirement.replaceChildren(
+      'At least ',
+      strong('10%'),
+      ' of the board must be mines: ',
+      strong(String(minimumMines)),
+      ' minimum for ',
+      strong(`${columns}x${rows}`),
+      '.'
+    );
 
     const mines = Number.parseInt(minesInput.value, 10);
     if (Number.isInteger(mines) && mines < minimumMines) {
@@ -99,6 +109,14 @@ export default function CustomModal() {
       rows: rowsInput.value,
       mines: minesInput.value,
     });
+
+    const matchingLevel = getMatchingStandardLevel(customLevel);
+    if (matchingLevel !== null) {
+      setLevel(matchingLevel);
+      document.dispatchEvent(new CustomEvent('customLevelSubmitted'));
+      return;
+    }
+
     window.customLevelRules.saveCustomLevel(customLevel);
     columnsInput.value = customLevel.columns;
     rowsInput.value = customLevel.rows;
@@ -141,4 +159,11 @@ export default function CustomModal() {
     listenerController.abort();
     window.cleanupCustomModalListeners = null;
   };
+}
+
+function strong(text) {
+  const element = document.createElement('span');
+  element.style.fontWeight = '900';
+  element.textContent = text;
+  return element;
 }

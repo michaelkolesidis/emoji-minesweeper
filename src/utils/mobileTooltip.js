@@ -13,6 +13,14 @@ export function isMobileDevice() {
 }
 
 export function showDesktopOnlyTooltip(anchorElement) {
+  showTooltip(
+    anchorElement,
+    'Desktop only',
+    'Use a wider screen for this level.'
+  );
+}
+
+export function showTooltip(anchorElement, title, message) {
   const existingTooltip = document.querySelector('.mobile-tooltip');
   if (existingTooltip) {
     existingTooltip.remove();
@@ -23,7 +31,7 @@ export function showDesktopOnlyTooltip(anchorElement) {
   const tooltip = document.createElement('div');
   tooltip.className = 'mobile-tooltip';
   tooltip.setAttribute('role', 'status');
-  tooltip.innerHTML = `<strong>Desktop only</strong><span>Use a wider screen for this level.</span>`;
+  tooltip.replaceChildren(strong(title), span(message));
   document.body.appendChild(tooltip);
 
   const rect = anchorElement.getBoundingClientRect();
@@ -47,4 +55,16 @@ export function showDesktopOnlyTooltip(anchorElement) {
     tooltip.classList.remove('tooltip-visible');
     window.setTimeout(() => tooltip.remove(), 250);
   }, 2200);
+}
+
+function strong(text) {
+  const element = document.createElement('strong');
+  element.textContent = text;
+  return element;
+}
+
+function span(text) {
+  const element = document.createElement('span');
+  element.textContent = text;
+  return element;
 }

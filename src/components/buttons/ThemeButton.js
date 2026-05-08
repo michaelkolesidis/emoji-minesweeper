@@ -9,6 +9,8 @@
  *  event handling.
  */
 
+import { renderHeaderTitle } from '../Header.js';
+
 export default function ThemeButton(header) {
   const themeIconCache = new Map();
 
@@ -35,15 +37,6 @@ export default function ThemeButton(header) {
     theme = themeKeys[currentThemeIndex];
     window.localStorage.setItem('theme', theme);
 
-    // Handle Japanese theme
-    if (theme === 'japan') {
-      header.classList.add('japanese');
-      window.localStorage.setItem('japanese', 'true');
-    } else if (theme === 'mine') {
-      header.classList.remove('japanese');
-      window.localStorage.setItem('japanese', 'false');
-    }
-
     updateTheme();
   }
 
@@ -57,23 +50,21 @@ export default function ThemeButton(header) {
     theme = themeKeys[currentThemeIndex];
     window.localStorage.setItem('theme', theme);
 
-    // Handle Japanese theme
-    if (theme === 'japan') {
-      header.classList.add('japanese');
-      window.localStorage.setItem('japanese', 'true');
-    } else if (theme === 'surf') {
-      header.classList.remove('japanese');
-      window.localStorage.setItem('japanese', 'false');
-    }
-
     updateTheme();
   }
 
   function updateTheme() {
     window.emojiMinesweeper?.setTheme(theme);
     window.localStorage.setItem('mainEmoji', themes[theme].mine);
-    header.innerHTML = themes[theme].title;
+    syncJapaneseTitleClass();
+    renderHeaderTitle(header, themes[theme].title);
     renderThemeIcon();
+  }
+
+  function syncJapaneseTitleClass() {
+    const isJapaneseTheme = theme === 'japan';
+    header.classList.toggle('japanese', isJapaneseTheme);
+    window.localStorage.setItem('japanese', String(isJapaneseTheme));
   }
 
   function renderThemeIcon() {
