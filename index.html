@@ -17,7 +17,10 @@
     <script>
       if (window.location.hostname === 'emojiminesweeper.vercel.app') {
         const target = new URL('https://thumbfeed.com/emoji-minesweeper/');
-        target.pathname += window.location.pathname.replace(/^\/+/, '');
+        const pathname = window.location.pathname
+          .replace(/^\/emoji-minesweeper\/?/, '')
+          .replace(/^\/+/, '');
+        target.pathname += pathname;
         target.search = window.location.search;
         target.hash = window.location.hash;
         window.location.replace(target);
@@ -93,7 +96,6 @@
       rel="stylesheet"
     />
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="styles/style.min.css" />
     <link rel="canonical" href="https://thumbfeed.com/emoji-minesweeper/" />
     <link
       rel="apple-touch-icon"
@@ -130,17 +132,13 @@
         }
       }
     </script>
-    <script src="src/themes.js" type="text/javascript"></script>
-    <script src="src/utils/statsStore.js" type="text/javascript"></script>
-    <script src="src/utils/customLevelRules.js" type="text/javascript"></script>
-    <script src="src/main.min.js" type="module" defer></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"
       integrity="sha512-7DACDM+XO+/7cocfzNIXh/3rSXc7MzTtr2elSVJLYcXXHPL1/lAyFSKU1F1JBPPCvBGOLNYJCqLlzFeJzc6dLg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="src/emojiMinesweeper.min.js" type="text/javascript"></script>
+    <script src="/src/app.js" type="module"></script>
   </head>
   <body>
     <a href="https://thumbfeed.com" class="site-logo">

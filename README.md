@@ -1,12 +1,12 @@
-![Emoji Minesweeper wordmark](./assets/logo_wordmark_light.png#gh-dark-mode-only)
-![Emoji Minesweeper wordmark](./assets/logo_wordmark.png#gh-light-mode-only)
+![Emoji Minesweeper wordmark](./public/assets/logo_wordmark_light.png#gh-dark-mode-only)
+![Emoji Minesweeper wordmark](./public/assets/logo_wordmark.png#gh-light-mode-only)
 
 #### Minesweeper made with emoji. The most fun way to play minesweeper
 
 ![Win mines](./screenshots/win_mines_v8c.png)
 ![Win flowers](./screenshots/win_flowers_v8c.png)
 
-<a href='https://thumbfeed.com/emoji-minesweeper/' target='_blank'><img src='assets/only-on-outline-400px.png'  alt='Play Emoji Minesweeper on Thumnbfeed.com' /></a>  
+<a href='https://thumbfeed.com/emoji-minesweeper/' target='_blank'><img src='public/assets/only-on-outline-400px.png'  alt='Play Emoji Minesweeper on Thumbfeed.com' /></a>  
 
 <a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:80px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
@@ -26,13 +26,13 @@ Additional information for nerds 🤓 (architecture, technologies, debugging) ca
 
 ## Technologies Used
 
-<a href="https://p5js.org/"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/p5js/p5js.svg" height="50px"/></a>
+<a href="https://p5js.org/"><img src="https://raw.githubusercontent.com/michaelkolesidis/tech-icons/main/icons/p5js/p5js.svg" height="50px"/></a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/javascript/javascript-original.svg" height="50px" /></a>
+<a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://raw.githubusercontent.com/michaelkolesidis/tech-icons/main/icons/javascript/javascript-original.svg" height="50px" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>
+<a href="https://en.wikipedia.org/wiki/CSS"><img src="https://raw.githubusercontent.com/michaelkolesidis/tech-icons/main/icons/css3/css3-plain.svg" height="50px" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://en.wikipedia.org/wiki/HTML"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/html5/html5-plain.svg" height="50px" /></a>
+<a href="https://en.wikipedia.org/wiki/HTML"><img src="https://raw.githubusercontent.com/michaelkolesidis/tech-icons/main/icons/html5/html5-plain.svg" height="50px" /></a>
 
 You can find more information in the [documentation](./docs/DOCS.md#technologies-used).
 
@@ -244,7 +244,7 @@ The emoji font used in the game is the **Segoe UI Emoji font** that can be found
 
 ### Emoji History
 
-![Pocket Bell](./assets/pocket_bell_emoji.png)
+![Pocket Bell](./public/assets/pocket_bell_emoji.png)
 
 The first ever modern emoji existed on a device that came even before phones. In 1995, Japanese Telecom Company NTT DoCoMo made the first emoji available on its Pocket Bell pager model. As you can see Emoji Minesweeper is using some of these very first emoji!
 
@@ -264,7 +264,7 @@ Thank you so much for your interest in my project! If you want to go a step furt
 
 ## International Campaign to Ban Landmines
 
-![ICBL Logo](./assets/icbl_logo.svg)
+![ICBL Logo](./public/assets/icbl_logo.svg)
 
 Antipersonnel landmines are explosive devices designed to be detonated by the presence, proximity, or contact of a person. Placed under or on the ground, they can lie dormant for years and even decades until a person or animal triggers their detonating mechanism.
 
@@ -276,7 +276,7 @@ The ICBL, in close partnership with a small number of states, the ICRC, and the 
 
 ## License
 
-![Attention! Free Software](./assets/attention-free-software.png)
+![Attention! Free Software](./public/assets/attention-free-software.png)
 
 This software is free (as in freedom). **If you use any part of this code, you must make your entire project's source code publicly available under the same license.** This applies whether you modify the code or use it as it is in your own project. This ensures that all modifications and derivative works remain free software, so that everyone can benefit. If you are not willing to comply with these terms, you must refrain from using any part of this code.
 

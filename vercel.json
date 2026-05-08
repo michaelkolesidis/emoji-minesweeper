@@ -1,5 +1,10 @@
 {
+  "cleanUrls": true,
   "rewrites": [
+    { "source": "/emoji-minesweeper", "destination": "/index.html" },
+    { "source": "/emoji-minesweeper/", "destination": "/index.html" },
+    { "source": "/emoji-minesweeper/help", "destination": "/help.html" },
+    { "source": "/emoji-minesweeper/:path*", "destination": "/:path*" },
     { "source": "/help", "destination": "/help.html" },
     { "source": "/", "destination": "/index.html" }
   ]

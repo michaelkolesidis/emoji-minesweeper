@@ -6,6 +6,8 @@
 
 import { getMatchingStandardLevel, setLevel } from '../../utils/levelUtils.js';
 
+import { themes } from '../../themes.js';
+
 export default function CustomModal() {
   if (window.cleanupCustomModalListeners) {
     window.cleanupCustomModalListeners();

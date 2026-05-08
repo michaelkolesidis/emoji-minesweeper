@@ -8,7 +8,25 @@
  *  also handles the update of the stats accordingly.
  */
 
+import { darkTheme, themes } from './themes.js';
+
 (() => {
+  const p5Global = name => (...args) => window[name](...args);
+  const background = p5Global('background');
+  const createCanvas = p5Global('createCanvas');
+  const fill = p5Global('fill');
+  const image = p5Global('image');
+  const loadFont = p5Global('loadFont');
+  const loadImage = p5Global('loadImage');
+  const loop = p5Global('loop');
+  const nf = p5Global('nf');
+  const noLoop = p5Global('noLoop');
+  const redraw = p5Global('redraw');
+  const resizeCanvas = p5Global('resizeCanvas');
+  const text = p5Global('text');
+  const textFont = p5Global('textFont');
+  const textSize = p5Global('textSize');
+
   // Prevent right mouse click from opening browser context menu in order to be able to flag
   document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -618,8 +636,14 @@
     image(
       MINE,
       columns < 9
-        ? width / 2 - squareSize * 1.975 + squareSize * 0.99 - 2.4 * squareSize
-        : width / 2 - squareSize * 1.975 + squareSize * 0.99 - 3.4 * squareSize,
+        ? window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 -
+          2.4 * squareSize
+        : window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 -
+          3.4 * squareSize,
       boardSize.height,
       squareSize * 0.65,
       squareSize * 0.65
@@ -627,8 +651,14 @@
     text(
       nf(Math.max(initialMines - flaggedSquares, 0), 3),
       columns < 9
-        ? width / 2 - squareSize * 1.975 + squareSize * 0.99 - 1.6 * squareSize
-        : width / 2 - squareSize * 1.975 + squareSize * 0.99 - 2.5 * squareSize,
+        ? window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 -
+          1.6 * squareSize
+        : window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 -
+          2.5 * squareSize,
       boardSize.height + 19
     );
 
@@ -636,7 +666,7 @@
     darkMode ? fill(225) : fill(48);
     image(
       MOVES,
-      width / 2 - squareSize * 1.975 + squareSize * 1.02,
+      window.width / 2 - squareSize * 1.975 + squareSize * 1.02,
       boardSize.height,
       squareSize * 0.65,
       squareSize * 0.65
@@ -647,7 +677,7 @@
     }
     text(
       nf(moves, 3),
-      width / 2 - squareSize * 1.975 + squareSize * 1.85,
+      window.width / 2 - squareSize * 1.975 + squareSize * 1.85,
       boardSize.height + 19
     );
 
@@ -656,8 +686,14 @@
     image(
       TIMER,
       columns < 9
-        ? width / 2 - squareSize * 1.975 + squareSize * 0.99 + 2.7 * squareSize
-        : width / 2 - squareSize * 1.975 + squareSize * 0.99 + 3.6 * squareSize,
+        ? window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 +
+          2.7 * squareSize
+        : window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 +
+          3.6 * squareSize,
       boardSize.height,
       squareSize * 0.65,
       squareSize * 0.65
@@ -669,8 +705,11 @@
     text(
       nf(timePassed, 3),
       columns < 9
-        ? width / 2 - squareSize * 1.975 + squareSize * 0.99 + 3.4 * squareSize
-        : width / 2 -
+        ? window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 +
+          3.4 * squareSize
+        : window.width / 2 -
             squareSize * 1.975 +
             squareSize * 0.99 +
             4.35 * squareSize,
@@ -699,7 +738,7 @@
   }
 
   function findSquareAtPointer() {
-    return findSquareAtPosition(mouseX, mouseY);
+    return findSquareAtPosition(window.mouseX, window.mouseY);
   }
 
   // Get neighbors
@@ -870,7 +909,7 @@
     }
 
     // Chord
-    if (mouseButton === CENTER) {
+    if (window.mouseButton === window.CENTER) {
       if (!gameFinished) {
         let square = findSquareAtPointer();
 
@@ -884,7 +923,7 @@
 
     // Flags
     if (
-      mouseButton === RIGHT ||
+      window.mouseButton === window.RIGHT ||
       JSON.parse(window.localStorage.getItem('flagMode'))
     ) {
       // Find the square the player clicked on
@@ -910,7 +949,7 @@
 
     // Find the square pressed on
     if (
-      mouseButton === LEFT &&
+      window.mouseButton === window.LEFT &&
       !JSON.parse(window.localStorage.getItem('flagMode'))
     ) {
       if (!gameFinished) {
@@ -1067,7 +1106,7 @@
   function keyPressed() {
     // Set Level
     if (
-      (keyCode === 49 || keyCode === 97) &&
+      (window.keyCode === 49 || window.keyCode === 97) &&
       window.location.hash !== '#debug' &&
       window.localStorage.getItem('modalOpen') !== 'true'
     ) {
@@ -1077,7 +1116,7 @@
       );
     }
     if (
-      (keyCode === 50 || keyCode === 98) &&
+      (window.keyCode === 50 || window.keyCode === 98) &&
       window.location.hash !== '#debug' &&
       window.localStorage.getItem('modalOpen') !== 'true'
     ) {
@@ -1087,7 +1126,7 @@
       );
     }
     if (
-      (keyCode === 51 || keyCode === 99) &&
+      (window.keyCode === 51 || window.keyCode === 99) &&
       window.location.hash !== '#debug' &&
       window.localStorage.getItem('modalOpen') !== 'true'
     ) {
@@ -1098,7 +1137,7 @@
     }
 
     // New Game
-    if (keyCode === 78) {
+    if (window.keyCode === 78) {
       resetGame();
     }
   }

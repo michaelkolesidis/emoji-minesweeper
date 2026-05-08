@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CLN0X1XD8N"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-CLN0X1XD8N');
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="refresh"
+      content="5; url='https://thumbfeed.com/emoji-minesweeper/'"
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="author" content="Michael Kolesidis" />
+    <title>Emoji Minesweeper | 404 Page Not Found</title>
+    <script>
+      if (window.location.hostname === 'emojiminesweeper.vercel.app') {
+        const target = new URL('https://thumbfeed.com/emoji-minesweeper/');
+        target.search = window.location.search;
+        target.hash = window.location.hash;
+        window.location.replace(target);
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--  Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Nunito', sans-serif;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+      }
+
+      .brand {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      .brand img {
+        margin: 20px;
+        width: 55px;
+      }
+
+      .brand h1 {
+        font-size: 50px;
+        font-weight: 1000;
+        margin-top: 20px;
+      }
+
+      .status-code {
+        font-size: 150px;
+        margin-top: 20px;
+      }
+
+      .message {
+        font-size: 20px;
+        margin-bottom: 60px;
+      }
+
+      .back-button {
+        background: #303030;
+        border: 3px solid #303030;
+        border-radius: 60px;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 30px;
+        font-weight: 600;
+        height: 80px;
+        justify-content: center;
+        margin-bottom: 10px;
+        padding: 0.9rem 2rem;
+        text-decoration: none;
+        width: 200px;
+      }
+
+      @media (max-width: 600px) {
+        .brand h1 {
+          font-size: 32px;
+        }
+
+        .status-code {
+          font-size: 110px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand">
+      <img src="assets/logo.svg" alt="Emoji Minesweeper logo" />
+      <h1>Emoji Minesweeper</h1>
+    </div>
+    <h1 class="status-code">404</h1>
+    <h2 class="message">Nothing to see here!</h2>
+    <a class="back-button" href="/emoji-minesweeper/">Back</a>
+    <p>(Or wait to be redirected)</p>
+  </body>
+</html>

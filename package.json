@@ -3,7 +3,12 @@
   "author": "Michael Kolesidis",
   "license": "AGPL-3.0-or-later",
   "description": "Play Emoji Minesweeper online, a cheerful twist on classic Minesweeper with colorful emoji themes, difficulty levels, stats, and records.",
-  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michaelkolesidis/emoji-minesweeper.git"
@@ -32,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/michaelkolesidis/emoji-minesweeper/issues"
   },
-  "homepage": "https://thumbfeed.com/emoji-minesweeper/"
+  "homepage": "https://thumbfeed.com/emoji-minesweeper/",
+  "devDependencies": {
+    "vite": "^8.0.11"
+  }
 }

@@ -11,6 +11,8 @@
 
 import { renderHeaderTitle } from '../Header.js';
 
+import { themes } from '../../themes.js';
+
 export default function ThemeButton(header) {
   const themeIconCache = new Map();
 

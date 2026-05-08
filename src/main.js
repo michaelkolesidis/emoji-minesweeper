@@ -11,6 +11,7 @@
 
 // Elements
 import Header from './components/Header.js';
+import { themes } from './themes.js';
 import MuteButton from './components/buttons/MuteButton.js';
 import Board from './components/Board.js';
 import Modal from './components/modals/Modal.js';

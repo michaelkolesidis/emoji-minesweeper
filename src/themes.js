@@ -4,7 +4,7 @@
  *  GNU Affero General Public License v3.0
  */
 
-const themes = {
+export const themes = {
   mine: {
     name: 'mine',
     title: 'Emoji Minesweeper',
@@ -55,7 +55,10 @@ const themes = {
   },
 };
 
-const darkTheme = {
+export const darkTheme = {
   closed: 'emoji/white_square_button_flat.png', // 🔳
   empty: 'emoji/black_large_square_flat.png', // ⬛
 };
+
+window.themes = themes;
+window.darkTheme = darkTheme;

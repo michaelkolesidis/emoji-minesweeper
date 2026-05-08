@@ -60,3 +60,8 @@ Temporary Items
 
 # Node Modules
 node_modules
+
+# Vite build output
+dist
+vite-dev*.log
+*.log
