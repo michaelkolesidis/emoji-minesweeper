@@ -4,7 +4,10 @@
  *  GNU Affero General Public License v3.0
  */
 
-let cachedHelpContent = null;
+const cachedHelpContent = {
+  desktop: null,
+  mobile: null,
+};
 
 export default function HelpModal() {
   const modal = document.querySelector('.modal');
@@ -14,27 +17,33 @@ export default function HelpModal() {
 }
 
 function getHelpContent() {
-  if (cachedHelpContent === null) {
-    cachedHelpContent = buildHelpContent();
+  const variant = usesMobileControls() ? 'mobile' : 'desktop';
+
+  if (cachedHelpContent[variant] === null) {
+    cachedHelpContent[variant] =
+      variant === 'mobile'
+        ? buildMobileHelpContent()
+        : buildDesktopHelpContent();
   }
 
-  return cachedHelpContent;
+  return cachedHelpContent[variant];
 }
 
-function buildHelpContent() {
+function usesMobileControls() {
+  return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function buildDesktopHelpContent() {
   const content = [];
 
   content.push(
     paragraph(
-      'Left-click to ',
-      strong('open'),
-      ' or ',
-      strong('chord'),
-      ', right-click to ',
-      strong('flag'),
-      ' ',
-      '(also middle-click to ',
-      strong('chord'),
+      strong('Left-click'),
+      ' to open or chord, ',
+      strong('right-click'),
+      ' to flag (also ',
+      strong('middle-click'),
+      ' to chord',
       ')'
     )
   );
@@ -98,6 +107,73 @@ function buildHelpContent() {
   content.push(
     paragraph(icon('emoji/sun_flat.png'), strong('Dark theme'), ' (D key)')
   );
+
+  content.push(buildAbout());
+  return content;
+}
+
+function buildMobileHelpContent() {
+  const content = [];
+
+  content.push(
+    paragraph(
+      strong('Tap'),
+      ' to open a square, ',
+      strong('long tap'),
+      ' to flag or unflag. ',
+      strong('Tap'),
+      ' an open numbered square to ',
+      strong('chord'),
+      ' when its flags match the number'
+    )
+  );
+
+  content.push(
+    paragraph(
+      icon('emoji/svg/new_button_flat.svg'),
+      'Start a ',
+      strong('new game')
+    )
+  );
+
+  content.push(
+    paragraph(
+      icon('emoji/keycap_1_flat.png'),
+      icon('emoji/keycap_2_flat.png'),
+      icon('emoji/keycap_3_flat.png'),
+      icon('emoji/keycap_asterisk_flat.png'),
+      'Switch ',
+      strong('level'),
+      ': beginner, inter., expert, custom'
+    )
+  );
+
+  content.push(
+    paragraph(icon('emoji/svg/bar_chart_flat.svg'), 'Toggle ', strong('stats'))
+  );
+
+  content.push(
+    paragraph(icon('emoji/bomb_flat.png'), 'Switch ', strong('theme'))
+  );
+
+  content.push(
+    paragraph(
+      icon('emoji/white_question_mark_flat.png'),
+      'Toggle ',
+      strong('help modal')
+    )
+  );
+
+  content.push(
+    paragraph(
+      icon('emoji/triangular_flag_flat.png'),
+      'Toggle ',
+      strong('flag mode'),
+      ' for tap-to-flag'
+    )
+  );
+
+  content.push(paragraph(icon('emoji/sun_flat.png'), strong('Dark theme')));
 
   content.push(buildAbout());
   return content;

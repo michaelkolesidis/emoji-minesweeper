@@ -741,6 +741,14 @@ import { darkTheme, themes } from './themes.js';
     return findSquareAtPosition(window.mouseX, window.mouseY);
   }
 
+  function isModalOpen() {
+    return JSON.parse(window.localStorage.getItem('modalOpen')) === true;
+  }
+
+  function isFlagMode() {
+    return JSON.parse(window.localStorage.getItem('flagMode')) === true;
+  }
+
   // Get neighbors
   function getNeighbors(square) {
     return squares.filter(n => {
@@ -758,6 +766,10 @@ import { darkTheme, themes } from './themes.js';
    */
   let isFirstClick = true;
   let mineReallocated = false;
+  const longTapDelay = 400;
+  const touchMoveTolerance = 10;
+  let activeTouchPress = null;
+  let ignoreMousePressedUntil = 0;
 
   // What happens every time the player clicks on a square
   function openSquare(square) {
@@ -872,6 +884,212 @@ import { darkTheme, themes } from './themes.js';
     }
   }
 
+  function suppressSyntheticMousePress() {
+    ignoreMousePressedUntil = Date.now() + 500;
+  }
+
+  function shouldIgnoreMousePressed() {
+    return Date.now() < ignoreMousePressedUntil;
+  }
+
+  function movedPastTouchTolerance(event, touchPress) {
+    const deltaX = event.clientX - touchPress.clientX;
+    const deltaY = event.clientY - touchPress.clientY;
+
+    return Math.hypot(deltaX, deltaY) > touchMoveTolerance;
+  }
+
+  function clearActiveTouchTimer() {
+    if (activeTouchPress?.timerId) {
+      clearTimeout(activeTouchPress.timerId);
+    }
+  }
+
+  function releaseTouchPointer(board, pointerId) {
+    if (board.hasPointerCapture?.(pointerId)) {
+      board.releasePointerCapture(pointerId);
+    }
+  }
+
+  function flagSquare(square) {
+    if (!square) {
+      return;
+    }
+
+    moves += 1;
+
+    // Prevent opened squares from being flagged
+    if (!square.opened) {
+      window.emojiMinesweeperAudio?.playSound('flag');
+
+      if (!square.flagged) {
+        flaggedSquares += 1;
+        addMove();
+      } else {
+        flaggedSquares -= 1;
+        addMove();
+      }
+      square.flagged = !square.flagged;
+    }
+  }
+
+  function openSquareFromInput(square) {
+    if (!square || gameFinished) {
+      return;
+    }
+
+    if (square.flagged) {
+      return; // Do not allow opening when flagged
+    }
+
+    if (square.opened) {
+      return;
+    }
+
+    moves += 1;
+    openSquare(square);
+    addMove();
+    if (square.mine) {
+      if (!gameFinished) {
+        gameLost();
+        gameEnded(false);
+      }
+    } else {
+      window.emojiMinesweeperAudio?.playSound('pop');
+
+      // Check if the game has been won
+      checkGameWon();
+    }
+  }
+
+  function chordSquareFromInput(square) {
+    if (!square || gameFinished) {
+      return;
+    }
+
+    moves += 1;
+    chordSquare(square);
+  }
+
+  function tapSquare(square) {
+    if (isFlagMode()) {
+      flagSquare(square);
+      return;
+    }
+
+    if (square?.opened && !square.flagged) {
+      chordSquareFromInput(square);
+      return;
+    }
+
+    openSquareFromInput(square);
+  }
+
+  function cancelActiveTouchPress() {
+    clearActiveTouchTimer();
+    activeTouchPress = null;
+  }
+
+  function handleTouchPointerDown(event, board) {
+    if (event.pointerType !== 'touch' || event.isPrimary === false) {
+      return false;
+    }
+
+    event.preventDefault();
+    suppressSyntheticMousePress();
+
+    if (gameFinished || isModalOpen()) {
+      return true;
+    }
+
+    const position = pointerPositionFromEvent(event);
+    if (!position) {
+      return true;
+    }
+
+    const square = findSquareAtPosition(position.x, position.y);
+    if (!square) {
+      return true;
+    }
+
+    cancelActiveTouchPress();
+    board.setPointerCapture?.(event.pointerId);
+
+    activeTouchPress = {
+      pointerId: event.pointerId,
+      square,
+      clientX: event.clientX,
+      clientY: event.clientY,
+      canceled: false,
+      longTapped: false,
+      timerId: window.setTimeout(() => {
+        if (!activeTouchPress || activeTouchPress.pointerId !== event.pointerId) {
+          return;
+        }
+
+        activeTouchPress.longTapped = true;
+        flagSquare(activeTouchPress.square);
+      }, longTapDelay),
+    };
+
+    return true;
+  }
+
+  function handleTouchPointerMove(event) {
+    if (!activeTouchPress || event.pointerId !== activeTouchPress.pointerId) {
+      return;
+    }
+
+    event.preventDefault();
+    suppressSyntheticMousePress();
+
+    if (movedPastTouchTolerance(event, activeTouchPress)) {
+      activeTouchPress.canceled = true;
+      clearActiveTouchTimer();
+    }
+  }
+
+  function handleTouchPointerUp(event, board) {
+    if (!activeTouchPress || event.pointerId !== activeTouchPress.pointerId) {
+      return;
+    }
+
+    event.preventDefault();
+    suppressSyntheticMousePress();
+
+    const touchPress = activeTouchPress;
+    clearActiveTouchTimer();
+    activeTouchPress = null;
+    releaseTouchPointer(board, event.pointerId);
+
+    if (
+      touchPress.canceled ||
+      touchPress.longTapped ||
+      movedPastTouchTolerance(event, touchPress)
+    ) {
+      return;
+    }
+
+    const position = pointerPositionFromEvent(event);
+    const releasedSquare = position
+      ? findSquareAtPosition(position.x, position.y)
+      : null;
+
+    if (releasedSquare === touchPress.square) {
+      tapSquare(touchPress.square);
+    }
+  }
+
+  function handleTouchPointerCancel(event, board) {
+    if (!activeTouchPress || event.pointerId !== activeTouchPress.pointerId) {
+      return;
+    }
+
+    suppressSyntheticMousePress();
+    cancelActiveTouchPress();
+    releaseTouchPointer(board, event.pointerId);
+  }
+
   function bindBoardPointerEvents() {
     const board = document.getElementById('board');
 
@@ -880,11 +1098,15 @@ import { darkTheme, themes } from './themes.js';
     }
 
     board.addEventListener('pointerdown', event => {
+      if (handleTouchPointerDown(event, board)) {
+        return;
+      }
+
       if (
         event.button !== 0 ||
         gameFinished ||
-        JSON.parse(window.localStorage.getItem('modalOpen')) === true ||
-        JSON.parse(window.localStorage.getItem('flagMode'))
+        isModalOpen() ||
+        isFlagMode()
       ) {
         return;
       }
@@ -896,15 +1118,26 @@ import { darkTheme, themes } from './themes.js';
 
       const square = findSquareAtPosition(position.x, position.y);
       if (square?.opened && !square.flagged) {
-        moves += 1;
-        chordSquare(square);
+        chordSquareFromInput(square);
       }
     });
+
+    board.addEventListener('pointermove', handleTouchPointerMove);
+    board.addEventListener('pointerup', event =>
+      handleTouchPointerUp(event, board)
+    );
+    board.addEventListener('pointercancel', event =>
+      handleTouchPointerCancel(event, board)
+    );
   }
 
   function mousePressed() {
+    if (shouldIgnoreMousePressed()) {
+      return false;
+    }
+
     // Disable click if modal is open
-    if (JSON.parse(window.localStorage.getItem('modalOpen')) === true) {
+    if (isModalOpen()) {
       return;
     }
 
@@ -914,70 +1147,23 @@ import { darkTheme, themes } from './themes.js';
         let square = findSquareAtPointer();
 
         if (square) {
-          moves += 1;
+          chordSquareFromInput(square);
         }
-
-        chordSquare(square);
       }
     }
 
     // Flags
-    if (
-      window.mouseButton === window.RIGHT ||
-      JSON.parse(window.localStorage.getItem('flagMode'))
-    ) {
+    if (window.mouseButton === window.RIGHT || isFlagMode()) {
       // Find the square the player clicked on
       let square = findSquareAtPointer();
-      if (square) {
-        moves += 1;
-
-        // Prevent opened squares from being flagged
-        if (!square.opened) {
-          window.emojiMinesweeperAudio?.playSound('flag');
-
-          if (!square.flagged) {
-            flaggedSquares += 1;
-            addMove();
-          } else {
-            flaggedSquares -= 1;
-            addMove();
-          }
-          square.flagged = !square.flagged;
-        }
-      }
+      flagSquare(square);
     }
 
     // Find the square pressed on
-    if (
-      window.mouseButton === window.LEFT &&
-      !JSON.parse(window.localStorage.getItem('flagMode'))
-    ) {
+    if (window.mouseButton === window.LEFT && !isFlagMode()) {
       if (!gameFinished) {
         let square = findSquareAtPointer();
-        if (square) {
-          if (square.flagged) {
-            return; // Do not allow opening when flagged
-          }
-
-          if (square.opened) {
-            return;
-          }
-
-          moves += 1;
-          openSquare(square);
-          addMove();
-          if (square.mine) {
-            if (!gameFinished) {
-              gameLost();
-              gameEnded(false);
-            }
-          } else {
-            window.emojiMinesweeperAudio?.playSound('pop');
-
-            // Check if the game has been won
-            checkGameWon();
-          }
-        }
+        openSquareFromInput(square);
       }
     }
   }

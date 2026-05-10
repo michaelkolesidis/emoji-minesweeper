@@ -253,6 +253,7 @@ img {
   min-width: 300px;
   display: flex;
   justify-content: center;
+  touch-action: none;
 }
 
 canvas {
