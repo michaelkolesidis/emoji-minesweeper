@@ -16,6 +16,10 @@ export const resetModal = () => {
     window.cleanupCustomModalListeners();
   }
 
+  if (window.cleanupStatsModalListeners) {
+    window.cleanupStatsModalListeners();
+  }
+
   modal.removeAttribute('id');
   modal.innerHTML = '';
   modal.style.top = '';
@@ -44,6 +48,10 @@ export const closeModal = () => {
 
   if (window.cleanupCustomModalListeners) {
     window.cleanupCustomModalListeners();
+  }
+
+  if (window.cleanupStatsModalListeners) {
+    window.cleanupStatsModalListeners();
   }
 
   if (closeTimerId !== null) {

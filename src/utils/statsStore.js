@@ -122,16 +122,16 @@
     increment(level, 'totalMoves');
   }
 
+  function recordTime(level, seconds = 1) {
+    increment(level, 'totalTime', Math.max(Number(seconds) || 0, 0));
+  }
+
   function recordGameEnded(level, { won, time, moves }) {
     if (!isSupportedLevel(level)) {
       return;
     }
 
-    const stats = getLevelStats(level);
-    const nextStats = {
-      ...stats,
-      totalTime: stats.totalTime + Math.max(Number(time) || 0, 0),
-    };
+    const nextStats = getLevelStats(level);
 
     if (won) {
       nextStats.won += 1;
@@ -213,6 +213,7 @@
     getAllStats,
     recordGameStarted,
     recordMove,
+    recordTime,
     recordGameEnded,
     hasBestMoves,
     hasBestTime,

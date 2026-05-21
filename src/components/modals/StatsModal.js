@@ -23,16 +23,100 @@ function displayDecimal(value, fallback = 'N/A') {
   return Number.isFinite(value) ? value.toFixed(2) : fallback;
 }
 
-export default function StatsModal() {
-  const modal = document.querySelector('.modal');
-  modal.setAttribute('id', 'stats-modal');
-  modal.innerHTML = '';
+let statsRefreshInterval = null;
 
+function getCurrentStatsLevel() {
   let gameLevel = window.localStorage.getItem('level') ?? 'beginner';
   if (!window.statsStore.levels.includes(gameLevel)) {
     gameLevel = 'beginner';
   }
 
+  return gameLevel;
+}
+
+function cleanupStatsModalListeners() {
+  if (statsRefreshInterval !== null) {
+    window.clearInterval(statsRefreshInterval);
+    statsRefreshInterval = null;
+  }
+}
+
+function startStatsRefresh(level, totalTimeValue) {
+  cleanupStatsModalListeners();
+
+  statsRefreshInterval = window.setInterval(() => {
+    if (window.localStorage.getItem('activeModal') !== 'stats-modal') {
+      cleanupStatsModalListeners();
+      return;
+    }
+
+    const stats = window.statsStore.getLevelStats(level);
+    totalTimeValue.textContent = formatTime(stats.totalTime);
+  }, 250);
+}
+
+function renderClearConfirmation(modal) {
+  cleanupStatsModalListeners();
+  modal.innerHTML = '';
+
+  const title = document.createElement('p');
+  title.className = 'level';
+  title.textContent = 'Clear all stats?';
+  modal.appendChild(title);
+
+  const message = document.createElement('p');
+  message.className = 'stats-message';
+  message.textContent =
+    'This will erase every saved stat and cannot be undone.';
+  modal.appendChild(message);
+
+  const actions = document.createElement('div');
+  actions.className = 'stats-actions';
+
+  const confirmButton = document.createElement('button');
+  confirmButton.textContent = 'Yes';
+  actions.appendChild(confirmButton);
+
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = 'No';
+  actions.appendChild(cancelButton);
+
+  modal.appendChild(actions);
+
+  confirmButton.addEventListener('click', () => {
+    window.statsStore.clear();
+    renderClearedMessage(modal);
+  });
+
+  cancelButton.addEventListener('click', () => {
+    StatsModal();
+  });
+}
+
+function renderClearedMessage(modal) {
+  cleanupStatsModalListeners();
+  modal.innerHTML = '';
+
+  const message = document.createElement('p');
+  message.className = 'stats-message stats-message-cleared';
+  message.textContent = 'Data cleared.';
+  modal.appendChild(message);
+
+  window.setTimeout(() => {
+    if (window.localStorage.getItem('activeModal') === 'stats-modal') {
+      StatsModal();
+    }
+  }, 1500);
+}
+
+export default function StatsModal() {
+  window.cleanupStatsModalListeners = cleanupStatsModalListeners;
+
+  const modal = document.querySelector('.modal');
+  modal.setAttribute('id', 'stats-modal');
+  modal.innerHTML = '';
+
+  const gameLevel = getCurrentStatsLevel();
   const stats = window.statsStore.getLevelStats(gameLevel);
 
   modal.innerHTML += `<p class="level">${
@@ -66,21 +150,29 @@ export default function StatsModal() {
   statsTable.innerHTML += `<hr><hr>`;
 
   statsTable.innerHTML += `<p class="label">Total Time</p>`;
-  statsTable.innerHTML += `<p class="value">${formatTime(stats.totalTime)}</p>`;
+  const totalTimeValue = document.createElement('p');
+  totalTimeValue.className = 'value';
+  totalTimeValue.textContent = formatTime(stats.totalTime);
+  statsTable.appendChild(totalTimeValue);
 
-  statsTable.innerHTML += `<p class="label">Total Moves</p>`;
-  statsTable.innerHTML += `<p class="value">${displayNumber(
-    stats.totalMoves
-  )}</p>`;
+  const totalMovesLabel = document.createElement('p');
+  totalMovesLabel.className = 'label';
+  totalMovesLabel.textContent = 'Total Moves';
+  statsTable.appendChild(totalMovesLabel);
+
+  const totalMovesValue = document.createElement('p');
+  totalMovesValue.className = 'value';
+  totalMovesValue.textContent = displayNumber(stats.totalMoves);
+  statsTable.appendChild(totalMovesValue);
 
   modal.appendChild(statsTable);
+  startStatsRefresh(gameLevel, totalTimeValue);
 
   const clearDataButton = document.createElement('button');
   clearDataButton.innerHTML = `Clear`;
   modal.appendChild(clearDataButton);
 
   clearDataButton.addEventListener('click', () => {
-    window.statsStore.clear();
-    StatsModal();
+    renderClearConfirmation(modal);
   });
 }

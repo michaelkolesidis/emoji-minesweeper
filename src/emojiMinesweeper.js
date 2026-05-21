@@ -11,7 +11,10 @@
 import { darkTheme, themes } from './themes.js';
 
 (() => {
-  const p5Global = name => (...args) => window[name](...args);
+  const p5Global =
+    name =>
+    (...args) =>
+      window[name](...args);
   const background = p5Global('background');
   const createCanvas = p5Global('createCanvas');
   const fill = p5Global('fill');
@@ -341,6 +344,7 @@ import { darkTheme, themes } from './themes.js';
   let flaggedSquares = 0; // Number of squares currently flagged
   let moves = 0; // total number of moves
   let startTime = null; // used to calculate time
+  let lastRecordedTime = null; // used to persist total time while playing
   let gameFinished = false;
   let newBestMoves = false; // used when the player has made a new best moves record
   let newBestTime = false; // used when the player has made a new best time
@@ -403,6 +407,10 @@ import { darkTheme, themes } from './themes.js';
   }
 
   function resetGame(forcedMines = null) {
+    if (!gameFinished) {
+      recordElapsedTime();
+    }
+
     // 1. Reset all game state variables to their initial values
     squares = [];
     minedSquares = [];
@@ -412,6 +420,7 @@ import { darkTheme, themes } from './themes.js';
     flaggedSquares = 0;
     moves = 0;
     startTime = null;
+    lastRecordedTime = null;
     timePassed = 0;
     gameFinished = false;
     gameResult = null;
@@ -571,6 +580,17 @@ import { darkTheme, themes } from './themes.js';
   let timePassed = 0;
   let stopTimer = false;
 
+  function recordElapsedTime() {
+    if (window.location.hash !== '' || !startTime || !lastRecordedTime) {
+      return;
+    }
+
+    const currentTime = new Date();
+    const elapsedSeconds = (currentTime - lastRecordedTime) / 1000;
+    lastRecordedTime = currentTime;
+    window.statsStore.recordTime(level, elapsedSeconds);
+  }
+
   function startTimer() {
     // Clear any previous interval to prevent multiple timers running
     if (timerInterval) {
@@ -580,6 +600,7 @@ import { darkTheme, themes } from './themes.js';
     timerInterval = setInterval(() => {
       if (!stopTimer) {
         timePassed += 1;
+        recordElapsedTime();
       }
     }, 1000);
   }
@@ -637,13 +658,13 @@ import { darkTheme, themes } from './themes.js';
       MINE,
       columns < 9
         ? window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 -
-          2.4 * squareSize
+            squareSize * 1.975 +
+            squareSize * 0.99 -
+            2.4 * squareSize
         : window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 -
-          3.4 * squareSize,
+            squareSize * 1.975 +
+            squareSize * 0.99 -
+            3.4 * squareSize,
       boardSize.height,
       squareSize * 0.65,
       squareSize * 0.65
@@ -652,13 +673,13 @@ import { darkTheme, themes } from './themes.js';
       nf(Math.max(initialMines - flaggedSquares, 0), 3),
       columns < 9
         ? window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 -
-          1.6 * squareSize
+            squareSize * 1.975 +
+            squareSize * 0.99 -
+            1.6 * squareSize
         : window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 -
-          2.5 * squareSize,
+            squareSize * 1.975 +
+            squareSize * 0.99 -
+            2.5 * squareSize,
       boardSize.height + 19
     );
 
@@ -687,13 +708,13 @@ import { darkTheme, themes } from './themes.js';
       TIMER,
       columns < 9
         ? window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 +
-          2.7 * squareSize
+            squareSize * 1.975 +
+            squareSize * 0.99 +
+            2.7 * squareSize
         : window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 +
-          3.6 * squareSize,
+            squareSize * 1.975 +
+            squareSize * 0.99 +
+            3.6 * squareSize,
       boardSize.height,
       squareSize * 0.65,
       squareSize * 0.65
@@ -706,9 +727,9 @@ import { darkTheme, themes } from './themes.js';
       nf(timePassed, 3),
       columns < 9
         ? window.width / 2 -
-          squareSize * 1.975 +
-          squareSize * 0.99 +
-          3.4 * squareSize
+            squareSize * 1.975 +
+            squareSize * 0.99 +
+            3.4 * squareSize
         : window.width / 2 -
             squareSize * 1.975 +
             squareSize * 0.99 +
@@ -777,6 +798,7 @@ import { darkTheme, themes } from './themes.js';
     if (isFirstClick) {
       startTimer();
       startTime = new Date();
+      lastRecordedTime = startTime;
 
       if (window.location.hash === '') {
         window.statsStore.recordGameStarted(level);
@@ -1023,7 +1045,10 @@ import { darkTheme, themes } from './themes.js';
       canceled: false,
       longTapped: false,
       timerId: window.setTimeout(() => {
-        if (!activeTouchPress || activeTouchPress.pointerId !== event.pointerId) {
+        if (
+          !activeTouchPress ||
+          activeTouchPress.pointerId !== event.pointerId
+        ) {
           return;
         }
 
@@ -1102,12 +1127,7 @@ import { darkTheme, themes } from './themes.js';
         return;
       }
 
-      if (
-        event.button !== 0 ||
-        gameFinished ||
-        isModalOpen() ||
-        isFlagMode()
-      ) {
+      if (event.button !== 0 || gameFinished || isModalOpen() || isFlagMode()) {
         return;
       }
 
@@ -1176,6 +1196,7 @@ import { darkTheme, themes } from './themes.js';
     gameFinished = true;
     gameResult = won ? 'won' : 'lost';
     if (window.location.hash === '') {
+      recordElapsedTime();
       time = startTime ? (new Date() - startTime) / 1000 : timePassed;
       window.statsStore.recordGameEnded(level, { won, time, moves });
     }
