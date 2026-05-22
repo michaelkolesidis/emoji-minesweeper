@@ -184,8 +184,10 @@ img {
 .header {
   font-family: 'Nunito', sans-serif;
   font-size: 29px;
-  font-weight: 1000;
+  font-weight: 900;
   line-height: 38px;
+  text-shadow: 0 0 0 currentColor;
+  -webkit-text-stroke: 0.50px currentColor;
 }
 
 #header {
