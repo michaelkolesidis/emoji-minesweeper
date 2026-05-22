@@ -26,7 +26,6 @@ import CustomButton from './components/buttons/CustomButton.js';
 import CustomModal from './components/modals/CustomModal.js';
 import ThemeButton from './components/buttons/ThemeButton.js';
 import HelpButton from './components/buttons/HelpButton.js';
-import FlagButton from './components/buttons/FlagButton.js';
 import DarkModeButton from './components/buttons/DarkModeButton.js';
 import Forcer from './components/Forcer.js';
 import ICBLLogo from './components/ICBLLogo.js';
@@ -75,9 +74,6 @@ if (mainEmoji === null) {
 window.localStorage.setItem('modalOpen', 'false');
 window.localStorage.setItem('activeModal', '');
 
-// Flag mode
-window.localStorage.setItem('flagMode', 'false');
-
 // Title
 let title = themes[theme]?.title ?? 'Emoji Minesweeper';
 
@@ -97,10 +93,6 @@ setDesktopLogoTheme(darkMode);
 // Header
 let header = Header(title);
 gameContainer.appendChild(header);
-
-// Mute Button
-let muteButton = MuteButton();
-gameContainer.appendChild(muteButton);
 
 // Board
 const board = Board();
@@ -159,9 +151,9 @@ const helpButton = HelpButton();
 helpButton.dataset.modalTarget = 'help-modal';
 emojiButtonsContainer.appendChild(helpButton);
 
-// Flag Button
-const flagButton = FlagButton(board);
-emojiButtonsContainer.appendChild(flagButton);
+// Mute Button
+const muteButton = MuteButton();
+emojiButtonsContainer.appendChild(muteButton);
 
 // Dark Mode Button
 const darkModeButton = DarkModeButton(darkMode);

@@ -12,7 +12,7 @@
 
 Emoji Minesweeper is a **logic puzzle game**, a variant of the classic [minesweeper game](<https://en.wikipedia.org/wiki/Minesweeper_(video_game)>) reimagined and implemented using **emoji**! It features a **grid of clickable squares**, with hidden **mines** (or flowers) scattered throughout the board. Safe squares have **numbers** telling you how many mines touch the square. If there is no number, the square doesn't touch any mine. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you **lose** the game!
 
-Emoji Minesweeper **always makes the first click safe**. You open squares with the **left mouse button** and put flags on mines with the **right mouse button**. You can also use **chording** with either the left mouse button or the middle mouse button once a numbered square has the correct number of adjacent flags.
+Emoji Minesweeper **always makes the first click safe**. You open squares with the **left mouse button** and put flags on mines with the **right mouse button** (on touchscreens use **long press**). You can also use **chording** with either the left mouse button or the middle mouse button once a numbered square has the correct number of adjacent flags.
 
 The game ends when all safe squares have been opened (**win**) or when a square containing a mine is opened (**loss**). If you win, the empty square get filled with happy faces 😄, and if you lose they get filled with sad faces 😵.
 
@@ -158,9 +158,7 @@ And the Japan theme. I bet you can't decide which one to pick! Your level and th
 
 ![Help modal](./screenshots/help_v8b.png)
 
-If you forget the basic controls you can click the help button ❔to toggle the help modal. You can also toggle the help modal by pressing the *H* key.
-
-Clicking on the flag button 🚩 will toggle flag mode. This will enable you to flag squares by touching them, or by left-clicking on them. You can also toggle flag mode by pressing the *F* key. You might want to use this if you are on a phone or tablet. If, on the other hand, you are on a computer, the cursor will be changed to a *crosshair*, to inform you that flag mode is enabled.
+If you forget the basic controls you can click the help button ❔to toggle the help modal. You can also toggle the help modal by pressing the *H* key.  
 
 ![Dark mines](./screenshots/dark_win_flowers_v8.png)
 
@@ -183,8 +181,8 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 - 1️⃣2️⃣3️⃣*️⃣ buttons switch between **levels** (beginner, intermediate, expert, and custom)
 - 📊 button toggles the **stats modal**
 - 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (mine, flower, mushroom, bear, surf, and Japan)
-- ❔button toggles the **help modal**
-- 🚩 button toggles **flag mode** (for touchscreens)
+- ❔ button toggles the **help modal**
+- 🔈 button toggles **sound**
 - ☀️/🌔 button toggles **dark mode**
 - There is an **Easter egg** in the game, can you find it?
 
@@ -201,7 +199,7 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 | Left Arrow  | Switch to next theme               |
 | Right Arrow | Switch to previous theme           |
 |      H      | Open/close help modal              |
-|      F      | Toggle flag mode                   |
+|      M      | Mute/unmute sound                  |
 |      D      | Toggle dark mode                   |
 |     Esc     | Close open modal                   |
 

@@ -778,10 +778,6 @@ import { darkTheme, themes } from './themes.js';
     return JSON.parse(window.localStorage.getItem('modalOpen')) === true;
   }
 
-  function isFlagMode() {
-    return JSON.parse(window.localStorage.getItem('flagMode')) === true;
-  }
-
   // Get neighbors
   function getNeighbors(square) {
     return squares.filter(n => {
@@ -799,7 +795,7 @@ import { darkTheme, themes } from './themes.js';
    */
   let isFirstClick = true;
   let mineReallocated = false;
-  const longTapDelay = 400;
+  const longTapDelay = 100;
   const touchMoveTolerance = 10;
   let activeTouchPress = null;
   let ignoreMousePressedUntil = 0;
@@ -1006,11 +1002,6 @@ import { darkTheme, themes } from './themes.js';
   }
 
   function tapSquare(square) {
-    if (isFlagMode()) {
-      flagSquare(square);
-      return;
-    }
-
     if (square?.opened && !square.flagged) {
       chordSquareFromInput(square);
       return;
@@ -1139,7 +1130,7 @@ import { darkTheme, themes } from './themes.js';
         return;
       }
 
-      if (event.button !== 0 || gameFinished || isModalOpen() || isFlagMode()) {
+      if (event.button !== 0 || gameFinished || isModalOpen()) {
         return;
       }
 
@@ -1185,14 +1176,14 @@ import { darkTheme, themes } from './themes.js';
     }
 
     // Flags
-    if (window.mouseButton === window.RIGHT || isFlagMode()) {
+    if (window.mouseButton === window.RIGHT) {
       // Find the square the player clicked on
       let square = findSquareAtPointer();
       flagSquare(square);
     }
 
     // Find the square pressed on
-    if (window.mouseButton === window.LEFT && !isFlagMode()) {
+    if (window.mouseButton === window.LEFT) {
       if (!gameFinished) {
         let square = findSquareAtPointer();
         openSquareFromInput(square);

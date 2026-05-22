@@ -56,8 +56,8 @@ The Forcer accepts square numbers separated by spaces, commas, or semicolons. Cl
 - Levels can be changed using the buttons or keyboard shortcuts
 - Themes can be switched using a button or keyboard shortcuts
 - New game with button or keyboard shortcut
-- Flag mode (for touchscreens) can be toggled using a button or keyboard shortcuts
-- Cursor becomes crosshair when flag mode is enabled
+- Touch controls use long-press to flag squares
+- Sound can be toggled using the speaker button
 - Level and theme preferences are saved
 - Dark mode can be switched using a button or keyboard shortcuts
 - Intermediate, expert, and custom controls are desktop-only and show a short message when unavailable

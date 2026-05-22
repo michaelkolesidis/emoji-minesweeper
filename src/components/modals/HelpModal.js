@@ -98,9 +98,10 @@ function buildDesktopHelpContent() {
 
   content.push(
     paragraph(
-      icon('emoji/triangular_flag_flat.png'),
-      strong('Touch'),
-      ' to flag (F key)'
+      icon('emoji/speaker_flat.png'),
+      'Toggle ',
+      strong('sound'),
+      ' (M key)'
     )
   );
 
@@ -119,7 +120,7 @@ function buildMobileHelpContent() {
     paragraph(
       strong('Tap'),
       ' to open a square, ',
-      strong('long tap'),
+      strong('long press'),
       ' to flag or unflag. ',
       strong('Tap'),
       ' an open numbered square to ',
@@ -166,10 +167,9 @@ function buildMobileHelpContent() {
 
   content.push(
     paragraph(
-      icon('emoji/triangular_flag_flat.png'),
+      icon('emoji/speaker_flat.png'),
       'Toggle ',
-      strong('flag mode'),
-      ' for tap-to-flag'
+      strong('sound')
     )
   );
 
