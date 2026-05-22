@@ -50,11 +50,13 @@ import {
   preloadFont,
   scheduleAfterInitialRender,
 } from './utils/assetPreloader.js';
+import { registerServiceWorker } from './utils/serviceWorker.js';
 
 /**
  * Basics
  */
 greet();
+registerServiceWorker();
 
 // Theme
 let theme = window.localStorage.getItem('theme');
