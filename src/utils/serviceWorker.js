@@ -17,7 +17,7 @@ export function registerServiceWorker() {
 
   scheduleAfterInitialRender('service-worker-registration', () => {
     navigator.serviceWorker
-      .register('/sw.js')
+      .register(`${import.meta.env.BASE_URL}sw.js`)
       .then(registration => registration.update())
       .catch(() => {});
   });
