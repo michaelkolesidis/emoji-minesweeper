@@ -605,6 +605,26 @@ import { darkTheme, themes } from './themes.js';
     }, 1000);
   }
 
+  function formatMineCounter(value) {
+    if (value < 0) {
+      return `-${String(Math.abs(value)).padStart(2, '0')}`;
+    }
+
+    return nf(value, 3);
+  }
+
+  function mineCounterX(columns) {
+    return columns < 9
+      ? window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 -
+          1.2 * squareSize
+      : window.width / 2 -
+          squareSize * 1.975 +
+          squareSize * 0.99 -
+          2.5 * squareSize;
+  }
+
   /**
    * Setup
    */
@@ -670,16 +690,8 @@ import { darkTheme, themes } from './themes.js';
       squareSize * 0.65
     );
     text(
-      nf(Math.max(initialMines - flaggedSquares, 0), 3),
-      columns < 9
-        ? window.width / 2 -
-            squareSize * 1.975 +
-            squareSize * 0.99 -
-            1.6 * squareSize
-        : window.width / 2 -
-            squareSize * 1.975 +
-            squareSize * 0.99 -
-            2.5 * squareSize,
+      formatMineCounter(initialMines - flaggedSquares),
+      mineCounterX(columns),
       boardSize.height + 19
     );
 
