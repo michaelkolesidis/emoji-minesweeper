@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'emoji-minesweeper-v4';
+const CACHE_VERSION = 'emoji-minesweeper-v7';
 const APP_CACHE = `${CACHE_VERSION}-app`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -136,6 +136,7 @@ const PRECACHE_ASSETS = [
   '/emoji/wood_flat.png',
   '/fonts/MochiyPopOne-Regular.ttf',
   '/fonts/Nunito-Black.ttf',
+  '/fonts/Nunito-Regular.ttf',
   '/manifest.webmanifest',
   '/robots.txt',
   '/sitemap.xml',
@@ -206,17 +207,25 @@ async function appShellFirst(request) {
     return cached;
   }
 
-  return fetchAndCache(request);
+  try {
+    return await fetchAndCache(request);
+  } catch {
+    return offlineFallback(request);
+  }
 }
 
 async function cacheFirst(request) {
-  const cached = await caches.match(request);
+  const cached = await matchCached(request);
 
   if (cached) {
     return cached;
   }
 
-  return fetchAndCache(request);
+  try {
+    return await fetchAndCache(request);
+  } catch {
+    return offlineFallback(request);
+  }
 }
 
 async function fetchAndCache(request) {
@@ -236,6 +245,63 @@ async function refreshCache(request) {
   } catch {
     // Offline refreshes keep using the cached app shell.
   }
+}
+
+async function matchCached(request) {
+  const url = new URL(request.url);
+  const candidates = [
+    request,
+    url.pathname,
+    normalizePath(url.pathname),
+    stripBase(url.pathname),
+  ];
+
+  for (const candidate of candidates) {
+    if (!candidate) {
+      continue;
+    }
+
+    const cached = await caches.match(candidate);
+
+    if (cached) {
+      return cached;
+    }
+  }
+
+  return null;
+}
+
+async function offlineFallback(request) {
+  if (request.destination === 'document' || request.mode === 'navigate') {
+    return (
+      (await caches.match(APP_SHELL)) ||
+      (await caches.match(withBase('/index.html'))) ||
+      Response.error()
+    );
+  }
+
+  if (request.destination === 'image') {
+    return transparentImage();
+  }
+
+  if (request.destination === 'audio') {
+    return new Response(new ArrayBuffer(0), {
+      headers: { 'Content-Type': 'audio/mpeg' },
+    });
+  }
+
+  return Response.error();
+}
+
+function transparentImage() {
+  const bytes = Uint8Array.from(
+    atob('R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='),
+    character => character.charCodeAt(0)
+  );
+
+  return new Response(bytes, {
+    headers: { 'Content-Type': 'image/gif' },
+  });
 }
 
 async function cacheAssets(cache, assets) {
@@ -295,6 +361,14 @@ function normalizePath(pathname) {
   }
 
   return pathname;
+}
+
+function stripBase(pathname) {
+  if (!BASE_PATH || !pathname.startsWith(BASE_PATH + '/')) {
+    return pathname;
+  }
+
+  return pathname.slice(BASE_PATH.length);
 }
 
 function withBase(pathname) {

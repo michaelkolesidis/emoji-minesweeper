@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-CLN0X1XD8N"
-    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+      if (navigator.onLine) {
+        const analyticsScript = document.createElement('script');
+        analyticsScript.async = true;
+        analyticsScript.src =
+          'https://www.googletagmanager.com/gtag/js?id=G-CLN0X1XD8N';
+        document.head.appendChild(analyticsScript);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-CLN0X1XD8N');
       }
-      gtag('js', new Date());
-
-      gtag('config', 'G-CLN0X1XD8N');
     </script>
     <script>
       if (window.location.hostname === 'emojiminesweeper.vercel.app') {
@@ -67,13 +69,6 @@
       content="https://thumbfeed.com/emoji-minesweeper/emoji-minesweeper.png"
     />
     <meta name="twitter:image:alt" content="Emoji Minesweeper game preview" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!--  Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-      rel="stylesheet"
-    />
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <script type="module" src="/src/help.js"></script>
   </head>

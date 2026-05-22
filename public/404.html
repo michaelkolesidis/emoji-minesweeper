@@ -1,19 +1,20 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-CLN0X1XD8N"
-    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+      if (navigator.onLine) {
+        const analyticsScript = document.createElement('script');
+        analyticsScript.async = true;
+        analyticsScript.src =
+          'https://www.googletagmanager.com/gtag/js?id=G-CLN0X1XD8N';
+        document.head.appendChild(analyticsScript);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-CLN0X1XD8N');
       }
-      gtag('js', new Date());
-
-      gtag('config', 'G-CLN0X1XD8N');
     </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,15 +34,26 @@
         window.location.replace(target);
       }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!--  Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-      rel="stylesheet"
-    />
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <style>
+      @font-face {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/emoji-minesweeper/fonts/Nunito-Regular.ttf')
+          format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url('/emoji-minesweeper/fonts/Nunito-Black.ttf')
+          format('truetype');
+      }
+
       * {
         box-sizing: border-box;
         margin: 0;
