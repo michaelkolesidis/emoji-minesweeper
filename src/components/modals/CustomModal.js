@@ -7,6 +7,19 @@
 import { getMatchingStandardLevel, setLevel } from '../../utils/levelUtils.js';
 
 import { themes } from '../../themes.js';
+import { preloadImage } from '../../utils/assetPreloader.js';
+
+const columnsLabel = createPersistentLabel(
+  'emoji/svg/left-right_arrow_flat.svg',
+  'Columns'
+);
+const rowsLabel = createPersistentLabel(
+  'emoji/svg/up-down_arrow_flat.svg',
+  'Rows'
+);
+const mineLabel = createPersistentLabel(null, 'Mines');
+const blankIcon =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 export default function CustomModal() {
   if (window.cleanupCustomModalListeners) {
@@ -21,26 +34,22 @@ export default function CustomModal() {
   // Columns
   const columnsSettings = document.createElement('div');
   columnsSettings.classList.add('custom-section');
-  columnsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/left-right_arrow_flat.svg" title="Columns" alt="Columns"/>
-  <input type="number" id="columns-input" class="custom-input" min="7" max="100" step="1" placeholder="9">`;
+  const columnsInput = createNumberInput('columns-input', '9');
+  columnsSettings.append(columnsLabel, columnsInput);
   modal.appendChild(columnsSettings);
 
   // Rows
   const rowsSettings = document.createElement('div');
   rowsSettings.classList.add('custom-section');
-  rowsSettings.innerHTML = `<img class="custom-label" src="emoji/svg/up-down_arrow_flat.svg" title="Rows" alt="Rows" />
-  <input type="number" id="rows-input" class="custom-input" min="7" max="100" step="1" placeholder="9">`;
+  const rowsInput = createNumberInput('rows-input', '9');
+  rowsSettings.append(rowsLabel, rowsInput);
   modal.appendChild(rowsSettings);
 
   // Mines
   const mineSettings = document.createElement('div');
   mineSettings.classList.add('custom-section');
   const getTheme = () => window.localStorage.getItem('theme') ?? 'mine';
-  const mineLabel = document.createElement('img');
-  mineLabel.className = 'custom-label';
-  mineLabel.title = 'Mines';
-  mineLabel.alt = 'Mines';
-  mineLabel.src = themes[getTheme()].mine;
+  resetMineIcon();
   const minesInput = document.createElement('input');
   minesInput.type = 'number';
   minesInput.id = 'mines-input';
@@ -51,8 +60,6 @@ export default function CustomModal() {
   mineSettings.append(mineLabel, minesInput);
   modal.appendChild(mineSettings);
 
-  const columnsInput = document.getElementById('columns-input');
-  const rowsInput = document.getElementById('rows-input');
   const listenerController = new AbortController();
   const savedLevel = window.customLevelRules.readCustomLevel();
   columnsInput.value = savedLevel.columns;
@@ -140,11 +147,11 @@ export default function CustomModal() {
   // Handle theme changing
   const themeButton = document.getElementById('theme-button');
 
-  const resetMineIcon = () => {
-    mineLabel.src = themes[getTheme()].mine;
-  };
+  function resetMineIcon() {
+    setLabelFromThemeButton(mineLabel, themes[getTheme()].mine);
+  }
 
-  themeButton.addEventListener('click', resetMineIcon, {
+  themeButton?.addEventListener('click', resetMineIcon, {
     signal: listenerController.signal,
   });
 
@@ -169,4 +176,85 @@ function strong(text) {
   element.style.fontWeight = '900';
   element.textContent = text;
   return element;
+}
+
+function createPersistentLabel(src, title) {
+  const label = src ? preloadImage(src, title) : document.createElement('img');
+  label.className = 'custom-label';
+  label.title = title;
+  label.alt = title;
+
+  if (src) {
+    convertLabelToDataUrlWhenReady(label);
+  }
+
+  return label;
+}
+
+function createNumberInput(id, placeholder) {
+  const input = document.createElement('input');
+  input.type = 'number';
+  input.id = id;
+  input.className = 'custom-input';
+  input.min = '7';
+  input.max = '100';
+  input.step = '1';
+  input.placeholder = placeholder;
+  return input;
+}
+
+function setLabelFromThemeButton(label, fallbackSrc) {
+  const themeIcon = document.querySelector('#theme-button img');
+  const dataUrl = imageDataUrl(themeIcon);
+
+  if (!dataUrl && themeIcon) {
+    themeIcon.addEventListener(
+      'load',
+      () => setLabelFromThemeButton(label, fallbackSrc),
+      { once: true }
+    );
+  }
+
+  if (dataUrl) {
+    label.src = dataUrl;
+  } else if (!label.getAttribute('src')) {
+    label.src = blankIcon;
+  }
+
+  label.dataset.sourceSrc = themeIcon?.getAttribute('src') ?? fallbackSrc;
+}
+
+function convertLabelToDataUrlWhenReady(label) {
+  const convert = () => {
+    const dataUrl = imageDataUrl(label);
+
+    if (dataUrl) {
+      label.src = dataUrl;
+    }
+  };
+
+  if (label.complete) {
+    convert();
+    return;
+  }
+
+  label.addEventListener('load', convert, { once: true });
+}
+
+function imageDataUrl(image) {
+  if (!image?.complete || image.naturalWidth === 0 || image.naturalHeight === 0) {
+    return null;
+  }
+
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas
+      .getContext('2d')
+      .drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
+    return canvas.toDataURL('image/png');
+  } catch {
+    return null;
+  }
 }

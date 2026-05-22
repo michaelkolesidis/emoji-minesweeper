@@ -1,4 +1,12 @@
 /* Global */
+@font-face {
+  font-family: 'Mochiy Pop One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/MochiyPopOne-Regular.ttf') format('truetype');
+}
+
 :root {
   --main-color: #303030;
   --secondary-color: #ffffff;

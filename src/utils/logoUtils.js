@@ -4,6 +4,10 @@
  *  GNU Affero General Public License v3.0
  */
 
+import {
+  preloadImage,
+} from './assetPreloader.js';
+
 const desktopLogo = {
   light: 'assets/thumbfeed-logo-inline.svg',
   dark: 'assets/thumbfeed-logo-inline-white.svg',
@@ -15,8 +19,26 @@ const icblLogo = {
 };
 
 const logoCache = new Map();
+const logoSources = [
+  desktopLogo.light,
+  desktopLogo.dark,
+  'assets/thumbfeed-logo.svg',
+  icblLogo.light,
+  icblLogo.dark,
+];
 
 export function setLogoTheme(isDarkMode) {
+  primeLogoCache(
+    'desktop-logo',
+    desktopLogo,
+    'Thumbfeed logo'
+  );
+  primeLogoCache(
+    'icbl-logo',
+    icblLogo,
+    'International Campaign to Ban Landmines logo'
+  );
+
   replaceImage(
     'desktop-logo',
     isDarkMode ? desktopLogo.dark : desktopLogo.light,
@@ -31,6 +53,32 @@ export function setLogoTheme(isDarkMode) {
 
 export function setDesktopLogoTheme(isDarkMode) {
   setLogoTheme(isDarkMode);
+}
+
+export function preloadLogoAssets() {
+  logoSources.forEach(preloadLogoSource);
+  primeLogoCache('desktop-logo', desktopLogo, 'Thumbfeed logo');
+  primeLogoCache(
+    'icbl-logo',
+    icblLogo,
+    'International Campaign to Ban Landmines logo'
+  );
+}
+
+function preloadLogoSource(source) {
+  preloadImage(source);
+}
+
+function primeLogoCache(id, sources, alt) {
+  const currentLogo = document.getElementById(id);
+
+  if (!currentLogo) {
+    return;
+  }
+
+  Object.values(sources).forEach(source => {
+    getCachedLogo(id, source, alt, currentLogo);
+  });
 }
 
 function replaceImage(id, source, alt) {

@@ -4,11 +4,6 @@
  *  GNU Affero General Public License v3.0
  */
 
-const cachedHelpContent = {
-  desktop: null,
-  mobile: null,
-};
-
 export default function HelpModal() {
   const modal = document.querySelector('.modal');
   modal.setAttribute('id', 'help-modal');
@@ -19,18 +14,17 @@ export default function HelpModal() {
 function getHelpContent() {
   const variant = usesMobileControls() ? 'mobile' : 'desktop';
 
-  if (cachedHelpContent[variant] === null) {
-    cachedHelpContent[variant] =
-      variant === 'mobile'
-        ? buildMobileHelpContent()
-        : buildDesktopHelpContent();
-  }
-
-  return cachedHelpContent[variant];
+  return variant === 'mobile'
+    ? buildMobileHelpContent()
+    : buildDesktopHelpContent();
 }
 
 function usesMobileControls() {
   return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+export function preloadHelpModalAssets() {
+  // Help uses clones of already-rendered toolbar icons.
 }
 
 function buildDesktopHelpContent() {
@@ -80,7 +74,7 @@ function buildDesktopHelpContent() {
 
   content.push(
     paragraph(
-      icon('emoji/bomb_flat.png'),
+      buttonIcon('Change theme', 'emoji/bomb_flat.png'),
       'Switch ',
       strong('theme'),
       ' (left/right arrows)'
@@ -98,7 +92,7 @@ function buildDesktopHelpContent() {
 
   content.push(
     paragraph(
-      icon('emoji/speaker_flat.png'),
+      buttonIcon(['Mute sound', 'Unmute sound'], 'emoji/speaker_flat.png'),
       'Toggle ',
       strong('sound'),
       ' (M key)'
@@ -106,7 +100,11 @@ function buildDesktopHelpContent() {
   );
 
   content.push(
-    paragraph(icon('emoji/sun_flat.png'), strong('Dark theme'), ' (D key)')
+    paragraph(
+      buttonIcon('Toggle dark mode', 'emoji/sun_flat.png'),
+      strong('Dark theme'),
+      ' (D key)'
+    )
   );
 
   content.push(buildAbout());
@@ -154,7 +152,11 @@ function buildMobileHelpContent() {
   );
 
   content.push(
-    paragraph(icon('emoji/bomb_flat.png'), 'Switch ', strong('theme'))
+    paragraph(
+      buttonIcon('Change theme', 'emoji/bomb_flat.png'),
+      'Switch ',
+      strong('theme')
+    )
   );
 
   content.push(
@@ -167,13 +169,15 @@ function buildMobileHelpContent() {
 
   content.push(
     paragraph(
-      icon('emoji/speaker_flat.png'),
+      buttonIcon(['Mute sound', 'Unmute sound'], 'emoji/speaker_flat.png'),
       'Toggle ',
       strong('sound')
     )
   );
 
-  content.push(paragraph(icon('emoji/sun_flat.png'), strong('Dark theme')));
+  content.push(
+    paragraph(buttonIcon('Toggle dark mode', 'emoji/sun_flat.png'), strong('Dark theme'))
+  );
 
   content.push(buildAbout());
   return content;
@@ -209,11 +213,76 @@ function strong(text) {
 }
 
 function icon(src) {
-  const element = document.createElement('img');
-  element.src = src;
+  const element = helpIconFromToolbarSrc(src);
   element.className = 'help-emoji';
   element.alt = '';
   return element;
+}
+
+function buttonIcon(ariaLabels, fallbackSrc) {
+  const element =
+    helpIconFromToolbarAria(ariaLabels) ?? helpIconFromToolbarSrc(fallbackSrc);
+  element.className = 'help-emoji';
+  element.alt = '';
+  return element;
+}
+
+function helpIconFromToolbarSrc(src) {
+  const icon = document.querySelector(
+    `#emoji-buttons-container .emoji-button img[src="${src}"]`
+  );
+
+  return createNetworkFreeHelpIcon(icon, src);
+}
+
+function helpIconFromToolbarAria(ariaLabels) {
+  const labels = Array.isArray(ariaLabels) ? ariaLabels : [ariaLabels];
+
+  for (const label of labels) {
+    const icon = document
+      .querySelector(
+        `#emoji-buttons-container .emoji-button[aria-label="${label}"]`
+      )
+      ?.querySelector('img');
+
+    if (icon) {
+      return createNetworkFreeHelpIcon(icon, icon.getAttribute('src'));
+    }
+  }
+
+  return null;
+}
+
+function createNetworkFreeHelpIcon(toolbarIcon, fallbackSrc) {
+  const helpIcon = document.createElement('img');
+
+  if (!toolbarIcon) {
+    helpIcon.src = fallbackSrc;
+    return helpIcon;
+  }
+
+  const dataUrl = imageDataUrl(toolbarIcon);
+  helpIcon.src = dataUrl ?? toolbarIcon.currentSrc ?? toolbarIcon.src;
+  helpIcon.dataset.sourceSrc = toolbarIcon.getAttribute('src') ?? fallbackSrc;
+  return helpIcon;
+}
+
+function imageDataUrl(image) {
+  if (!image.complete || image.naturalWidth === 0 || image.naturalHeight === 0) {
+    return null;
+  }
+
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas
+      .getContext('2d')
+      .drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
+    return canvas.toDataURL('image/png');
+  } catch {
+    return null;
+  }
 }
 
 function buildAbout() {

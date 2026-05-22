@@ -5,19 +5,25 @@
  */
 
 import { isMuted, toggleMuted } from '../../utils/audio.js';
+import {
+  preloadImage,
+  scheduleAfterInitialRender,
+} from '../../utils/assetPreloader.js';
 
-const soundIcons = {
-  muted: createSoundIcon('emoji/muted_speaker_flat.png', 'Sound muted'),
-  unmuted: createSoundIcon('emoji/speaker_flat.png', 'Sound on'),
+const soundIconSources = {
+  muted: { src: 'emoji/muted_speaker_flat.png', alt: 'Sound muted' },
+  unmuted: { src: 'emoji/speaker_flat.png', alt: 'Sound on' },
 };
+const soundIcons = new Map();
 
 export default function MuteButton() {
   const muteButton = document.createElement('div');
   muteButton.className = 'emoji-button';
+  preloadRemainingSoundIcons();
 
   function render() {
     const muted = isMuted();
-    const icon = muted ? soundIcons.muted : soundIcons.unmuted;
+    const icon = getSoundIcon(muted ? 'muted' : 'unmuted');
 
     muteButton.replaceChildren(icon);
     muteButton.title = muted ? 'Unmute sound' : 'Mute sound';
@@ -46,9 +52,17 @@ export default function MuteButton() {
   return muteButton;
 }
 
-function createSoundIcon(src, alt) {
-  const icon = document.createElement('img');
-  icon.src = src;
-  icon.alt = alt;
-  return icon;
+function getSoundIcon(state) {
+  if (!soundIcons.has(state)) {
+    const { src, alt } = soundIconSources[state];
+    soundIcons.set(state, preloadImage(src, alt));
+  }
+
+  return soundIcons.get(state);
+}
+
+function preloadRemainingSoundIcons() {
+  scheduleAfterInitialRender('sound-button-icons', () => {
+    Object.keys(soundIconSources).forEach(getSoundIcon);
+  });
 }

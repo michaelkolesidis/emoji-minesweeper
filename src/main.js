@@ -16,7 +16,9 @@ import MuteButton from './components/buttons/MuteButton.js';
 import Board from './components/Board.js';
 import Modal from './components/modals/Modal.js';
 import StatsModal from './components/modals/StatsModal.js';
-import HelpModal from './components/modals/HelpModal.js';
+import HelpModal, {
+  preloadHelpModalAssets,
+} from './components/modals/HelpModal.js';
 import NewGameButton from './components/buttons/NewGameButton.js';
 import StatsButton from './components/buttons/StatsButton.js';
 import BeginnerButton from './components/buttons/BeginnerButton.js';
@@ -39,8 +41,15 @@ import {
   setLevel,
   syncLevelButtons,
 } from './utils/levelUtils.js';
-import { setDesktopLogoTheme } from './utils/logoUtils.js';
+import {
+  preloadLogoAssets,
+  setDesktopLogoTheme,
+} from './utils/logoUtils.js';
 import { showTooltip } from './utils/mobileTooltip.js';
+import {
+  preloadFont,
+  scheduleAfterInitialRender,
+} from './utils/assetPreloader.js';
 
 /**
  * Basics
@@ -158,6 +167,12 @@ emojiButtonsContainer.appendChild(muteButton);
 // Dark Mode Button
 const darkModeButton = DarkModeButton(darkMode);
 emojiButtonsContainer.appendChild(darkModeButton);
+
+scheduleAfterInitialRender('background-ui-assets', () => {
+  preloadFont('400 26px "Mochiy Pop One"');
+  preloadHelpModalAssets();
+  preloadLogoAssets();
+});
 
 /**
  * Modals

@@ -107,6 +107,38 @@ import { darkTheme, themes } from './themes.js';
     return darkMode ? darkTheme.empty : 'emoji/white_large_square_flat.png';
   }
 
+  function preloadThemeImages() {
+    Object.values(themes).forEach(themeImages => {
+      loadCachedImage(themeImages.mine);
+      loadCachedImage(themeImages.detonation);
+      loadCachedImage(themeImages.won);
+      loadCachedImage(themeImages.lost);
+    });
+  }
+
+  function preloadBoardImages() {
+    loadCachedImage('emoji/black_square_button_flat.png');
+    loadCachedImage('emoji/white_large_square_flat.png');
+    loadCachedImage(darkTheme.closed);
+    loadCachedImage(darkTheme.empty);
+  }
+
+  function scheduleGameAssetWarmup() {
+    window.requestAnimationFrame(() => {
+      const warmup = () => {
+        preloadBoardImages();
+        preloadThemeImages();
+      };
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(warmup, { timeout: 1000 });
+        return;
+      }
+
+      window.setTimeout(warmup, 0);
+    });
+  }
+
   class Square {
     num;
     i;
@@ -649,6 +681,7 @@ import { darkTheme, themes } from './themes.js';
     }
     generateSquares();
     calculateMines();
+    scheduleGameAssetWarmup();
   }
 
   /**

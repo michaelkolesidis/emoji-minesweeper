@@ -12,10 +12,14 @@
 import { renderHeaderTitle } from '../Header.js';
 
 import { themes } from '../../themes.js';
+import {
+  preloadImage,
+  scheduleAfterInitialRender,
+} from '../../utils/assetPreloader.js';
+
+const themeIconCache = new Map();
 
 export default function ThemeButton(header) {
-  const themeIconCache = new Map();
-
   // Button
   const themeButton = document.createElement('div');
   themeButton.title = `Change theme`;
@@ -24,6 +28,7 @@ export default function ThemeButton(header) {
   themeButton.className = `emoji-button`;
   let theme = window.localStorage.getItem('theme') ?? 'mine';
   renderThemeIcon();
+  preloadRemainingThemeIcons();
 
   // Theme Button Functionality
   themeButton.addEventListener('click', () => {
@@ -71,16 +76,7 @@ export default function ThemeButton(header) {
   }
 
   function renderThemeIcon() {
-    const iconPath = themes[theme].mine;
-
-    if (!themeIconCache.has(iconPath)) {
-      const icon = document.createElement('img');
-      icon.src = iconPath;
-      icon.alt = `${themes[theme].title} theme`;
-      themeIconCache.set(iconPath, icon);
-    }
-
-    themeButton.replaceChildren(themeIconCache.get(iconPath));
+    themeButton.replaceChildren(getThemeIcon(themes[theme]));
   }
 
   // Keyboard Action Handling
@@ -96,4 +92,22 @@ export default function ThemeButton(header) {
   });
 
   return themeButton;
+}
+
+function getThemeIcon(theme) {
+  if (!themeIconCache.has(theme.mine)) {
+    themeIconCache.set(theme.mine, preloadImage(theme.mine));
+  }
+
+  const icon = themeIconCache.get(theme.mine);
+  icon.alt = `${theme.title} theme`;
+  return icon;
+}
+
+function preloadRemainingThemeIcons() {
+  scheduleAfterInitialRender('theme-button-icons', () => {
+    Object.values(themes).forEach(theme => {
+      getThemeIcon(theme);
+    });
+  });
 }

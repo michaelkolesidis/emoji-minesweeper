@@ -5,9 +5,18 @@
  */
 
 import { setDesktopLogoTheme } from '../../utils/logoUtils.js';
+import {
+  preloadImage,
+  scheduleAfterInitialRender,
+} from '../../utils/assetPreloader.js';
+
+const darkModeIconSources = {
+  light: { src: 'emoji/sun_flat.png', alt: 'Light mode' },
+  dark: { src: 'emoji/waning_crescent_moon_flat.png', alt: 'Dark mode' },
+};
+const darkModeIcons = new Map();
 
 export default function DarkModeButton(darkMode) {
-  const iconCache = new Map();
   let isDarkMode = darkMode;
 
   // Button
@@ -16,6 +25,7 @@ export default function DarkModeButton(darkMode) {
   darkModeButton.setAttribute('aria-label', 'Toggle dark mode');
   darkModeButton.className = `emoji-button`;
   renderButton();
+  preloadRemainingDarkModeIcons();
 
   // Theme Button Functionality
   darkModeButton.addEventListener('click', () => {
@@ -32,18 +42,9 @@ export default function DarkModeButton(darkMode) {
   }
 
   function renderButton() {
-    const iconPath = isDarkMode
-      ? 'emoji/waning_crescent_moon_flat.png'
-      : 'emoji/sun_flat.png';
-
-    if (!iconCache.has(iconPath)) {
-      const icon = document.createElement('img');
-      icon.src = iconPath;
-      icon.alt = isDarkMode ? 'Dark mode' : 'Light mode';
-      iconCache.set(iconPath, icon);
-    }
-
-    darkModeButton.replaceChildren(iconCache.get(iconPath));
+    darkModeButton.replaceChildren(
+      getDarkModeIcon(isDarkMode ? 'dark' : 'light')
+    );
   }
 
   // Keyboard Action Handling
@@ -53,4 +54,19 @@ export default function DarkModeButton(darkMode) {
     }
   });
   return darkModeButton;
+}
+
+function getDarkModeIcon(mode) {
+  if (!darkModeIcons.has(mode)) {
+    const { src, alt } = darkModeIconSources[mode];
+    darkModeIcons.set(mode, preloadImage(src, alt));
+  }
+
+  return darkModeIcons.get(mode);
+}
+
+function preloadRemainingDarkModeIcons() {
+  scheduleAfterInitialRender('dark-mode-button-icons', () => {
+    Object.keys(darkModeIconSources).forEach(getDarkModeIcon);
+  });
 }
