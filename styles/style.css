@@ -187,7 +187,7 @@ img {
   font-weight: 900;
   line-height: 38px;
   text-shadow: 0 0 0 currentColor;
-  -webkit-text-stroke: 0.50px currentColor;
+  -webkit-text-stroke: 0.5px currentColor;
 }
 
 #header {

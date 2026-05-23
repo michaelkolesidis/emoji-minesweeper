@@ -242,7 +242,11 @@ function convertLabelToDataUrlWhenReady(label) {
 }
 
 function imageDataUrl(image) {
-  if (!image?.complete || image.naturalWidth === 0 || image.naturalHeight === 0) {
+  if (
+    !image?.complete ||
+    image.naturalWidth === 0 ||
+    image.naturalHeight === 0
+  ) {
     return null;
   }
 

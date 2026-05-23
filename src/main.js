@@ -41,10 +41,7 @@ import {
   setLevel,
   syncLevelButtons,
 } from './utils/levelUtils.js';
-import {
-  preloadLogoAssets,
-  setDesktopLogoTheme,
-} from './utils/logoUtils.js';
+import { preloadLogoAssets, setDesktopLogoTheme } from './utils/logoUtils.js';
 import { showTooltip } from './utils/mobileTooltip.js';
 import {
   preloadFont,

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'emoji-minesweeper-v7';
+const CACHE_VERSION = 'emoji-minesweeper-v8';
 const APP_CACHE = `${CACHE_VERSION}-app`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -341,7 +341,7 @@ async function cacheGeneratedAssets(cache) {
           const asset = new URL(match[1], self.location.origin);
 
           if (asset.origin === self.location.origin) {
-          assets.add(asset.pathname);
+            assets.add(asset.pathname);
           }
         }
       } catch {

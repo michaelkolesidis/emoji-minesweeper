@@ -4,9 +4,7 @@
  *  GNU Affero General Public License v3.0
  */
 
-import {
-  preloadImage,
-} from './assetPreloader.js';
+import { preloadImage } from './assetPreloader.js';
 
 const desktopLogo = {
   light: 'assets/thumbfeed-logo-inline.svg',
@@ -28,11 +26,7 @@ const logoSources = [
 ];
 
 export function setLogoTheme(isDarkMode) {
-  primeLogoCache(
-    'desktop-logo',
-    desktopLogo,
-    'Thumbfeed logo'
-  );
+  primeLogoCache('desktop-logo', desktopLogo, 'Thumbfeed logo');
   primeLogoCache(
     'icbl-logo',
     icblLogo,

@@ -176,7 +176,10 @@ function buildMobileHelpContent() {
   );
 
   content.push(
-    paragraph(buttonIcon('Toggle dark mode', 'emoji/sun_flat.png'), strong('Dark theme'))
+    paragraph(
+      buttonIcon('Toggle dark mode', 'emoji/sun_flat.png'),
+      strong('Dark theme')
+    )
   );
 
   content.push(buildAbout());
@@ -268,7 +271,11 @@ function createNetworkFreeHelpIcon(toolbarIcon, fallbackSrc) {
 }
 
 function imageDataUrl(image) {
-  if (!image.complete || image.naturalWidth === 0 || image.naturalHeight === 0) {
+  if (
+    !image.complete ||
+    image.naturalWidth === 0 ||
+    image.naturalHeight === 0
+  ) {
     return null;
   }
 
