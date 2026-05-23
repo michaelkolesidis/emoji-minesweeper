@@ -828,7 +828,7 @@ import { darkTheme, themes } from './themes.js';
    */
   let isFirstClick = true;
   let mineReallocated = false;
-  const longTapDelay = 100;
+  const longTapDelay = 200;
   const touchMoveTolerance = 10;
   let activeTouchPress = null;
   let ignoreMousePressedUntil = 0;
