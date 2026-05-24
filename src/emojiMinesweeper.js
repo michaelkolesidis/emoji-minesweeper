@@ -72,7 +72,24 @@ import { getCurrentLevel } from './utils/levelUtils.js';
   let time;
   let gameResult = null;
 
+  function shouldUseCellSizedPngs() {
+    return (
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+      (window.devicePixelRatio || 1) < 1.5
+    );
+  }
+
+  function boardImagePath(path) {
+    if (!shouldUseCellSizedPngs() || !path.startsWith('emoji/')) {
+      return path;
+    }
+
+    return path.replace('emoji/', 'emoji/cell/');
+  }
+
   function loadCachedImage(path) {
+    path = boardImagePath(path);
+
     if (!imageCache.has(path)) {
       imageCache.set(
         path,
