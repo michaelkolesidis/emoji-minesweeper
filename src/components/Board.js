@@ -4,10 +4,12 @@
  *  GNU Affero General Public License v3.0
  */
 
+import { getCurrentLevel } from '../utils/levelUtils.js';
+
 export default function Board() {
   const board = document.createElement('div');
   board.setAttribute('id', 'board');
-  const level = window.localStorage.getItem('level');
+  const level = getCurrentLevel();
   const squareSize = 33;
   const beginnerHeight = 328;
 

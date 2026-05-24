@@ -114,7 +114,7 @@ This is a custom level featuring 9 columns, 15 rows, and 14 mines. Quite long, i
 
 ![End modal](./screenshots/end_stats_v8b.png)
 
-When a game is won, a modal containing stats about the current game appears. Let's see what's included:
+When a game is won, a modal containing stats about the current game appears. If you close it with the Close button or by clicking outside it, clicking or tapping anywhere inside the board opens it again. Let's see what's included:
 
 #### Time
 

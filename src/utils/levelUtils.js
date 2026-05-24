@@ -10,8 +10,24 @@ export const STANDARD_LEVELS = Object.freeze([
   Object.freeze({ level: 'expert', columns: 30, rows: 16, mines: 99 }),
 ]);
 
+const SUPPORTED_LEVELS = Object.freeze([
+  ...STANDARD_LEVELS.map(({ level }) => level),
+  'custom',
+]);
+
+export function getCurrentLevel() {
+  const level = window.localStorage.getItem('level');
+
+  if (SUPPORTED_LEVELS.includes(level)) {
+    return level;
+  }
+
+  window.localStorage.setItem('level', 'beginner');
+  return 'beginner';
+}
+
 export function setLevel(level) {
-  const currentLevel = window.localStorage.getItem('level');
+  const currentLevel = getCurrentLevel();
   if (currentLevel === level) {
     return;
   }
@@ -62,7 +78,7 @@ export function shouldIgnoreLevelShortcut(event) {
 }
 
 export function syncLevelButtons() {
-  const level = window.localStorage.getItem('level');
+  const level = getCurrentLevel();
   document.querySelectorAll('[data-level]').forEach(button => {
     button.classList.toggle(
       'emoji-button-clicked',

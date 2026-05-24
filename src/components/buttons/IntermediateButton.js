@@ -4,7 +4,11 @@
  * GNU Affero General Public License v3.0
  */
 
-import { setLevel, shouldIgnoreLevelShortcut } from '../../utils/levelUtils.js';
+import {
+  getCurrentLevel,
+  setLevel,
+  shouldIgnoreLevelShortcut,
+} from '../../utils/levelUtils.js';
 import {
   isMobileDevice,
   showDesktopOnlyTooltip,
@@ -18,7 +22,7 @@ export default function IntermediateButton() {
   intermediateButton.className = `emoji-button mobile-desktop-only`;
   intermediateButton.dataset.level = 'intermediate';
   intermediateButton.innerHTML = `<img src="emoji/keycap_2_flat.png" alt="Intermediate level" />`;
-  const level = window.localStorage.getItem('level');
+  const level = getCurrentLevel();
 
   if (level === 'intermediate') {
     intermediateButton.classList.add('emoji-button-clicked');
@@ -34,7 +38,7 @@ export default function IntermediateButton() {
       return;
     }
 
-    const level = window.localStorage.getItem('level');
+    const level = getCurrentLevel();
 
     if (level !== 'intermediate') {
       setLevel('intermediate');
@@ -45,7 +49,7 @@ export default function IntermediateButton() {
   document.addEventListener('keydown', e => {
     if (isMobileDevice() || shouldIgnoreLevelShortcut(e)) return;
 
-    const level = window.localStorage.getItem('level');
+    const level = getCurrentLevel();
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (
       e.code === 'Digit2' &&

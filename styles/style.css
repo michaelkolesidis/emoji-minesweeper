@@ -234,6 +234,12 @@ img {
   touch-action: none;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  #board.board-reopens-end-modal {
+    cursor: pointer;
+  }
+}
+
 canvas {
   animation: appear 0.8s;
   pointer-events: none;

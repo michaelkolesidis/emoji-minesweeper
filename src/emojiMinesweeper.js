@@ -9,6 +9,7 @@
  */
 
 import { darkTheme, themes } from './themes.js';
+import { getCurrentLevel } from './utils/levelUtils.js';
 
 (() => {
   const p5Global =
@@ -257,17 +258,7 @@ import { darkTheme, themes } from './themes.js';
   /**
    * Level
    */
-  let level = window.localStorage.getItem('level');
-
-  if (
-    level !== 'beginner' &&
-    level !== 'intermediate' &&
-    level !== 'expert' &&
-    level !== 'custom'
-  ) {
-    window.localStorage.setItem('level', 'beginner');
-    level = 'beginner';
-  }
+  let level = getCurrentLevel();
 
   switch (level) {
     case 'beginner':
@@ -439,6 +430,10 @@ import { darkTheme, themes } from './themes.js';
   }
 
   function resetGame(forcedMines = null) {
+    document
+      .getElementById('board')
+      ?.classList.remove('board-reopens-end-modal');
+
     if (!gameFinished) {
       recordElapsedTime();
     }
@@ -457,7 +452,6 @@ import { darkTheme, themes } from './themes.js';
     gameFinished = false;
     gameResult = null;
     isFirstClick = true;
-    mineReallocated = false;
     newBestMoves = false;
     newBestTime = false;
 
@@ -542,6 +536,7 @@ import { darkTheme, themes } from './themes.js';
     setLevel,
     setForcedMines,
     isGameFinished: () => gameFinished,
+    hasWonGame: () => gameResult === 'won',
   });
 
   /**
@@ -827,11 +822,31 @@ import { darkTheme, themes } from './themes.js';
    * Mouse Action Handling
    */
   let isFirstClick = true;
-  let mineReallocated = false;
   const longTapDelay = 200;
   const touchMoveTolerance = 10;
   let activeTouchPress = null;
   let ignoreMousePressedUntil = 0;
+
+  function moveMineAwayFromFirstClick(square) {
+    if (!square?.mine) {
+      return;
+    }
+
+    const availableSquares = squares.filter(candidate => {
+      return candidate !== square && !candidate.mine;
+    });
+
+    square.mine = false;
+
+    if (availableSquares.length > 0) {
+      const targetSquare =
+        availableSquares[Math.floor(Math.random() * availableSquares.length)];
+      targetSquare.mine = true;
+      return;
+    }
+
+    initialMines = Math.max(initialMines - 1, 0);
+  }
 
   // What happens every time the player clicks on a square
   function openSquare(square) {
@@ -845,19 +860,8 @@ import { darkTheme, themes } from './themes.js';
         window.statsStore.recordGameStarted(level);
       }
 
-      if (square.mine && window.location.hash !== '#debug') {
-        square.mine = false;
-        const originalSquareNum = square.num;
-
-        while (!mineReallocated) {
-          let num = Math.floor(Math.random() * numberOfSquares);
-          if (num !== originalSquareNum) {
-            if (!squares[num].mine) {
-              squares[num].mine = true;
-              mineReallocated = true;
-            }
-          }
-        }
+      if (square.mine) {
+        moveMineAwayFromFirstClick(square);
       }
       isFirstClick = false;
 
@@ -1159,6 +1163,13 @@ import { darkTheme, themes } from './themes.js';
     }
 
     board.addEventListener('pointerdown', event => {
+      if (gameResult === 'won' && !isModalOpen()) {
+        event.preventDefault();
+        event.stopPropagation();
+        gameHasEnded();
+        return;
+      }
+
       if (handleTouchPointerDown(event, board)) {
         return;
       }

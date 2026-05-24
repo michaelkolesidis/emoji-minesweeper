@@ -4,7 +4,11 @@
  * GNU Affero General Public License v3.0
  */
 
-import { setLevel, shouldIgnoreLevelShortcut } from '../../utils/levelUtils.js';
+import {
+  getCurrentLevel,
+  setLevel,
+  shouldIgnoreLevelShortcut,
+} from '../../utils/levelUtils.js';
 import {
   isMobileDevice,
   showDesktopOnlyTooltip,
@@ -18,7 +22,7 @@ export default function ExpertButton() {
   expertButton.className = `emoji-button mobile-desktop-only`;
   expertButton.dataset.level = 'expert';
   expertButton.innerHTML = `<img src="emoji/keycap_3_flat.png" alt="Expert level" />`;
-  const level = window.localStorage.getItem('level');
+  const level = getCurrentLevel();
 
   if (level === 'expert') {
     expertButton.classList.add('emoji-button-clicked');
@@ -34,7 +38,7 @@ export default function ExpertButton() {
       return;
     }
 
-    const level = window.localStorage.getItem('level');
+    const level = getCurrentLevel();
 
     if (level !== 'expert') {
       setLevel('expert');
@@ -45,7 +49,7 @@ export default function ExpertButton() {
   document.addEventListener('keydown', e => {
     if (isMobileDevice() || shouldIgnoreLevelShortcut(e)) return;
 
-    const level = window.localStorage.getItem('level');
+    const level = getCurrentLevel();
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (e.code === 'Digit3' && level !== 'expert' && modalOpen !== 'true') {
       setLevel('expert');

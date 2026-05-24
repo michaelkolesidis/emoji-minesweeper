@@ -91,6 +91,7 @@ The Forcer accepts square numbers separated by spaces, commas, or semicolons. Cl
 - Header becomes yellow when the player has made a new best time or a new moves recorded
 - Wrongly flagged squares are marked with an X when the played loses
 - Header wave animation on every win
+- After a win, the end modal can be reopened after closing by clicking or tapping anywhere inside the board
 
 ### Stats
 

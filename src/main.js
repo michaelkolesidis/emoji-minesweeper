@@ -36,6 +36,7 @@ import ICBLLogo from './components/ICBLLogo.js';
 import { greet } from './utils/consoleUtils.js';
 import { closeModal, openModal, resetModal } from './utils/modalUtils.js';
 import {
+  getCurrentLevel,
   getLevelSettings,
   getMatchingStandardLevel,
   setLevel,
@@ -54,6 +55,7 @@ import { registerServiceWorker } from './utils/serviceWorker.js';
  */
 greet();
 registerServiceWorker();
+getCurrentLevel();
 
 // Theme
 let theme = window.localStorage.getItem('theme');
@@ -125,6 +127,7 @@ const newGameButton = NewGameButton();
 emojiButtonsContainer.appendChild(newGameButton);
 newGameButton.addEventListener('click', () => {
   closeActiveModal();
+  setEndModalBoardHint(false);
   window.emojiMinesweeper?.resetGame();
 });
 
@@ -188,6 +191,7 @@ function setCustomModalState(modalId) {
 }
 
 function openActiveModal(modalId, renderModal) {
+  setEndModalBoardHint(false);
   resetModal();
   renderModal();
   activeModalId = modalId;
@@ -197,10 +201,19 @@ function openActiveModal(modalId, renderModal) {
 
 function closeActiveModal() {
   if (activeModalId !== null) {
+    const closingModalId = activeModalId;
     activeModalId = null;
     setCustomModalState(null);
     closeModal();
+    setEndModalBoardHint(
+      closingModalId === 'end-modal' &&
+        window.emojiMinesweeper?.hasWonGame()
+    );
   }
+}
+
+function setEndModalBoardHint(isEnabled) {
+  board.classList.toggle('board-reopens-end-modal', isEnabled);
 }
 
 function toggleModal(modalId, renderModal) {
@@ -228,7 +241,7 @@ const toggleStatsModal = () => {
     return;
   }
 
-  if (window.localStorage.getItem('level') === 'custom') {
+  if (getCurrentLevel() === 'custom') {
     showTooltip(
       statsButton,
       'Stats unavailable',
@@ -288,6 +301,7 @@ document.addEventListener('pointerdown', e => {
  * End modal
  */
 document.addEventListener('gameHasEnded', () => {
+  setEndModalBoardHint(false);
   resetModal();
   modal.id = 'end-modal';
   activeModalId = 'end-modal';

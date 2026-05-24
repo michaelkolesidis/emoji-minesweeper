@@ -4,7 +4,7 @@
  * GNU Affero General Public License v3.0
  */
 
-import { setLevel } from '../../utils/levelUtils.js';
+import { getCurrentLevel, setLevel } from '../../utils/levelUtils.js';
 import {
   isMobileDevice,
   showDesktopOnlyTooltip,
@@ -18,7 +18,7 @@ export default function CustomButton() {
   customButton.className = `emoji-button mobile-desktop-only`;
   customButton.dataset.level = 'custom';
   customButton.innerHTML = `<img src="emoji/keycap_asterisk_flat.png" alt="Custom level" />`;
-  const level = window.localStorage.getItem('level');
+  const level = getCurrentLevel();
 
   if (level === 'custom') {
     customButton.classList.add('emoji-button-clicked');
@@ -44,7 +44,7 @@ export default function CustomButton() {
     // Ignore keyboard shortcuts on mobile devices
     if (isMobileDevice()) return;
 
-    const level = window.localStorage.getItem('level');
+    const level = getCurrentLevel();
     const modalOpen = window.localStorage.getItem('modalOpen');
     if (e.code === 'Digit4' && level !== 'custom' && modalOpen !== 'true') {
       setLevel('custom');
