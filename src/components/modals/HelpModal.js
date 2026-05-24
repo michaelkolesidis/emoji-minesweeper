@@ -109,9 +109,9 @@ function buildDesktopHelpContent() {
       strong('Keyboard mode'),
       ': K to ',
       strong('toggle'),
-      '; number + Enter ',
+      ', number + Enter ',
       strong('open/chord'),
-      '; number + F ',
+      ', number + F ',
       strong('flags')
     )
   );

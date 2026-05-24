@@ -243,10 +243,19 @@ import { getCurrentLevel } from './utils/levelUtils.js';
 
   function shouldShowSquareNumber(square) {
     if (window.location.hash === '#debug') {
-      return !square.opened && !square.flagged;
+      return (
+        (!square.opened && !square.flagged) ||
+        (keyboardMode &&
+          !gameFinished &&
+          (square.flagged || (square.opened && square.minesAround > 0)))
+      );
     }
 
     if (!keyboardMode) {
+      return false;
+    }
+
+    if (gameFinished) {
       return false;
     }
 
@@ -259,22 +268,22 @@ import { getCurrentLevel } from './utils/levelUtils.js';
 
   function drawSquareNumber(square) {
     textSize(Math.min(11, squareSize * 0.36));
-    textAlign(window.CENTER, window.CENTER);
-    const isDimmedKeyboardLabel =
-      keyboardMode && (square.flagged || square.opened);
+    textAlign(window.LEFT, window.BASELINE);
+    window.drawingContext.font = window
+      .drawingContext
+      .font
+      .replace(/\b(400|500|600|700|800|900|bold|black)\b/i, '300');
 
     if (window.location.hash === '#debug' && square.mine) {
       fill(255, 61, 61);
-    } else if (isDimmedKeyboardLabel) {
-      darkMode ? fill(225, 135) : fill(35, 135);
     } else {
       darkMode ? fill(225) : fill(35);
     }
 
     text(
       square.num,
-      square.x + squareSize / 2,
-      square.y + squareSize / 2 + squareSize * 0.02
+      square.x + squareSize * 0.15,
+      square.y + squareSize * 0.83
     );
     textAlign(window.LEFT, window.BASELINE);
     textSize(squareSize - squareSize * 0.05);
@@ -1535,7 +1544,8 @@ import { getCurrentLevel } from './utils/levelUtils.js';
     if (
       window.keyCode === 75 &&
       isDesktopKeyboardTarget() &&
-      window.localStorage.getItem('modalOpen') !== 'true'
+      (window.localStorage.getItem('modalOpen') !== 'true' ||
+        window.location.hash === '#debug')
     ) {
       setKeyboardMode(!keyboardMode);
       return false;
