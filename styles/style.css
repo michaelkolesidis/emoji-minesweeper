@@ -222,7 +222,9 @@ img {
   font-family: 'Mochiy Pop One';
   font-size: 26px;
   height: 40px;
-  font-weight: 500;
+  font-weight: 400;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
 }
 
 /* Board */
