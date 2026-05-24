@@ -35,10 +35,7 @@ function buildDesktopHelpContent() {
       strong('Left-click'),
       ' to open or chord, ',
       strong('right-click'),
-      ' to flag (also ',
-      strong('middle-click'),
-      ' to chord',
-      ')'
+      ' to flag'
     )
   );
 
@@ -59,7 +56,7 @@ function buildDesktopHelpContent() {
       icon('emoji/keycap_asterisk_flat.png'),
       'Switch ',
       strong('level'),
-      ': beginner, inter., expert, custom (keys 1-4)'
+      ': beginner, inter., expert, custom (keys 1-4, 5 opens custom modal)'
     )
   );
 
@@ -77,7 +74,7 @@ function buildDesktopHelpContent() {
       buttonIcon('Change theme', 'emoji/bomb_flat.png'),
       'Switch ',
       strong('theme'),
-      ' (left/right arrows)'
+      ' (left/right arrows, right-click opens theme modal)'
     )
   );
 
@@ -104,6 +101,18 @@ function buildDesktopHelpContent() {
       buttonIcon('Toggle dark mode', 'emoji/sun_flat.png'),
       strong('Dark theme'),
       ' (D key)'
+    )
+  );
+
+  content.push(
+    paragraph(
+      strong('Keyboard mode'),
+      ': K to ',
+      strong('toggle'),
+      '; number + Enter ',
+      strong('open/chord'),
+      '; number + F ',
+      strong('flags')
     )
   );
 
@@ -155,7 +164,8 @@ function buildMobileHelpContent() {
     paragraph(
       buttonIcon('Change theme', 'emoji/bomb_flat.png'),
       'Switch ',
-      strong('theme')
+      strong('theme'),
+      ' (tap; long press chooses)'
     )
   );
 

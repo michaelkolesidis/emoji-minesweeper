@@ -531,16 +531,27 @@ button:hover {
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
   margin: 0.15rem 0.05rem;
+  width: 42px;
   height: 42px;
 }
 
+#theme-button {
+  position: relative;
+}
+
 .emoji-button > img {
+  width: 42px;
   height: 42px;
+  object-fit: contain;
 }
 
 .emoji-button:hover,
 .emoji-button-clicked {
   opacity: 0.6;
+}
+
+#theme-button.theme-picker-open:hover {
+  opacity: 1;
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -555,6 +566,49 @@ button:hover {
   .emoji-button:focus:not(.emoji-button-clicked) > img {
     opacity: 1;
   }
+}
+
+#theme-picker {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: repeat(3, 42px);
+  gap: 0.35rem;
+  padding: 0.65rem;
+  border-radius: 18px;
+  background-color: var(--secondary-color);
+  box-shadow: var(--shadow), 0 0 4px var(--main-color);
+  cursor: default;
+}
+
+.theme-picker-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.theme-picker-option:hover {
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.theme-picker-option[aria-pressed='true'] {
+  background-color: color-mix(in srgb, var(--main-color) 10%, transparent);
+}
+
+.theme-picker-option > img {
+  width: 36px;
+  height: 36px;
 }
 
 /* Forcer */

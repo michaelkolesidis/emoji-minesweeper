@@ -28,6 +28,7 @@ import { getCurrentLevel } from './utils/levelUtils.js';
   const redraw = p5Global('redraw');
   const resizeCanvas = p5Global('resizeCanvas');
   const text = p5Global('text');
+  const textAlign = p5Global('textAlign');
   const textFont = p5Global('textFont');
   const textSize = p5Global('textSize');
 
@@ -186,18 +187,27 @@ import { getCurrentLevel } from './utils/levelUtils.js';
       if (this.opened && this.clicked && this.mine) {
         // The mine the player clicked
         image(DETONATION, this.x, this.y, squareSize, squareSize);
+        if (shouldShowSquareNumber(this)) {
+          drawSquareNumber(this);
+        }
         return;
       }
 
       if (this.opened && this.mine) {
         // Mine the played didn't click
         image(MINE, this.x, this.y, squareSize, squareSize);
+        if (shouldShowSquareNumber(this)) {
+          drawSquareNumber(this);
+        }
         return;
       }
 
       if (this.opened && this.flagged) {
         // Flagged square was not a mine
         image(WRONG, this.x, this.y, squareSize, squareSize);
+        if (shouldShowSquareNumber(this)) {
+          drawSquareNumber(this);
+        }
         return;
       }
       if (this.opened) {
@@ -209,27 +219,66 @@ import { getCurrentLevel } from './utils/levelUtils.js';
           squareSize,
           squareSize
         );
+        if (shouldShowSquareNumber(this)) {
+          drawSquareNumber(this);
+        }
         return;
       }
 
       if (this.flagged) {
         image(FLAG, this.x, this.y, squareSize, squareSize);
+        if (shouldShowSquareNumber(this)) {
+          drawSquareNumber(this);
+        }
         return;
       }
 
       image(CLOSED, this.x, this.y, squareSize, squareSize);
 
-      // Square numbers and mine locations for debugging
-      if (window.location.hash === '#debug') {
-        textSize(10.5);
-        if (this.mine) {
-          fill(255, 61, 61);
-        }
-        text(this.num, this.x + squareSize / 3.5, this.y + squareSize / 1.6);
-        textSize(squareSize - squareSize * 0.05);
-        darkMode ? fill(225) : fill(35);
+      if (shouldShowSquareNumber(this)) {
+        drawSquareNumber(this);
       }
     }
+  }
+
+  function shouldShowSquareNumber(square) {
+    if (window.location.hash === '#debug') {
+      return !square.opened && !square.flagged;
+    }
+
+    if (!keyboardMode) {
+      return false;
+    }
+
+    return (
+      (!square.opened && !square.flagged) ||
+      square.flagged ||
+      (square.opened && square.minesAround > 0)
+    );
+  }
+
+  function drawSquareNumber(square) {
+    textSize(Math.min(11, squareSize * 0.36));
+    textAlign(window.CENTER, window.CENTER);
+    const isDimmedKeyboardLabel =
+      keyboardMode && (square.flagged || square.opened);
+
+    if (window.location.hash === '#debug' && square.mine) {
+      fill(255, 61, 61);
+    } else if (isDimmedKeyboardLabel) {
+      darkMode ? fill(225, 135) : fill(35, 135);
+    } else {
+      darkMode ? fill(225) : fill(35);
+    }
+
+    text(
+      square.num,
+      square.x + squareSize / 2,
+      square.y + squareSize / 2 + squareSize * 0.02
+    );
+    textAlign(window.LEFT, window.BASELINE);
+    textSize(squareSize - squareSize * 0.05);
+    darkMode ? fill(225) : fill(35);
   }
 
   function preload() {
@@ -388,6 +437,8 @@ import { getCurrentLevel } from './utils/levelUtils.js';
   let gameFinished = false;
   let newBestMoves = false; // used when the player has made a new best moves record
   let newBestTime = false; // used when the player has made a new best time
+  let keyboardMode = false;
+  let keyboardInput = '';
 
   let timerInterval = null; // the timer's interval ID
 
@@ -552,6 +603,8 @@ import { getCurrentLevel } from './utils/levelUtils.js';
     setDarkMode,
     setLevel,
     setForcedMines,
+    suppressNextMousePress: suppressSyntheticMousePress,
+    isKeyboardMode: () => keyboardMode,
     isGameFinished: () => gameFinished,
     hasWonGame: () => gameResult === 'won',
   });
@@ -821,6 +874,19 @@ import { getCurrentLevel } from './utils/levelUtils.js';
 
   function isModalOpen() {
     return JSON.parse(window.localStorage.getItem('modalOpen')) === true;
+  }
+
+  function isEditableTarget(target) {
+    return (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      target?.isContentEditable
+    );
+  }
+
+  function isDesktopKeyboardTarget() {
+    return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   }
 
   // Get neighbors
@@ -1374,10 +1440,115 @@ import { getCurrentLevel } from './utils/levelUtils.js';
   /**
    * Keyboard Action Handling
    */
+  function setKeyboardMode(enabled) {
+    keyboardMode = enabled;
+    keyboardInput = '';
+    document.body.classList.toggle('keyboard-mode', keyboardMode);
+    loop();
+  }
+
+  function appendKeyboardDigit(digit) {
+    const nextInput = `${keyboardInput}${digit}`;
+    const maxLength = String(numberOfSquares - 1).length;
+
+    if (nextInput.length > maxLength) {
+      return;
+    }
+
+    keyboardInput = nextInput;
+  }
+
+  function openKeyboardInputSquare() {
+    const square = getKeyboardInputSquare();
+    keyboardInput = '';
+
+    if (!square) {
+      return;
+    }
+
+    if (square.opened && !square.flagged) {
+      chordSquareFromInput(square);
+      return;
+    }
+
+    openSquareFromInput(square);
+  }
+
+  function flagKeyboardInputSquare() {
+    const square = getKeyboardInputSquare();
+    keyboardInput = '';
+
+    if (!square || gameFinished) {
+      return;
+    }
+
+    flagSquare(square);
+  }
+
+  function getKeyboardInputSquare() {
+    if (keyboardInput === '') {
+      return null;
+    }
+
+    const squareNumber = Number.parseInt(keyboardInput, 10);
+
+    if (!Number.isInteger(squareNumber)) {
+      return null;
+    }
+
+    return squares.find(square => square.num === squareNumber) ?? null;
+  }
+
+  function handleKeyboardModeKey() {
+    if (!keyboardMode) {
+      return false;
+    }
+
+    if (window.key === 'Escape' || window.keyCode === 27) {
+      keyboardInput = '';
+      return true;
+    }
+
+    if (window.key === 'Enter' || window.keyCode === 13) {
+      openKeyboardInputSquare();
+      return true;
+    }
+
+    if (window.key?.toLowerCase() === 'f' || window.keyCode === 70) {
+      flagKeyboardInputSquare();
+      return true;
+    }
+
+    if (/^\d$/.test(window.key)) {
+      appendKeyboardDigit(window.key);
+      return true;
+    }
+
+    return false;
+  }
+
   function keyPressed() {
+    if (isEditableTarget(document.activeElement)) {
+      return;
+    }
+
+    if (
+      window.keyCode === 75 &&
+      isDesktopKeyboardTarget() &&
+      window.localStorage.getItem('modalOpen') !== 'true'
+    ) {
+      setKeyboardMode(!keyboardMode);
+      return false;
+    }
+
+    if (handleKeyboardModeKey()) {
+      return false;
+    }
+
     // Set Level
     if (
       (window.keyCode === 49 || window.keyCode === 97) &&
+      !keyboardMode &&
       window.location.hash !== '#debug' &&
       window.localStorage.getItem('modalOpen') !== 'true'
     ) {
@@ -1388,6 +1559,7 @@ import { getCurrentLevel } from './utils/levelUtils.js';
     }
     if (
       (window.keyCode === 50 || window.keyCode === 98) &&
+      !keyboardMode &&
       window.location.hash !== '#debug' &&
       window.localStorage.getItem('modalOpen') !== 'true'
     ) {
@@ -1398,6 +1570,7 @@ import { getCurrentLevel } from './utils/levelUtils.js';
     }
     if (
       (window.keyCode === 51 || window.keyCode === 99) &&
+      !keyboardMode &&
       window.location.hash !== '#debug' &&
       window.localStorage.getItem('modalOpen') !== 'true'
     ) {

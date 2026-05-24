@@ -70,6 +70,7 @@ export function shouldIgnoreLevelShortcut(event) {
 
   return (
     window.location.hash === '#debug' ||
+    window.emojiMinesweeper?.isKeyboardMode?.() === true ||
     target instanceof HTMLInputElement ||
     target instanceof HTMLTextAreaElement ||
     target instanceof HTMLSelectElement ||

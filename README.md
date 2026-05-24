@@ -98,13 +98,13 @@ There are four difficulty levels, with different board sizes and numbers of mine
 | Intermediate |   16x16    |  40   |  ~15.63%   |
 |       Expert |   30x16    |  99   |  ~20.63%   |
 
-You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between levels. You can also use the *keyboard keys 1, 2, 3, and 4*. Intermediate, expert, and custom levels are desktop-only, as mobile screens are too small to play comfortably.
+You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between levels. You can also use the *keyboard keys 1, 2, 3, and 4*. Pressing *4* switches to the saved custom level, while pressing *5* opens the custom level modal. Intermediate, expert, and custom levels are desktop-only, as mobile screens are too small to play comfortably.
 
 If you click the *️⃣ button, the custom level modal will appear.
 
 ![Custom modal](./screenshots/custom_modal_v8.png)
 
-Here you can choose the width, the height, and the number of mines for your desired custom level. When you click Submit, your custom level will appear!
+Here you can choose the width, the height, and the number of mines for your desired custom level. When opened with the *5* key, the cursor starts in the columns input. Press *Enter* to move to rows, *Enter* again to move to mines, and *Enter* once more to submit. You can also click Submit, and your custom level will appear!
 
 ![Custom level](./screenshots/custom_v8.png)
 
@@ -138,7 +138,7 @@ Efficiency is the 3BV of a board divided by the number of moves (clicks of taps)
 
 ### Themes
 
-The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a surf theme 🏄, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🏄/🏯 to switch between themes, or use the *left and right arrows* on your keyboard. These are the rest of the themes:
+The game features six themes with different emoji sets to choose from. Apart from the classic mine theme 💣 and the peaceful and relaxing flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a surf theme 🏄, and a Japan theme 🏯. You can use the theme button 💣/🌺/🍄/🐻/🏄/🏯 to switch to the next theme, or use the *left and right arrows* on your keyboard. On desktop, right-click the theme button to open a small theme menu and choose directly. On mobile, tap switches to the next theme and long press opens the theme menu. These are the rest of the themes:
 
 ![Win mushroom](./screenshots/win_mushroom_v8.png)
 
@@ -168,6 +168,10 @@ Clicking on the  ☀️/🌔  button allows players to choose between light and 
 
 Lastly, we should mention the concept of **chording**. When an uncovered square with a number has exactly the correct number of adjacent squares flagged, left-clicking or middle-clicking it will uncover all unmarked adjacent squares. It is a basic technique that allows players to clear squares using flags, and the reason why flagging styles are often more efficient than non-flagging ones.
 
+### Keyboard Mode
+
+On desktop, press *K* to toggle keyboard mode. Every square displays its cell number; unopened cells show the number normally, while flagged cells and opened numbered cells keep a dimmed number so you can still target them. Type a cell number, then press *Enter* to open that square. If the addressed square is already open and numbered, *Enter* attempts a chord. Type a cell number and press *F* to flag or unflag that square. Press *Esc* to clear the typed number if you make a mistake. While keyboard mode is active, number keys are used for cell entry, so *1*, *2*, *3*, and *4* do not change levels.
+
 ### Summary
 
 - **Left-click** to open a square
@@ -180,7 +184,7 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 - 🆕 restarts the game
 - 1️⃣2️⃣3️⃣*️⃣ buttons switch between **levels** (beginner, intermediate, expert, and custom)
 - 📊 button toggles the **stats modal**
-- 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (mine, flower, mushroom, bear, surf, and Japan)
+- 💣/🌺/🍄/🐻/🏄/🏯 button switches between **themes** (right-click or long press opens the theme menu)
 - ❔ button toggles the **help modal**
 - 🔈 button toggles **sound**
 - ☀️/🌔 button toggles **dark mode**
@@ -196,6 +200,10 @@ Lastly, we should mention the concept of **chording**. When an uncovered square 
 |      2      | Switch to intermediate level       |
 |      3      | Switch to expert level             |
 |      4      | Switch to custom level             |
+|      5      | Open custom level modal            |
+|      K      | Toggle keyboard mode               |
+|  Number+↵   | Open/chord that numbered cell      |
+|  Number+F   | Flag/unflag that numbered cell     |
 | Left Arrow  | Switch to next theme               |
 | Right Arrow | Switch to previous theme           |
 |      H      | Open/close help modal              |

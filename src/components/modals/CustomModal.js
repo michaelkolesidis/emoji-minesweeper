@@ -112,8 +112,7 @@ export default function CustomModal() {
   submitButton.innerHTML = `Submit`;
   modal.appendChild(submitButton);
 
-  // Submit Button Functionality
-  submitButton.addEventListener('click', () => {
+  function submitCustomLevel() {
     const customLevel = window.customLevelRules.normalizeCustomLevel({
       columns: columnsInput.value,
       rows: rowsInput.value,
@@ -142,6 +141,32 @@ export default function CustomModal() {
       new CustomEvent('levelChanged', { detail: { level: 'custom' } })
     );
     document.dispatchEvent(new CustomEvent('customLevelSubmitted'));
+  }
+
+  // Submit Button Functionality
+  submitButton.addEventListener('click', submitCustomLevel);
+
+  columnsInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      rowsInput.focus();
+      rowsInput.select();
+    }
+  });
+
+  rowsInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      minesInput.focus();
+      minesInput.select();
+    }
+  });
+
+  minesInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      submitCustomLevel();
+    }
   });
 
   // Handle theme changing

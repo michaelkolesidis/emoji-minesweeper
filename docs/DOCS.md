@@ -39,6 +39,7 @@ The Forcer accepts square numbers separated by spaces, commas, or semicolons. Cl
 
 - Four levels: beginner, intermediate, expert, custom
 - Ability to create custom level by choosing dimensions and number of mines
+- Pressing `5` opens the custom level modal, focuses the columns input, and Enter advances through columns, rows, mines, then submits
 - Custom configurations that match beginner, intermediate, or expert automatically switch to the matching standard level
 - Custom level modal
 - Custom levels support 7x7 through 100x100 boards, with mines clamped to at least 10% of the board
@@ -55,8 +56,10 @@ The Forcer accepts square numbers separated by spaces, commas, or semicolons. Cl
 - The whole UI and all button actions can be triggered using keyboard shortcuts
 - Levels can be changed using the buttons or keyboard shortcuts
 - Themes can be switched using a button or keyboard shortcuts
+- Theme picker menu opens with desktop right-click or mobile long press on the theme button
 - New game with button or keyboard shortcut
 - Touch controls use long-press to flag squares
+- Desktop keyboard mode toggles with `K`; typed cell numbers plus Enter open/chord, typed cell numbers plus `F` flag/unflag, and Esc clears the typed number
 - Sound can be toggled using the speaker button
 - Level and theme preferences are saved
 - Dark mode can be switched using a button or keyboard shortcuts

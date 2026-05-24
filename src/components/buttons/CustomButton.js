@@ -4,7 +4,11 @@
  * GNU Affero General Public License v3.0
  */
 
-import { getCurrentLevel, setLevel } from '../../utils/levelUtils.js';
+import {
+  getCurrentLevel,
+  setLevel,
+  shouldIgnoreLevelShortcut,
+} from '../../utils/levelUtils.js';
 import {
   isMobileDevice,
   showDesktopOnlyTooltip,
@@ -42,7 +46,7 @@ export default function CustomButton() {
   // Keyboard Action Handling
   document.addEventListener('keydown', e => {
     // Ignore keyboard shortcuts on mobile devices
-    if (isMobileDevice()) return;
+    if (isMobileDevice() || shouldIgnoreLevelShortcut(e)) return;
 
     const level = getCurrentLevel();
     const modalOpen = window.localStorage.getItem('modalOpen');

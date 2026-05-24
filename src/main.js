@@ -264,6 +264,16 @@ document.addEventListener('keydown', e => {
     return;
   }
 
+  if (
+    e.code === 'Digit5' &&
+    !usesMobileControls() &&
+    !isEditableTarget(e.target) &&
+    window.emojiMinesweeper?.isKeyboardMode?.() !== true
+  ) {
+    openCustomModalAndFocusFirstInput();
+    return;
+  }
+
   if (e.code === 'KeyS') {
     toggleStatsModal();
   }
@@ -272,6 +282,29 @@ document.addEventListener('keydown', e => {
     toggleHelpModal();
   }
 });
+
+function openCustomModalAndFocusFirstInput() {
+  if (activeModalId !== 'custom-modal') {
+    openActiveModal('custom-modal', CustomModal);
+  }
+
+  window.requestAnimationFrame(() => {
+    document.getElementById('columns-input')?.focus();
+  });
+}
+
+function usesMobileControls() {
+  return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function isEditableTarget(target) {
+  return (
+    target instanceof HTMLInputElement ||
+    target instanceof HTMLTextAreaElement ||
+    target instanceof HTMLSelectElement ||
+    target?.isContentEditable
+  );
+}
 
 document.addEventListener('levelChanged', () => {
   syncLevelButtons();

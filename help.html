@@ -316,10 +316,11 @@
 
       <p>
         You can use the level buttons 1️⃣2️⃣3️⃣*️⃣ to switch between levels. You can
-        also use the <em>keyboard keys 1, 2, 3, and 4</em>. Intermediate,
-        expert, and custom are desktop-only on small/mobile screens; the game
-        shows a short message if those controls are used on a screen that is too
-        narrow.
+        also use the <em>keyboard keys 1, 2, 3, and 4</em>. Pressing
+        <em>4</em> switches to the saved custom level, while pressing
+        <em>5</em> opens the custom level modal. Intermediate, expert, and
+        custom are desktop-only on small/mobile screens; the game shows a short
+        message if those controls are used on a screen that is too narrow.
       </p>
       <p>
         If you click the <strong>*️⃣</strong> button, the custom level modal will
@@ -330,7 +331,10 @@
 
       <p>
         Here you can choose the width, the height, and the number of mines for
-        your desired custom level. When you click Submit, your custom level will
+        your desired custom level. When opened with the <em>5</em> key, the
+        cursor starts in the columns input. Press <em>Enter</em> to move to
+        rows, <em>Enter</em> again to move to mines, and <em>Enter</em> once
+        more to submit. You can also click Submit, and your custom level will
         appear!
       </p>
 
@@ -404,9 +408,11 @@
         Apart from the classic mine theme 💣 and the peaceful and relaxing
         flower theme 🌺, you can find a mushroom theme 🍄, a bear theme 🐻, a
         surf theme 🏄, and a Japan theme 🏯. You can use the theme button
-        💣/🌺/🍄/🐻/🏄/🏯 to switch between themes, or use the
-        <em>left and right arrows</em> on your keyboard. These are the rest of
-        the themes:
+        💣/🌺/🍄/🐻/🏄/🏯 to switch to the next theme, or use the
+        <em>left and right arrows</em> on your keyboard. On desktop, right-click
+        the theme button to open a small theme menu and choose directly. On
+        mobile, tap switches to the next theme and long press opens the theme
+        menu. These are the rest of the themes:
       </p>
 
       <img src="./screenshots/win_mushroom_v8.png" alt="Win mushroom theme" />
@@ -466,6 +472,20 @@
         more efficient than non-flagging ones.
       </p>
 
+      <h3>Keyboard Mode</h3>
+      <p>
+        On desktop, press <em>K</em> to toggle keyboard mode. Every square
+        displays its cell number; unopened cells show the number normally, while
+        flagged cells and opened numbered cells keep a dimmed number so you can
+        still target them. Type a cell number, then press <em>Enter</em> to open
+        that square. If the addressed square is already open and numbered,
+        <em>Enter</em> attempts a chord. Type a cell number and press
+        <em>F</em> to flag or unflag that square. Press <em>Esc</em> to clear
+        the typed number if you make a mistake. While keyboard mode is active,
+        number keys are used for cell entry, so <em>1</em>, <em>2</em>,
+        <em>3</em>, and <em>4</em> do not change levels.
+      </p>
+
       <h3>Summary</h3>
       <ul>
         <li><strong>Left-click</strong> to open a square</li>
@@ -491,7 +511,7 @@
         <li>
           💣/🌺/🍄/🐻/🏄/🏯 button switches between
           <strong>themes</strong> (mine, flower, mushroom, bear, surf, and
-          Japan)
+          Japan); right-click or long press opens the theme menu
         </li>
         <li>❔ button toggles the <strong>help modal</strong></li>
         <li>🔊 button toggles <strong>sound</strong></li>
@@ -533,6 +553,22 @@
           <tr>
             <td>4</td>
             <td>Switch to custom level</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Open custom level modal</td>
+          </tr>
+          <tr>
+            <td>K</td>
+            <td>Toggle keyboard mode</td>
+          </tr>
+          <tr>
+            <td>Number + Enter</td>
+            <td>Open/chord that numbered cell</td>
+          </tr>
+          <tr>
+            <td>Number + F</td>
+            <td>Flag/unflag that numbered cell</td>
           </tr>
           <tr>
             <td>Left Arrow</td>
