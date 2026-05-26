@@ -200,16 +200,19 @@ function openActiveModal(modalId, renderModal) {
 }
 
 function closeActiveModal() {
-  if (activeModalId !== null) {
-    const closingModalId = activeModalId;
-    activeModalId = null;
-    setCustomModalState(null);
-    closeModal();
-    setEndModalBoardHint(
-      closingModalId === 'end-modal' &&
-        window.emojiMinesweeper?.hasWonGame()
-    );
+  const closingModalId = activeModalId;
+  const modalOpen = window.localStorage.getItem('modalOpen') === 'true';
+
+  if (closingModalId === null && !modalOpen) {
+    return;
   }
+
+  activeModalId = null;
+  setCustomModalState(null);
+  closeModal();
+  setEndModalBoardHint(
+    closingModalId === 'end-modal' && window.emojiMinesweeper?.hasWonGame()
+  );
 }
 
 function setEndModalBoardHint(isEnabled) {
@@ -312,6 +315,11 @@ document.addEventListener('levelChanged', () => {
 
 document.addEventListener('customLevelSubmitted', () => {
   closeActiveModal();
+});
+
+document.addEventListener('gameWillReset', () => {
+  closeActiveModal();
+  setEndModalBoardHint(false);
 });
 
 document.addEventListener('pointerdown', e => {

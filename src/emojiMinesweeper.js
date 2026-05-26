@@ -507,6 +507,8 @@ import { getCurrentLevel } from './utils/levelUtils.js';
   }
 
   function resetGame(forcedMines = null) {
+    document.dispatchEvent(new CustomEvent('gameWillReset'));
+
     document
       .getElementById('board')
       ?.classList.remove('board-reopens-end-modal');
